@@ -1,25 +1,177 @@
-.background{
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 1;
-            filter: blur(8px);
-        }
-
 *{
     padding: 0;
     margin: 0;
+    box-sizing: border-box; /* 避免内边距撑大元素 */
+    position: relative; /* 统一定位上下文，解决z-index层级混乱 */
 }
+
+html, body {
+  height: 100%;       
+  background: #323131;
+  margin: 0;
+}
+
+.background{
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    filter: blur(8px);
+}
+
 .jianjie{
-            position: absolute;
-            /* ========== 透明模糊毛玻璃背景框 ========== */
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(22px);
-            -webkit-backdrop-filter: blur(18px);
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 20px; /* 圆角 */
-            padding: 10px 30px; /* 内边距，控制框大小 */
-        }
+    position: absolute;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 10px 30px;
+    z-index: 3; /* 提升层级：确保简介在内容板块上方 */
+    max-width: calc(100% - 350px); /* 新增：限制宽度，避免小屏溢出 */
+}
+
+/* 内容板块统一优化 */
+.block_1{
+    position: absolute; /* 修正为absolute，统一定位规则 */
+    background: rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 10px 30px;
+    color:white;
+    z-index: 2; /* 低于简介的z-index:3，彻底避免遮挡 */
+}
+
+.content-wrapper {
+    position: absolute;
+    top: 350px; 
+    left: 50px;
+    width: calc(100% - 300px); 
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 200px 50px; /* 板块之间的间距 */
+    align-content: flex-start;
+    z-index: 2;
+}
+
+.right-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 260px;
+    height: 100vh;
+    background: rgba(255,255,255,0.5);
+    backdrop-filter: blur(10px);
+    box-shadow: -20px 0 6px rgba(0,0,0,0.1);
+    padding: 20px;
+    transition: 0.3s ease;
+    z-index: 999;
+}
+.right-sidebar.collapsed {
+    transform: translateX(calc(100% - 20px));
+}
+.sidebar-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+    z-index: 999;
+}
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    z-index: 999;
+}
+.sidebar-menu li {
+    margin: 8px 0;
+    z-index: 999;
+}
+
+/* 一级菜单通用样式 */
+.sidebar-menu > li > a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    display: block;
+    padding: 8px 10px;
+    border-radius: 6px;
+    transition: 0.2s;
+    z-index: 999;
+    cursor: pointer;
+}
+.sidebar-menu > li > a:hover {
+    background: rgba(0,0,0,0.05);
+}
+/* 子菜单容器样式 */
+.submenu {
+    list-style: none;
+    padding-left: 20px; /* 子菜单缩进 */
+    margin: 4px 0;
+    max-height: 0; /* 默认折叠 */
+    overflow: hidden; /* 隐藏超出内容 */
+    transition: max-height 0.3s ease-in-out; /* 平滑动画 */
+    z-index: 999;
+    opacity: 0.8; /*增强视觉层级 */
+}
+/* 修复：子菜单展开状态*/
+.submenu.open {
+    max-height: 300px; /* 足够容纳所有子项，动画生效关键 */
+    opacity: 1;
+}
+/* 子菜单项样式 */
+.submenu li a {
+    text-decoration: none;
+    color: #555; 
+    font-size: 14px; 
+    display: block;
+    padding: 6px 8px;
+    border-radius: 4px;
+    transition: 0.2s;
+    z-index: 999;
+}
+.submenu li a:hover {
+    background: rgba(0,0,0,0.03);
+}
+/* 切换按钮样式不变 */
+.toggle-btn {
+    position: absolute;
+    top: 20px;
+    left: -50px;
+    width: 40px;
+    height: 40px;
+    background: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+/* 媒体查询（小屏适配，避免所有元素重叠） */
+@media screen and (max-width: 1400px) {
+    .content-wrapper {
+        top: 500px; /* 大屏→中屏，进一步增大间距 */
+    }
+}
+@media screen and (max-width: 768px) {
+    .jianjie {
+        left: 50px;
+        right: 50px; /* 小屏取消固定right，避免和侧边栏冲突 */
+        max-width: calc(100% - 100px);
+        top: 250px; /* 简介下移，避开头像 */
+    }
+    .content-wrapper {
+        top: 550px; /* 小屏再增大间距 */
+        left: 20px;
+        width: calc(100% - 40px);
+    }
+    .right-sidebar {
+        width: 200px; /* 小屏缩小侧边栏 */
+    }
+}

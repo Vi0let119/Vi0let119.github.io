@@ -3,72 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>欢迎来到我的个人网站^_^♡</title>
+    <title>Violet119的主页</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.2/jquery-ui.js"></script>
+    <link rel="stylesheet" href="style.css">
     <style>
-        @font-face {
-            font-family:ziti_1;
-            src: url("字体素材/鸿雷小纸条青春体.ttf");
-        }
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body{
-            font-family: "ziti_1";
-            background-color:rgb(87, 89, 90);
-            height: 100vh; 
-            overflow: hidden; 
-            position: relative;
-        }
-
-        .strat{
-            position: absolute;
-            top: 10px;   
-            left: 150px; 
-            font-size: 100px; 
-            color: #000000ee; 
-            z-index: 999; 
-            text-decoration: none; 
-        }
-
-        .background{
-            width: 100vw;
-            height: 100vh;
+        .touxiang{
+            width: 200px;
+            height: 200px;
             object-fit: cover;
             position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 1;
+            top: 50px;
+            left: 50px;
+            border-radius: 50%;
+            z-index: 2;
         }
-        .jianjie{
-            position: absolute;
-            color: rgb(182, 195, 230);
-            top: 200px;   
-            left: 100px;  
-            font-size: 50px; 
-            z-index: 999;
-            /* ========== 透明模糊毛玻璃背景框 ========== */
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(22px);
-            -webkit-backdrop-filter: blur(18px);
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 60px; /* 圆角 */
-            padding: 10px 30px; /* 内边距，控制框大小 */
-        }
-        .jianjie p {
-            margin: 0 0 40px 0; /* 段落之间的距离：20px，可改 */
-            line-height: 1.3;   /* 行高 */
+        /* 主页标题样式抽离，避免内联样式混乱 */
+        .main-title {
+            position: absolute; 
+            top: 50px; 
+            left: 300px; 
+            color: rgb(182, 195, 230); 
+            z-index: 3; /* 和简介同层级，避免被遮挡 */
+            font-size: 30px;
         }
     </style>
+
+    <script src="sidebar.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        initSidebar('sidebar-container');
+    });
+    </script>
+    <!-- <script>
+    $( function() {
+        $( "button, a" ).on( "click", function( event ) {
+        event.preventDefault();
+        $( "#dialog" ).dialog()
+        } );
+    } );
+  </script> -->
 </head>
 <body>
-    <img class = "background" src="图片素材/搜图神器_1731042976477.png" alt="图片无法加载喵~">
-    <a class="strat" href="index_true.html">欢迎进入我的主页...</a>
-    <div class="jianjie">
-        <p>这是一个个人网站</p>
-        <p>用于记录自己的每日coding和健身情况，以及一些日常的摄影作品</p>
-        <p>可能还会有其他的板块，一切都在搭建中^_^♡</p>
+    
+    <div id="sidebar-container"></div>
+    
+    <img class = "background" src="图片素材/搜图神器_1731042950796.png.jpg" alt="图片无法加载喵~">
+    <img class = "touxiang" src="图片素材/搜图神器_1731155695663.jpg" alt="图片无法加载喵~">
+    <h1 class="main-title">Violet119的主页</h1>
+    <h2 class = "jianjie" style="position: absolute; top: 120px; left: 300px; right: 410px; color: rgb(182, 195, 230);">
+        个人简介：本人目前是就读于上海华东师范大学计算机专业的本科生，学过一段时间的算法竞赛，到现在为止也只是一个蒟蒻，不想再花费太多时间在这上面，只是平时当作兴趣爱好随便做做题。后续想把重心转移到网站的制作和项目的开发上，学习一些实用性技能。同时本人在平时生活中比较喜欢健身，计划准备用表记录健身日期，也比较喜欢摄影会挑选一些照片放在网站上。本人平时喜欢玩点游戏，玩的比较杂。偶尔看些比较出名的动漫，没有高强度追番。最喜欢的角色是薇尔莉特。
+    </h2>
+
+    <div class="content-wrapper">
+        <div style="width: 400px;">
+            <h1 style="font-size: 35px; color: white; margin-bottom: 10px;">项目 projects</h1>
+            <h2 class="block_1" style="font-size: 25px; color: white; padding: 15px;">
+                项目描述：计划放置我的项目介绍和详细信息。
+                <br><br>
+                <a href="project_index.html" style="color: white;">点我进入喵</a>
+            </h2>
+        </div>
+        <div style="width: 400px;">
+            <h1 style="font-size: 35px; color: white; margin-bottom: 10px;">图片 pictures</h1>
+            <h2 class="block_1" style="font-size: 25px; color: white; padding: 15px;">
+                图片描述：计划放置一些挑选过的摄影作品，因为服务器原因应该不会全部放进来，但是后续会把每次摄影的时间地点导出来，结合地图做个热力图。
+                <br><br>
+                <a href="picture_index.html" style="color: white;">点我进入喵</a>
+            </h2>
+        </div>
+        <div style="width: 400px;">
+            <h1 style="font-size: 35px; color: white; margin-bottom: 10px;">健康数据 health data</h1>
+            <h2 class="block_1" style="font-size: 25px; color: white; padding: 15px;">
+                健康数据描述：本来计划放跑步路线，但是这学期锻炼主要是在健身房，还在考虑做什么内容，除了基本的体重线图。
+                <br><br>
+                <a href="health_data_index.html" style="color: white;">点我进入喵</a>
+            </h2>
+        </div>
+
+        <div style="width: 400px;">
+            <h1 style="font-size: 35px; color: white; margin-bottom: 10px;">敬请期待 more blocks...</h1>
+            <h2 class="block_1" style="font-size: 25px; color: white; padding: 15px;">
+                更多板块敬请期待，后续会继续完善和添加内容的喵~
+                <br><br>
+                <!-- <a href="health_data_index.html" style="color: white;">点我进入喵</a> -->
+            </h2>
+        </div>
+
     </div>
-</body> 
+</body>
 </html>

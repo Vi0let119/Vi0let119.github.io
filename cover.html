@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欢迎来到我的个人网站^_^♡</title>
+    <style>
+        @font-face {
+            font-family:ziti_1;
+            src: url("字体素材/鸿雷小纸条青春体.ttf");
+        }
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            font-family: "ziti_1";
+            background-color:rgb(87, 89, 90);
+            height: 100vh; 
+            overflow: hidden; 
+            position: relative;
+        }
+
+        .strat{
+            position: absolute;
+            top: 10px;   
+            left: 150px; 
+            font-size: 100px; 
+            color: #000000ee; 
+            z-index: 999; 
+            text-decoration: none; 
+        }
+
+        .background{
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        .jianjie{
+            position: absolute;
+            color: rgb(182, 195, 230);
+            top: 200px;   
+            left: 100px;  
+            font-size: 50px; 
+            z-index: 999;
+            /* ========== 透明模糊毛玻璃背景框 ========== */
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 60px; /* 圆角 */
+            padding: 10px 30px; /* 内边距，控制框大小 */
+        }
+        .jianjie p {
+            margin: 0 0 40px 0; /* 段落之间的距离：20px，可改 */
+            line-height: 1.3;   /* 行高 */
+        }
+    </style>
+</head>
+<body>
+    <img class = "background" src="图片素材/搜图神器_1731042976477.png" alt="图片无法加载喵~">
+    <a class="strat" href="index.html">欢迎进入我的主页...</a>
+    <div class="jianjie">
+        <p>这是一个个人网站</p>
+        <p>用于记录自己的每日coding和健身情况，以及一些日常的摄影作品</p>
+        <p>可能还会有其他的板块，一切都在搭建中^_^♡</p>
+    </div>
+</body>
+</html>

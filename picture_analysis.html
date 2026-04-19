@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片分析 - Picture Analysis</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="picture_style.css">
+    <script src = "http://chenhui.li/echarts.min.js"></script>
+    <script src="sidebar.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            initSidebar('sidebar-container');
+        });
+    </script>
+</head>
+<body>
+    <div id="sidebar-container"></div>
+
+    <div class="layout-container">
+
+        <div class="image-panel">
+        <h3>图片浏览</h3>
+        <br>
+        <div class="image-preview">
+            <input type="file" id="imageInput" accept="image/*" class="image-upload">
+            <img id="displayImage" alt="点我上传图片">
+        </div>
+        </div>
+
+        <div class="picture_details" id="pictureDetails">
+            
+            <!-- 在右侧面板 picture_details 中 -->
+        <div class="control-panel">
+            <div class="control-item">
+                <label>K值 (聚类数量): <span id="kValueDisplay">5</span></label>
+                <input type="range" id="kValueSlider" min="2" max="10" value="5">
+            </div>
+
+            <div class="control-item">
+                <label>颜色空间:</label>
+                <select id="spaceSelect">
+                    <option value="rgb">RGB</option>
+                    <option value="lab">LAB</option>
+                </select>
+            </div>
+
+            <div class="control-item">
+                <label>图表类型:</label>
+                <button class="chart-type-btn active" data-type="pie">饼图</button>
+                <button class="chart-type-btn" data-type="bar">柱状图</button>
+            </div>
+
+            <div class="control-item">
+                     <button id="startAnalysisBtn">🚀 开始分析</button>
+            </div>
+
+            <div id="chartContainer"></div>
+        </div>
+
+        
+        </div>
+    </div>
+     <script type="module" src="imageAnalyzer.js"></script>
+</body>
+</html>
