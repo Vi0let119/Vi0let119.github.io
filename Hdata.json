@@ -1,0 +1,113 @@
+{
+    "records": [
+    {
+      "date": "2026-04-07",
+      "weight_kg": 74.38,
+      "sleep_last": 7.9,
+      "sleep_st": "2026-04-07T02:05:00"
+    },
+    {
+        "date": "2026-04-08",
+        "weight_kg": -1,
+        "sleep_last": 6.5,
+        "sleep_st": "2026-04-08T03:08:00"
+    },
+    {
+      "date": "2026-04-09",
+      "weight_kg": 74.60,
+      "sleep_last": 7.1,
+      "sleep_st": "2026-04-09T01:09:00"
+    },
+    {
+        "date": "2026-04-10",
+        "weight_kg": 74.60,
+        "sleep_last": 7.2,
+        "sleep_st": "2026-04-10T01:19:00"   
+    },
+    {
+        "date": "2026-04-11",
+        "weight_kg": 74.60,
+        "sleep_last": 5.2,
+        "sleep_st": "2026-04-11T02:31:00"
+    },
+    {
+        "date": "2026-04-12",
+        "weight_kg": 74.60,
+        "sleep_last": 7.1,
+        "sleep_st": "2026-04-12T03:00:00"
+    },
+    {
+        "date": "2026-04-13",
+        "weight_kg": 75.18,
+        "sleep_last": 6.9,
+        "sleep_st": "2026-04-13T02:08:00"
+    },
+    {
+        "date": "2026-04-14",
+        "weight_kg": 75.15,
+        "sleep_last": 7.5,
+        "sleep_st": "2026-04-14T03:09:00"
+    },
+    {
+        "date": "2026-04-15",
+        "weight_kg": 75.15,
+        "sleep_last": 6.8,
+        "sleep_st": "2026-04-15T02:36:00"
+    },
+    {
+        "date": "2026-04-16",
+        "weight_kg": 74.60,
+        "sleep_last": 7.5,
+        "sleep_st": "2026-04-16T01:37:00"
+    },
+    {
+        "date": "2026-04-17",
+        "weight_kg": 75.15,
+        "sleep_last": 5.7,
+        "sleep_st": "2026-04-17T01:42:00"
+    },
+    {
+        "date": "2026-04-18",
+        "weight_kg": 75.80,
+        "sleep_last": 6.9,
+        "sleep_st": "2026-04-18T04:15:00"
+    },
+    {
+        "date": "2026-04-19",
+        "weight_kg": 75.80,
+        "sleep_last": 7.6,
+        "sleep_st": "2026-04-19T04:49:00"
+    },
+    {
+        "date": "2026-04-20",
+        "weight_kg": 75.80,
+        "sleep_last": 6.6,
+        "sleep_st": "2026-04-20T02:43:00"
+    },
+    {
+        "date": "2026-04-21",
+        "weight_kg": 75.15,
+        "sleep_last": 8.1,
+        "sleep_st": "2026-04-21T03:30:00"
+    },
+    {
+        "date": "2026-04-22",
+        "weight_kg": 75.15,
+        "sleep_last": 7.7,
+        "sleep_st": "2026-04-22T03:14:00"
+    },
+    {
+        "date": "2026-04-23",
+        "weight_kg": 74.85,
+        "sleep_last": 6.9,
+        "sleep_st": "2026-04-23T02:25:00"
+    },
+    {
+        "date": "2026-04-24",
+        "weight_kg": 75.15,
+        "sleep_last": 5.1,
+        "sleep_st": "2026-04-24T02:22:00"
+    }
+  ]
+    
+}

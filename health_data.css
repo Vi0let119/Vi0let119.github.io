@@ -1,0 +1,161 @@
+body {
+    background: #121212; 
+    color: #bdc3c7;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* 主容器 - 左右布局 */
+.main-container {
+    display: flex;
+    margin-left: 200px;
+    min-height: 100vh;
+    padding: 2vh;
+    gap: 2vw;
+}
+
+/* 左侧图表区域 - 占据约50% */
+.chart-section {
+    flex: 1 1 50%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-left: 1vw;
+    max-width: 55%;
+}
+
+/* 图表画布 */
+.chart-canvas {
+    background: linear-gradient(145deg, #1e1e1e, #252525);
+    border-radius: 16px;
+    padding: 2vh;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* 图表容器 */
+#chartContainer {
+    width: 100%;
+    height: 60vh;
+    min-height: 50vh;
+}
+
+/* 右侧控制面板 \*/
+.control-panel {
+    width: 20vw;
+    min-width: 200px;
+    max-width: 380px;
+    background: linear-gradient(145deg, #1a1a1a, #1f1f1f);
+    border-radius: 16px;
+    padding: 2vh;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    height: fit-content;
+    position: relative;
+    top: 2vh;
+    margin-left: 6vw;
+    /* margin-top: 1vh; */
+}
+
+.panel-header h3 {
+    margin: 0 0 1.5vh 0;
+    color: #fff;
+    font-size: 1.1vw;
+    font-weight: 500;
+    padding-bottom: 1vh;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 控制组 */
+.control-group {
+    margin-bottom: 1.5vh;
+}
+
+.control-group label {
+    display: block;
+    margin-bottom: 0.5vh;
+    color: #888;
+    font-size: 0.75vw;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.control-group select {
+    width: 100%;
+    padding: 0.8vh 1vw;
+    background: #2a2a2a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 0.85vw;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.control-group select:hover {
+    border-color: rgba(76, 175, 80, 0.5);
+}
+
+.control-group select:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+}
+
+/* 统计信息 */
+.stats-box {
+    background: #252525;
+    border-radius: 8px;
+    padding: 1vh;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5vh 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stat-item:last-child {
+    border-bottom: none;
+}
+
+.stat-label {
+    color: #888;
+    font-size: 0.8vw;
+}
+
+.stat-value {
+    color: #4CAF50;
+    font-weight: 500;
+}
+
+/* 更新按钮 */
+.update-btn {
+    width: 100%;
+    padding: 1vh;
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 0.9vw;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1vh;
+}
+
+.update-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(76, 175, 80, 0.4);
+}
+
+.update-btn:active {
+    transform: translateY(0);
+}

@@ -7,8 +7,10 @@
 
 html, body {
   height: 100%;       
-  background: #323131;
+  background: #121212; 
+  color: #bdc3c7;
   margin: 0;
+  font-family: 'Roboto', sans-serif;
 }
 
 .background{
@@ -59,99 +61,6 @@ html, body {
     z-index: 2;
 }
 
-.right-sidebar {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 260px;
-    height: 100vh;
-    background: rgba(255,255,255,0.5);
-    backdrop-filter: blur(10px);
-    box-shadow: -20px 0 6px rgba(0,0,0,0.1);
-    padding: 20px;
-    transition: 0.3s ease;
-    z-index: 999;
-}
-.right-sidebar.collapsed {
-    transform: translateX(calc(100% - 20px));
-}
-.sidebar-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #333;
-    z-index: 999;
-}
-.sidebar-menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    z-index: 999;
-}
-.sidebar-menu li {
-    margin: 8px 0;
-    z-index: 999;
-}
-
-/* 一级菜单通用样式 */
-.sidebar-menu > li > a {
-    text-decoration: none;
-    color: #333;
-    font-size: 16px;
-    display: block;
-    padding: 8px 10px;
-    border-radius: 6px;
-    transition: 0.2s;
-    z-index: 999;
-    cursor: pointer;
-}
-.sidebar-menu > li > a:hover {
-    background: rgba(0,0,0,0.05);
-}
-/* 子菜单容器样式 */
-.submenu {
-    list-style: none;
-    padding-left: 20px; /* 子菜单缩进 */
-    margin: 4px 0;
-    max-height: 0; /* 默认折叠 */
-    overflow: hidden; /* 隐藏超出内容 */
-    transition: max-height 0.3s ease-in-out; /* 平滑动画 */
-    z-index: 999;
-    opacity: 0.8; /*增强视觉层级 */
-}
-/* 修复：子菜单展开状态*/
-.submenu.open {
-    max-height: 300px; /* 足够容纳所有子项，动画生效关键 */
-    opacity: 1;
-}
-/* 子菜单项样式 */
-.submenu li a {
-    text-decoration: none;
-    color: #555; 
-    font-size: 14px; 
-    display: block;
-    padding: 6px 8px;
-    border-radius: 4px;
-    transition: 0.2s;
-    z-index: 999;
-}
-.submenu li a:hover {
-    background: rgba(0,0,0,0.03);
-}
-/* 切换按钮样式不变 */
-.toggle-btn {
-    position: absolute;
-    top: 20px;
-    left: -50px;
-    width: 40px;
-    height: 40px;
-    background: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 18px;
-    cursor: pointer;
-    z-index: 1000;
-}
 
 /* 媒体查询（小屏适配，避免所有元素重叠） */
 @media screen and (max-width: 1400px) {
