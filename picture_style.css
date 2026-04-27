@@ -117,7 +117,8 @@ body {
 
 /* 控件组与图表的间距 */
 .picture_details .control-panel {
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
+    min-height: 90vh;
 }
 
 /* 大屏布局：图片面板 + 详细信息面板横向排列 */
@@ -269,4 +270,20 @@ body {
     font-weight: 500;
     color: #bdc3c7;
     white-space: nowrap; /* 防止文字换行 */
+}
+
+/* RGB Histogram 样式 */
+#rgbHistogram {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#rgbHistogram canvas {
+    width: 100% !important; /* 强制占满右侧宽度 */
+    height: 300px; /* 固定图表高度 */
+    min-height: 200px;
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
 }

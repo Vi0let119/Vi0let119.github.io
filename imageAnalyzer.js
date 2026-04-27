@@ -200,6 +200,8 @@ class ImageProcessor {
         this.kmeans = new KMeansColor();
         this.myChart = null; // 存储 ECharts 实例
         this.currentChartType = 'pie'; // 默认图表类型
+        this.histogramCanvas = null; // RGB直方图Canvas
+        this.histogramCtx = null; // RGB直方图Canvas上下文
     }
 
     init() {
@@ -214,6 +216,18 @@ class ImageProcessor {
 
         // 图表类型切换按钮
         this.chartTypeButtons = document.querySelectorAll('.chart-type-btn');
+
+        // 初始化RGB直方图Canvas
+        this.histogramCanvas = document.createElement('canvas');
+        this.histogramCanvas.width = 400;
+        this.histogramCanvas.height = 300;
+        this.histogramCtx = this.histogramCanvas.getContext('2d');
+
+        // 将Canvas添加到RGB Histogram容器中
+        const histogramContainer = document.getElementById('rgbHistogram');
+        if (histogramContainer) {
+            histogramContainer.appendChild(this.histogramCanvas);
+        }
 
         // 绑定事件
         if (this.fileInput) {
@@ -256,6 +270,21 @@ class ImageProcessor {
             this.image.onload = () => {
                 this.imageElement.src = this.image.src;
                 console.log("图片预览已更新");
+
+                // 上传新图片后，计算并绘制RGB直方图
+                const tempCanvas = document.createElement('canvas');
+                const ctx = tempCanvas.getContext('2d');
+                tempCanvas.width = this.image.width;
+                tempCanvas.height = this.image.height;
+                ctx.drawImage(this.image, 0, 0);
+
+                let imageData;
+                try {
+                    imageData = ctx.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
+                    this.computeAndDrawHistogram(imageData.data);
+                } catch (e) {
+                    console.error("无法获取图片像素数据", e);
+                }
             };
             this.image.src = e.target.result;
         };
@@ -289,6 +318,9 @@ class ImageProcessor {
         const clusters = this.kmeans.cluster(imageData.data, k, space);
         this.lastClusters = clusters; 
         this.renderChart(clusters);
+
+        // 计算并绘制RGB直方图
+        this.computeAndDrawHistogram(imageData.data);
     }
 
     renderChart(clusters) {
@@ -337,6 +369,123 @@ class ImageProcessor {
         }
 
         this.myChart.setOption(option);
+    }
+
+    // 计算RGB直方图
+    computeAndDrawHistogram(pixels) {
+        const rHist = new Array(256).fill(0);
+        const gHist = new Array(256).fill(0);
+        const bHist = new Array(256).fill(0);
+
+        // 统计每个通道的像素值分布
+        for (let i = 0; i < pixels.length; i += 4) {
+            rHist[pixels[i]]++;     // R
+            gHist[pixels[i + 1]]++; // G
+            bHist[pixels[i + 2]]++; // B
+        }
+
+        // 绘制直方图
+        this.drawHistogram(rHist, gHist, bHist);
+    }
+
+    // 绘制RGB直方图
+    drawHistogram(rHist, gHist, bHist) {
+        if (!this.histogramCtx) return;
+
+        const canvas = this.histogramCanvas;
+        const width = canvas.clientWidth;
+        const height = canvas.clientHeight;
+
+        if (canvas.width !== width || canvas.height !== height) {
+            canvas.width = width;
+            canvas.height = height;
+            this.histogramCtx = canvas.getContext('2d');
+        }
+
+        const ctx = this.histogramCtx;
+
+        // 黑色背景
+        ctx.fillStyle = '#111';
+        ctx.fillRect(0, 0, width, height);
+
+        // 找到最大值用于归一化
+        const maxR = Math.max(...rHist);
+        const maxG = Math.max(...gHist);
+        const maxB = Math.max(...bHist);
+        const maxVal = Math.max(maxR, maxG, maxB);
+
+        // 绘制背景网格
+        ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+        ctx.lineWidth = 1;
+        for (let i = 0; i <= 10; i++) {
+            const y = (height / 10) * i;
+            ctx.beginPath();
+            ctx.moveTo(0, y);
+            ctx.lineTo(width, y);
+            ctx.stroke();
+        }
+
+        const barWidth = width / 256;
+        const drawChannel = (hist, color) => {
+            ctx.fillStyle = color;
+            for (let i = 0; i < 256; i++) {
+                const barHeight = (hist[i] / maxVal) * height;
+                ctx.fillRect(i * barWidth, height - barHeight, barWidth, barHeight);
+            }
+        };
+
+        ctx.globalCompositeOperation = 'lighter';
+        drawChannel(rHist, 'rgba(255, 0, 0, 0.28)');
+        drawChannel(gHist, 'rgba(0, 255, 0, 0.28)');
+        drawChannel(bHist, 'rgba(0, 0, 255, 0.28)');
+        ctx.globalCompositeOperation = 'source-over';
+
+        // 三色重叠显示白色区域
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+        for (let i = 0; i < 256; i++) {
+            const rHeight = (rHist[i] / maxVal) * height;
+            const gHeight = (gHist[i] / maxVal) * height;
+            const bHeight = (bHist[i] / maxVal) * height;
+            const overlapHeight = Math.min(rHeight, gHeight, bHeight);
+            if (overlapHeight > 0) {
+                ctx.fillRect(i * barWidth, height - overlapHeight, barWidth, overlapHeight);
+            }
+        }
+
+        // 添加细线轮廓
+        const drawOutline = (hist, color) => {
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            for (let i = 0; i < 256; i++) {
+                const x = i * barWidth + barWidth / 2;
+                const y = height - (hist[i] / maxVal) * height;
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+        };
+
+        drawOutline(rHist, 'rgba(255, 80, 80, 0.9)');
+        drawOutline(gHist, 'rgba(80, 255, 80, 0.9)');
+        drawOutline(bHist, 'rgba(120, 140, 255, 0.9)');
+
+        // 添加文字说明
+        ctx.fillStyle = '#ccc';
+        ctx.font = '13px Arial';
+        ctx.fillText('RGB Histogram', 12, 22);
+        ctx.fillStyle = '#f55';
+        ctx.fillRect(width - 90, 12, 10, 10);
+        ctx.fillStyle = '#ccc';
+        ctx.fillText('R', width - 72, 21);
+        ctx.fillStyle = '#6f6';
+        ctx.fillRect(width - 90, 32, 10, 10);
+        ctx.fillStyle = '#ccc';
+        ctx.fillText('G', width - 72, 41);
+        ctx.fillStyle = '#69f';
+        ctx.fillRect(width - 90, 52, 10, 10);
+        ctx.fillStyle = '#ccc';
+        ctx.fillText('B', width - 72, 61);
     }
 }
 
