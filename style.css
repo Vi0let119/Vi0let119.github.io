@@ -84,3 +84,53 @@ html, body {
         width: 200px; /* 小屏缩小侧边栏 */
     }
 }
+/* 名言区域 */
+.quote-section {
+    flex-shrink: 0;
+    padding: 1vh 0;
+    background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin: 0 2vw;
+    border-radius: 12px;
+}
+
+.quote-container {
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 1vh 1vw;
+}
+
+.quote-text {
+    font-size: 1rem;
+    font-style: italic;
+    color: #e0e0e0;
+    line-height: 1.4;
+    margin-bottom: 0.5vh;
+    position: relative;
+}
+
+.quote-text::before {
+    content: '"';
+    font-size: 1.5rem;
+    color: #4CAF50;
+    position: absolute;
+    left: -15px;
+    top: -5px;
+}
+
+.quote-text::after {
+    content: '"';
+    font-size: 1.5rem;
+    color: #4CAF50;
+    position: absolute;
+    right: -15px;
+    bottom: -10px;
+}
+
+.quote-author {
+    font-size: 0.8rem;
+    color: #888;
+    font-weight: 300;
+    margin-top: 0.5vh;
+}

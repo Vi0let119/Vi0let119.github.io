@@ -29,13 +29,23 @@ body {
     }
 }
 
-/* 主容器 - 左右布局 */
+/* 主容器 - 垂直布局 */
 .main-container {
     display: flex;
+    flex-direction: column;
     margin-left: 200px;
-    min-height: 100vh;
+    height: 100vh;
     padding: 2vh;
+    gap: 2vh;
+    box-sizing: border-box;
+}
+
+/* 上部内容区域 - 图表和控制面板 */
+.upper-content {
+    display: flex;
+    flex: 1;
     gap: 2vw;
+    min-height: 0; /* 允许子元素缩小 */
 }
 
 /* 左侧图表区域 - 占据约50% */
@@ -46,6 +56,7 @@ body {
     justify-content: flex-start;
     padding-left: 1vw;
     max-width: 55%;
+    min-height: 0; /* 允许缩小 */
 }
 
 /* 图表画布 */
@@ -80,10 +91,10 @@ body {
         inset 0 1px 0 rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.05);
     height: fit-content;
+    max-height: 100%;
+    overflow-y: auto;
     position: relative;
-    top: 2vh;
     margin-left: 6vw;
-    /* margin-top: 1vh; */
 }
 
 .panel-header h3 {
@@ -182,3 +193,66 @@ body {
 .update-btn:active {
     transform: translateY(0);
 }
+.note-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+
+.note-modal {
+    width: min(90%, 380px);
+    background: #1f1f1f;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
+.note-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.note-modal-header span {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.note-modal-close {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.note-content {
+    color: #c7c7c7;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    word-break: break-word;
+    padding: 0.75rem;
+    background: #151515;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    min-height: 120px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+

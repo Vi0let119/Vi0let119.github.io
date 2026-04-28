@@ -9,6 +9,7 @@
     var currentChart = null;
     var lastDataDate = null; // 记录最后一条数据的日期
     var autoUpdateInterval = null; // 自动更新定时器
+    var weightNotes = {}; // 体重备注数据
 
     // 暴露给全局的初始化函数
     window.initHealthChart = function() {
@@ -38,6 +39,11 @@
                 renderChart(chartType, timeRange);
                 updateStats(chartType, timeRange);
             });
+
+            initNoteViewer();
+            
+            // 加载并显示随机名言
+            loadRandomQuote();
             
             // 启动自动更新检查（每5分钟检查一次）
             startAutoUpdate();
@@ -258,14 +264,14 @@
         
         var chart = echarts.init(chartDom);
         var option = {};
+        var dates = records.map(function(item) {
+            return item.date;
+        });
         
         if (chartType === 'weight') {
             // 体重趋势图
             var weightData = records.map(function(item) {
                 return item.weight_kg === -1 ? null : item.weight_kg;
-            });
-            var dates = records.map(function(item) {
-                return item.date;
             });
             
             option = {
@@ -373,7 +379,65 @@
         }
         
         chart.setOption(option);
+
+        if (chartType === 'weight') {
+            chart.on('click', function(params) {
+                if (params.seriesName === '体重(kg)' && params.name) {
+                    showNoteModal(params.name);
+                }
+            });
+        }
+
         currentChart = chart;
+    }
+
+    // 显示备注弹窗
+    function showNoteModal(date) {
+        var noteText = weightNotes[date] || '该日期暂无备注。';
+        document.getElementById('noteModalTitle').textContent = '体重备注 - ' + date;
+        document.getElementById('noteModalContent').textContent = noteText;
+        document.getElementById('noteModal').classList.remove('hidden');
+    }
+
+    function hideNoteModal() {
+        document.getElementById('noteModal').classList.add('hidden');
+    }
+
+    function initNoteViewer() {
+        d3.json('weight_notes.json', function(error, data) {
+            if (!error && data) {
+                weightNotes = data;
+            }
+        });
+
+        var closeBtn = document.getElementById('noteModalClose');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', hideNoteModal);
+        }
+    }
+
+    // 加载并显示随机名言
+    function loadRandomQuote() {
+        d3.json('quotes.json', function(error, data) {
+            if (error) {
+                console.error("加载名言失败:", error);
+                document.getElementById('quoteText').textContent = "加载名言失败";
+                document.getElementById('quoteAuthor').textContent = "—";
+                return;
+            }
+            
+            if (data && data.length > 0) {
+                // 随机选择一个名言
+                var randomIndex = Math.floor(Math.random() * data.length);
+                var quote = data[randomIndex];
+                
+                document.getElementById('quoteText').textContent = quote.text;
+                document.getElementById('quoteAuthor').textContent = "—" + quote.author;
+            } else {
+                document.getElementById('quoteText').textContent = "暂无名言数据";
+                document.getElementById('quoteAuthor').textContent = "—";
+            }
+        });
     }
 
     // 更新统计信息

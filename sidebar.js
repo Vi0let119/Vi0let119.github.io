@@ -5,6 +5,7 @@
  */
 function initSidebar(containerId, defaultCollapsed = false) {
   const container = document.getElementById(containerId);
+  
   if (!container) return;
 
   // 1. 侧边栏 HTML 结构（只写一次，全局复用）
@@ -82,4 +83,26 @@ function initSidebar(containerId, defaultCollapsed = false) {
         : toggle.innerText.replace('▲', '▼');
     });
   });
+
+  
+}
+function loadRandomQuote() {
+    d3.json('quotes.json', function(error, data) {
+        if (error) {
+            console.error("加载名言失败:", error);
+            document.getElementById('quoteText').textContent = "加载名言失败";
+            document.getElementById('quoteAuthor').textContent = "—";
+            return;
+        }
+        
+        if (data && data.length > 0) {
+            var randomIndex = Math.floor(Math.random() * data.length);
+            var quote = data[randomIndex];
+            document.getElementById('quoteText').textContent = quote.text;
+            document.getElementById('quoteAuthor').textContent = "—" + quote.author;
+        } else {
+            document.getElementById('quoteText').textContent = "暂无名言数据";
+            document.getElementById('quoteAuthor').textContent = "—";
+        }
+    });
 }

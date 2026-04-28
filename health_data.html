@@ -21,69 +21,90 @@
     <div id="sidebar-container"></div>
     
     <div class="main-container">
-        <!-- 左侧图表区域 -->
-        <div class="chart-section">
-            <div class="chart-canvas">
-                <div id="chartContainer"></div>
-                <s>如果切换切换窗口大小，导致图像显示异常，请刷新网站喵~</s>
-            </div>
-        </div>
-        
-        <!-- 右侧控制面板 -->
-        <div class="control-panel">
-            <div class="panel-header">
-                <h3>数据控制面板</h3>
-            </div>
-            
-            <!-- 图表类型选择 -->
-            <div class="control-group">
-                <label>图表类型</label>
-                <select id="chartType">
-                    <option value="weight">体重趋势</option>
-                    <option value="sleep">睡眠时长</option>
-                    <option value="sleepTime">入睡时间</option>
-                </select>
-            </div>
-            
-            <!-- 时间范围选择 -->
-            <div class="control-group">
-                <label>时间范围</label>
-                <select id="timeRange">
-                    <option value="all">全部数据</option>
-                    <option value="7">最近7天</option>
-                    <option value="14">最近14天</option>
-                </select>
-            </div>
-            
-            <!-- 年份选择 -->
-            <div class="control-group">
-                <label>选择年份</label>
-                <select id="yearSelect">
-                    <option value="all">全部年份</option>
-                </select>
-            </div>
-            
-            <!-- 月份选择 -->
-            <div class="control-group">
-                <label>选择月份</label>
-                <select id="monthSelect">
-                    <option value="all">全部月份</option>
-                </select>
-            </div>
-            
-            <!-- 数据统计信息 -->
-            <div class="control-group">
-                <label>数据统计</label>
-                <div id="statsInfo" class="stats-box">
-                    <p>加载中...</p>
+        <!-- 上部内容区域 -->
+        <div class="upper-content">
+            <!-- 左侧图表区域 -->
+            <div class="chart-section">
+                <div class="chart-canvas">
+                    <div id="chartContainer"></div>
+                    点击图表中的日期点查看备注信息，<s>目前只有体重有备注</s>
+                    <br>
+                    <s>如果切换切换窗口大小，导致图像显示异常，请刷新网站喵~</s>
+                </div>
+                <div id="noteModal" class="note-modal-overlay hidden">
+                    <div class="note-modal">
+                        <div class="note-modal-header">
+                            <span id="noteModalTitle">体重备注</span>
+                            <button id="noteModalClose" class="note-modal-close" aria-label="关闭">×</button>
+                        </div>
+                        <div id="noteModalContent" class="note-content">点击体重趋势图中的日期点查看备注。</div>
+                    </div>
                 </div>
             </div>
             
-            <!-- 更新按钮 -->
-            <button id="updateChart" class="update-btn">更新图表</button>
+            <!-- 右侧控制面板 -->
+            <div class="control-panel">
+                <div class="panel-header">
+                    <h3>数据控制面板</h3>
+                </div>
+                
+                <!-- 图表类型选择 -->
+                <div class="control-group">
+                    <label>图表类型</label>
+                    <select id="chartType">
+                        <option value="weight">体重趋势</option>
+                        <option value="sleep">睡眠时长</option>
+                        <option value="sleepTime">入睡时间</option>
+                    </select>
+                </div>
+                
+                <!-- 时间范围选择 -->
+                <div class="control-group">
+                    <label>时间范围</label>
+                    <select id="timeRange">
+                        <option value="all">全部数据</option>
+                        <option value="7">最近7天</option>
+                        <option value="14">最近14天</option>
+                    </select>
+                </div>
+                
+                <!-- 年份选择 -->
+                <div class="control-group">
+                    <label>选择年份</label>
+                    <select id="yearSelect">
+                        <option value="all">全部年份</option>
+                    </select>
+                </div>
+                
+                <!-- 月份选择 -->
+                <div class="control-group">
+                    <label>选择月份</label>
+                    <select id="monthSelect">
+                        <option value="all">全部月份</option>
+                    </select>
+                </div>
+                
+                <!-- 数据统计信息 -->
+                <div class="control-group">
+                    <label>数据统计</label>
+                    <div id="statsInfo" class="stats-box">
+                        <p>加载中...</p>
+                    </div>
+                </div>
+                
+                <!-- 更新按钮 -->
+                <button id="updateChart" class="update-btn">更新图表</button>
+            </div>
+        </div>
+        
+        <!-- 名言区域 -->
+        <div class="quote-section">
+            <div class="quote-container">
+                <div id="quoteText" class="quote-text">加载中...</div>
+                <div id="quoteAuthor" class="quote-author">—</div>
+            </div>
         </div>
     </div>
-
 
     <script src="health_data.js"></script>
 </body>

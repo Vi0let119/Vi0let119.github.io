@@ -368,7 +368,7 @@ class ImageProcessor {
             };
         }
 
-        this.myChart.setOption(option);
+        this.myChart.setOption(option, { notMerge: true });
     }
 
     // 计算RGB直方图
@@ -403,9 +403,10 @@ class ImageProcessor {
         }
 
         const ctx = this.histogramCtx;
+        ctx.imageSmoothingEnabled = false;
 
         // 黑色背景
-        ctx.fillStyle = '#111';
+        ctx.fillStyle = '#383535';
         ctx.fillRect(0, 0, width, height);
 
         // 找到最大值用于归一化
@@ -426,36 +427,53 @@ class ImageProcessor {
         }
 
         const barWidth = width / 256;
+        const smoothHist = (hist, radius = 2) => {
+            const result = new Array(256).fill(0);
+            for (let i = 0; i < 256; i++) {
+                let sum = 0;
+                let count = 0;
+                for (let j = i - radius; j <= i + radius; j++) {
+                    if (j >= 0 && j < 256) {
+                        sum += hist[j];
+                        count++;
+                    }
+                }
+                result[i] = count ? sum / count : 0;
+            }
+            return result;
+        };
+
+        const rHistSm = smoothHist(rHist, 2);
+        const gHistSm = smoothHist(gHist, 2);
+        const bHistSm = smoothHist(bHist, 2);
+
         const drawChannel = (hist, color) => {
             ctx.fillStyle = color;
+            ctx.beginPath();
             for (let i = 0; i < 256; i++) {
-                const barHeight = (hist[i] / maxVal) * height;
-                ctx.fillRect(i * barWidth, height - barHeight, barWidth, barHeight);
+                const x = i * barWidth;
+                const y = height - (hist[i] / maxVal) * height;
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
             }
+            ctx.lineTo(width, height);
+            ctx.lineTo(0, height);
+            ctx.closePath();
+            ctx.fill();
         };
 
         ctx.globalCompositeOperation = 'lighter';
-        drawChannel(rHist, 'rgba(255, 0, 0, 0.28)');
-        drawChannel(gHist, 'rgba(0, 255, 0, 0.28)');
-        drawChannel(bHist, 'rgba(0, 0, 255, 0.28)');
+        drawChannel(rHistSm, 'rgba(255, 0, 0, 0.24)');
+        drawChannel(gHistSm, 'rgba(0, 255, 0, 0.24)');
+        drawChannel(bHistSm, 'rgba(0, 0, 255, 0.24)');
         ctx.globalCompositeOperation = 'source-over';
-
-        // 三色重叠显示白色区域
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
-        for (let i = 0; i < 256; i++) {
-            const rHeight = (rHist[i] / maxVal) * height;
-            const gHeight = (gHist[i] / maxVal) * height;
-            const bHeight = (bHist[i] / maxVal) * height;
-            const overlapHeight = Math.min(rHeight, gHeight, bHeight);
-            if (overlapHeight > 0) {
-                ctx.fillRect(i * barWidth, height - overlapHeight, barWidth, overlapHeight);
-            }
-        }
 
         // 添加细线轮廓
         const drawOutline = (hist, color) => {
             ctx.strokeStyle = color;
-            ctx.lineWidth = 1.5;
+            ctx.lineWidth = 2;
+            ctx.lineJoin = 'round';
+            ctx.lineCap = 'round';
             ctx.beginPath();
             for (let i = 0; i < 256; i++) {
                 const x = i * barWidth + barWidth / 2;
@@ -466,26 +484,43 @@ class ImageProcessor {
             ctx.stroke();
         };
 
-        drawOutline(rHist, 'rgba(255, 80, 80, 0.9)');
-        drawOutline(gHist, 'rgba(80, 255, 80, 0.9)');
-        drawOutline(bHist, 'rgba(120, 140, 255, 0.9)');
+        drawOutline(rHistSm, 'rgba(255, 80, 80, 0.95)');
+        drawOutline(gHistSm, 'rgba(80, 255, 80, 0.95)');
+        drawOutline(bHistSm, 'rgba(120, 140, 255, 0.95)');
 
-        // 添加文字说明
-        ctx.fillStyle = '#ccc';
-        ctx.font = '13px Arial';
-        ctx.fillText('RGB Histogram', 12, 22);
-        ctx.fillStyle = '#f55';
-        ctx.fillRect(width - 90, 12, 10, 10);
-        ctx.fillStyle = '#ccc';
-        ctx.fillText('R', width - 72, 21);
-        ctx.fillStyle = '#6f6';
-        ctx.fillRect(width - 90, 32, 10, 10);
-        ctx.fillStyle = '#ccc';
-        ctx.fillText('G', width - 72, 41);
-        ctx.fillStyle = '#69f';
-        ctx.fillRect(width - 90, 52, 10, 10);
-        ctx.fillStyle = '#ccc';
-        ctx.fillText('B', width - 72, 61);
+        // 三色重叠显示白色区域（平滑填充）
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+        ctx.beginPath();
+        for (let i = 0; i < 256; i++) {
+            const x = i * barWidth;
+            const rHeight = (rHistSm[i] / maxVal) * height;
+            const gHeight = (gHistSm[i] / maxVal) * height;
+            const bHeight = (bHistSm[i] / maxVal) * height;
+            const y = height - Math.min(rHeight, gHeight, bHeight);
+            if (i === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+        }
+        ctx.lineTo(width, height);
+        ctx.lineTo(0, height);
+        ctx.closePath();
+        ctx.fill();
+
+         //添加文字说明
+         ctx.fillStyle = '#ccc';
+         ctx.font = '13px Arial';
+         ctx.fillText('RGB Histogram', 12, 22);
+        // ctx.fillStyle = '#f55';
+        // ctx.fillRect(width - 90, 12, 10, 10);
+        // ctx.fillStyle = '#ccc';
+        // ctx.fillText('R', width - 72, 21);
+        // ctx.fillStyle = '#6f6';
+        // ctx.fillRect(width - 90, 32, 10, 10);
+        // ctx.fillStyle = '#ccc';
+        // ctx.fillText('G', width - 72, 41);
+        // ctx.fillStyle = '#69f';
+        // ctx.fillRect(width - 90, 52, 10, 10);
+        // ctx.fillStyle = '#ccc';
+        // ctx.fillText('B', width - 72, 61);
     }
 }
 
