@@ -417,28 +417,7 @@
     }
 
     // 加载并显示随机名言
-    function loadRandomQuote() {
-        d3.json('quotes.json', function(error, data) {
-            if (error) {
-                console.error("加载名言失败:", error);
-                document.getElementById('quoteText').textContent = "加载名言失败";
-                document.getElementById('quoteAuthor').textContent = "—";
-                return;
-            }
-            
-            if (data && data.length > 0) {
-                // 随机选择一个名言
-                var randomIndex = Math.floor(Math.random() * data.length);
-                var quote = data[randomIndex];
-                
-                document.getElementById('quoteText').textContent = quote.text;
-                document.getElementById('quoteAuthor').textContent = "—" + quote.author;
-            } else {
-                document.getElementById('quoteText').textContent = "暂无名言数据";
-                document.getElementById('quoteAuthor').textContent = "—";
-            }
-        });
-    }
+    
 
     // 更新统计信息
     function updateStats(chartType, timeRange) {

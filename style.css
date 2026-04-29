@@ -26,6 +26,7 @@ html, body {
 
 .jianjie{
     position: absolute;
+    width: 70vw;
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(22px);
     -webkit-backdrop-filter: blur(18px);
@@ -33,7 +34,7 @@ html, body {
     border-radius: 20px;
     padding: 10px 30px;
     z-index: 3; /* 提升层级：确保简介在内容板块上方 */
-    max-width: calc(100% - 350px); /* 新增：限制宽度，避免小屏溢出 */
+    max-width: calc(100% - 250px); /* 新增：限制宽度，避免小屏溢出 */
 }
 
 /* 内容板块统一优化 */
@@ -56,7 +57,7 @@ html, body {
     width: calc(100% - 300px); 
     display: flex;
     flex-wrap: wrap; 
-    gap: 200px 50px; /* 板块之间的间距 */
+    gap: 250px 50px; /* 板块之间的间距 */
     align-content: flex-start;
     z-index: 2;
 }

@@ -8,7 +8,6 @@ function initSidebar(containerId, defaultCollapsed = false) {
   
   if (!container) return;
 
-  // 1. 侧边栏 HTML 结构（只写一次，全局复用）
   const sidebarHTML = `
     <div class="right-sidebar" id="rightSidebar">
       <button class="toggle-btn" id="toggleBtn">☰</button>
@@ -31,6 +30,12 @@ function initSidebar(containerId, defaultCollapsed = false) {
           <a href="javascript:void(0)" class="submenu-toggle">健康数据 ▼</a>
           <ul class="submenu">
             <li><a href="health_data.html">分页到达</a></li>
+          </ul>
+        </li>
+        <li class="has-submenu">
+          <a href="javascript:void(0)" class="submenu-toggle">作品分享 ▼</a>
+          <ul class="submenu">
+            <li><a href="sharing.html">分页到达</a></li>
           </ul>
         </li>
         <li class="has-submenu">
