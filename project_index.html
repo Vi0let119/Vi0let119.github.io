@@ -3,11 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="project_index" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>项目 - project</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="siderbar.css">
+    <script src = "d3.v3.min.js"></script>
+    <script src="sidebar.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            initSidebar('sidebar-container');
+            
+        });
+    </script>
 </head>
 <body>
-    <p>
-        正在开发中喵~，敬请期待喵~
-    </p>
+    <div id="sidebar-container"></div>
+    还在开发中喵~，敬请期待喵~
 </body>
 </html>

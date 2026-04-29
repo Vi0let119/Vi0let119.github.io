@@ -3,11 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="picture_index" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>图片 - picture</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="siderbar.css">
+    <script src = "d3.v3.min.js"></script>
+    <script src="sidebar.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            initSidebar('sidebar-container');
+            
+        });
+    </script>
 </head>
 <body>
-    <p>
-        正在开发中喵~，敬请期待喵~
-    </p>
+    <div id="sidebar-container"></div>
+    还在开发中喵~
 </body>
 </html>
