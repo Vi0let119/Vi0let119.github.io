@@ -6,20 +6,99 @@
     <title>作品分享 - sharing</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="siderbar.css">
-    <script src = "d3.v3.min.js"></script>
-    <script src="sidebar.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            initSidebar('sidebar-container');
-            
-        });
-    </script>
-
-
-
+    <link rel="stylesheet" href="sharing.css">
+    <script src="d3.v3.min.js"></script>
 </head>
 <body>
     <div id="sidebar-container"></div>
-    还在开发中喵~
+    <div class="sharing-page-wrapper">
+        <aside class="sharing-sidebar">
+            <div class="sharing-sidebar-inner">
+                <h2>分类目录</h2>
+                <nav class="sharing-nav">
+                    <div class="sharing-nav-group">
+                        <button class="sharing-nav-group-btn active" data-group="book">书籍</button>
+                        <div class="sharing-submenu open" data-group="book">
+                            <button class="sharing-nav-item active" data-target="book-1">《献给阿尔吉侬的花束》</button>
+                            <button class="sharing-nav-item" data-target="book-2">《杀死一只知更鸟》</button>
+                        </div>
+                    </div>
+                    <div class="sharing-nav-group">
+                        <button class="sharing-nav-group-btn" data-group="anime">动漫</button>
+                        <div class="sharing-submenu" data-group="anime">
+                            <button class="sharing-nav-item" data-target="anime-1">《超时空辉夜姬》</button>
+                            <button class="sharing-nav-item" data-target="anime-2">《紫罗兰永恒花园》</button>
+                            <button class="sharing-nav-item" data-target="anime-3">《边缘行者》</button>
+
+                        </div>
+                    </div>
+                    <div class="sharing-nav-group">
+                        <button class="sharing-nav-group-btn" data-group="movie">电影</button>
+                        <div class="sharing-submenu" data-group="movie">
+                            <button class="sharing-nav-item" data-target="movie-1">《阿甘正传》</button>
+                            <button class="sharing-nav-item" data-target="movie-2">《超时空恋旅人》</button>
+                            <button class="sharing-nav-item" data-target="movie-3">《哈尔的移动城堡》</button>
+                        </div>
+                    </div>
+                </nav>
+                <!-- <div class="sharing-sidebar-footer">
+                    <p>目录可上下滑动收纳全部信息。</p>
+                </div> -->
+            </div>
+        </aside>
+        <main class="sharing-content" id="sharingContent"></main>
+    </div>
+    <script src="d3.v3.min.js"></script>
+    <script src="sidebar.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            initSidebar('sidebar-container');
+
+            alert("以下内容仅为个人的观后感，其中观点未必正确，请理性判断，也不会携带任何评价拉踩倾向，推荐指数也只是代表我个人推荐阅读的程度，受个人审美影响，不代表排名，每一部作品都有自己的伟大之处");
+
+            const sharingContent = document.getElementById('sharingContent');
+
+            try {
+                const response = await fetch('sharing_content.html');
+                if (!response.ok) throw new Error('加载内容失败');
+                sharingContent.innerHTML = await response.text();
+            } catch (error) {
+                sharingContent.innerHTML = '<p style="color:#f99; padding: 1rem;">内容加载失败，请确认 sharing_content.html 文件存在。</p>';
+            }
+
+            const groupButtons = document.querySelectorAll('.sharing-nav-group-btn');
+            const submenuLists = document.querySelectorAll('.sharing-submenu');
+            const itemButtons = document.querySelectorAll('.sharing-nav-item');
+            const panels = document.querySelectorAll('.sharing-panel');
+
+            function setActive(targetId) {
+                itemButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.target === targetId));
+                panels.forEach(panel => panel.classList.toggle('active', panel.id === targetId));
+            }
+
+            function openGroup(groupId) {
+                groupButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.group === groupId));
+                submenuLists.forEach(menu => menu.classList.toggle('open', menu.dataset.group === groupId));
+
+                const currentActive = document.querySelector('.sharing-nav-item.active');
+                if (!currentActive || currentActive.closest('.sharing-submenu').dataset.group !== groupId) {
+                    const firstItem = document.querySelector(`.sharing-submenu[data-group="${groupId}"] .sharing-nav-item`);
+                    if (firstItem) setActive(firstItem.dataset.target);
+                }
+            }
+
+            groupButtons.forEach(button => {
+                button.addEventListener('click', () => openGroup(button.dataset.group));
+            });
+
+            itemButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const parentGroup = button.closest('.sharing-submenu').dataset.group;
+                    openGroup(parentGroup);
+                    setActive(button.dataset.target);
+                });
+            });
+        });
+    </script>
 </body>
 </html>

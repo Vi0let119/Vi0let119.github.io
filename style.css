@@ -39,7 +39,6 @@ html, body {
 
 /* 内容板块统一优化 */
 .block_1{
-    position: absolute; /* 修正为absolute，统一定位规则 */
     background: rgba(255, 255, 255, 0.01);
     backdrop-filter: blur(22px);
     -webkit-backdrop-filter: blur(18px);
@@ -48,6 +47,7 @@ html, body {
     padding: 10px 30px;
     color:white;
     z-index: 2; /* 低于简介的z-index:3，彻底避免遮挡 */
+    flex-grow: 1; /* 让内容填充剩余空间 */
 }
 
 .content-wrapper {
@@ -57,9 +57,24 @@ html, body {
     width: calc(100% - 300px); 
     display: flex;
     flex-wrap: wrap; 
-    gap: 250px 50px; /* 板块之间的间距 */
+    gap: 50px 50px; /* 板块之间的间距 */
     align-content: flex-start;
     z-index: 2;
+}
+
+/* 统一block容器样式 */
+.block-container {
+    width: 400px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.block-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
 

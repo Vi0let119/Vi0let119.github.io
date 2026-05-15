@@ -284,8 +284,8 @@
                 },
                 yAxis: { 
                     type: 'value',
-                    min: 74,
-                    max: 76,
+                    min: 73,
+                    max: 77,
                     name: 'kg'
                 },
                 series: [{
