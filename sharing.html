@@ -21,6 +21,9 @@
                         <div class="sharing-submenu open" data-group="book">
                             <button class="sharing-nav-item active" data-target="book-1">《献给阿尔吉侬的花束》</button>
                             <button class="sharing-nav-item" data-target="book-2">《杀死一只知更鸟》</button>
+                            <button class="sharing-nav-item" data-target="book-3">《悉达多》</button>
+                            <button class="sharing-nav-item" data-target="book-4">《局外人》</button>
+                            <button class="sharing-nav-item" data-target="book-5">《阿泰勒的角落》</button>
                         </div>
                     </div>
                     <div class="sharing-nav-group">
@@ -99,6 +102,14 @@
                 });
             });
         });
+
+        function showMoreText(panelId) {
+            const more = document.getElementById('more-' + panelId);
+            const button = document.querySelector(`.sharing-more-button[onclick="showMoreText('${panelId}')"]`);
+            if (!more) return;
+            more.style.display = 'block';
+            if (button) button.style.display = 'none';
+        }
     </script>
 </body>
 </html>
