@@ -405,8 +405,8 @@ class ImageProcessor {
         const ctx = this.histogramCtx;
         ctx.imageSmoothingEnabled = false;
 
-        // 黑色背景
-        ctx.fillStyle = '#383535';
+        /* 风格二暗色分区面板：直方图底色 */
+        ctx.fillStyle = '#1a1d28';
         ctx.fillRect(0, 0, width, height);
 
         // 找到最大值用于归一化

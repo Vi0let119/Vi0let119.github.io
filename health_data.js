@@ -103,17 +103,19 @@
     // 显示更新提示
     function showUpdateNotification(message) {
         var notification = document.createElement('div');
+        /* 风格二暗色分区面板：更新通知胶囊样式 */
         notification.style.cssText = `
             position: fixed;
             top: 20px;
             right: 20px;
-            background: #4CAF50;
-            color: white;
+            background: linear-gradient(135deg, #5c9cff, #4a65ff);
+            color: #fff;
             padding: 15px 25px;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            border-radius: 999px;
+            box-shadow: 0 12px 24px rgba(56, 101, 255, 0.25);
             z-index: 10000;
             animation: slideIn 0.3s ease;
+            font-weight: 600;
         `;
         notification.textContent = message;
         document.body.appendChild(notification);

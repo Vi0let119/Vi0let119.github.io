@@ -1,289 +1,293 @@
+/* ===== 风格二：暗色分区面板 ===== */
+/* 来源：sharing.css 设计系统 */
+
+/* ===== 全局重置 ===== */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+/* ===== 页面底色：深色底 + 径向渐变光晕 ===== */
 body {
-    background: #121212; 
-    color: #bdc3c7;
-    font-family: 'Roboto', sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(75, 85, 99, 0.18), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.12), transparent 28%),
+        #11131a;
+    color: #ececec;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
 }
 
+/* ===== 左侧图片面板：风格二内容面板 ===== */
 .image-panel {
-  position: relative; 
-  top: 1vw;
-  width: 60vw; 
-  /* max-width: 1150px;  */
-  min-width: 320px; 
-  margin: 0 0 20px 20px;
-  /* height: auto; */
-  min-height: 90vh; 
-  background: #1e1e1e;
-  border: 1px solid #444;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  padding: 25px;
-  z-index: 5;
+    position: relative;
+    top: 1vw;
+    width: 60vw;
+    min-width: 320px;
+    margin: 0 0 20px 20px;
+    min-height: 90vh;
+    background: rgba(48, 62, 83, 0.272);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 25px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2), inset 0 0 60px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(16px);
+    z-index: 5;
 }
 
+/* ===== 图片面板标题 ===== */
+.image-panel h3 {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
+    padding: 15px;
+    border-radius: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
 
-/* 上传按钮 */
+/* ===== 上传按钮（透明覆盖层，保留原交互逻辑） ===== */
 .image-upload {
-    position: absolute; 
+    position: absolute;
     width: 100%;
     height: 100%;
-    opacity: 0; 
+    opacity: 0;
     cursor: pointer;
-    z-index: 10; 
+    z-index: 10;
 }
 
-/* 悬停效果 */
-.image-upload:hover {
-    border-color: #00cec9;
-    background: #252525;
-    color: white;
-}
-
-/* 聚焦状态（点击时） */
-.image-upload:focus {
-    outline: none;
-    border-color: #74b9ff;
-    box-shadow: 0 0 10px rgba(116, 185, 255, 0.3);
-}
-
-/* 图片预览区 */
+/* ===== 图片预览区：风格二暗色面板 ===== */
 .image-preview {
     width: 100%;
     max-height: 70vh;
     overflow: hidden;
-    background: #2c2c2c; 
-    border: 2px solid #7e8eda; 
-    border-radius: 12px; /* 圆角 */
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 10px;
     position: relative;
-    transition: all 0.3s ease; /* 添加过渡动画 */
-    cursor: pointer; /* 鼠标移入变成手型 */
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
-/* 悬停效果：当鼠标移到预览区时 */
 .image-preview:hover {
-    background: #333; 
-    border-color: #83dad8; 
-    transform: translateY(-2px); /* 轻微上浮 */
-    box-shadow: 0 4px 15px rgba(102, 110, 234, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(114, 189, 116, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 16px 26px rgba(0, 0, 0, 0.2);
 }
 
-/*图片本身的样式保持不变 */
+/* 图片本身保持自适应 */
 .image-preview img {
     max-width: 90vw;
     max-height: 65vh;
     object-fit: contain;
 }
 
-
-/* 详细信息面板 */
+/* ===== 右侧详细信息面板：风格二内容面板 ===== */
 .picture_details {
-  position: relative; 
-  top: 1vw;
-  width: 35vw; 
-  min-width: 320px; 
-  margin: 0 auto; /* 居中 */
-  min-height: 80vh;
-  background: #1e1e1e; 
-  padding: 15px;
-  border: 1px solid #444;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  font-size: clamp(13px, 1.2vw, 15px);
-  line-height: 1.8;
-  color: rgb(182, 195, 230);
-  z-index: 5;
+    position: relative;
+    top: 1vw;
+    width: 35vw;
+    min-width: 320px;
+    margin: 0 auto;
+    min-height: 80vh;
+    background: rgba(48, 62, 83, 0.272);
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2), inset 0 0 60px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(16px);
+    font-size: clamp(13px, 1.2vw, 15px);
+    line-height: 1.8;
+    color: #dcdcdc;
+    z-index: 5;
 }
-/* 图表容器 */
- #chartContainer {
-    width: 100% !important; /* 强制占满右侧宽度 */
-    height: 300px; /* 固定图表高度 */
-    min-height: 200px;
-    background: #e2e2e2; 
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-top: 15px; 
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-} 
 
-/* 控件组与图表的间距 */
+/* ===== 控件组与图表的间距 ===== */
 .picture_details .control-panel {
     margin-bottom: 10px;
     min-height: 90vh;
 }
 
-/* 大屏布局：图片面板 + 详细信息面板横向排列 */
-@media (min-width: 1200px) {
-  .layout-container {
-    display: flex;
-    gap: 20px; /* 面板间距 */
-    justify-content: flex-start; 
-    align-items: flex-start;
-    padding-left: 20px; 
-    box-sizing: border-box;
-  }
-  .image-panel {
-    margin: 0;
-  }
-  .picture_details {
-    margin: 0;
-    flex-shrink: 0; /* 避免被挤压 */
-  }
+/* ===== 图表容器：风格二暗色面板 ===== */
+#chartContainer {
+    width: 100% !important;
+    height: 300px;
+    min-height: 200px;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 16px;
+    margin-top: 15px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
-/* 小屏适配（平板/手机）：面板纵向排列 */
-@media (max-width: 1199px) {
-  .layout-container {
-    flex-direction: column; 
-    align-items: flex-start; 
-  }
-  .image-panel {
-    width: 90vw;
-  }
-  .picture_details {
-    width: 90vw;
-  }
-}
-
-/* 超小屏（手机竖屏） */
-@media (max-width: 576px) {
-  .image-panel {
-    padding: 15px; 
-    min-height: 70vh;
-  }
-  .image-preview {
-    min-height: 40vh; 
-  }
-  .picture-info, .picture_details {
-    padding: 10px;
-    font-size: 13px;
-  }
-}
-
-
-
-.image-panel h3 {
-    color: #dcdcdc;
-    background: #2c2c2c;
-    padding: 15px;
-    border-bottom: 1px solid #555;
-}
-
-
-/* --- 按钮通用基础样式 --- */
-.chart-type-btn, 
-#startAnalysisBtn {
-    padding: 8px 16px;      
-    font-size: 14px;        
-    border-radius: 6px;    
-    
-    
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-}
-
-/* --- 图表切换按钮 (饼图/柱状图) --- */
-
-.chart-type-btn {
-    background: linear-gradient(135deg, #9a99a8 0%, #a8a4da 100%); /* 紫色系 */
-    color: white;
-    margin: 0 8px; 
-}
-
-/* 悬停效果 */
-.chart-type-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(108, 92, 231, 0.3);
-}
-
-/* 激活状态：高亮显示 */
-.chart-type-btn.active {
-    background: #5ea2c9 !important;
-    color: #121212;
-    font-weight: bold;
-}
-
-/* --- 开始分析按钮 --- */
-#startAnalysisBtn {
-    background: linear-gradient(135deg, #74b9ff 0%, #00b894 100%); /* 渐变绿蓝 */
-    color: white;
-    width: 100%;            
-    font-size: 15px;        
-    
-    margin-top: 20px;        
-    margin-bottom: 10px;   
-}
-
-/* 主按钮悬停效果 */
-#startAnalysisBtn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(116, 185, 255, 0.4);
-}
-
-/* ---优化控件组布局 --- */
-/* 确保“图表类型”这一行的内部元素排列整齐 */
-.control-item {
-    display: flex;
-    align-items: center; /* 垂直居中对齐标签和按钮 */
-    margin-bottom: 10px; 
-}
-
-/* --- 下拉选择框 --- */
-#spaceSelect {
-    background: #2c2c2c; 
-    color: white;
-    border: 1px solid #444;
-    border-radius: 6px; 
-    padding: 8px 12px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    height: 40px; 
-}
-
-/* 悬停效果 */
-#spaceSelect:hover {
-    border-color: #667eea; /* 悬停时边框变色 */
-    background: #333;
-}
-
-/* 修复下拉箭头（可选，部分浏览器需要重置） */
-#spaceSelect::-ms-expand {
-    display: none; /* 隐藏IE/Edge默认箭头 */
-}
-
-/* 标签样式微调 */
-.control-item label {
-    margin-right: 10px;
-    font-weight: 500;
-    color: #bdc3c7;
-    white-space: nowrap; /* 防止文字换行 */
-}
-
-/* RGB Histogram 样式 */
+/* ===== RGB直方图Canvas：风格二暗色风格 ===== */
 #rgbHistogram {
     margin-top: 20px;
     text-align: center;
 }
 
 #rgbHistogram canvas {
-    width: 100% !important; /* 强制占满右侧宽度 */
-    height: 300px; /* 固定图表高度 */
+    width: 100% !important;
+    height: 300px;
     min-height: 200px;
-    background: #111;
-    border: 1px solid #333;
-    border-radius: 8px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== 按钮通用基础：风格二胶囊按钮 ===== */
+.chart-type-btn,
+#startAnalysisBtn {
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* 图表切换按钮 */
+.chart-type-btn {
+    background: rgba(255, 255, 255, 0.08);
+    color: #e8e8e8;
+    margin: 0 8px;
+}
+
+.chart-type-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* 激活态：绿色渐变高亮（风格二导航选中态配色） */
+.chart-type-btn.active {
+    background: linear-gradient(135deg, #72bd74, #359a3a) !important;
+    color: #121212;
+    font-weight: 700;
+}
+
+/* 开始分析按钮：蓝紫渐变胶囊按钮 */
+#startAnalysisBtn {
+    background: linear-gradient(135deg, #5c9cff, #4a65ff);
+    color: #ffffff;
+    width: 100%;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    box-shadow: 0 12px 24px rgba(56, 101, 255, 0.25);
+}
+
+#startAnalysisBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 26px rgba(56, 101, 255, 0.32);
+}
+
+#startAnalysisBtn:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 4px;
+}
+
+/* ===== 控件组布局 ===== */
+.control-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* ===== 下拉选择框：风格二暗色风格 ===== */
+#spaceSelect {
+    background: rgba(255, 255, 255, 0.08);
+    color: #e8e8e8;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1rem;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    height: 40px;
+}
+
+#spaceSelect:hover {
+    border-color: rgba(114, 189, 116, 0.5);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+#spaceSelect::-ms-expand {
+    display: none;
+}
+
+/* ===== 标签样式 ===== */
+.control-item label {
+    margin-right: 10px;
+    font-weight: 500;
+    color: #b0b0b0;
+    white-space: nowrap;
+}
+
+/* ===== 大屏布局：左右并排 ===== */
+@media (min-width: 1200px) {
+    .layout-container {
+        display: flex;
+        gap: 20px;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding-left: 20px;
+        box-sizing: border-box;
+    }
+    .image-panel {
+        margin: 0;
+    }
+    .picture_details {
+        margin: 0;
+        flex-shrink: 0;
+    }
+}
+
+/* ===== 小屏适配：纵向排列（风格二 900px 断点） ===== */
+@media (max-width: 1199px) {
+    .layout-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .image-panel {
+        width: 90vw;
+    }
+    .picture_details {
+        width: 90vw;
+    }
+}
+
+/* ===== 手机竖屏 ===== */
+@media (max-width: 576px) {
+    .image-panel {
+        padding: 15px;
+        min-height: 70vh;
+    }
+    .image-preview {
+        min-height: 40vh;
+    }
+    .picture-info, .picture_details {
+        padding: 10px;
+        font-size: 13px;
+    }
+}
+
+/* ===== 自定义滚动条（风格二） ===== */
+.picture_details::-webkit-scrollbar {
+    width: 8px;
+}
+
+.picture_details::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.picture_details::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
 }
