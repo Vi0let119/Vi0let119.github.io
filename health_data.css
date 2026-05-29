@@ -1,176 +1,264 @@
-/* ===== 风格二：暗色分区面板 ===== */
-/* 来源：sharing.css 设计系统 */
+/* ============================================
+   health_data.css — Pulse Monitor
+   Bright warm-clinical aesthetic for personal health
+   ============================================ */
 
-/* ===== 更新提示动画（保留原功能） ===== */
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap');
+
+/* --- CSS Variables --- */
+:root {
+    --pm-bg: #fdfaf6;
+    --pm-surface: #ffffff;
+    --pm-surface-alt: #f9f6f1;
+    --pm-text: #1c1917;
+    --pm-text-secondary: #6b6560;
+    --pm-text-muted: #a09890;
+    --pm-coral: #e07050;
+    --pm-coral-glow: rgba(224, 112, 80, 0.15);
+    --pm-coral-dim: rgba(224, 112, 80, 0.05);
+    --pm-teal: #4a8fa8;
+    --pm-teal-dim: rgba(74, 143, 168, 0.06);
+    --pm-amber: #c89440;
+    --pm-border: #e8e3da;
+    --pm-border-light: #f0ebe3;
+    --pm-shadow-sm: 0 1px 3px rgba(28, 25, 23, 0.04);
+    --pm-shadow-md: 0 4px 16px rgba(28, 25, 23, 0.06);
+    --pm-shadow-lg: 0 8px 32px rgba(28, 25, 23, 0.07);
+    --pm-radius: 16px;
+    --pm-radius-sm: 10px;
+    --font-display: 'Newsreader', 'Cormorant Garamond', Georgia, serif;
+    --font-mono: 'IBM Plex Mono', 'DM Mono', 'Courier New', monospace;
+}
+
+/* --- Keyframes --- */
 @keyframes slideIn {
-    from {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
+    from { transform: translateX(100%); opacity: 0; }
+    to   { transform: translateX(0); opacity: 1; }
 }
 
 @keyframes slideOut {
-    from {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    to {
-        transform: translateX(100%);
-        opacity: 0;
-    }
+    from { transform: translateX(0); opacity: 1; }
+    to   { transform: translateX(100%); opacity: 0; }
 }
 
-/* ===== 页面底色：深色底 + 径向渐变光晕 ===== */
+@keyframes pmReveal {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pmPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(224, 112, 80, 0.25); }
+    50%      { box-shadow: 0 0 0 8px rgba(224, 112, 80, 0); }
+}
+
+/* --- Base Overrides --- */
 body {
     background:
-        radial-gradient(circle at top left, rgba(75, 85, 99, 0.18), transparent 28%),
-        radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.12), transparent 28%),
-        #11131a;
-    color: #ececec;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+        /* Subtle dot grid texture */
+        radial-gradient(circle, rgba(180, 170, 160, 0.25) 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-color: #f5f2ed;
+    color: var(--pm-text);
+    font-family: var(--font-mono);
+    font-weight: 300;
+    font-size: 14px;
     margin: 0;
     padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* ===== 隐藏工具类（保留原功能） ===== */
-.hidden {
-    display: none !important;
+.hidden { display: none !important; }
+
+/* --- Background Image — hidden, replaced by CSS texture --- */
+.background {
+    display: none;
 }
 
-/* ===== 主容器 ===== */
+/* --- Main Container --- */
 .main-container {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
-    margin-left: 3vw;
-    top: 2vh;
     height: 100vh;
-    padding: 2vh;
+    height: 100dvh;
+    padding: 2.5vh 3vw 1vh;
     gap: 2vh;
     box-sizing: border-box;
 }
 
-/* ===== 上部内容区：图表 + 控制面板 ===== */
+/* --- Upper Content: Chart + Panel --- */
 .upper-content {
     display: flex;
     flex: 1;
-    gap: 2vw;
+    gap: 2.5vw;
     min-height: 0;
+    animation: pmReveal 0.6s 0.1s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 
-/* ===== 左侧图表区域 ===== */
+/* --- Chart Section (Left) --- */
 .chart-section {
-    flex: 1 1 50%;
+    flex: 1 1 65%;
     display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding-left: 1vw;
-    max-width: 55%;
+    flex-direction: column;
     min-height: 0;
+    max-width: 65%;
+    max-height: 70%;
 }
 
-/* 图表画布：风格二内容面板 */
 .chart-canvas {
-    background: rgba(48, 62, 83, 0.272);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 24px;
-    padding: 2vh;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2), inset 0 0 60px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    backdrop-filter: blur(16px);
-    color: #dcdcdc;
+    flex: 1;
+    background: var(--pm-surface);
+    border: 1px solid var(--pm-border);
+    border-radius: var(--pm-radius);
+    padding: 2.5vh 2vw;
+    box-shadow: var(--pm-shadow-lg);
+    color: var(--pm-text-secondary);
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+    line-height: 1.8;
+    position: relative;
+    overflow: hidden;
 }
 
-/* 图表容器 */
+/* Top accent bar */
+.chart-canvas::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--pm-coral), var(--pm-teal));
+    pointer-events: none;
+}
+
 #chartContainer {
     width: 100%;
-    height: 60vh;
-    min-height: 50vh;
+    height: 56vh;
+    min-height: 46vh;
 }
 
-/* ===== 右侧控制面板：风格二侧边栏面板风格 ===== */
+/* --- Control Panel (Right) --- */
 .control-panel {
     width: 20vw;
-    min-width: 200px;
-    max-width: 380px;
-    background: rgba(70, 75, 86, 0.555);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 24px;
-    padding: 2vh;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.18);
-    backdrop-filter: blur(22px);
-    height: fit-content;
+    height: 70vh;
+    background: var(--pm-surface);
+    border: 1px solid var(--pm-border);
+    border-radius: var(--pm-radius);
+    padding: 2.5vh 1.6vw;
+    box-shadow: var(--pm-shadow-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 1.4vh;
     max-height: 100%;
     overflow-y: auto;
     position: relative;
-    margin-left: 6vw;
 }
 
-/* 面板标题 */
+/* Coral dot accent */
+.control-panel::before {
+    content: '';
+    position: absolute;
+    top: 1.8vh;
+    right: 1.2vw;
+    width: 8px;
+    height: 8px;
+    background: var(--pm-coral);
+    border-radius: 50%;
+    animation: pmPulse 2.5s ease-in-out infinite;
+}
+
+/* Panel Header */
 .panel-header h3 {
-    margin: 0 0 1.5vh 0;
-    color: #ffffff;
-    font-size: 1.1vw;
-    font-weight: 500;
-    padding-bottom: 1vh;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 550;
+    letter-spacing: 0.02em;
+    color: var(--pm-text);
+    padding-bottom: 1.2vh;
+    border-bottom: 1px solid var(--pm-border-light);
 }
 
-/* ===== 控制组 ===== */
+/* --- Control Groups --- */
 .control-group {
-    margin-bottom: 1.5vh;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vh;
 }
 
 .control-group label {
-    display: block;
-    margin-bottom: 0.5vh;
-    color: #b0b0b0;
-    font-size: 0.75vw;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    color: var(--pm-text-muted);
 }
 
-/* 下拉选择框：风格二暗色风格 */
+/* Select Dropdowns */
 .control-group select {
     width: 100%;
-    padding: 0.8vh 1vw;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 1rem;
-    color: #e8e8e8;
-    font-size: 0.85vw;
+    padding: 1vh 0.8vw;
+    background: var(--pm-surface-alt);
+    border: 1px solid var(--pm-border);
+    border-radius: var(--pm-radius-sm);
+    color: var(--pm-text);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
     cursor: pointer;
-    transition: background 0.2s ease, border-color 0.2s ease;
+    transition:
+        background 0.2s,
+        border-color 0.2s,
+        box-shadow 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23a09890'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
 }
 
 .control-group select:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.16);
+    background: #f2efe9;
+    border-color: #d8d2c8;
 }
 
 .control-group select:focus {
     outline: none;
-    border-color: rgba(114, 189, 116, 0.6);
-    box-shadow: 0 0 0 3px rgba(114, 189, 116, 0.15);
+    border-color: var(--pm-coral);
+    box-shadow: 0 0 0 3px var(--pm-coral-dim);
 }
 
-/* ===== 统计信息框 ===== */
+.control-group select option {
+    background: #fff;
+    color: var(--pm-text);
+}
+
+/* --- Stats Box --- */
 .stats-box {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    padding: 1vh;
-    color: #dcdcdc;
+    background: var(--pm-surface-alt);
+    border: 1px solid var(--pm-border-light);
+    border-radius: var(--pm-radius-sm);
+    padding: 1.2vh 1vw;
+    color: var(--pm-text-secondary);
+    font-size: 0.74rem;
+}
+
+.stats-box p {
+    margin: 0;
+    color: var(--pm-text-muted);
 }
 
 .stat-item {
     display: flex;
     justify-content: space-between;
-    padding: 0.5vh 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    align-items: center;
+    padding: 0.65vh 0;
+    border-bottom: 1px solid var(--pm-border-light);
 }
 
 .stat-item:last-child {
@@ -178,34 +266,42 @@ body {
 }
 
 .stat-label {
-    color: #b0b0b0;
-    font-size: 0.8vw;
+    color: var(--pm-text-muted);
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
 }
 
 .stat-value {
-    color: #72bd74;
+    color: var(--pm-teal);
     font-weight: 500;
+    font-size: 0.78rem;
 }
 
-/* ===== 更新按钮：风格二胶囊按钮 ===== */
+/* --- Update Button --- */
 .update-btn {
     width: 100%;
-    padding: 1vh;
+    padding: 1.2vh 0;
     border: none;
     border-radius: 999px;
-    background: linear-gradient(135deg, #5c9cff, #4a65ff);
-    color: #ffffff;
-    font-size: 0.9vw;
-    font-weight: 600;
+    background: var(--pm-coral);
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
     cursor: pointer;
-    box-shadow: 0 12px 24px rgba(56, 101, 255, 0.25);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    margin-top: 1vh;
+    transition:
+        background 0.25s,
+        box-shadow 0.25s,
+        transform 0.15s;
+    margin-top: auto;
+    box-shadow: 0 4px 14px var(--pm-coral-glow);
 }
 
 .update-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 16px 26px rgba(56, 101, 255, 0.32);
+    background: #cc6040;
+    box-shadow: 0 6px 22px rgba(224, 112, 80, 0.3);
+    transform: translateY(-1px);
 }
 
 .update-btn:active {
@@ -213,86 +309,255 @@ body {
 }
 
 .update-btn:focus {
-    outline: 2px solid rgba(255, 255, 255, 0.5);
-    outline-offset: 4px;
+    outline: 2px solid var(--pm-coral);
+    outline-offset: 3px;
 }
 
-/* ===== 备注弹窗：风格二面板风格 ===== */
+/* --- Note Modal --- */
 .note-modal-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.55);
+    inset: 0;
+    background: rgba(28, 25, 23, 0.45);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 10000;
+    animation: pmReveal 0.2s ease both;
 }
 
 .note-modal {
-    width: min(90%, 380px);
-    background: rgba(48, 62, 83, 0.95);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 24px;
-    padding: 1.5rem;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(22px);
+    width: min(92%, 400px);
+    background: var(--pm-surface);
+    border: 1px solid var(--pm-border);
+    border-radius: var(--pm-radius);
+    padding: 1.8rem;
+    box-shadow: 0 24px 64px rgba(28, 25, 23, 0.15);
 }
 
 .note-modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--pm-border-light);
 }
 
 .note-modal-header span {
-    color: #ffffff;
-    font-size: 1rem;
-    font-weight: 600;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 550;
+    color: var(--pm-text);
+    letter-spacing: 0.02em;
 }
 
-/* 关闭按钮：风格二圆形按钮 */
 .note-modal-close {
-    width: 32px;
-    height: 32px;
-    border: none;
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--pm-border);
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.08);
-    color: #e8e8e8;
+    background: var(--pm-surface-alt);
+    color: var(--pm-text-secondary);
     font-size: 1.1rem;
     cursor: pointer;
-    transition: background 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+        background 0.2s,
+        color 0.2s,
+        border-color 0.2s;
+    line-height: 1;
 }
 
 .note-modal-close:hover {
-    background: rgba(255, 255, 255, 0.14);
+    background: #f0e8e0;
+    color: var(--pm-coral);
+    border-color: var(--pm-coral);
 }
 
 .note-content {
-    color: #dcdcdc;
-    line-height: 1.8;
+    color: var(--pm-text-secondary);
+    font-size: 0.78rem;
+    line-height: 2;
     white-space: pre-wrap;
     word-break: break-word;
-    padding: 0.75rem;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    min-height: 120px;
+    padding: 1rem;
+    background: var(--pm-surface-alt);
+    border: 1px solid var(--pm-border-light);
+    border-radius: var(--pm-radius-sm);
+    min-height: 100px;
+    letter-spacing: 0.02em;
 }
 
-/* ===== 自定义滚动条（风格二） ===== */
+/* --- Quote Section --- */
+.quote-section {
+    flex-shrink: 0;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.75) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid var(--pm-border) !important;
+    border-radius: var(--pm-radius) !important;
+    padding: 1.5vh 0 !important;
+    margin: 0 2vw 1.5vh !important;
+    animation: pmReveal 0.6s 0.3s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+.quote-container {
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0.5vh 2vw;
+}
+
+.quote-text {
+    font-family: 'SimHei', 'Heiti SC', 'SimSun', '宋体', sans-serif;
+    font-size: 1.15rem;
+    font-style: normal;
+    font-weight: 400;
+    color: #000000 !important;
+    line-height: 1.5;
+    margin-bottom: 0.6vh;
+    position: relative;
+    letter-spacing: 0.02em;
+}
+
+.quote-text::before {
+    content: '"';
+    font-size: 1.5rem;
+    color: var(--pm-coral);
+    position: absolute;
+    left: -16px;
+    top: -6px;
+    opacity: 0.5;
+}
+
+.quote-text::after {
+    content: '"';
+    font-size: 1.5rem;
+    color: var(--pm-coral);
+    position: absolute;
+    right: -16px;
+    bottom: -12px;
+    opacity: 0.5;
+}
+
+.quote-author {
+    font-family: 'SimHei', 'Heiti SC', 'SimSun', '宋体', sans-serif;
+    font-size: 0.82rem;
+    color: #333333 !important;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    margin-top: 0.5vh;
+}
+
+/* --- Notification Toast Override --- */
+div[style*="slideIn"] {
+    background: var(--pm-coral) !important;
+    border: none !important;
+    color: #fff !important;
+    font-family: var(--font-mono) !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.04em !important;
+    box-shadow: 0 6px 20px rgba(224, 112, 80, 0.3) !important;
+}
+
+/* --- Scrollbar --- */
 .control-panel::-webkit-scrollbar {
-    width: 8px;
+    width: 5px;
 }
 
 .control-panel::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.03);
+    background: transparent;
 }
 
 .control-panel::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.16);
+    background: #ddd8cf;
     border-radius: 999px;
+}
+
+.control-panel::-webkit-scrollbar-thumb:hover {
+    background: #c5bfb4;
+}
+
+body::-webkit-scrollbar {
+    width: 4px;
+}
+
+body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #e0dbd2;
+    border-radius: 2px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 1100px) {
+    .upper-content {
+        flex-direction: column;
+    }
+
+    .chart-section {
+        max-width: 100%;
+        flex: 0 0 55%;
+    }
+
+    .control-panel {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        flex: 0 0 auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 2vw;
+        padding: 2vh 3vw;
+    }
+
+    .control-panel::before {
+        display: none;
+    }
+
+    .panel-header {
+        width: 100%;
+    }
+
+    .control-group {
+        flex: 1;
+        min-width: 140px;
+    }
+
+    .update-btn {
+        width: auto;
+        padding: 1vh 2vw;
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .main-container {
+        padding: 1.5vh 4vw 1vh;
+    }
+
+    .chart-canvas {
+        padding: 2vh 3vw;
+    }
+
+    #chartContainer {
+        height: 45vh;
+        min-height: 35vh;
+    }
+
+    .control-panel {
+        padding: 1.5vh 4vw;
+        gap: 1.5vh;
+    }
+
+    .quote-text {
+        font-size: 0.85rem;
+    }
 }

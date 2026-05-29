@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>作品分享 - sharing</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="siderbar.css">
     <link rel="stylesheet" href="sharing.css">
-    <script src="d3.v3.min.js"></script>
+    <script src ="sidebar.js"></script>
 </head>
 <body>
     <div id="sidebar-container"></div>
+    <div class="bg-texture"></div>
     <div class="sharing-page-wrapper">
         <aside class="sharing-sidebar">
             <div class="sharing-sidebar-inner">
@@ -25,6 +24,7 @@
                             <button class="sharing-nav-item" data-target="book-4">《局外人》</button>
                             <button class="sharing-nav-item" data-target="book-5">《阿泰勒的角落》</button>
                             <button class="sharing-nav-item" data-target="book-6">《克林索尔最后的夏天》</button>
+                            <button class="sharing-nav-item" data-target="book-7">《挪威的森林》</button>
                         </div>
                     </div>
                     <div class="sharing-nav-group">
@@ -53,13 +53,10 @@
         <main class="sharing-content" id="sharingContent"></main>
     </div>
     <script src="d3.v3.min.js"></script>
-    <script src="sidebar.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
-            initSidebar('sidebar-container');
-
             alert("以下内容仅为个人的观后感，其中观点未必正确，请理性判断，也不会携带任何评价拉踩倾向，推荐指数也只是代表我个人推荐阅读的程度，受个人审美影响，不代表排名，每一部作品都有自己的伟大之处");
-
+            initSidebar('sidebar-container');
             const sharingContent = document.getElementById('sharingContent');
 
             try {
