@@ -231,6 +231,35 @@ body {
     color: var(--text-muted);
 }
 
+/* Sort toggle button */
+.sort-btn {
+    background: rgba(24, 24, 29, 0.7);
+    border: 1px solid rgba(184, 146, 78, 0.25);
+    border-radius: 2px;
+    color: var(--text-secondary);
+    font-family: var(--font-ui);
+    font-size: 0.7rem;
+    line-height: 1;
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.5rem;
+    padding: 0;
+    transition:
+        color 0.25s,
+        border-color 0.25s,
+        background 0.25s;
+}
+
+.sort-btn:hover {
+    color: var(--accent);
+    border-color: rgba(184, 146, 78, 0.5);
+    background: rgba(184, 146, 78, 0.1);
+}
+
 /* Thumbnail grid — 3 per row, absolutely positioned to force scroll */
 .thumbnail-grid {
     position: absolute;

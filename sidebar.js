@@ -24,6 +24,7 @@ function initSidebar(containerId, defaultCollapsed = false) {
           <a href="javascript:void(0)" class="submenu-toggle">图片 ▼</a>
           <ul class="submenu">
             <li><a href="picture_index.html">分页到达</a></li>
+            <li><a href="picture_map.html">地图浏览</a></li>
           </ul>
         </li>
         <li class="has-submenu">
@@ -42,6 +43,7 @@ function initSidebar(containerId, defaultCollapsed = false) {
           <a href="javascript:void(0)" class="submenu-toggle">工具箱 ▼</a>
           <ul class="submenu">
             <li><a href="picture_analysis.html">图片分析</a></li>
+            <li><a href="gps_helper.html">GPS标记</a></li>
           </ul>
         </li>
       </ul>

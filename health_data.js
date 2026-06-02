@@ -439,19 +439,35 @@
         var maxWeight = validWeights.length > 0 ? Math.max.apply(null, validWeights) : 0;
         var minWeight = validWeights.length > 0 ? Math.min.apply(null, validWeights) : 0;
         
-        // 计算睡眠统计
-        var sleepTotal = records.reduce(function(a, b) { return a + b.sleep_last; }, 0);
-        var avgSleep = (sleepTotal / records.length).toFixed(1);
-        
-        // 计算平均入睡时间
-        var sleepTimeTotal = records.reduce(function(a, b) {
-            var time = new Date(b.sleep_st);
-            return a + time.getHours() + time.getMinutes() / 60;
-        }, 0);
-        var avgSleepTime = sleepTimeTotal / records.length;
-        var avgHour = Math.floor(avgSleepTime);
-        var avgMin = Math.round((avgSleepTime - avgHour) * 60);
-        var avgSleepTimeStr = avgHour + ':' + (avgMin < 10 ? '0' + avgMin : avgMin);
+        // 计算睡眠统计（过滤无效数据）
+        var validSleep = records.filter(function(r) {
+            return r.sleep_last > 0;
+        }).map(function(r) {
+            return r.sleep_last;
+        });
+        var avgSleep = validSleep.length > 0
+            ? (validSleep.reduce(function(a, b) { return a + b; }, 0) / validSleep.length).toFixed(1)
+            : 'N/A';
+
+        // 计算平均入睡时间（圆形均值，正确处理跨午夜的情况）
+        var avgSleepTimeStr = 'N/A';
+        if (records.length > 0) {
+            var sumSin = 0, sumCos = 0;
+            records.forEach(function(r) {
+                var time = new Date(r.sleep_st);
+                var hours = time.getHours() + time.getMinutes() / 60;
+                var angle = hours / 24 * 2 * Math.PI;
+                sumSin += Math.sin(angle);
+                sumCos += Math.cos(angle);
+            });
+            var meanAngle = Math.atan2(sumSin, sumCos);  // [-π, π]
+            if (meanAngle < 0) meanAngle += 2 * Math.PI;
+            var avgSleepTime = meanAngle / (2 * Math.PI) * 24;
+            var avgHour = Math.floor(avgSleepTime);
+            var avgMin = Math.round((avgSleepTime - avgHour) * 60);
+            if (avgMin === 60) { avgHour++; avgMin = 0; }
+            avgSleepTimeStr = avgHour + ':' + (avgMin < 10 ? '0' + avgMin : avgMin);
+        }
         
         statsDiv.innerHTML = 
             '<div class="stat-item">' +

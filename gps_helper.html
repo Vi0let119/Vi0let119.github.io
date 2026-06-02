@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPS 标记助手 · Geocoding Tool</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:ital,wght@0,300;0,400;0,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="siderbar.css">
+    <style>
+        :root {
+            --bg-primary: #0b0b0d;
+            --bg-secondary: #111114;
+            --bg-card: #0e0e11;
+            --text-primary: #f0ece4;
+            --text-secondary: #b0aca6;
+            --text-muted: #78746e;
+            --accent: #b8924e;
+            --accent-glow: rgba(184,146,78,0.25);
+            --border: rgba(228,224,216,0.10);
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-ui: 'DM Mono', 'Courier New', monospace;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { background:var(--bg-primary); color:var(--text-primary); font-family:var(--font-ui); font-size:16px; }
+        body { min-height:100vh; padding:2rem; }
+        ::-webkit-scrollbar { width:4px; }
+        ::-webkit-scrollbar-track { background:transparent; }
+        ::-webkit-scrollbar-thumb { background:rgba(228,224,216,0.1); border-radius:2px; }
+
+        .container { max-width:1100px; margin:0 auto; }
+
+        h1 {
+            font-family:var(--font-display);
+            font-size:2.5rem; font-weight:400;
+            letter-spacing:0.06em;
+            margin-bottom:0.3rem;
+        }
+        .subtitle {
+            font-family:var(--font-display);
+            font-style:italic; color:var(--text-secondary);
+            font-size:1.1rem; margin-bottom:2rem;
+        }
+
+        /* --- Search Box --- */
+        .search-box {
+            display:flex; gap:0.6rem; margin-bottom:0.5rem;
+        }
+        .search-box input {
+            flex:1;
+            background:var(--bg-card);
+            border:1px solid var(--border);
+            color:var(--text-primary);
+            font-family:var(--font-ui);
+            font-size:1rem;
+            padding:1rem 1.2rem;
+            border-radius:3px;
+            outline:none;
+            transition:border-color 0.3s;
+        }
+        .search-box input:focus { border-color:rgba(184,146,78,0.4); }
+        .search-box input::placeholder { color:var(--text-muted); }
+        .search-box button {
+            background:rgba(184,146,78,0.1);
+            border:1px solid rgba(184,146,78,0.3);
+            color:var(--accent);
+            font-family:var(--font-ui);
+            font-size:0.95rem;
+            letter-spacing:0.06em;
+            padding:0 1.8rem;
+            border-radius:3px;
+            cursor:pointer;
+            transition:background 0.3s, border-color 0.3s;
+            white-space:nowrap;
+        }
+        .search-box button:hover { background:rgba(184,146,78,0.2); border-color:var(--accent); }
+
+        .search-hint {
+            font-size:0.8rem; color:var(--text-muted);
+            letter-spacing:0.04em; margin-bottom:2rem;
+        }
+
+        /* --- Results --- */
+        .results-header {
+            display:flex; align-items:baseline; gap:0.8rem;
+            margin-bottom:1rem;
+        }
+        .results-count {
+            font-size:0.85rem; color:var(--text-secondary);
+            letter-spacing:0.06em;
+        }
+        .loading-dot {
+            color:var(--accent); font-size:1rem;
+            animation:pulse 1s ease-in-out infinite;
+        }
+        @keyframes pulse { 0%,100%{opacity:0.3;} 50%{opacity:1;} }
+
+        .result-list { list-style:none; display:flex; flex-direction:column; gap:6px; }
+        .result-item {
+            background:var(--bg-card);
+            border:1px solid var(--border);
+            border-radius:3px;
+            padding:1rem 1.2rem;
+            display:flex;
+            align-items:center;
+            gap:1rem;
+            transition:border-color 0.3s;
+        }
+        .result-item:hover { border-color:rgba(184,146,78,0.25); }
+
+        .result-name {
+            flex:1; min-width:0;
+            font-size:0.95rem; color:var(--text-primary);
+            white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+        }
+        .result-type {
+            font-size:0.75rem; color:var(--text-secondary);
+            letter-spacing:0.06em; text-transform:uppercase;
+            white-space:nowrap;
+        }
+        .result-coords {
+            font-size:0.9rem; color:var(--accent);
+            white-space:nowrap;
+            font-family:var(--font-ui);
+            letter-spacing:0.03em;
+        }
+        .copy-btn {
+            background:transparent;
+            border:1px solid rgba(184,146,78,0.25);
+            color:var(--text-secondary);
+            font-family:var(--font-ui);
+            font-size:0.8rem;
+            letter-spacing:0.06em;
+            padding:0.4rem 0.9rem;
+            border-radius:2px;
+            cursor:pointer;
+            transition:all 0.3s;
+            white-space:nowrap;
+        }
+        .copy-btn:hover { color:var(--accent); border-color:var(--accent); }
+        .copy-btn.copied { color:#5a8; border-color:#5a8; }
+
+        /* --- Quick Coordinates Section --- */
+        .section-title {
+            font-family:var(--font-ui);
+            font-size:0.85rem; letter-spacing:0.1em;
+            color:var(--text-secondary);
+            margin:2.5rem 0 1rem;
+            padding-top:1.5rem;
+            border-top:1px solid var(--border);
+            text-transform:uppercase;
+        }
+
+        .quick-cities {
+            display:grid;
+            grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));
+            gap:5px;
+        }
+        .city-chip {
+            background:var(--bg-card);
+            border:1px solid var(--border);
+            border-radius:2px;
+            padding:0.6rem 0.8rem;
+            cursor:pointer;
+            transition:border-color 0.3s, background 0.3s;
+            display:flex; justify-content:space-between; align-items:center;
+        }
+        .city-chip:hover { border-color:rgba(184,146,78,0.3); background:var(--bg-secondary); }
+        .city-chip .name { font-size:0.9rem; color:var(--text-primary); }
+        .city-chip .coords { font-size:0.75rem; color:var(--text-secondary); }
+
+        /* --- Manual entry --- */
+        .manual-entry {
+            display:flex; gap:0.6rem; align-items:center;
+            margin-top:0.5rem;
+        }
+        .manual-entry input {
+            width:150px;
+            background:var(--bg-card);
+            border:1px solid var(--border);
+            color:var(--accent);
+            font-family:var(--font-ui);
+            font-size:0.9rem;
+            padding:0.6rem 0.8rem;
+            border-radius:2px;
+            outline:none;
+        }
+        .manual-entry input:focus { border-color:rgba(184,146,78,0.4); }
+        .manual-entry .label {
+            font-size:0.8rem; color:var(--text-secondary);
+            letter-spacing:0.04em;
+        }
+    </style>
+</head>
+<body>
+<div id="sidebar-container"></div>
+<div class="container">
+    <h1>GPS 标记助手</h1>
+    <p class="subtitle">Geocoding tool — 搜索地名获取经纬度</p>
+
+    <!-- Search -->
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="输入地名，例如：北京故宫、上海外滩、西湖、大理古城…" autofocus>
+        <button id="searchBtn">搜索</button>
+    </div>
+    <p class="search-hint">使用 <a href="https://nominatim.openstreetmap.org" style="color:var(--text-muted);">Nominatim (OpenStreetMap)</a> 地理编码，免费、无需 API Key 需要魔法上网喵· 每秒限 1 次请求</p>
+
+    <div id="resultsArea">
+        <div class="results-header" id="resultsHeader" style="display:none;">
+            <span class="results-count" id="resultsCount"></span>
+            <span class="loading-dot" id="loadingDot" style="display:none;">…</span>
+        </div>
+        <ul class="result-list" id="resultList"></ul>
+    </div>
+
+    <!-- Manual coordinate entry -->
+    <h3 class="section-title">手动输入坐标</h3>
+    <div class="manual-entry">
+        <span class="label">Lat (纬度):</span>
+        <input type="text" id="manualLat" placeholder="39.9042">
+        <span class="label">Lng (经度):</span>
+        <input type="text" id="manualLng" placeholder="116.4074">
+        <button class="copy-btn" id="copyManual">复制</button>
+        <span id="manualFeedback" style="font-size:0.65rem;color:#5a8;display:none;">已复制 ✓</span>
+    </div>
+
+    <!-- Frequent cities -->
+    <h3 class="section-title">中国主要城市 · 快速参考</h3>
+    <div class="quick-cities" id="quickCities"></div>
+</div>
+
+<script>
+(function(){
+    'use strict';
+    const cities = [
+        ['北京', 39.9042, 116.4074], ['上海', 31.2304, 121.4737],
+        ['广州', 23.1291, 113.2644], ['深圳', 22.5431, 114.0579],
+        ['成都', 30.5728, 104.0668], ['重庆', 29.4316, 106.9123],
+        ['杭州', 30.2741, 120.1551], ['南京', 32.0603, 118.7969],
+        ['武汉', 30.5928, 114.3055], ['西安', 34.3416, 108.9398],
+        ['长沙', 28.2282, 112.9388], ['厦门', 24.4798, 118.0894],
+        ['青岛', 36.0671, 120.3826], ['大连', 38.9140, 121.6147],
+        ['昆明', 25.0389, 102.7183], ['大理', 25.5916, 100.2299],
+        ['丽江', 26.8721, 100.2299], ['三亚', 18.2528, 109.5120],
+        ['拉萨', 29.6500, 91.1000], ['乌鲁木齐', 43.8256, 87.6168],
+        ['哈尔滨', 45.8038, 126.5350], ['苏州', 31.2990, 120.5853],
+        ['桂林', 25.2736, 110.2900], ['张家界', 29.1170, 110.4783],
+        ['黄山', 30.1345, 118.1689], ['泰山', 36.2558, 117.1290],
+        ['敦煌', 40.1421, 94.6620], ['呼伦贝尔', 49.2116, 119.7658],
+        ['喀纳斯', 48.7117, 87.0372], ['稻城亚丁', 28.4383, 100.3230],
+    ];
+
+    // Build city chips
+    const qc = document.getElementById('quickCities');
+    cities.forEach(([name, lat, lng]) => {
+        const chip = document.createElement('div');
+        chip.className = 'city-chip';
+        chip.innerHTML = `<span class="name">${name}</span><span class="coords">${lat}, ${lng}</span>`;
+        chip.addEventListener('click', () => {
+            copyToClipboard(`${lat}, ${lng}`, chip);
+        });
+        qc.appendChild(chip);
+    });
+
+    // Search
+    const input = document.getElementById('searchInput');
+    const btn = document.getElementById('searchBtn');
+    const list = document.getElementById('resultList');
+    const header = document.getElementById('resultsHeader');
+    const count = document.getElementById('resultsCount');
+    const dot = document.getElementById('loadingDot');
+    let lastReq = 0;
+
+    function doSearch() {
+        const q = input.value.trim();
+        if (!q) return;
+        const now = Date.now();
+        const wait = Math.max(0, 1100 - (now - lastReq));
+        dot.style.display = '';
+        header.style.display = 'flex';
+        count.textContent = '搜索中…';
+
+        setTimeout(() => {
+            fetch(`https://nominatim.openstreetmap.org/search?format=json&limit=8&accept-language=zh&q=${encodeURIComponent(q)}`)
+                .then(r => r.json())
+                .then(data => {
+                    dot.style.display = 'none';
+                    lastReq = Date.now();
+                    if (!data.length) {
+                        count.textContent = '未找到结果';
+                        list.innerHTML = '<li style="color:var(--text-muted);font-size:0.8rem;padding:1rem;">未找到匹配地点，尝试更具体的地名（如"杭州西湖"而非"西湖"）</li>';
+                        return;
+                    }
+                    count.textContent = data.length + ' 条结果';
+                    list.innerHTML = data.map((item, i) => {
+                        const typeMap = {
+                            'administrative': '行政区',
+                            'city': '城市', 'town': '镇', 'village': '村',
+                            'suburb': '郊区', 'hamlet': '村落',
+                            'tourism': '景点', 'attraction': '景点',
+                            'historic': '古迹', 'museum': '博物馆',
+                            'railway_station': '火车站', 'aerodrome': '机场',
+                        };
+                        const typeCN = typeMap[item.type] || item.type;
+                        const displayName = item.display_name.replace(/,/g, ', ');
+                        const coords = `${parseFloat(item.lat).toFixed(6)}, ${parseFloat(item.lon).toFixed(6)}`;
+                        return `<li class="result-item">
+                            <span class="result-name" title="${displayName}">${displayName}</span>
+                            <span class="result-type">${typeCN}</span>
+                            <span class="result-coords">${coords}</span>
+                            <button class="copy-btn" data-coords="${coords}" data-idx="${i}">复制</button>
+                        </li>`;
+                    }).join('');
+
+                    // Bind copy buttons
+                    list.querySelectorAll('.copy-btn').forEach(b => {
+                        b.addEventListener('click', function(e){
+                            e.stopPropagation();
+                            copyToClipboard(this.dataset.coords, this);
+                        });
+                    });
+                })
+                .catch(err => {
+                    dot.style.display = 'none';
+                    count.textContent = '请求失败';
+                    list.innerHTML = '<li style="color:var(--text-muted);font-size:0.8rem;padding:1rem;">网络请求失败，请检查网络连接或稍后重试</li>';
+                });
+        }, wait);
+    }
+
+    btn.addEventListener('click', doSearch);
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
+
+    // Manual copy
+    document.getElementById('copyManual').addEventListener('click', () => {
+        const lat = document.getElementById('manualLat').value.trim();
+        const lng = document.getElementById('manualLng').value.trim();
+        if (!lat || !lng) return;
+        copyToClipboard(`${lat}, ${lng}`, document.getElementById('copyManual'));
+        document.getElementById('manualFeedback').style.display = '';
+        setTimeout(() => { document.getElementById('manualFeedback').style.display = 'none'; }, 1500);
+    });
+
+    function copyToClipboard(text, el) {
+        navigator.clipboard.writeText(text).then(() => {
+            if (el) {
+                el.classList.add('copied');
+                el.textContent = '已复制 ✓';
+                setTimeout(() => { el.classList.remove('copied'); el.textContent = '复制'; }, 1200);
+            }
+        }).catch(() => {
+            // Fallback
+            const ta = document.createElement('textarea');
+            ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+            document.body.appendChild(ta); ta.select();
+            document.execCommand('copy'); document.body.removeChild(ta);
+            if (el) {
+                el.classList.add('copied');
+                el.textContent = '已复制 ✓';
+                setTimeout(() => { el.classList.remove('copied'); el.textContent = '复制'; }, 1200);
+            }
+        });
+    }
+})();
+</script>
+<script src="sidebar.js"></script>
+<script>initSidebar('sidebar-container');</script>
+</body>
+</html>

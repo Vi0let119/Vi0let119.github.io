@@ -3,6 +3,7 @@ import os
 import re
 from datetime import datetime
 from PIL import Image
+from PIL.ExifTags import GPSTAGS, TAGS
 
 img_dir = r"D:\虚拟C盘\网站html练习\图库"
 json_path = r"D:\虚拟C盘\网站html练习\picture_info.json"
@@ -28,6 +29,41 @@ def extract_date_from_filename(fname):
         return datetime.fromtimestamp(ts)
 
     return None
+
+def _convert_to_degrees(value):
+    """Convert EXIF GPS coordinate tuple to decimal degrees."""
+    d, m, s = value
+    return float(d) + float(m) / 60 + float(s) / 3600
+
+
+def extract_gps_from_exif(img):
+    """Extract GPS latitude/longitude from EXIF, return (lat, lng) or (None, None)."""
+    exif = img.getexif()
+    if not exif:
+        return None, None
+    gps_info = exif.get_ifd(0x8825)  # GPSInfo IFD
+    if not gps_info:
+        return None, None
+
+    gps_lat = gps_info.get(2)  # GPSLatitude
+    gps_lat_ref = gps_info.get(1)  # GPSLatitudeRef
+    gps_lng = gps_info.get(4)  # GPSLongitude
+    gps_lng_ref = gps_info.get(3)  # GPSLongitudeRef
+
+    if not all([gps_lat, gps_lat_ref, gps_lng, gps_lng_ref]):
+        return None, None
+
+    try:
+        lat = _convert_to_degrees(gps_lat)
+        if gps_lat_ref.upper() == 'S':
+            lat = -lat
+        lng = _convert_to_degrees(gps_lng)
+        if gps_lng_ref.upper() == 'W':
+            lng = -lng
+        return round(lat, 6), round(lng, 6)
+    except (TypeError, ZeroDivisionError):
+        return None, None
+
 
 def extract_date_from_exif(img):
     """Try to extract date from EXIF (DateTimeOriginal -> DateTime)."""
@@ -70,6 +106,8 @@ for fname in sorted(os.listdir(img_dir)):
         dt_display = None
         no_date_count += 1
 
+    lat, lng = extract_gps_from_exif(img)
+
     images.append({
         "filename": fname,
         "path": f"图库/{fname}",
@@ -79,8 +117,8 @@ for fname in sorted(os.listdir(img_dir)):
         "file_size": fsize,
         "file_size_mb": round(fsize / (1024 * 1024), 2),
         "updated_at": mtime,
-        "latitude": None,
-        "longitude": None,
+        "latitude": lat,
+        "longitude": lng,
         "_shooting_dt": dt_obj,
         "shooting_date": dt_display,
     })
@@ -88,7 +126,7 @@ for fname in sorted(os.listdir(img_dir)):
 # Sort by shooting date descending (newest first); images without date go last
 images_with_date = [img for img in images if img["_shooting_dt"] is not None]
 images_no_date = [img for img in images if img["_shooting_dt"] is None]
-images_with_date.sort(key=lambda x: x["_shooting_dt"], reverse=True)
+images_with_date.sort(key=lambda x: x["_shooting_dt"])
 images = images_with_date + images_no_date
 
 for i, img in enumerate(images):

@@ -21,16 +21,85 @@
     let thumbItems = [];
     let observer = null;
     let loadedCount = 0;
+    let sortOrder = 'desc';  // 'desc' = newest first, 'asc' = oldest first
 
     scrollIndicator.addEventListener('click', () => {
         gallerySection.scrollIntoView({ behavior: 'smooth' });
     });
 
+    // --- Sort toggle button ---
+    const sortBtn = document.createElement('button');
+    sortBtn.id = 'sortBtn';
+    sortBtn.className = 'sort-btn';
+    sortBtn.textContent = '↓';
+    sortBtn.title = 'Newest first  ·  click to reverse';
+    sortBtn.setAttribute('aria-label', 'Toggle sort order');
+    imageCountEl.parentNode.insertBefore(sortBtn, imageCountEl);
+
+    sortBtn.addEventListener('click', function () {
+        sortOrder = sortOrder === 'desc' ? 'asc' : 'desc';
+        sortBtn.textContent = sortOrder === 'desc' ? '↓' : '↑';
+        sortBtn.title = sortOrder === 'desc'
+            ? 'Newest first  ·  click to reverse'
+            : 'Oldest first  ·  click to reverse';
+
+        // Remember selected image
+        var selectedFilename = null;
+        if (activeThumb) {
+            var si = parseInt(activeThumb.getAttribute('data-index'), 10);
+            if (!isNaN(si) && images[si]) selectedFilename = images[si].filename;
+        }
+
+        // Re-sort
+        images = sortByDate(images, sortOrder);
+
+        // Tear down old observer
+        if (observer) observer.disconnect();
+        observer = null;
+        thumbItems = [];
+        loadedCount = 0;
+
+        // Rebuild
+        thumbnailGrid.innerHTML = '';
+        buildThumbnails(images);
+        startLazyLoad();
+
+        // Re-select the previously selected image
+        if (selectedFilename) {
+            for (var i = 0; i < images.length; i++) {
+                if (images[i].filename === selectedFilename) {
+                    var thumb = thumbnailGrid.querySelector('[data-index="' + i + '"]');
+                    if (thumb) selectImage(i, thumb);
+                    break;
+                }
+            }
+        }
+
+        // Clear main display if selection was lost
+        if (!activeThumb) {
+            mainPlaceholder.style.display = '';
+            mainImageWrap.style.display = 'none';
+            imageCaption.style.display = 'none';
+        }
+    });
+
+    // --- Sort by shooting_date ---
+    function sortByDate(list, order) {
+        return list.slice().sort(function (a, b) {
+            var da = a.shooting_date || '';
+            var db = b.shooting_date || '';
+            if (!da && !db) return 0;
+            if (!da) return 1;   // no date → end
+            if (!db) return -1;
+            return order === 'desc' ? db.localeCompare(da) : da.localeCompare(db);
+        });
+    }
+
     // --- Fetch & build ---
     fetch('./picture_info.json')
         .then(res => res.ok ? res.json() : Promise.reject('Failed to load'))
         .then(data => {
-            images = data.images || [];
+            images = sortByDate(data.images || [], sortOrder);
             imageCountEl.textContent = images.length + ' frames';
             buildThumbnails(images);
             startLazyLoad();
