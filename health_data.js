@@ -36,7 +36,7 @@
             name: name,
             nameTextStyle: {
                 color: N.textMuted,
-                fontSize: 10,
+                fontSize: 14,
                 fontFamily: 'Share Tech Mono, monospace',
                 letterSpacing: 1
             },
@@ -44,7 +44,7 @@
             axisTick: { lineStyle: { color: N.gridLine } },
             axisLabel: {
                 color: N.textMuted,
-                fontSize: 10,
+                fontSize: 14,
                 fontFamily: 'Share Tech Mono, monospace'
             },
             splitLine: { show: false }
@@ -135,7 +135,7 @@
             'padding: 14px 24px; border-radius: 4px;',
             'box-shadow: 0 0 24px rgba(0,229,255,0.15);',
             'z-index: 10000; animation: slideIn 0.3s ease;',
-            'font-family: "Share Tech Mono", monospace; font-size: 13px;',
+            'font-family: "Share Tech Mono", monospace; font-size: 15px;',
             'letter-spacing: 0.04em; text-shadow: 0 0 8px rgba(0,229,255,0.3);'
         ].join('');
         notification.textContent = message;
@@ -292,7 +292,7 @@
                     textStyle: {
                         color: '#d8e0ec',
                         fontFamily: 'Share Tech Mono, monospace',
-                        fontSize: 12
+                        fontSize: 14
                     },
                     axisPointer: {
                         lineStyle: { color: 'rgba(0,229,255,0.2)' }
@@ -310,7 +310,7 @@
                     axisTick: { show: false },
                     axisLabel: {
                         color: N.textMuted,
-                        fontSize: 10,
+                        fontSize: 14,
                         fontFamily: 'Share Tech Mono, monospace',
                         rotate: 30
                     },
@@ -323,14 +323,14 @@
                     name: 'kg',
                     nameTextStyle: {
                         color: N.textMuted,
-                        fontSize: 10,
+                        fontSize: 14,
                         fontFamily: 'Share Tech Mono, monospace'
                     },
                     axisLine: { show: false },
                     axisTick: { show: false },
                     axisLabel: {
                         color: N.textMuted,
-                        fontSize: 10,
+                        fontSize: 14,
                         fontFamily: 'Share Tech Mono, monospace'
                     },
                     splitLine: { lineStyle: { color: N.gridLine, type: 'dashed' } }
@@ -367,7 +367,7 @@
                         data: [{ type: 'average', name: '均值' }],
                         label: {
                             color: N.textMuted,
-                            fontSize: 10,
+                            fontSize: 14,
                             fontFamily: 'Share Tech Mono, monospace'
                         }
                     }
@@ -386,7 +386,7 @@
                     textStyle: {
                         color: '#d8e0ec',
                         fontFamily: 'Share Tech Mono, monospace',
-                        fontSize: 12
+                        fontSize: 14
                     },
                     axisPointer: {
                         lineStyle: { color: 'rgba(57,255,20,0.2)' }
@@ -404,7 +404,7 @@
                     axisTick: { show: false },
                     axisLabel: {
                         color: N.textMuted,
-                        fontSize: 10,
+                        fontSize: 14,
                         fontFamily: 'Share Tech Mono, monospace',
                         rotate: 30
                     },
@@ -417,14 +417,14 @@
                     name: '小时',
                     nameTextStyle: {
                         color: N.textMuted,
-                        fontSize: 10,
+                        fontSize: 14,
                         fontFamily: 'Share Tech Mono, monospace'
                     },
                     axisLine: { show: false },
                     axisTick: { show: false },
                     axisLabel: {
                         color: N.textMuted,
-                        fontSize: 10,
+                        fontSize: 14,
                         fontFamily: 'Share Tech Mono, monospace'
                     },
                     splitLine: { lineStyle: { color: N.gridLine, type: 'dashed' } }
@@ -461,7 +461,7 @@
                         data: [{ type: 'average', name: '均值' }],
                         label: {
                             color: N.textMuted,
-                            fontSize: 10,
+                            fontSize: 14,
                             fontFamily: 'Share Tech Mono, monospace'
                         }
                     }
@@ -483,7 +483,7 @@
                     textStyle: {
                         color: '#d8e0ec',
                         fontFamily: 'Share Tech Mono, monospace',
-                        fontSize: 12
+                        fontSize: 14
                     },
                     formatter: function(params) {
                         var v = params[0].value;
@@ -508,7 +508,7 @@
                     axisTick: { show: false },
                     axisLabel: {
                         color: N.textMuted,
-                        fontSize: 10,
+                        fontSize: 14,
                         fontFamily: 'Share Tech Mono, monospace',
                         rotate: 30
                     },
@@ -522,14 +522,14 @@
                     inverse: true,
                     nameTextStyle: {
                         color: N.textMuted,
-                        fontSize: 10,
+                        fontSize: 14,
                         fontFamily: 'Share Tech Mono, monospace'
                     },
                     axisLine: { show: false },
                     axisTick: { show: false },
                     axisLabel: {
                         color: N.textMuted,
-                        fontSize: 10,
+                        fontSize: 14,
                         fontFamily: 'Share Tech Mono, monospace',
                         formatter: function(v) {
                             var h = v < 0 ? v + 24 : v;
@@ -605,7 +605,7 @@
         if (validRecords.length < 3) {
             var container = document.getElementById('chart3dContainer');
             if (container) {
-                container.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#4a5568;font-family:\'Share Tech Mono\',monospace;font-size:13px;letter-spacing:0.05em;">数据不足 — 需要至少3条有效体重记录</div>';
+                container.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#4a5568;font-family:\'Share Tech Mono\',monospace;font-size:15px;letter-spacing:0.05em;">数据不足 — 需要至少3条有效体重记录</div>';
             }
             return;
         }
@@ -633,7 +633,7 @@
                 textStyle: {
                     color: '#d8e0ec',
                     fontFamily: 'Share Tech Mono, monospace',
-                    fontSize: 12
+                    fontSize: 14
                 },
                 formatter: function(params) {
                     if (!params || !params.value) return '';
@@ -713,13 +713,13 @@
                 max: 78,
                 nameTextStyle: {
                     color: N.cyan,
-                    fontSize: 11,
+                    fontSize: 13,
                     fontFamily: 'Share Tech Mono, monospace',
                     letterSpacing: 1
                 },
                 axisLabel: {
                     color: N.textMuted,
-                    fontSize: 9,
+                    fontSize: 11,
                     fontFamily: 'Share Tech Mono, monospace',
                     formatter: function(v) { return v.toFixed(1); }
                 },
@@ -733,13 +733,13 @@
                 max: 10,
                 nameTextStyle: {
                     color: N.green,
-                    fontSize: 11,
+                    fontSize: 13,
                     fontFamily: 'Share Tech Mono, monospace',
                     letterSpacing: 1
                 },
                 axisLabel: {
                     color: N.textMuted,
-                    fontSize: 9,
+                    fontSize: 11,
                     fontFamily: 'Share Tech Mono, monospace'
                 },
                 axisLine: { lineStyle: { color: 'rgba(57,255,20,0.35)' } },
@@ -752,13 +752,13 @@
                 max: 5,
                 nameTextStyle: {
                     color: N.magenta,
-                    fontSize: 11,
+                    fontSize: 13,
                     fontFamily: 'Share Tech Mono, monospace',
                     letterSpacing: 1
                 },
                 axisLabel: {
                     color: N.textMuted,
-                    fontSize: 9,
+                    fontSize: 11,
                     fontFamily: 'Share Tech Mono, monospace',
                     formatter: function(v) {
                         var h = v < 0 ? v + 24 : v;
@@ -797,7 +797,7 @@
                 text: ['晚', '早'],
                 textStyle: {
                     color: N.textMuted,
-                    fontSize: 9,
+                    fontSize: 11,
                     fontFamily: 'Share Tech Mono, monospace'
                 },
                 itemWidth: 6,
@@ -839,7 +839,7 @@
                         distance: 8,
                         textStyle: {
                             color: '#fff',
-                            fontSize: 10,
+                            fontSize: 14,
                             fontFamily: 'Share Tech Mono, monospace',
                             backgroundColor: 'rgba(8,12,24,0.85)',
                             padding: [3, 6],

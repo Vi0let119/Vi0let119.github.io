@@ -90,7 +90,7 @@
     background-color: #06080f;
     color: var(--n-text) !important;
     font-family: var(--font-mono);
-    font-size: 13px;
+    font-size: 15px;
     margin: 0;
     padding: 0;
     -webkit-font-smoothing: antialiased;
@@ -171,7 +171,7 @@
     border-radius: var(--n-radius-lg);
     padding: 2.5vh 2vw;
     color: var(--n-text-secondary);
-    font-size: 0.68rem;
+    font-size: 0.95rem;
     letter-spacing: 0.04em;
     line-height: 1.8;
     position: relative;
@@ -262,7 +262,7 @@
 .panel-header h3 {
     margin: 0;
     font-family: var(--font-display);
-    font-size: 1rem;
+    font-size: 1.15rem;
     font-weight: 500;
     letter-spacing: 0.08em;
     color: var(--n-cyan);
@@ -281,7 +281,7 @@
 
 .control-group label {
     font-family: var(--font-mono);
-    font-size: 0.65rem;
+    font-size: 0.75rem;
     font-weight: 400;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -297,7 +297,7 @@
     border-radius: var(--n-radius);
     color: var(--n-text);
     font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     font-weight: 400;
     letter-spacing: 0.03em;
     cursor: pointer;
@@ -333,7 +333,7 @@
     border-radius: var(--n-radius);
     padding: 1.2vh 1vw;
     color: var(--n-text-secondary);
-    font-size: 0.7rem;
+    font-size: 0.82rem;
 }
 
 .stats-box p {
@@ -355,7 +355,7 @@
 
 .stat-label {
     color: var(--n-text-muted);
-    font-size: 0.68rem;
+    font-size: 0.78rem;
     letter-spacing: 0.04em;
     text-transform: uppercase;
 }
@@ -363,7 +363,7 @@
 .stat-value {
     color: var(--n-cyan);
     font-weight: 400;
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     letter-spacing: 0.03em;
     text-shadow: 0 0 8px rgba(0, 229, 255, 0.2);
 }
@@ -377,7 +377,7 @@
     background: transparent;
     color: var(--n-cyan);
     font-family: var(--font-display);
-    font-size: 0.72rem;
+    font-size: 0.82rem;
     font-weight: 500;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -474,7 +474,7 @@
 .chart3d-header h3 {
     margin: 0;
     font-family: var(--font-display);
-    font-size: 1rem;
+    font-size: 1.15rem;
     font-weight: 500;
     letter-spacing: 0.08em;
     color: var(--n-magenta);
@@ -487,7 +487,7 @@
     gap: 1.5vw;
     margin-left: auto;
     font-family: var(--font-mono);
-    font-size: 0.65rem;
+    font-size: 0.75rem;
     letter-spacing: 0.04em;
     color: var(--n-text-muted);
 }
@@ -551,7 +551,7 @@
 
 .note-modal-header span {
     font-family: var(--font-display);
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     font-weight: 500;
     color: var(--n-cyan);
     letter-spacing: 0.04em;
@@ -565,7 +565,7 @@
     border-radius: 50%;
     background: var(--n-surface-alt);
     color: var(--n-text-secondary);
-    font-size: 1rem;
+    font-size: 1.1rem;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -583,7 +583,7 @@
 
 .note-content {
     color: var(--n-text-secondary);
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     line-height: 2;
     white-space: pre-wrap;
     word-break: break-word;
@@ -630,7 +630,7 @@
 
 .quote-text {
     font-family: var(--font-cn);
-    font-size: 1.05rem;
+    font-size: 1.25rem;
     font-style: normal;
     font-weight: 400;
     color: var(--n-text) !important;
@@ -642,7 +642,7 @@
 
 .quote-text::before {
     content: '"';
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     color: var(--n-cyan);
     position: absolute;
     left: -16px;
@@ -653,7 +653,7 @@
 
 .quote-text::after {
     content: '"';
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     color: var(--n-cyan);
     position: absolute;
     right: -16px;
@@ -664,7 +664,7 @@
 
 .quote-author {
     font-family: var(--font-cn);
-    font-size: 0.78rem;
+    font-size: 0.88rem;
     color: var(--n-text-muted) !important;
     font-weight: 400;
     letter-spacing: 0.05em;
@@ -756,7 +756,7 @@ div[style*="slideIn"] {
 
 .neon-terminal .sidebar-title {
     font-family: 'Orbitron', 'Microsoft YaHei', sans-serif !important;
-    font-size: 13px !important;
+    font-size: 15px !important;
     font-weight: 500 !important;
     color: #00e5ff !important;
     letter-spacing: 0.08em !important;
@@ -769,7 +769,7 @@ div[style*="slideIn"] {
 .neon-terminal .sidebar-menu > li > a {
     color: #7a8a9e !important;
     font-family: 'Share Tech Mono', 'Microsoft YaHei', monospace !important;
-    font-size: 13px !important;
+    font-size: 15px !important;
     letter-spacing: 0.03em !important;
     border: 1px solid transparent !important;
     transition: all 0.25s ease !important;
@@ -785,7 +785,7 @@ div[style*="slideIn"] {
 .neon-terminal .submenu li a {
     color: #556677 !important;
     font-family: 'Share Tech Mono', 'Microsoft YaHei', monospace !important;
-    font-size: 12px !important;
+    font-size: 14px !important;
     letter-spacing: 0.02em !important;
     border-left: 1px solid transparent !important;
     transition: all 0.2s ease !important;
@@ -892,6 +892,6 @@ div[style*="slideIn"] {
     }
 
     .quote-text {
-        font-size: 0.8rem;
+        font-size: 1rem;
     }
 }

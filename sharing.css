@@ -352,6 +352,7 @@ body {
 
 /* ===== 内容区域 ===== */
 .sharing-content {
+  position: relative;
   width: 80vw;
   min-width: 0;
   height: 100vh;
@@ -536,6 +537,33 @@ body {
   font-style: italic;
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   box-shadow: var(--shadow-inset);
+  position: relative;
+}
+
+/* blockquote 右上角 — 朱砂小点，像批注标记 */
+.sharing-panel blockquote::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle,
+    rgba(168, 58, 49, 0.35) 0%,
+    rgba(168, 58, 49, 0.12) 50%,
+    transparent 70%);
+  border-radius: 50%;
+}
+
+/* blockquote 右下角 — 淡墨双短横，像句读标记 */
+.sharing-panel blockquote::before {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  width: 18px;
+  height: 0;
+  border-top: 2px dotted rgba(168, 58, 49, 0.18);
 }
 
 /* ===== 信息列表 — 藏书卡片风格 ===== */
@@ -620,6 +648,33 @@ body {
 .sharing-more-button:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
+}
+
+/* 展开按钮 — 水墨晕染 hover */
+.sharing-more-button {
+  overflow: hidden;
+}
+.sharing-more-button::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle,
+    rgba(168, 58, 49, 0.08) 0%,
+    rgba(168, 58, 49, 0.03) 40%,
+    transparent 60%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.5s ease-out, height 0.5s ease-out, opacity 0.5s ease-out;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.sharing-more-button:hover::after {
+  width: 300px;
+  height: 300px;
+  opacity: 1;
 }
 
 /* ============================================
@@ -808,6 +863,614 @@ body {
 /* ============================================
    响应式
    ============================================ */
+
+/* ============================================
+   古风装饰总容器
+   置于内容之上（z-index: 3），右导航栏之下（999）
+   ============================================ */
+.gufeng-decorations {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 3;
+  overflow: hidden;
+}
+
+
+/* ============================================
+   底部雾气 — 淡墨横染
+   ============================================ */
+.gf-bottom-mist {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 16vh;
+  z-index: 99;
+  background: linear-gradient(0deg,
+    rgba(80, 60, 40, 0.6) 0%,
+    rgba(80, 60, 40, 0.35) 25%,
+    rgba(100, 80, 55, 0.15) 55%,
+    transparent 100%);
+  pointer-events: none;
+}
+
+/* ============================================
+   水墨飞鸟 — 远空剪影
+   弧线笔画技法：border-top + border-radius 50% 形成半椭圆弧
+   ============================================ */
+.gf-bird {
+  position: absolute;
+  opacity: 0.55;
+  z-index: 1;
+  width: 40px;
+  height: 20px;
+  pointer-events: none;
+}
+
+/* 左翼 */
+.gf-bird::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 28px;
+  height: 14px;
+  border-top: 3px solid rgba(38, 24, 12, 0.7);
+  border-radius: 50%;
+  transform: rotate(-22deg);
+  transform-origin: right center;
+}
+
+/* 右翼 */
+.gf-bird::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 3px;
+  width: 28px;
+  height: 14px;
+  border-top: 3px solid rgba(38, 24, 12, 0.7);
+  border-radius: 50%;
+  transform: rotate(22deg);
+  transform-origin: left center;
+}
+
+.bird-1 {
+  top: 6%;
+  right: 12%;
+  transform: scale(0.9) rotate(-8deg);
+}
+.bird-1::before { width: 30px; height: 16px; }
+.bird-1::after  { width: 30px; height: 16px; left: 3px; }
+
+.bird-2 {
+  top: 13%;
+  right: 26%;
+  transform: scale(0.65) rotate(-5deg);
+}
+.bird-2::before { width: 22px; height: 11px; }
+.bird-2::after  { width: 22px; height: 11px; left: 2px; }
+
+.bird-3 {
+  top: 10%;
+  right: 18%;
+  transform: scale(0.5) rotate(-11deg);
+}
+.bird-3::before { width: 18px; height: 9px; }
+.bird-3::after  { width: 18px; height: 9px; left: 2px; }
+
+/* ============================================
+   金粉微尘 — 金箔碎屑漂浮
+   显著增大 / 高亮 / 大范围浮动
+   ============================================ */
+.gf-gold-dust {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  overflow: hidden;
+}
+
+.gd-particle {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 7px;
+  height: 7px;
+  background: radial-gradient(circle,
+    rgba(240, 205, 130, 0.95) 0%,
+    rgba(210, 170, 100, 0.55) 35%,
+    transparent 70%);
+  border-radius: 50%;
+  animation: goldFloat var(--d) ease-in-out infinite;
+  animation-delay: calc(var(--d) * -0.15);
+  opacity: 0;
+  transform: scale(var(--s));
+  box-shadow: 0 0 6px rgba(220, 185, 110, 0.5),
+              0 0 14px rgba(210, 170, 95, 0.2);
+}
+
+/* 金箔片 — 扁长椭圆 */
+.gd-particle:nth-child(3n) {
+  width: 10px;
+  height: 4px;
+  border-radius: 2px;
+  background: radial-gradient(ellipse,
+    rgba(245, 210, 140, 0.9) 0%,
+    rgba(220, 180, 110, 0.5) 40%,
+    transparent 72%);
+  box-shadow: 0 0 8px rgba(230, 195, 120, 0.45);
+}
+
+/* 亮金微尘 — 小而极亮 */
+.gd-particle:nth-child(5n+2) {
+  width: 5px;
+  height: 5px;
+  background: radial-gradient(circle,
+    rgba(255, 225, 155, 1) 0%,
+    rgba(235, 195, 130, 0.6) 50%,
+    transparent 100%);
+  box-shadow: 0 0 8px rgba(240, 210, 140, 0.65),
+              0 0 18px rgba(225, 190, 115, 0.25);
+}
+
+.gd-particle:nth-child(4n) {
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle,
+    rgba(230, 190, 115, 0.8) 0%,
+    rgba(195, 155, 85, 0.4) 48%,
+    transparent 72%);
+  box-shadow: 0 0 5px rgba(210, 175, 100, 0.4);
+}
+
+/* 确保初始就有一部分粒子可见 */
+.gd-particle:nth-child(-n+8) {
+  animation-delay: calc(var(--d) * -0.5);
+}
+
+@keyframes goldFloat {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(var(--s));
+  }
+  6% {
+    opacity: 0.8;
+  }
+  18% {
+    opacity: 0.45;
+    transform: translate(15px, -35px) scale(calc(var(--s) * 1.3));
+  }
+  32% {
+    opacity: 0.75;
+    transform: translate(-8px, -55px) scale(calc(var(--s) * 0.8));
+  }
+  50% {
+    opacity: 0.3;
+    transform: translate(20px, -78px) scale(calc(var(--s) * 1.2));
+  }
+  68% {
+    opacity: 0.6;
+    transform: translate(-15px, -100px) scale(calc(var(--s) * 0.7));
+  }
+  84% {
+    opacity: 0.12;
+    transform: translate(10px, -120px) scale(calc(var(--s) * 0.85));
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-5px, -150px) scale(calc(var(--s) * 0.35));
+  }
+}
+
+/* ============================================
+   落花 — 梅花/桃花瓣飘落
+   更多花瓣 / 更大 / 减少模糊 / 增强色彩
+   ============================================ */
+.gf-petals {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  left: var(--px);
+  top: -40px;
+  width: var(--pw);
+  height: calc(var(--pw) * 0.65);
+  background: radial-gradient(ellipse at 40% 50%,
+    rgba(235, 185, 170, 0.6) 0%,
+    rgba(215, 155, 140, 0.4) 35%,
+    rgba(190, 125, 110, 0.15) 75%,
+    transparent 100%);
+  border-radius: 50% 0 50% 0;
+  transform: rotate(var(--pr));
+  animation: petalFall var(--pd) ease-in-out infinite;
+  animation-delay: calc(var(--pd) * -0.4);
+  filter: blur(0.4px);
+  box-shadow: 0 0 6px rgba(210, 150, 140, 0.2);
+}
+
+.petal:nth-child(even) {
+  border-radius: 0 50% 0 50%;
+  background: radial-gradient(ellipse at 60% 50%,
+    rgba(240, 195, 180, 0.55) 0%,
+    rgba(220, 160, 145, 0.35) 35%,
+    rgba(195, 130, 115, 0.12) 75%,
+    transparent 100%);
+}
+
+.petal:nth-child(3n) {
+  border-radius: 50% 50% 0 0;
+  background: radial-gradient(ellipse at 50% 60%,
+    rgba(230, 180, 168, 0.5) 0%,
+    rgba(200, 145, 130, 0.3) 50%,
+    transparent 100%);
+}
+
+/* 深浅不同的花瓣 */
+.petal:nth-child(4n) {
+  background: radial-gradient(ellipse at 35% 45%,
+    rgba(245, 200, 185, 0.5) 0%,
+    rgba(225, 165, 148, 0.35) 40%,
+    transparent 100%);
+}
+
+@keyframes petalFall {
+  0% {
+    transform: translateY(-20px) rotate(var(--pr)) translateX(0);
+    opacity: 0;
+  }
+  2% {
+    opacity: 0.6;
+  }
+  12% {
+    transform: translateY(12vh) rotate(calc(var(--pr) + 50deg)) translateX(20px);
+    opacity: 0.55;
+  }
+  28% {
+    transform: translateY(28vh) rotate(calc(var(--pr) + 130deg)) translateX(-15px);
+    opacity: 0.45;
+  }
+  48% {
+    transform: translateY(48vh) rotate(calc(var(--pr) + 210deg)) translateX(25px);
+    opacity: 0.35;
+  }
+  68% {
+    transform: translateY(68vh) rotate(calc(var(--pr) + 300deg)) translateX(-20px);
+    opacity: 0.2;
+  }
+  85% {
+    transform: translateY(85vh) rotate(calc(var(--pr) + 370deg)) translateX(12px);
+    opacity: 0.05;
+  }
+  100% {
+    transform: translateY(105vh) rotate(calc(var(--pr) + 420deg)) translateX(0);
+    opacity: 0;
+  }
+}
+
+/* ============================================
+   回纹/云纹装饰边框 — 古籍纹样
+   面板顶部用 repeating 渐变绘制两道回纹装饰线，
+   下方的书页底色保持不变。
+   书页叠加效果继续由 ::before / ::after 承载（不动）。
+   ============================================ */
+
+.sharing-panel {
+  /* 顶部装饰线与主体间多留空隙 */
+  padding-top: calc(var(--space-xl) + 10px);
+  /* 在原有书页底色的基础上叠加两道回纹线 */
+  background:
+    /* 第一道回纹线 — 朱砂色，较粗 */
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 4px,
+      rgba(168, 58, 49, 0.25) 4px,
+      rgba(168, 58, 49, 0.25) 5px,
+      transparent 5px,
+      transparent 8px,
+      rgba(168, 58, 49, 0.18) 8px,
+      rgba(168, 58, 49, 0.18) 9px,
+      transparent 9px,
+      transparent 14px,
+      rgba(168, 58, 49, 0.25) 14px,
+      rgba(168, 58, 49, 0.25) 15px,
+      transparent 15px,
+      transparent 18px
+    ) 0 6px / 100% 3px no-repeat,
+    /* 第二道回纹线 — 金棕色，较细 */
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 6px,
+      rgba(160, 130, 90, 0.2) 6px,
+      rgba(160, 130, 90, 0.2) 7px,
+      transparent 7px,
+      transparent 12px,
+      rgba(160, 130, 90, 0.15) 12px,
+      rgba(160, 130, 90, 0.15) 13px,
+      transparent 13px,
+      transparent 18px
+    ) 0 10px / 100% 2px no-repeat,
+    /* 原书页底色 */
+    radial-gradient(ellipse at 50% 30%, #fefdf9 0%, #faf6ee 40%, #f5efe3 80%, #f0e9d9 100%);
+}
+
+/* ============================================
+   水墨晕染 — hover 墨色渗透效果
+   ============================================ */
+
+/* 侧边栏导航项 — 墨染 hover */
+.sharing-nav-item {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: visible;
+}
+
+.sharing-nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 80%;
+  height: 1px;
+  background: transparent;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scaleX(0);
+}
+
+.sharing-nav-item:hover::after {
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(168, 58, 49, 0.3) 20%,
+    rgba(168, 58, 49, 0.5) 50%,
+    rgba(168, 58, 49, 0.3) 80%,
+    transparent 100%);
+  transform: scaleX(1);
+  height: 1.5px;
+  filter: blur(0.5px);
+}
+
+/* 导航组按钮 — 墨染下划线 */
+.sharing-nav-group-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 12px;
+  right: 12px;
+  height: 1.5px;
+  background: transparent;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scaleX(0);
+  filter: blur(0.5px);
+}
+
+.sharing-nav-group-btn:hover::after,
+.sharing-nav-group-btn.active::after {
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(168, 58, 49, 0.35) 20%,
+    rgba(168, 58, 49, 0.5) 50%,
+    rgba(168, 58, 49, 0.35) 80%,
+    transparent);
+  transform: scaleX(1);
+}
+
+/* 分类按钮 active — 左侧朱砂笔触点 */
+.sharing-nav-group-btn.active {
+  padding-left: calc(var(--space-md) + 4px);
+}
+.sharing-nav-group-btn.active::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 5px;
+  background: radial-gradient(circle,
+    rgba(168, 58, 49, 0.7) 0%,
+    rgba(168, 58, 49, 0.3) 50%,
+    transparent 70%);
+  border-radius: 50%;
+  filter: blur(0.3px);
+}
+
+/* ============================================
+   线装书订痕 — 侧边栏装订线装饰
+   ============================================ */
+
+.sharing-sidebar-inner {
+  position: relative;
+}
+
+/* 装订线孔 — 左侧内边距区域的装饰 */
+.sharing-sidebar-inner::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 18%;
+  bottom: 18%;
+  width: 2px;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0px,
+    transparent 30px,
+    rgba(180, 160, 130, 0.35) 30px,
+    rgba(180, 160, 130, 0.35) 32px,
+    transparent 32px,
+    transparent 42px,
+    rgba(160, 140, 110, 0.25) 42px,
+    rgba(160, 140, 110, 0.25) 43px,
+    transparent 43px,
+    transparent 48px
+  );
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 装订线小圆点 — 模拟线孔 */
+.sharing-sidebar-inner::after {
+  content: '';
+  position: absolute;
+  left: 9px;
+  top: 18%;
+  bottom: 18%;
+  width: 4px;
+  background:
+    radial-gradient(circle 2px, rgba(160, 140, 110, 0.5) 0%, transparent 100%) 0 15px / 4px 45px repeat-y,
+    radial-gradient(circle 2px, rgba(140, 120, 90, 0.4) 0%, transparent 100%) 0 30px / 4px 45px repeat-y;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============================================
+   卷轴轴头 — 内容面板上下装饰
+   ============================================ */
+
+/* 将原来的 ::before ::after 书页叠加下移，为轴头腾空间 */
+
+/* 内容面板底部 — 卷轴杆效果 */
+.sharing-content {
+  position: relative;
+}
+
+/* 卷轴圆杆装饰 — 内容区底部 */
+.sharing-content::after {
+  content: '';
+  position: fixed;
+  bottom: 8px;
+  left: 22vw;
+  right: 3vw;
+  height: 14px;
+  background:
+    /* 轴杆主体 */
+    linear-gradient(180deg,
+      rgba(180, 155, 115, 0.3) 0%,
+      rgba(200, 175, 135, 0.45) 20%,
+      rgba(190, 165, 125, 0.5) 40%,
+      rgba(170, 145, 105, 0.35) 60%,
+      rgba(160, 135, 95, 0.2) 80%,
+      rgba(150, 125, 85, 0.1) 100%);
+  border-radius: 7px;
+  box-shadow:
+    0 1px 2px rgba(80, 50, 20, 0.12),
+    inset 0 1px 0 rgba(220, 200, 170, 0.3);
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.55;
+}
+
+/* 轴头两端圆珠 */
+.sharing-content::before {
+  content: '';
+  position: fixed;
+  bottom: 2px;
+  left: calc(22vw - 14px);
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle at 45% 40%,
+    rgba(200, 170, 130, 0.6) 0%,
+    rgba(160, 130, 90, 0.45) 40%,
+    rgba(130, 100, 60, 0.3) 70%,
+    rgba(100, 70, 30, 0.15) 100%);
+  border-radius: 50%;
+  box-shadow:
+    0 1px 3px rgba(60, 30, 10, 0.15),
+    inset 0 1px 1px rgba(220, 200, 170, 0.4);
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.5;
+}
+
+/* ============================================
+   茶渍/墨渍 — 标题朱砂眉批标记
+   （纸页纹理 + 氧化斑驳由 bg-texture 承担）
+   ============================================ */
+
+/* 标题前朱砂眉批圆点 — 替代原 ◆ 符号，更像笔触点染 */
+.sharing-panel h1::before {
+  /* 覆盖原有 ◆ 标记 — 改为更古风的眉批标记 */
+  content: '';
+  position: absolute;
+  left: -0.3em;
+  top: 0.15em;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle,
+    rgba(168, 58, 49, 0.6) 0%,
+    rgba(168, 58, 49, 0.35) 40%,
+    rgba(168, 58, 49, 0.08) 70%,
+    transparent 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 4px rgba(168, 58, 49, 0.2);
+}
+
+/* 随机茶渍 — 用 box-shadow 在面板上撒几个淡色斑点 */
+/* 此效果通过 bg-texture 已经部分实现，这里增强 */
+
+/* ============================================
+   侧边栏 — 标题旁线装书细节
+   ============================================ */
+
+/* 标题 "分类目录" 旁增加书页卷角感 */
+.sharing-sidebar h2 {
+  position: relative;
+  overflow: visible;
+}
+
+/* 标题左上角 — 折页卷角 */
+.sharing-sidebar h2::before {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: -2px;
+  width: 16px;
+  height: 16px;
+  background: linear-gradient(135deg,
+    rgba(180, 160, 130, 0.2) 0%,
+    transparent 50%);
+  border-radius: 0 0 3px 0;
+}
+
+/* ============================================
+   响应式适配 — 古风装饰
+   ============================================ */
+
+@media screen and (max-width: 768px) {
+  .gf-bottom-mist {
+    height: 10vh;
+  }
+
+  .gf-bird {
+    display: none;
+  }
+
+  .gd-particle {
+    animation-duration: calc(var(--d) * 0.6);
+  }
+
+  .petal {
+    animation-duration: calc(var(--pd) * 0.7);
+  }
+
+  .sharing-content::after,
+  .sharing-content::before {
+    display: none;
+  }
+
+  .sharing-sidebar-inner::before,
+  .sharing-sidebar-inner::after {
+    display: none;
+  }
+
+  .sharing-panel {
+    background:
+      radial-gradient(ellipse at 50% 30%, #fefdf9 0%, #faf6ee 40%, #f5efe3 80%, #f0e9d9 100%);
+  }
+}
 
 @media screen and (max-width: 768px) {
   .sharing-page-wrapper {
