@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>映像 · Visual Archive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:ital,wght@0,300;0,400;0,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="picture_index.css">
+</head>
+<script>
+    alert("因为服务器问题现在图片和视频无法加载喵，得后面换网址服务器才有的看喵");
+</script>
+<body>
+    <div id="sidebar-container"></div>
+
+    <!-- Hero — Full-viewport video -->
+    <section id="hero">
+        <video class="hero-video" autoplay loop muted playsinline>
+            <source src="../视频/封面.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">映 · 像</h1>
+            <p class="hero-subtitle">A curated visual archive</p>
+            <div class="scroll-indicator" id="scrollIndicator">
+                <span class="scroll-label">Browse the archive</span>
+                <div class="scroll-arrow">↓</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery — Sidebar + Main display -->
+    <section id="gallery">
+        <aside class="gallery-sidebar" id="sidebar">
+            <header class="sidebar-header">
+                <h2 class="sidebar-title">Archive</h2>
+                <span class="sidebar-count" id="imageCount">232 frames</span>
+            </header>
+            <div class="thumbnail-grid" id="thumbnailGrid">
+                <!-- Populated by JS -->
+            </div>
+        </aside>
+        <main class="gallery-main" id="galleryMain">
+            <div class="main-placeholder" id="mainPlaceholder">
+                <div class="placeholder-mark">§</div>
+                <p class="placeholder-text">Select a frame<br>from the archive</p>
+            </div>
+            <div class="main-image-wrap" id="mainImageWrap" style="display:none;">
+                <img id="mainImage" src="" alt="">
+            </div>
+            <footer class="image-caption" id="imageCaption" style="display:none;">
+                <span class="caption-filename" id="captionFilename"></span>
+                <span class="caption-date" id="captionDate"></span>
+            </footer>
+        </main>
+    </section>
+
+    <script src="../../siderbar/sidebar.js"></script>
+    <script>
+        initSidebar('sidebar-container');
+    </script>
+    <script src="picture_index.js"></script>
+    
+</body>
+</html>

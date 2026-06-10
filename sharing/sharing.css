@@ -1,0 +1,1508 @@
+/* ===== 风格：书香写实 — 纸质触感增强版 ===== */
+/* sharing.html 样式 */
+
+/* ===== Google Fonts ===== */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Ma+Shan+Zheng&display=swap');
+
+/* ===== CSS 变量 ===== */
+:root {
+  /* 暖纸底色系 — 更深沉，更像旧书页 */
+  --color-bg: #f2ece0;
+  --color-surface: #f9f5ed;
+  --color-surface-hover: #efe8d8;
+  --color-surface-deep: #e8dfcc;
+
+  /* 墨色文字系 — 更浓重，更有重量感 */
+  --color-text-body: #3d3228;
+  --color-text-secondary: #4f4236;
+  --color-text-heading: #1e160e;
+  --color-text-muted: #7a6e5e;
+
+  /* 朱砂点缀 — 更沉郁的红色 */
+  --color-accent: #a83a31;
+  --color-accent-dim: rgba(168, 58, 49, 0.07);
+  --color-accent-hover: #8c2c24;
+  --color-accent-gold: #b8935a;
+
+  /* 纸边描线 */
+  --color-border: #d9d0bf;
+  --color-border-hover: #bfb49e;
+  --color-border-accent: rgba(168, 58, 49, 0.22);
+  --color-border-dark: #c4b99f;
+
+  --radius-sm: 2px;
+  --radius-md: 4px;
+
+  /* 更深的阴影 — 模拟纸张叠加的物理厚度 */
+  --shadow-xs: 0 1px 2px rgba(50, 30, 10, 0.07);
+  --shadow-sm: 0 1px 4px rgba(50, 30, 10, 0.1);
+  --shadow-md: 0 3px 10px rgba(50, 30, 10, 0.12);
+  --shadow-card: 0 2px 6px rgba(50, 30, 10, 0.08), 0 8px 24px rgba(50, 30, 10, 0.07);
+  --shadow-heavy: 0 4px 16px rgba(30, 18, 6, 0.15), 0 12px 32px rgba(30, 18, 6, 0.08);
+  --shadow-inset: inset 0 1px 3px rgba(50, 30, 10, 0.06);
+
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 32px;
+  --space-xl: 64px;
+
+  --font-display: 'Cormorant Garamond', 'Noto Serif SC', 'SimSun', 'STSong', Georgia, serif;
+  --font-body: 'Noto Serif SC', 'SimSun', 'STSong', Georgia, serif;
+  --font-brush: 'Ma Shan Zheng', 'STKaiti', 'KaiTi', cursive;
+}
+
+/* ===== 全局 Reset ===== */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--color-bg);
+  color: var(--color-text-body);
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--color-bg);
+}
+
+/* ===== 纸张纹理 — 多层叠加 ===== */
+.bg-texture {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-color: #f2ece0;
+  background-image:
+    /* 细密纸纤维 — 横向 */
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 1px,
+      rgba(160, 140, 110, 0.02) 1px,
+      rgba(160, 140, 110, 0.02) 2px
+    ),
+    /* 粗纸纤维 — 纵向 */
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 3px,
+      rgba(140, 120, 90, 0.015) 3px,
+      rgba(140, 120, 90, 0.015) 5px
+    ),
+    /* 纸浆颗粒噪点 */
+    radial-gradient(rgba(140, 120, 90, 0.04) 0.3px, transparent 0.3px),
+    radial-gradient(rgba(120, 100, 70, 0.03) 0.5px, transparent 0.5px),
+    /* 细微墨渍噪点 */
+    radial-gradient(rgba(60, 40, 20, 0.025) 0.2px, transparent 0.2px);
+  background-size:
+    100% 2px,
+    100% 5px,
+    2px 2px,
+    4px 4px,
+    7px 7px;
+  background-position: 0 0, 0 0, 0 0, 1px 1px, 3px 3px;
+}
+
+/* 纸张老化暗角 — 更深的边缘氧化 */
+.bg-texture::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 30% 20%, transparent 35%, rgba(180, 155, 115, 0.12) 70%, rgba(160, 130, 90, 0.22) 100%),
+    radial-gradient(ellipse at 70% 80%, transparent 40%, rgba(170, 140, 100, 0.1) 100%);
+}
+
+/* ===== 页面主布局 ===== */
+.sharing-page-wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+}
+
+/* ============================================
+   左侧分类侧边栏 —— 书脊/装订质感
+   ============================================ */
+
+.sharing-sidebar {
+  width: 20vw;
+  min-width: 18vw;
+  max-width: 24vw;
+  height: 100vh;
+  overflow: hidden;
+  background:
+    linear-gradient(175deg, #f8f4eb 0%, #f0eadd 15%, #ebe3d2 50%, #e8dfcc 85%, #e3d9c4 100%);
+  border-right: 1px solid var(--color-border);
+  /* 书脊阴影 — 模拟书脊与封面的衔接 */
+  box-shadow:
+    3px 0 16px rgba(40, 25, 10, 0.08),
+    1px 0 0 rgba(200, 180, 150, 0.3);
+  position: relative;
+}
+
+/* 书脊装饰线 */
+.sharing-sidebar::after {
+  content: '';
+  position: absolute;
+  top: 0; right: -1px; bottom: 0;
+  width: 4px;
+  background: linear-gradient(90deg,
+    rgba(180, 160, 130, 0.4) 0%,
+    rgba(180, 160, 130, 0.15) 50%,
+    transparent 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.sharing-sidebar-inner {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sharing-sidebar h2 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  color: var(--color-text-heading);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding-bottom: var(--space-sm);
+  /* 手绘风格下划线 */
+  border-bottom: 2px solid transparent;
+  border-image: linear-gradient(90deg,
+    var(--color-accent) 0%,
+    var(--color-accent) 30%,
+    var(--color-border-dark) 30%,
+    var(--color-border-dark) 100%) 1;
+  position: relative;
+}
+
+/* 标题旁小装饰 — 像藏书印 */
+.sharing-sidebar h2::after {
+  content: '藏';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-60%);
+  font-family: var(--font-brush);
+  font-size: 1.1rem;
+  color: var(--color-accent);
+  opacity: 0.45;
+  font-weight: 400;
+}
+
+/* ===== 导航区域 ===== */
+.sharing-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  overflow-y: auto;
+  padding-right: 0.5vw;
+}
+
+.sharing-nav::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sharing-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sharing-nav::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-accent), var(--color-border-dark));
+  border-radius: 2px;
+  /* 像夹在书页间的丝带 */
+  box-shadow: 0 1px 2px rgba(100, 70, 30, 0.15);
+}
+
+.sharing-nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* 分类组按钮 —— 古籍标签风格 */
+.sharing-nav-group-btn {
+  width: 100%;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--color-text-secondary);
+  text-align: left;
+  padding: 12px var(--space-md);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  position: relative;
+}
+
+.sharing-nav-group-btn:hover {
+  border-color: var(--color-border);
+  background: linear-gradient(180deg, rgba(240, 230, 210, 0.6), rgba(235, 222, 198, 0.5));
+  color: var(--color-text-heading);
+  box-shadow: var(--shadow-sm);
+}
+
+.sharing-nav-group-btn.active {
+  border-color: var(--color-border-accent);
+  color: var(--color-accent);
+  background: linear-gradient(180deg,
+    rgba(168, 58, 49, 0.06) 0%,
+    rgba(168, 58, 49, 0.03) 50%,
+    rgba(168, 58, 49, 0.08) 100%);
+  box-shadow: var(--shadow-xs);
+}
+
+/* 子菜单 */
+.sharing-submenu {
+  max-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-left: var(--space-md);
+  border-left: 1px solid var(--color-border);
+  padding-left: 2px;
+}
+
+.sharing-submenu.open {
+  max-height: 24rem;
+}
+
+/* 子菜单项 —— 书签/目录条目 */
+.sharing-nav-item {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  text-align: left;
+  padding: 10px var(--space-md);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 400;
+  position: relative;
+}
+
+/* 朱砂圆点标记 */
+.sharing-nav-item::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: transparent;
+  transition: all var(--transition-fast);
+  box-shadow: none;
+}
+
+.sharing-nav-item:hover {
+  color: var(--color-text-heading);
+  background: linear-gradient(90deg, rgba(240, 230, 210, 0.5), transparent);
+}
+
+.sharing-nav-item:hover::before {
+  background: var(--color-border-hover);
+  box-shadow: 0 0 3px rgba(160, 140, 110, 0.4);
+}
+
+.sharing-nav-item.active {
+  color: var(--color-accent);
+  background: linear-gradient(90deg,
+    rgba(168, 58, 49, 0.06) 0%,
+    rgba(168, 58, 49, 0.02) 70%,
+    transparent 100%);
+  font-weight: 500;
+}
+
+.sharing-nav-item.active::before {
+  background: var(--color-accent);
+  box-shadow: 0 0 4px rgba(168, 58, 49, 0.4);
+}
+
+/* ===== 内容区域 ===== */
+.sharing-content {
+  position: relative;
+  width: 80vw;
+  min-width: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding: var(--space-xl) 3vw;
+}
+
+.sharing-content::-webkit-scrollbar {
+  width: 5px;
+}
+
+.sharing-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sharing-content::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-border-dark), var(--color-border));
+  border-radius: 3px;
+}
+
+.sharing-content::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border-hover);
+}
+
+/* ============================================
+   内容面板 —— 多层书页叠加效果
+   ============================================ */
+
+.sharing-panel {
+  display: none;
+  color: var(--color-text-body);
+  /* 书页底色 — 中心更白亮，边缘微微泛黄 */
+  background:
+    radial-gradient(ellipse at 50% 30%, #fefdf9 0%, #faf6ee 40%, #f5efe3 80%, #f0e9d9 100%);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-xl);
+  /* 加深的阴影 — 让纸张从背景中浮起来 */
+  box-shadow:
+    0 1px 3px rgba(50, 30, 10, 0.06),
+    0 4px 14px rgba(50, 30, 10, 0.08),
+    0 10px 30px rgba(40, 22, 8, 0.06);
+  position: relative;
+  /* 微妙的内侧高光 — 模拟纸页边缘 */
+  box-shadow:
+    inset 0 1px 0 rgba(255, 252, 245, 0.8),
+    0 1px 3px rgba(50, 30, 10, 0.06),
+    0 4px 14px rgba(50, 30, 10, 0.08),
+    0 10px 30px rgba(40, 22, 8, 0.06);
+}
+
+/* 书页叠加 — 第1层（紧贴，错位少） */
+.sharing-panel::before {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 3px;
+  right: 3px;
+  height: 8px;
+  background: linear-gradient(180deg,
+    #f9f5ed 0%,
+    #f3ece0 40%,
+    #ede4d4 100%);
+  border: 1px solid var(--color-border);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  z-index: -1;
+  box-shadow:
+    0 2px 6px rgba(50, 30, 10, 0.07),
+    inset 0 1px 0 rgba(255, 252, 245, 0.5);
+}
+
+/* 书页叠加 — 第2层（稍深，错位更多） */
+.sharing-panel::after {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  left: 7px;
+  right: 7px;
+  height: 7px;
+  background: linear-gradient(180deg,
+    #f5efe3 0%,
+    #efe7d8 50%,
+    #e8dfcc 100%);
+  border: 1px solid var(--color-border-dark);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  z-index: -2;
+  box-shadow: 0 3px 8px rgba(50, 30, 10, 0.06);
+}
+
+.sharing-panel.active {
+  display: block;
+  animation: pageAppear 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes pageAppear {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.985);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 252, 245, 0.8),
+      0 1px 2px rgba(50, 30, 10, 0.04),
+      0 2px 8px rgba(50, 30, 10, 0.04),
+      0 4px 16px rgba(40, 22, 8, 0.03);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 标题 — 墨韵加深 */
+.sharing-panel h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: #1a1006;
+  margin-bottom: var(--space-lg);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  line-height: 1.35;
+  padding-bottom: var(--space-md);
+  /* 双层下划线 — 朱砂 + 墨色，像手写批注 */
+  border-bottom: none;
+  background-image:
+    linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent) 28%, transparent 28%),
+    linear-gradient(90deg, var(--color-border-dark) 30%, var(--color-border-dark) 100%);
+  background-position: 0 100%, 0 100%;
+  background-size: 100% 2px, 100% 1px;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+/* 标题左侧 — 朱砂眉批标记 */
+.sharing-panel h1::before {
+  content: '◆';
+  position: absolute;
+  left: -0.5em;
+  top: 0.1em;
+  font-size: 0.35em;
+  color: var(--color-accent);
+  opacity: 0.55;
+}
+
+.sharing-panel p {
+  margin-bottom: var(--space-md);
+  line-height: 1.95;
+  color: #2a1f14;
+  font-size: 1.3rem;
+  text-align: justify;
+  text-indent: 2em;
+  font-weight: 400;
+}
+
+.sharing-panel a {
+  color: var(--color-accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-border-accent);
+  transition: all var(--transition-fast);
+}
+
+.sharing-panel a:hover {
+  border-bottom-color: var(--color-accent);
+  color: var(--color-accent-hover);
+}
+
+.sharing-panel strong,
+.sharing-panel b {
+  color: var(--color-text-heading);
+  font-weight: 600;
+}
+
+.sharing-panel blockquote {
+  margin: var(--space-lg) 0;
+  padding: var(--space-md) var(--space-lg);
+  /* 衬页 — 微灰底色，像夹入了一张宣纸 */
+  background:
+    linear-gradient(180deg,
+      rgba(235, 225, 208, 0.5) 0%,
+      rgba(240, 232, 218, 0.4) 50%,
+      rgba(232, 222, 204, 0.5) 100%);
+  border-left: 3px solid var(--color-accent);
+  color: var(--color-text-secondary);
+  font-style: italic;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  box-shadow: var(--shadow-inset);
+  position: relative;
+}
+
+/* blockquote 右上角 — 朱砂小点，像批注标记 */
+.sharing-panel blockquote::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle,
+    rgba(168, 58, 49, 0.35) 0%,
+    rgba(168, 58, 49, 0.12) 50%,
+    transparent 70%);
+  border-radius: 50%;
+}
+
+/* blockquote 右下角 — 淡墨双短横，像句读标记 */
+.sharing-panel blockquote::before {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  width: 18px;
+  height: 0;
+  border-top: 2px dotted rgba(168, 58, 49, 0.18);
+}
+
+/* ===== 信息列表 — 藏书卡片风格 ===== */
+.sharing-panel ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.sharing-panel li {
+  color: #2a1f14;
+  padding-left: var(--space-md);
+  position: relative;
+  font-size: 1.35rem;
+}
+
+.sharing-panel li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+/* ============================================
+   展开按钮 —— 火漆印章/藏书票风格
+   ============================================ */
+
+.sharing-more-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 26px;
+  background:
+    linear-gradient(180deg, #faf7f0 0%, #f3ece0 50%, #ede4d4 100%);
+  border: 1px solid var(--color-border-dark);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-secondary);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  /* 微微凸起 */
+  box-shadow:
+    0 2px 4px rgba(50, 30, 10, 0.08),
+    0 1px 0 rgba(255, 252, 245, 0.6) inset,
+    0 -1px 0 rgba(180, 160, 130, 0.15) inset;
+  position: relative;
+}
+
+/* 按钮顶部微光亮边 */
+.sharing-more-button::before {
+  content: '';
+  position: absolute;
+  top: 1px; left: 6px; right: 6px;
+  height: 1px;
+  background: rgba(255, 252, 245, 0.5);
+  border-radius: 1px;
+}
+
+.sharing-more-button:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background:
+    linear-gradient(180deg, #fdfaf5 0%, #f8f2e8 50%, #f0e8d6 100%);
+  box-shadow:
+    0 3px 8px rgba(168, 58, 49, 0.12),
+    0 1px 0 rgba(255, 252, 245, 0.7) inset;
+  transform: translateY(-1px);
+}
+
+.sharing-more-button:active {
+  transform: translateY(1px);
+  box-shadow:
+    0 1px 2px rgba(50, 30, 10, 0.1),
+    inset 0 1px 3px rgba(50, 30, 10, 0.08);
+}
+
+.sharing-more-button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* 展开按钮 — 水墨晕染 hover */
+.sharing-more-button {
+  overflow: hidden;
+}
+.sharing-more-button::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle,
+    rgba(168, 58, 49, 0.08) 0%,
+    rgba(168, 58, 49, 0.03) 40%,
+    transparent 60%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.5s ease-out, height 0.5s ease-out, opacity 0.5s ease-out;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.sharing-more-button:hover::after {
+  width: 300px;
+  height: 300px;
+  opacity: 1;
+}
+
+/* ============================================
+   展开内容区 — 折页/插页质感
+   ============================================ */
+
+.sharing-more-content {
+  display: none;
+  margin-top: var(--space-md);
+  padding: var(--space-lg);
+  border-radius: var(--radius-sm);
+  /* 更深的底色 — 像夹在书中的信纸 */
+  background:
+    radial-gradient(ellipse at 50% 20%, #fdfbf6 0%, #f7f2e7 60%, #f2ebdc 100%);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-body);
+  box-shadow:
+    inset 0 1px 4px rgba(50, 30, 10, 0.04),
+    0 2px 8px rgba(50, 30, 10, 0.05);
+  position: relative;
+}
+
+/* 折痕装饰 */
+.sharing-more-content::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; left: 50%;
+  width: 1px;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(180, 160, 130, 0.15) 20%,
+    rgba(180, 160, 130, 0.15) 80%,
+    transparent 100%);
+  pointer-events: none;
+}
+
+.sharing-more-content p {
+  text-indent: 2em;
+  text-align: justify;
+  color: #2a1f14;
+  font-size: 1.3rem;
+}
+
+/* ============================================
+   右侧导航侧边栏 —— 书签/丝带风格
+   ============================================ */
+
+.right-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 11vw;
+  min-width: 140px;
+  height: 100vh;
+  background:
+    linear-gradient(175deg, #f8f4eb 0%, #f0eadd 20%, #ebe3d2 55%, #e8dfcc 100%);
+  border-left: 1px solid var(--color-border);
+  padding: var(--space-lg) var(--space-md);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 999;
+  box-shadow:
+    -3px 0 16px rgba(40, 25, 10, 0.08),
+    -1px 0 0 rgba(200, 180, 150, 0.3);
+}
+
+/* 书脊装饰线 */
+.right-sidebar::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -1px; bottom: 0;
+  width: 4px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(180, 160, 130, 0.15) 50%,
+    rgba(180, 160, 130, 0.4) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.right-sidebar.collapsed {
+  transform: translateX(calc(100% - 18px));
+}
+
+.sidebar-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-text-heading);
+  margin-bottom: var(--space-lg);
+  letter-spacing: 0.06em;
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  margin: 4px 0;
+}
+
+.sidebar-menu > li > a {
+  text-decoration: none;
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  font-weight: 400;
+  display: block;
+  padding: 7px 10px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.sidebar-menu > li > a:hover {
+  color: var(--color-accent);
+  background: linear-gradient(90deg, rgba(168, 58, 49, 0.05), transparent);
+  box-shadow: var(--shadow-xs);
+}
+
+.submenu {
+  list-style: none;
+  padding-left: var(--space-md);
+  margin: 2px 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.7;
+  border-left: 1px solid var(--color-border);
+}
+
+.submenu.open {
+  max-height: 300px;
+  opacity: 1;
+}
+
+.submenu li a {
+  text-decoration: none;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  font-weight: 400;
+  display: block;
+  padding: 5px 8px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.submenu li a:hover {
+  color: var(--color-accent);
+  background: linear-gradient(90deg, rgba(168, 58, 49, 0.04), transparent);
+}
+
+.toggle-btn {
+  position: absolute;
+  top: var(--space-lg);
+  left: -40px;
+  width: 34px;
+  height: 34px;
+  background:
+    linear-gradient(180deg, #faf7f0, #f3ece0);
+  border: 1px solid var(--color-border-dark);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  font-size: 15px;
+  cursor: pointer;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  box-shadow:
+    0 1px 3px rgba(50, 30, 10, 0.1),
+    inset 0 1px 0 rgba(255, 252, 245, 0.5);
+}
+
+.toggle-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  box-shadow:
+    0 2px 6px rgba(168, 58, 49, 0.12),
+    inset 0 1px 0 rgba(255, 252, 245, 0.5);
+}
+
+/* ============================================
+   响应式
+   ============================================ */
+
+/* ============================================
+   古风装饰总容器
+   置于内容之上（z-index: 3），右导航栏之下（999）
+   ============================================ */
+.gufeng-decorations {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 3;
+  overflow: hidden;
+}
+
+
+/* ============================================
+   底部雾气 — 淡墨横染
+   ============================================ */
+.gf-bottom-mist {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 16vh;
+  z-index: 99;
+  background: linear-gradient(0deg,
+    rgba(80, 60, 40, 0.6) 0%,
+    rgba(80, 60, 40, 0.35) 25%,
+    rgba(100, 80, 55, 0.15) 55%,
+    transparent 100%);
+  pointer-events: none;
+}
+
+/* ============================================
+   水墨飞鸟 — 远空剪影
+   弧线笔画技法：border-top + border-radius 50% 形成半椭圆弧
+   ============================================ */
+.gf-bird {
+  position: absolute;
+  opacity: 0.55;
+  z-index: 1;
+  width: 40px;
+  height: 20px;
+  pointer-events: none;
+}
+
+/* 左翼 */
+.gf-bird::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 28px;
+  height: 14px;
+  border-top: 3px solid rgba(38, 24, 12, 0.7);
+  border-radius: 50%;
+  transform: rotate(-22deg);
+  transform-origin: right center;
+}
+
+/* 右翼 */
+.gf-bird::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 3px;
+  width: 28px;
+  height: 14px;
+  border-top: 3px solid rgba(38, 24, 12, 0.7);
+  border-radius: 50%;
+  transform: rotate(22deg);
+  transform-origin: left center;
+}
+
+.bird-1 {
+  top: 6%;
+  right: 12%;
+  transform: scale(0.9) rotate(-8deg);
+}
+.bird-1::before { width: 30px; height: 16px; }
+.bird-1::after  { width: 30px; height: 16px; left: 3px; }
+
+.bird-2 {
+  top: 13%;
+  right: 26%;
+  transform: scale(0.65) rotate(-5deg);
+}
+.bird-2::before { width: 22px; height: 11px; }
+.bird-2::after  { width: 22px; height: 11px; left: 2px; }
+
+.bird-3 {
+  top: 10%;
+  right: 18%;
+  transform: scale(0.5) rotate(-11deg);
+}
+.bird-3::before { width: 18px; height: 9px; }
+.bird-3::after  { width: 18px; height: 9px; left: 2px; }
+
+/* ============================================
+   金粉微尘 — 金箔碎屑漂浮
+   显著增大 / 高亮 / 大范围浮动
+   ============================================ */
+.gf-gold-dust {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  overflow: hidden;
+}
+
+.gd-particle {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 7px;
+  height: 7px;
+  background: radial-gradient(circle,
+    rgba(240, 205, 130, 0.95) 0%,
+    rgba(210, 170, 100, 0.55) 35%,
+    transparent 70%);
+  border-radius: 50%;
+  animation: goldFloat var(--d) ease-in-out infinite;
+  animation-delay: calc(var(--d) * -0.15);
+  opacity: 0;
+  transform: scale(var(--s));
+  box-shadow: 0 0 6px rgba(220, 185, 110, 0.5),
+              0 0 14px rgba(210, 170, 95, 0.2);
+}
+
+/* 金箔片 — 扁长椭圆 */
+.gd-particle:nth-child(3n) {
+  width: 10px;
+  height: 4px;
+  border-radius: 2px;
+  background: radial-gradient(ellipse,
+    rgba(245, 210, 140, 0.9) 0%,
+    rgba(220, 180, 110, 0.5) 40%,
+    transparent 72%);
+  box-shadow: 0 0 8px rgba(230, 195, 120, 0.45);
+}
+
+/* 亮金微尘 — 小而极亮 */
+.gd-particle:nth-child(5n+2) {
+  width: 5px;
+  height: 5px;
+  background: radial-gradient(circle,
+    rgba(255, 225, 155, 1) 0%,
+    rgba(235, 195, 130, 0.6) 50%,
+    transparent 100%);
+  box-shadow: 0 0 8px rgba(240, 210, 140, 0.65),
+              0 0 18px rgba(225, 190, 115, 0.25);
+}
+
+.gd-particle:nth-child(4n) {
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle,
+    rgba(230, 190, 115, 0.8) 0%,
+    rgba(195, 155, 85, 0.4) 48%,
+    transparent 72%);
+  box-shadow: 0 0 5px rgba(210, 175, 100, 0.4);
+}
+
+/* 确保初始就有一部分粒子可见 */
+.gd-particle:nth-child(-n+8) {
+  animation-delay: calc(var(--d) * -0.5);
+}
+
+@keyframes goldFloat {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(var(--s));
+  }
+  6% {
+    opacity: 0.8;
+  }
+  18% {
+    opacity: 0.45;
+    transform: translate(15px, -35px) scale(calc(var(--s) * 1.3));
+  }
+  32% {
+    opacity: 0.75;
+    transform: translate(-8px, -55px) scale(calc(var(--s) * 0.8));
+  }
+  50% {
+    opacity: 0.3;
+    transform: translate(20px, -78px) scale(calc(var(--s) * 1.2));
+  }
+  68% {
+    opacity: 0.6;
+    transform: translate(-15px, -100px) scale(calc(var(--s) * 0.7));
+  }
+  84% {
+    opacity: 0.12;
+    transform: translate(10px, -120px) scale(calc(var(--s) * 0.85));
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-5px, -150px) scale(calc(var(--s) * 0.35));
+  }
+}
+
+/* ============================================
+   落花 — 梅花/桃花瓣飘落
+   更多花瓣 / 更大 / 减少模糊 / 增强色彩
+   ============================================ */
+.gf-petals {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  left: var(--px);
+  top: -40px;
+  width: var(--pw);
+  height: calc(var(--pw) * 0.65);
+  background: radial-gradient(ellipse at 40% 50%,
+    rgba(235, 185, 170, 0.6) 0%,
+    rgba(215, 155, 140, 0.4) 35%,
+    rgba(190, 125, 110, 0.15) 75%,
+    transparent 100%);
+  border-radius: 50% 0 50% 0;
+  transform: rotate(var(--pr));
+  animation: petalFall var(--pd) ease-in-out infinite;
+  animation-delay: calc(var(--pd) * -0.4);
+  filter: blur(0.4px);
+  box-shadow: 0 0 6px rgba(210, 150, 140, 0.2);
+}
+
+.petal:nth-child(even) {
+  border-radius: 0 50% 0 50%;
+  background: radial-gradient(ellipse at 60% 50%,
+    rgba(240, 195, 180, 0.55) 0%,
+    rgba(220, 160, 145, 0.35) 35%,
+    rgba(195, 130, 115, 0.12) 75%,
+    transparent 100%);
+}
+
+.petal:nth-child(3n) {
+  border-radius: 50% 50% 0 0;
+  background: radial-gradient(ellipse at 50% 60%,
+    rgba(230, 180, 168, 0.5) 0%,
+    rgba(200, 145, 130, 0.3) 50%,
+    transparent 100%);
+}
+
+/* 深浅不同的花瓣 */
+.petal:nth-child(4n) {
+  background: radial-gradient(ellipse at 35% 45%,
+    rgba(245, 200, 185, 0.5) 0%,
+    rgba(225, 165, 148, 0.35) 40%,
+    transparent 100%);
+}
+
+@keyframes petalFall {
+  0% {
+    transform: translateY(-20px) rotate(var(--pr)) translateX(0);
+    opacity: 0;
+  }
+  2% {
+    opacity: 0.6;
+  }
+  12% {
+    transform: translateY(12vh) rotate(calc(var(--pr) + 50deg)) translateX(20px);
+    opacity: 0.55;
+  }
+  28% {
+    transform: translateY(28vh) rotate(calc(var(--pr) + 130deg)) translateX(-15px);
+    opacity: 0.45;
+  }
+  48% {
+    transform: translateY(48vh) rotate(calc(var(--pr) + 210deg)) translateX(25px);
+    opacity: 0.35;
+  }
+  68% {
+    transform: translateY(68vh) rotate(calc(var(--pr) + 300deg)) translateX(-20px);
+    opacity: 0.2;
+  }
+  85% {
+    transform: translateY(85vh) rotate(calc(var(--pr) + 370deg)) translateX(12px);
+    opacity: 0.05;
+  }
+  100% {
+    transform: translateY(105vh) rotate(calc(var(--pr) + 420deg)) translateX(0);
+    opacity: 0;
+  }
+}
+
+/* ============================================
+   回纹/云纹装饰边框 — 古籍纹样
+   面板顶部用 repeating 渐变绘制两道回纹装饰线，
+   下方的书页底色保持不变。
+   书页叠加效果继续由 ::before / ::after 承载（不动）。
+   ============================================ */
+
+.sharing-panel {
+  /* 顶部装饰线与主体间多留空隙 */
+  padding-top: calc(var(--space-xl) + 10px);
+  /* 在原有书页底色的基础上叠加两道回纹线 */
+  background:
+    /* 第一道回纹线 — 朱砂色，较粗 */
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 4px,
+      rgba(168, 58, 49, 0.25) 4px,
+      rgba(168, 58, 49, 0.25) 5px,
+      transparent 5px,
+      transparent 8px,
+      rgba(168, 58, 49, 0.18) 8px,
+      rgba(168, 58, 49, 0.18) 9px,
+      transparent 9px,
+      transparent 14px,
+      rgba(168, 58, 49, 0.25) 14px,
+      rgba(168, 58, 49, 0.25) 15px,
+      transparent 15px,
+      transparent 18px
+    ) 0 6px / 100% 3px no-repeat,
+    /* 第二道回纹线 — 金棕色，较细 */
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 6px,
+      rgba(160, 130, 90, 0.2) 6px,
+      rgba(160, 130, 90, 0.2) 7px,
+      transparent 7px,
+      transparent 12px,
+      rgba(160, 130, 90, 0.15) 12px,
+      rgba(160, 130, 90, 0.15) 13px,
+      transparent 13px,
+      transparent 18px
+    ) 0 10px / 100% 2px no-repeat,
+    /* 原书页底色 */
+    radial-gradient(ellipse at 50% 30%, #fefdf9 0%, #faf6ee 40%, #f5efe3 80%, #f0e9d9 100%);
+}
+
+/* ============================================
+   水墨晕染 — hover 墨色渗透效果
+   ============================================ */
+
+/* 侧边栏导航项 — 墨染 hover */
+.sharing-nav-item {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: visible;
+}
+
+.sharing-nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 80%;
+  height: 1px;
+  background: transparent;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scaleX(0);
+}
+
+.sharing-nav-item:hover::after {
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(168, 58, 49, 0.3) 20%,
+    rgba(168, 58, 49, 0.5) 50%,
+    rgba(168, 58, 49, 0.3) 80%,
+    transparent 100%);
+  transform: scaleX(1);
+  height: 1.5px;
+  filter: blur(0.5px);
+}
+
+/* 导航组按钮 — 墨染下划线 */
+.sharing-nav-group-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 12px;
+  right: 12px;
+  height: 1.5px;
+  background: transparent;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scaleX(0);
+  filter: blur(0.5px);
+}
+
+.sharing-nav-group-btn:hover::after,
+.sharing-nav-group-btn.active::after {
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(168, 58, 49, 0.35) 20%,
+    rgba(168, 58, 49, 0.5) 50%,
+    rgba(168, 58, 49, 0.35) 80%,
+    transparent);
+  transform: scaleX(1);
+}
+
+/* 分类按钮 active — 左侧朱砂笔触点 */
+.sharing-nav-group-btn.active {
+  padding-left: calc(var(--space-md) + 4px);
+}
+.sharing-nav-group-btn.active::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 5px;
+  background: radial-gradient(circle,
+    rgba(168, 58, 49, 0.7) 0%,
+    rgba(168, 58, 49, 0.3) 50%,
+    transparent 70%);
+  border-radius: 50%;
+  filter: blur(0.3px);
+}
+
+/* ============================================
+   线装书订痕 — 侧边栏装订线装饰
+   ============================================ */
+
+.sharing-sidebar-inner {
+  position: relative;
+}
+
+/* 装订线孔 — 左侧内边距区域的装饰 */
+.sharing-sidebar-inner::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 18%;
+  bottom: 18%;
+  width: 2px;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0px,
+    transparent 30px,
+    rgba(180, 160, 130, 0.35) 30px,
+    rgba(180, 160, 130, 0.35) 32px,
+    transparent 32px,
+    transparent 42px,
+    rgba(160, 140, 110, 0.25) 42px,
+    rgba(160, 140, 110, 0.25) 43px,
+    transparent 43px,
+    transparent 48px
+  );
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 装订线小圆点 — 模拟线孔 */
+.sharing-sidebar-inner::after {
+  content: '';
+  position: absolute;
+  left: 9px;
+  top: 18%;
+  bottom: 18%;
+  width: 4px;
+  background:
+    radial-gradient(circle 2px, rgba(160, 140, 110, 0.5) 0%, transparent 100%) 0 15px / 4px 45px repeat-y,
+    radial-gradient(circle 2px, rgba(140, 120, 90, 0.4) 0%, transparent 100%) 0 30px / 4px 45px repeat-y;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============================================
+   卷轴轴头 — 内容面板上下装饰
+   ============================================ */
+
+/* 将原来的 ::before ::after 书页叠加下移，为轴头腾空间 */
+
+/* 内容面板底部 — 卷轴杆效果 */
+.sharing-content {
+  position: relative;
+}
+
+/* 卷轴圆杆装饰 — 内容区底部 */
+.sharing-content::after {
+  content: '';
+  position: fixed;
+  bottom: 8px;
+  left: 22vw;
+  right: 3vw;
+  height: 14px;
+  background:
+    /* 轴杆主体 */
+    linear-gradient(180deg,
+      rgba(180, 155, 115, 0.3) 0%,
+      rgba(200, 175, 135, 0.45) 20%,
+      rgba(190, 165, 125, 0.5) 40%,
+      rgba(170, 145, 105, 0.35) 60%,
+      rgba(160, 135, 95, 0.2) 80%,
+      rgba(150, 125, 85, 0.1) 100%);
+  border-radius: 7px;
+  box-shadow:
+    0 1px 2px rgba(80, 50, 20, 0.12),
+    inset 0 1px 0 rgba(220, 200, 170, 0.3);
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.55;
+}
+
+/* 轴头两端圆珠 */
+.sharing-content::before {
+  content: '';
+  position: fixed;
+  bottom: 2px;
+  left: calc(22vw - 14px);
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle at 45% 40%,
+    rgba(200, 170, 130, 0.6) 0%,
+    rgba(160, 130, 90, 0.45) 40%,
+    rgba(130, 100, 60, 0.3) 70%,
+    rgba(100, 70, 30, 0.15) 100%);
+  border-radius: 50%;
+  box-shadow:
+    0 1px 3px rgba(60, 30, 10, 0.15),
+    inset 0 1px 1px rgba(220, 200, 170, 0.4);
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.5;
+}
+
+/* ============================================
+   茶渍/墨渍 — 标题朱砂眉批标记
+   （纸页纹理 + 氧化斑驳由 bg-texture 承担）
+   ============================================ */
+
+/* 标题前朱砂眉批圆点 — 替代原 ◆ 符号，更像笔触点染 */
+.sharing-panel h1::before {
+  /* 覆盖原有 ◆ 标记 — 改为更古风的眉批标记 */
+  content: '';
+  position: absolute;
+  left: -0.3em;
+  top: 0.15em;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle,
+    rgba(168, 58, 49, 0.6) 0%,
+    rgba(168, 58, 49, 0.35) 40%,
+    rgba(168, 58, 49, 0.08) 70%,
+    transparent 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 4px rgba(168, 58, 49, 0.2);
+}
+
+/* 随机茶渍 — 用 box-shadow 在面板上撒几个淡色斑点 */
+/* 此效果通过 bg-texture 已经部分实现，这里增强 */
+
+/* ============================================
+   侧边栏 — 标题旁线装书细节
+   ============================================ */
+
+/* 标题 "分类目录" 旁增加书页卷角感 */
+.sharing-sidebar h2 {
+  position: relative;
+  overflow: visible;
+}
+
+/* 标题左上角 — 折页卷角 */
+.sharing-sidebar h2::before {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: -2px;
+  width: 16px;
+  height: 16px;
+  background: linear-gradient(135deg,
+    rgba(180, 160, 130, 0.2) 0%,
+    transparent 50%);
+  border-radius: 0 0 3px 0;
+}
+
+/* ============================================
+   响应式适配 — 古风装饰
+   ============================================ */
+
+@media screen and (max-width: 768px) {
+  .gf-bottom-mist {
+    height: 10vh;
+  }
+
+  .gf-bird {
+    display: none;
+  }
+
+  .gd-particle {
+    animation-duration: calc(var(--d) * 0.6);
+  }
+
+  .petal {
+    animation-duration: calc(var(--pd) * 0.7);
+  }
+
+  .sharing-content::after,
+  .sharing-content::before {
+    display: none;
+  }
+
+  .sharing-sidebar-inner::before,
+  .sharing-sidebar-inner::after {
+    display: none;
+  }
+
+  .sharing-panel {
+    background:
+      radial-gradient(ellipse at 50% 30%, #fefdf9 0%, #faf6ee 40%, #f5efe3 80%, #f0e9d9 100%);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .sharing-page-wrapper {
+    flex-direction: column;
+  }
+
+  .sharing-sidebar {
+    width: 100vw;
+    max-width: none;
+    height: auto;
+    max-height: 40vh;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .sharing-sidebar-inner {
+    position: relative;
+    height: auto;
+    padding: var(--space-md);
+  }
+
+  .sharing-content {
+    width: 100vw;
+    height: auto;
+    padding: var(--space-md);
+  }
+
+  .sharing-panel {
+    padding: var(--space-lg);
+  }
+
+  .sharing-panel h1 {
+    font-size: 1.5rem;
+  }
+}

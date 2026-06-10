@@ -1,0 +1,40 @@
+# ── 环境变量 / API 密钥 ──────────────────
+.env
+*.env
+!.env.example
+
+# ── Python ────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+.eggs/
+venv/
+.venv/
+env/
+
+# ── Claude Code ────────────────────────────
+.claude/settings.local.json
+.claude/transcripts/
+
+# ── 系统文件 ───────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+*~
+
+# ── IDE ────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── 大体积图片目录（已排除，不上传 GitHub）──
+图库/
+带使用/
+
+# ── Node ───────────────────────────────────
+node_modules/

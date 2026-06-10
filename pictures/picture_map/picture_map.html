@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>映像 · Atlas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:ital,wght@0,300;0,400;0,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="picture_map.css">
+</head>
+<body>
+    <div id="sidebar-container"></div>
+
+    <!-- Map Container -->
+    <div id="map-container">
+        <div id="map-chart"></div>
+
+        <!-- Map overlay header -->
+        <header class="map-header">
+            <a href="../picture_index/picture_index.html" class="map-back-link" title="返回图库">
+                <span class="back-arrow">←</span>
+                <span class="back-label">Archive</span>
+            </a>
+            <h1 class="map-title">映 · 像</h1>
+            <span class="map-subtitle">Atlas</span>
+            <span class="map-stats" id="mapStats"></span>
+        </header>
+
+        <!-- Loading overlay -->
+        <div class="map-loading" id="mapLoading">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">Loading cartographic data…</p>
+        </div>
+
+        <!-- Empty state hint -->
+        <div class="map-empty-hint" id="mapEmptyHint" style="display:none;">
+            <div class="empty-mark">※</div>
+            <p class="empty-text">暂无可定位的照片</p>
+            <p class="empty-sub">GPS 坐标缺失 — 请补充照片地理信息后刷新</p>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" style="display:none;">
+        <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+        <button class="lightbox-close" id="lightboxClose" title="关闭">×</button>
+        <button class="lightbox-prev" id="lightboxPrev" title="上一张">‹</button>
+        <button class="lightbox-next" id="lightboxNext" title="下一张">›</button>
+        <div class="lightbox-body" id="lightboxBody">
+            <img id="lightboxImage" src="" alt="">
+        </div>
+        <footer class="lightbox-caption" id="lightboxCaption">
+            <span class="lightbox-filename" id="lightboxFilename"></span>
+            <span class="lightbox-coords" id="lightboxCoords"></span>
+        </footer>
+    </div>
+
+    <script src="../../echarts.min.js"></script>
+    <script src="../../siderbar/sidebar.js"></script>
+    <script>
+        initSidebar('sidebar-container');
+    </script>
+    <script src="picture_map.js?v=4"></script>
+</body>
+</html>

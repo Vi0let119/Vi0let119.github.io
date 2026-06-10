@@ -1,0 +1,897 @@
+/* ============================================
+   health_data.css — N E O N · T E R M I N A L
+   Dark sci-fi neon minimal — health monitor HUD
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Share+Tech+Mono&display=swap');
+
+/* --- CSS Variables --- */
+:root {
+    --n-bg: #06080f;
+    --n-surface: rgba(8, 12, 24, 0.88);
+    --n-surface-alt: rgba(12, 16, 30, 0.92);
+    --n-cyan: #00e5ff;
+    --n-cyan-dim: rgba(0, 229, 255, 0.08);
+    --n-cyan-glow: rgba(0, 229, 255, 0.18);
+    --n-cyan-bright: rgba(0, 229, 255, 0.45);
+    --n-magenta: #ff4088;
+    --n-magenta-dim: rgba(255, 64, 136, 0.08);
+    --n-magenta-glow: rgba(255, 64, 136, 0.18);
+    --n-green: #39ff14;
+    --n-green-dim: rgba(57, 255, 20, 0.07);
+    --n-amber: #ffb74d;
+    --n-text: #d8e0ec;
+    --n-text-secondary: #7a8a9e;
+    --n-text-muted: #4a5568;
+    --n-border: rgba(0, 229, 255, 0.12);
+    --n-border-glow: rgba(0, 229, 255, 0.3);
+    --n-radius: 4px;
+    --n-radius-lg: 8px;
+    --font-display: 'Orbitron', 'Microsoft YaHei', sans-serif;
+    --font-mono: 'Share Tech Mono', 'Courier New', 'Microsoft YaHei', monospace;
+    --font-cn: 'Microsoft YaHei', 'PingFang SC', 'Noto Sans SC', sans-serif;
+}
+
+/* --- Animations --- */
+@keyframes nScanline {
+    0%   { background-position: 0 0; }
+    100% { background-position: 0 4px; }
+}
+
+@keyframes nFlicker {
+    0%, 100% { opacity: 1; }
+    92%       { opacity: 1; }
+    93%       { opacity: 0.85; }
+    94%       { opacity: 1; }
+    96%       { opacity: 0.9; }
+    97%       { opacity: 1; }
+}
+
+@keyframes nPulseCyan {
+    0%, 100% { box-shadow: 0 0 0 0 var(--n-cyan-glow); }
+    50%      { box-shadow: 0 0 0 6px rgba(0, 229, 255, 0); }
+}
+
+@keyframes nPulseMagenta {
+    0%, 100% { box-shadow: 0 0 0 0 var(--n-magenta-glow); }
+    50%      { box-shadow: 0 0 0 6px rgba(255, 64, 136, 0); }
+}
+
+@keyframes nReveal {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes nBorderGlow {
+    0%, 100% { border-color: rgba(0, 229, 255, 0.2); }
+    50%      { border-color: rgba(0, 229, 255, 0.5); }
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to   { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to   { transform: translateX(100%); opacity: 0; }
+}
+
+/* --- Base Overrides (scoped to neon pages) --- */
+.neon-terminal {
+    background:
+        /* grid */
+        linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+        /* vignette */
+        radial-gradient(ellipse at 50% 30%, rgba(0, 229, 255, 0.04) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 70%, rgba(255, 64, 136, 0.03) 0%, transparent 50%);
+    background-size: 32px 32px, 32px 32px, 100% 100%, 100% 100%;
+    background-color: #06080f;
+    color: var(--n-text) !important;
+    font-family: var(--font-mono);
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    height: auto;
+    min-height: 100vh;
+}
+
+/* Subtle scanline overlay */
+.neon-terminal::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.03) 2px,
+        rgba(0, 0, 0, 0.03) 4px
+    );
+    animation: nScanline 0.15s linear infinite;
+    opacity: 0.4;
+}
+
+.neon-terminal::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse at 30% 20%, transparent 40%, rgba(6, 8, 15, 0.7) 100%);
+}
+
+.hidden { display: none !important; }
+
+/* --- Background Image --- */
+.background {
+    display: none;
+}
+
+/* --- Main Container --- */
+.main-container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 2.5vh 3vw 1vh;
+    gap: 2vh;
+    box-sizing: border-box;
+}
+
+/* --- Upper Content --- */
+.upper-content {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 2.5vw;
+    min-height: 0;
+    animation: nReveal 0.7s 0.1s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+/* --- Chart Section (Left) --- */
+.chart-section {
+    flex: 1 1 62%;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    max-width: 62%;
+}
+
+.chart-canvas {
+    flex: 1;
+    background: var(--n-surface);
+    border: 1px solid var(--n-border);
+    border-radius: var(--n-radius-lg);
+    padding: 2.5vh 2vw;
+    color: var(--n-text-secondary);
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    line-height: 1.8;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow:
+        0 4px 24px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(0, 229, 255, 0.04);
+}
+
+/* Top neon accent line */
+.chart-canvas::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -1px;
+    right: -1px;
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(0, 229, 255, 0.5) 20%,
+        rgba(0, 229, 255, 0.8) 50%,
+        rgba(0, 229, 255, 0.5) 80%,
+        transparent 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+    animation: nFlicker 4s ease-in-out infinite;
+}
+
+/* Corner accents */
+.chart-canvas::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 6px;
+    height: 6px;
+    border-top: 1px solid rgba(0, 229, 255, 0.6);
+    border-right: 1px solid rgba(0, 229, 255, 0.6);
+    pointer-events: none;
+    z-index: 1;
+}
+
+#chartContainer {
+    width: 100%;
+    height: 52vh;
+    min-height: 40vh;
+}
+
+/* --- Control Panel (Right) --- */
+.control-panel {
+    width: 22vw;
+    min-width: 240px;
+    background: var(--n-surface);
+    border: 1px solid var(--n-border);
+    border-radius: var(--n-radius-lg);
+    padding: 2.5vh 1.6vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6vh;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow:
+        0 4px 24px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(0, 229, 255, 0.04);
+}
+
+/* Neon dot indicator */
+.control-panel::before {
+    content: '';
+    position: absolute;
+    top: 2vh;
+    right: 1.2vw;
+    width: 6px;
+    height: 6px;
+    background: var(--n-cyan);
+    border-radius: 50%;
+    animation: nPulseCyan 3s ease-in-out infinite;
+    box-shadow: 0 0 8px var(--n-cyan-glow);
+}
+
+/* Panel Header */
+.panel-header h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--n-cyan);
+    padding-bottom: 1.2vh;
+    border-bottom: 1px solid var(--n-border);
+    text-transform: uppercase;
+    text-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+}
+
+/* --- Control Groups --- */
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vh;
+}
+
+.control-group label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--n-text-muted);
+}
+
+/* Select Dropdowns */
+.control-group select {
+    width: 100%;
+    padding: 1vh 0.8vw;
+    background: var(--n-surface-alt);
+    border: 1px solid var(--n-border);
+    border-radius: var(--n-radius);
+    color: var(--n-text);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2300e5ff' opacity='0.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 28px;
+}
+
+.control-group select:hover {
+    border-color: var(--n-border-glow);
+    background: rgba(16, 22, 40, 0.95);
+}
+
+.control-group select:focus {
+    outline: none;
+    border-color: var(--n-cyan);
+    box-shadow: 0 0 12px var(--n-cyan-dim);
+}
+
+.control-group select option {
+    background: #0c101e;
+    color: var(--n-text);
+}
+
+/* --- Stats Box --- */
+.stats-box {
+    background: var(--n-surface-alt);
+    border: 1px solid var(--n-border);
+    border-radius: var(--n-radius);
+    padding: 1.2vh 1vw;
+    color: var(--n-text-secondary);
+    font-size: 0.82rem;
+}
+
+.stats-box p {
+    margin: 0;
+    color: var(--n-text-muted);
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.7vh 0;
+    border-bottom: 1px solid rgba(0, 229, 255, 0.06);
+}
+
+.stat-item:last-child {
+    border-bottom: none;
+}
+
+.stat-label {
+    color: var(--n-text-muted);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.stat-value {
+    color: var(--n-cyan);
+    font-weight: 400;
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.2);
+}
+
+/* --- Update Button --- */
+.update-btn {
+    width: 100%;
+    padding: 1.2vh 0;
+    border: 1px solid rgba(0, 229, 255, 0.4);
+    border-radius: var(--n-radius);
+    background: transparent;
+    color: var(--n-cyan);
+    font-family: var(--font-display);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.update-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+        rgba(0, 229, 255, 0.1) 0%,
+        transparent 50%,
+        rgba(255, 64, 136, 0.05) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.update-btn:hover {
+    border-color: var(--n-cyan);
+    box-shadow: 0 0 24px var(--n-cyan-glow), inset 0 0 24px var(--n-cyan-dim);
+    color: #fff;
+    text-shadow: 0 0 12px rgba(0, 229, 255, 0.5);
+}
+
+.update-btn:hover::before {
+    opacity: 1;
+}
+
+.update-btn:active {
+    transform: scale(0.98);
+}
+
+.update-btn:focus {
+    outline: none;
+    border-color: var(--n-cyan);
+    box-shadow: 0 0 16px var(--n-cyan-glow);
+}
+
+/* --- 3D Chart Section --- */
+.chart3d-section {
+    flex: 0 0 auto;
+    animation: nReveal 0.7s 0.25s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+.chart3d-panel {
+    background: var(--n-surface);
+    border: 1px solid var(--n-border);
+    border-radius: var(--n-radius-lg);
+    padding: 2vh 1.5vw;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow:
+        0 4px 24px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(0, 229, 255, 0.04);
+}
+
+/* Top accent — magenta this time for visual distinction */
+.chart3d-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -1px;
+    right: -1px;
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255, 64, 136, 0.5) 20%,
+        rgba(255, 64, 136, 0.8) 50%,
+        rgba(255, 64, 136, 0.5) 80%,
+        transparent 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+    animation: nFlicker 5s ease-in-out infinite;
+}
+
+.chart3d-header {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+    margin-bottom: 1vh;
+    padding-bottom: 1.2vh;
+    border-bottom: 1px solid var(--n-border);
+}
+
+.chart3d-header h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--n-magenta);
+    text-transform: uppercase;
+    text-shadow: 0 0 20px rgba(255, 64, 136, 0.3);
+}
+
+.chart3d-header .axis-legend {
+    display: flex;
+    gap: 1.5vw;
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    color: var(--n-text-muted);
+}
+
+.chart3d-header .axis-legend span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.chart3d-header .axis-legend .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.chart3d-header .axis-legend .dot.x { background: var(--n-cyan); box-shadow: 0 0 6px var(--n-cyan); }
+.chart3d-header .axis-legend .dot.y { background: var(--n-green); box-shadow: 0 0 6px var(--n-green); }
+.chart3d-header .axis-legend .dot.z { background: var(--n-magenta); box-shadow: 0 0 6px var(--n-magenta); }
+
+#chart3dContainer {
+    width: 100%;
+    height: 62vh;
+    min-height: 50vh;
+}
+
+/* --- Note Modal --- */
+.note-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(4, 6, 12, 0.7);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    animation: nReveal 0.2s ease both;
+}
+
+.note-modal {
+    width: min(92%, 400px);
+    background: var(--n-surface);
+    border: 1px solid var(--n-border-glow);
+    border-radius: var(--n-radius-lg);
+    padding: 1.8rem;
+    box-shadow: 0 0 40px rgba(0, 229, 255, 0.1), 0 16px 48px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.note-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--n-border);
+}
+
+.note-modal-header span {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--n-cyan);
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 12px rgba(0, 229, 255, 0.2);
+}
+
+.note-modal-close {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--n-border);
+    border-radius: 50%;
+    background: var(--n-surface-alt);
+    color: var(--n-text-secondary);
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+    line-height: 1;
+}
+
+.note-modal-close:hover {
+    border-color: var(--n-magenta);
+    color: var(--n-magenta);
+    box-shadow: 0 0 12px var(--n-magenta-dim);
+    text-shadow: 0 0 8px rgba(255, 64, 136, 0.4);
+}
+
+.note-content {
+    color: var(--n-text-secondary);
+    font-size: 0.85rem;
+    line-height: 2;
+    white-space: pre-wrap;
+    word-break: break-word;
+    padding: 1rem;
+    background: var(--n-surface-alt);
+    border: 1px solid var(--n-border);
+    border-radius: var(--n-radius);
+    min-height: 100px;
+    letter-spacing: 0.03em;
+}
+
+/* --- Quote Section --- */
+.quote-section {
+    flex-shrink: 0;
+    z-index: 1;
+    background: var(--n-surface) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid var(--n-border) !important;
+    border-radius: var(--n-radius-lg) !important;
+    padding: 1.5vh 0 !important;
+    margin: 0 2vw 1.5vh !important;
+    position: relative !important;
+    animation: nReveal 0.7s 0.4s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+.quote-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20%;
+    right: 20%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 64, 136, 0.4), transparent);
+    pointer-events: none;
+}
+
+.quote-container {
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0.5vh 2vw;
+}
+
+.quote-text {
+    font-family: var(--font-cn);
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    color: var(--n-text) !important;
+    line-height: 1.5;
+    margin-bottom: 0.6vh;
+    position: relative;
+    letter-spacing: 0.02em;
+}
+
+.quote-text::before {
+    content: '"';
+    font-size: 1.7rem;
+    color: var(--n-cyan);
+    position: absolute;
+    left: -16px;
+    top: -6px;
+    opacity: 0.5;
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.3);
+}
+
+.quote-text::after {
+    content: '"';
+    font-size: 1.7rem;
+    color: var(--n-cyan);
+    position: absolute;
+    right: -16px;
+    bottom: -12px;
+    opacity: 0.5;
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.3);
+}
+
+.quote-author {
+    font-family: var(--font-cn);
+    font-size: 0.88rem;
+    color: var(--n-text-muted) !important;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    margin-top: 0.5vh;
+}
+
+/* --- Notification Toast --- */
+div[style*="slideIn"] {
+    background: linear-gradient(135deg, #0a1628, #0c1a30) !important;
+    border: 1px solid var(--n-cyan) !important;
+    color: var(--n-cyan) !important;
+    font-family: var(--font-mono) !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.06em !important;
+    box-shadow: 0 0 24px rgba(0, 229, 255, 0.2) !important;
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.3) !important;
+}
+
+/* --- Scrollbar --- */
+.control-panel::-webkit-scrollbar {
+    width: 4px;
+}
+
+.control-panel::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.control-panel::-webkit-scrollbar-thumb {
+    background: rgba(0, 229, 255, 0.15);
+    border-radius: 999px;
+}
+
+.control-panel::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 229, 255, 0.3);
+}
+
+.neon-terminal::-webkit-scrollbar {
+    width: 4px;
+}
+
+.neon-terminal::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.neon-terminal::-webkit-scrollbar-thumb {
+    background: rgba(0, 229, 255, 0.08);
+    border-radius: 2px;
+}
+
+.neon-terminal::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 229, 255, 0.18);
+}
+
+/* --- Selection --- */
+.neon-terminal ::selection {
+    background: rgba(0, 229, 255, 0.2);
+    color: #fff;
+}
+
+/* ============================================
+   Sidebar Overrides — scoped to .neon-terminal
+   Leaves siderbar.css untouched for other pages
+   ============================================ */
+.neon-terminal .right-sidebar {
+    background: rgba(8, 12, 24, 0.92) !important;
+    backdrop-filter: blur(18px) !important;
+    -webkit-backdrop-filter: blur(18px) !important;
+    border-left: 1px solid rgba(0, 229, 255, 0.12) !important;
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.5) !important;
+}
+
+.neon-terminal .right-sidebar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(180deg,
+        transparent 0%,
+        rgba(0, 229, 255, 0.5) 20%,
+        rgba(0, 229, 255, 0.8) 50%,
+        rgba(0, 229, 255, 0.5) 80%,
+        transparent 100%
+    );
+    pointer-events: none;
+    z-index: 1001;
+}
+
+.neon-terminal .sidebar-title {
+    font-family: 'Orbitron', 'Microsoft YaHei', sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    color: #00e5ff !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase;
+    text-shadow: 0 0 16px rgba(0, 229, 255, 0.25) !important;
+    border-bottom: 1px solid rgba(0, 229, 255, 0.1) !important;
+    padding-bottom: 10px;
+}
+
+.neon-terminal .sidebar-menu > li > a {
+    color: #7a8a9e !important;
+    font-family: 'Share Tech Mono', 'Microsoft YaHei', monospace !important;
+    font-size: 15px !important;
+    letter-spacing: 0.03em !important;
+    border: 1px solid transparent !important;
+    transition: all 0.25s ease !important;
+}
+
+.neon-terminal .sidebar-menu > li > a:hover {
+    color: #00e5ff !important;
+    background: rgba(0, 229, 255, 0.06) !important;
+    border-color: rgba(0, 229, 255, 0.15) !important;
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.3) !important;
+}
+
+.neon-terminal .submenu li a {
+    color: #556677 !important;
+    font-family: 'Share Tech Mono', 'Microsoft YaHei', monospace !important;
+    font-size: 14px !important;
+    letter-spacing: 0.02em !important;
+    border-left: 1px solid transparent !important;
+    transition: all 0.2s ease !important;
+}
+
+.neon-terminal .submenu li a:hover {
+    color: #ff4088 !important;
+    background: rgba(255, 64, 136, 0.06) !important;
+    border-left-color: rgba(255, 64, 136, 0.4) !important;
+    text-shadow: 0 0 6px rgba(255, 64, 136, 0.2) !important;
+}
+
+.neon-terminal .toggle-btn {
+    background: rgba(8, 12, 24, 0.9) !important;
+    border: 1px solid rgba(0, 229, 255, 0.2) !important;
+    color: #00e5ff !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    transition: all 0.25s ease !important;
+}
+
+.neon-terminal .toggle-btn:hover {
+    border-color: #00e5ff !important;
+    box-shadow: 0 0 12px rgba(0, 229, 255, 0.2) !important;
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.4) !important;
+}
+
+/* --- Responsive --- */
+@media (max-width: 1100px) {
+    .upper-content {
+        flex-direction: column;
+    }
+
+    .chart-section {
+        max-width: 100%;
+        flex: 0 0 auto;
+    }
+
+    .control-panel {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        height: auto;
+        flex: 0 0 auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 2vw;
+        padding: 2vh 3vw;
+    }
+
+    .control-panel::before {
+        display: none;
+    }
+
+    .panel-header {
+        width: 100%;
+    }
+
+    .control-group {
+        flex: 1;
+        min-width: 140px;
+    }
+
+    .update-btn {
+        width: auto;
+        padding: 1vh 2vw;
+        margin-top: 0;
+    }
+
+    .chart3d-header {
+        flex-wrap: wrap;
+    }
+
+    .chart3d-header .axis-legend {
+        margin-left: 0;
+        width: 100%;
+        justify-content: flex-start;
+        margin-top: 0.5vh;
+    }
+}
+
+@media (max-width: 600px) {
+    .main-container {
+        padding: 1.5vh 4vw 1vh;
+    }
+
+    .chart-canvas {
+        padding: 2vh 3vw;
+    }
+
+    #chartContainer {
+        height: 40vh;
+        min-height: 30vh;
+    }
+
+    #chart3dContainer {
+        height: 46vh;
+        min-height: 36vh;
+    }
+
+    .control-panel {
+        padding: 1.5vh 4vw;
+        gap: 1.5vh;
+    }
+
+    .quote-text {
+        font-size: 1rem;
+    }
+}

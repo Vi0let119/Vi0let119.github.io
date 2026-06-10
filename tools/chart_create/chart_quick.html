@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>极速图表 — Quick Chart</title>
+    <link rel="stylesheet" href="chart_quick.css">
+    <script src="../../echarts.min.js"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.0/package/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <a href="chart_landing.html" class="back-link" title="返回选择">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </a>
+            <div class="header-text">
+                <h1 class="app-title">极速图表</h1>
+                <p class="app-subtitle">数据规范，快速出图，无需等待</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Left: Form Panel -->
+            <aside class="form-panel">
+                <!-- Chart Type -->
+                <div class="form-group">
+                    <label class="form-label" for="chartType">图表类型</label>
+                    <select id="chartType" class="form-select">
+                        <option value="bar">柱状图</option>
+                        <option value="line">折线图</option>
+                        <option value="pie">饼图</option>
+                        <option value="scatter">散点图</option>
+                        <option value="scatter_fit">散点图 + 拟合线</option>
+                    </select>
+                </div>
+
+                <!-- Data Input -->
+                <div class="form-group">
+                    <label class="form-label">数据输入</label>
+                    <div class="input-tabs">
+                        <button class="input-tab active" data-tab="text">文本输入</button>
+                        <button class="input-tab" data-tab="file">文件上传</button>
+                    </div>
+
+                    <!-- Text Input -->
+                    <div class="input-panel" id="textInputPanel">
+                        <div class="format-hint">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                            <span>数据格式：<strong>两列</strong>，第一列 X 轴，第二列 Y 轴。支持空格 / 逗号 / Tab 分隔。</span>
+                        </div>
+                        <textarea id="dataInput" class="data-textarea" placeholder="示例：&#10;1月 120&#10;2月 200&#10;3月 150&#10;4月 300&#10;5月 280&#10;6月 350" rows="8"></textarea>
+                    </div>
+
+                    <!-- File Upload -->
+                    <div class="input-panel hidden" id="fileInputPanel">
+                        <div class="format-hint">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                            <span>支持 <strong>.txt / .csv / .xlsx</strong> 格式。数据需为<strong>两列</strong>（X 轴 + Y 轴）。</span>
+                        </div>
+                        <label class="file-upload-area" id="fileUploadArea">
+                            <input type="file" id="fileInput" accept=".txt,.csv,.xlsx,.xls" class="file-input-hidden">
+                            <div class="file-upload-content">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                                <span class="file-upload-text">拖拽文件到此处，或点击上传</span>
+                                <span class="file-upload-hint">.txt .csv .xlsx</span>
+                            </div>
+                        </label>
+                        <div class="file-info hidden" id="fileInfo">
+                            <span class="file-name" id="fileName"></span>
+                            <button class="file-clear" id="fileClear" title="清除文件">✕</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Header Checkbox -->
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="hasHeader" class="form-checkbox">
+                        <span class="checkbox-custom"></span>
+                        <span>第一行为表头（将自动提取为坐标轴名称）</span>
+                    </label>
+                </div>
+
+                <!-- Axis Labels & Title -->
+                <div class="form-row">
+                    <div class="form-group form-group-half">
+                        <label class="form-label" for="xAxisName">X 轴名称</label>
+                        <input type="text" id="xAxisName" class="form-input" placeholder="如：月份">
+                    </div>
+                    <div class="form-group form-group-half">
+                        <label class="form-label" for="yAxisName">Y 轴名称</label>
+                        <input type="text" id="yAxisName" class="form-input" placeholder="如：销售额（万元）">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="chartTitle">图表标题</label>
+                    <input type="text" id="chartTitle" class="form-input" placeholder="为图表命名">
+                </div>
+
+                <!-- Download Button -->
+                <button id="downloadBtn" class="btn-download" disabled>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    <span>下载 HTML 文件</span>
+                </button>
+            </aside>
+
+            <!-- Right: Preview Panel -->
+            <section class="preview-panel">
+                <div class="preview-header">
+                    <h2 class="preview-title">图表预览</h2>
+                    <span class="preview-badge" id="dataStatus">等待数据</span>
+                </div>
+                <div class="chart-container" id="chartContainer">
+                    <div class="empty-state" id="emptyState">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="empty-icon"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+                        <p class="empty-text">在左侧输入数据后<br>图表将在此处实时预览</p>
+                    </div>
+                </div>
+                <div class="data-summary hidden" id="dataSummary">
+                    <span id="rowCount">0 行数据</span>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="chart_quick.js"></script>
+</body>
+</html>
