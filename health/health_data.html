@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>健康数据 — N E O N · T E R M I N A L</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="health_data.css">
+    <link rel="stylesheet" href="../siderbar/siderbar.css">
+    <script src="../d3.v3.min.js"></script>
+    <!-- <script src="echarts.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+    <script src="../siderbar/sidebar.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            initSidebar('sidebar-container');
+            loadRandomQuote('../quotes.json');
+        });
+    </script>
+
+</head>
+<body class="neon-terminal">
+    <img class="background" src="../图片素材/搜图神器_1731042950796.png.jpg" alt="图片无法加载喵~">
+    <div id="sidebar-container"></div>
+
+    <div class="main-container">
+        <!-- 上部内容区域 -->
+        <div class="upper-content">
+            <!-- 左侧图表区域 -->
+            <div class="chart-section">
+                <div class="chart-canvas">
+                    <div id="chartContainer"></div>
+                    点击图表中的日期点查看备注信息，<s>目前只有体重有备注</s>
+                    如果切换窗口大小，导致图像显示异常，请刷新网站喵~
+                    <br>
+                    <s>减脂餐1：2-3两白米饭，两个去皮清蒸鸡腿，两份清炒蔬菜</s>
+                    <s>减脂餐2：清汤馄饨，少油少盐</s>
+                    <s>减脂餐3：轻食：2-3两粗粮饭，一份牛肉或虾，一份清水西兰花，一份清水白菜，饭后一根黄瓜</s>
+                    <br>
+                    <s>早餐(理想情况)：两个鸡蛋，一份羊奶，30g燕麦，鱼油</s>
+                    <s>晚上(睡前2h):15g燕麦，60g蛋白粉</s>
+                </div>
+                <div id="noteModal" class="note-modal-overlay hidden">
+                    <div class="note-modal">
+                        <div class="note-modal-header">
+                            <span id="noteModalTitle">体重备注</span>
+                            <button id="noteModalClose" class="note-modal-close" aria-label="关闭">×</button>
+                        </div>
+                        <div id="noteModalContent" class="note-content">点击体重趋势图中的日期点查看备注。</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧控制面板 -->
+            <div class="control-panel">
+                <div class="panel-header">
+                    <h3>// 控制面板</h3>
+                </div>
+
+                <!-- 图表类型选择 -->
+                <div class="control-group">
+                    <label>图表类型</label>
+                    <select id="chartType">
+                        <option value="weight">体重趋势</option>
+                        <option value="sleep">睡眠时长</option>
+                        <option value="sleepTime">入睡时间</option>
+                    </select>
+                </div>
+
+                <!-- 时间范围选择 -->
+                <div class="control-group">
+                    <label>时间范围</label>
+                    <select id="timeRange">
+                        <option value="all">全部数据</option>
+                        <option value="7">最近7天</option>
+                        <option value="14">最近14天</option>
+                    </select>
+                </div>
+
+                <!-- 年份选择 -->
+                <div class="control-group">
+                    <label>选择年份</label>
+                    <select id="yearSelect">
+                        <option value="all">全部年份</option>
+                    </select>
+                </div>
+
+                <!-- 月份选择 -->
+                <div class="control-group">
+                    <label>选择月份</label>
+                    <select id="monthSelect">
+                        <option value="all">全部月份</option>
+                    </select>
+                </div>
+
+                <!-- 数据统计信息 -->
+                <div class="control-group">
+                    <label>数据统计</label>
+                    <div id="statsInfo" class="stats-box">
+                        <p>加载中...</p>
+                    </div>
+                </div>
+
+                <!-- 更新按钮 -->
+                <button id="updateChart" class="update-btn">更新图表</button>
+            </div>
+        </div>
+
+        <!-- 3D 散点图区域 -->
+        <div class="chart3d-section">
+            <div class="chart3d-panel">
+                <div class="chart3d-header">
+                    <h3>// 三维数据映射</h3>
+                    <div class="axis-legend">
+                        <span><span class="dot x"></span> X: 体重 (kg)</span>
+                        <span><span class="dot y"></span> Y: 睡眠时长 (h)</span>
+                        <span><span class="dot z"></span> Z: 入睡时间</span>
+                    </div>
+                </div>
+                <div id="chart3dContainer"></div>
+            </div>
+        </div>
+
+        <!-- 名言区域 -->
+        <div class="quote-section" style="z-index: 1; position: relative; width: auto; text-align: center;">
+            <div class="quote-container">
+                <div id="quoteText" class="quote-text">加载中...</div>
+                <div id="quoteAuthor" class="quote-author">—</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="health_data.js"></script>
+</body>
+</html>

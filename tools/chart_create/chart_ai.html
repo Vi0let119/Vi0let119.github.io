@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 图表 — AI Chart</title>
+    <link rel="stylesheet" href="chart_ai.css">
+    <script src="../../echarts.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <div class="top-left">
+                <a href="chart_landing.html" class="back-link" title="返回选择">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                </a>
+                <div>
+                    <h1 class="top-title">AI 图表</h1>
+                    <p class="top-subtitle">DeepSeek 驱动 · 智能分析</p>
+                </div>
+            </div>
+            <div class="top-right">
+                <button class="settings-btn" id="settingsBtn" title="API 设置">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- API Settings Panel (collapsible) -->
+        <div class="settings-panel hidden" id="settingsPanel">
+            <div class="settings-content">
+                <div class="settings-row">
+                    <label class="settings-label">数据来源</label>
+                    <select id="apiSource" class="settings-select">
+                        <option value="site">站点 API（DeepSeek）</option>
+                        <option value="custom">自提供 API Key</option>
+                    </select>
+                </div>
+                <div class="settings-row hidden" id="customApiRow">
+                    <label class="settings-label">AI 平台</label>
+                    <select id="providerSelect" class="settings-select">
+                        <option value="deepseek">DeepSeek</option>
+                        <option value="openai">OpenAI</option>
+                        <option value="qwen">通义千问 (Qwen)</option>
+                        <option value="gemini">Gemini</option>
+                    </select>
+                </div>
+                <div class="settings-row hidden" id="customKeyRow">
+                    <label class="settings-label">API Key</label>
+                    <input type="password" id="apiKeyInput" class="settings-input" placeholder="输入你的 API Key">
+                </div>
+                <button class="settings-save" id="settingsSave">保存设置</button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Left: Chat Area -->
+            <div class="chat-panel">
+                <div class="chat-messages" id="chatMessages">
+                    <!-- Welcome message -->
+                    <div class="message bot">
+                        <div class="message-avatar">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                        </div>
+                        <div class="message-body">
+                            <div class="message-text">
+                                <p>你好！我是 AI 图表助手 👋</p>
+                                <p>我可以帮你：</p>
+                                <ul>
+                                    <li>分析你的数据，推荐最合适的图表类型</li>
+                                    <li>根据数据自动生成 ECharts 图表</li>
+                                    <li>根据你的反馈调整图表样式和细节</li>
+                                </ul>
+                                <p><strong>开始使用：</strong>粘贴数据或上传文件（txt/csv/xlsx），告诉我你想要什么样的图表。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Loading indicator -->
+                <div class="chat-loading hidden" id="chatLoading">
+                    <div class="loading-dots">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <span class="loading-text">AI 正在分析...</span>
+                </div>
+
+                <!-- Input Area -->
+                <div class="chat-input-area">
+                    <div class="file-preview hidden" id="filePreviewBar">
+                        <span class="file-preview-name" id="filePreviewName"></span>
+                        <button class="file-preview-clear" id="filePreviewClear">✕</button>
+                    </div>
+                    <div class="chat-input-row">
+                        <label class="attach-btn" title="上传文件">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+                            <input type="file" id="fileUpload" accept=".txt,.csv,.xlsx,.xls" class="file-input-hidden">
+                        </label>
+                        <textarea id="chatInput" class="chat-input" placeholder="描述你的需求，或粘贴数据..." rows="1" maxlength="4000"></textarea>
+                        <button class="send-btn" id="sendBtn" title="发送">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Preview Panel -->
+            <div class="preview-panel">
+                <div class="preview-header">
+                    <h2 class="preview-title">图表预览</h2>
+                    <div class="preview-actions">
+                        <span class="preview-badge" id="chartStatus">暂无图表</span>
+                        <button class="btn-download hidden" id="downloadBtn" disabled>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            下载
+                        </button>
+                    </div>
+                </div>
+                <div class="chart-container" id="chartContainer">
+                    <div class="empty-state" id="emptyState">
+                        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="empty-icon"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+                        <p class="empty-text">AI 生成图表后将在此预览</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="chart_ai.js"></script>
+</body>
+</html>
