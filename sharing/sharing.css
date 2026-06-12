@@ -797,6 +797,53 @@ body {
   box-shadow: var(--shadow-xs);
 }
 
+/* --- Submenu parent row (link + arrow) — 书签/目录风格 --- */
+.submenu-parent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.submenu-parent > a {
+  text-decoration: none;
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 7px 10px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  flex: 1;
+  min-width: 0;
+}
+
+.submenu-parent > a:hover {
+  color: var(--color-accent);
+  background: linear-gradient(90deg, rgba(168, 58, 49, 0.05), transparent);
+  box-shadow: var(--shadow-xs);
+}
+
+/* --- Expand/collapse arrow — 朱砂翻页标记 --- */
+.submenu-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  font-size: 10px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  border-radius: 4px;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.submenu-arrow:hover {
+  background: rgba(168, 58, 49, 0.06);
+  color: var(--color-accent);
+}
+
 .submenu {
   list-style: none;
   padding-left: var(--space-md);
