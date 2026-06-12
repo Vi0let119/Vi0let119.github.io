@@ -804,7 +804,8 @@ body {
   justify-content: space-between;
 }
 
-.submenu-parent > a {
+.submenu-parent > .submenu-label {
+    cursor: pointer;
   text-decoration: none;
   color: var(--color-text-muted);
   font-family: var(--font-body);
@@ -817,7 +818,7 @@ body {
   min-width: 0;
 }
 
-.submenu-parent > a:hover {
+.submenu-parent > .submenu-label:hover {
   color: var(--color-accent);
   background: linear-gradient(90deg, rgba(168, 58, 49, 0.05), transparent);
   box-shadow: var(--shadow-xs);
@@ -862,7 +863,7 @@ body {
 
 .submenu li a {
   text-decoration: none;
-  color: var(--color-text-muted);
+  color: var(--color-text-secondary);
   font-size: 0.95rem;
   font-weight: 400;
   display: block;

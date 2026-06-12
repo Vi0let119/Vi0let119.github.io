@@ -686,7 +686,8 @@ body {
     justify-content: space-between;
 }
 
-.submenu-parent > a {
+.submenu-parent > .submenu-label {
+    cursor: pointer;
     text-decoration: none;
     color: var(--text-secondary);
     font-family: var(--font-ui);
@@ -701,7 +702,7 @@ body {
     min-width: 0;
 }
 
-.submenu-parent > a:hover {
+.submenu-parent > .submenu-label:hover {
     color: var(--text-primary);
     background: rgba(184, 146, 78, 0.04);
     border-left-color: rgba(184, 146, 78, 0.35);
@@ -754,7 +755,7 @@ body {
 .submenu li a {
     display: block;
     text-decoration: none;
-    color: var(--text-muted);
+    color: var(--text-secondary);
     font-family: var(--font-ui);
     font-size: 1rem;
     font-weight: 300;

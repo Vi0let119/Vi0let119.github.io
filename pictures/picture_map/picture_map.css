@@ -383,6 +383,130 @@ body {
 }
 
 /* ============================================
+   SIDEBAR THEME OVERRIDES (dark editorial)
+   ============================================ */
+
+/* --- Sidebar panel --- */
+.right-sidebar {
+    background:
+        linear-gradient(180deg, rgba(14, 14, 17, 0.97) 0%, rgba(11, 11, 13, 0.96) 100%);
+    backdrop-filter: blur(24px) saturate(0.6);
+    -webkit-backdrop-filter: blur(24px) saturate(0.6);
+    border-left: 1px solid var(--border);
+    color: var(--text-primary);
+}
+
+.right-sidebar.collapsed {
+    transform: translateX(calc(100% - 24px));
+}
+
+/* --- Toggle button --- */
+.toggle-btn {
+    background: rgba(24, 24, 28, 0.95);
+    border: 1px solid rgba(184, 146, 78, 0.3);
+    color: var(--accent);
+}
+
+.toggle-btn:hover {
+    color: #d4a94e;
+    border-color: rgba(184, 146, 78, 0.6);
+    background: rgba(28, 28, 33, 0.97);
+}
+
+/* --- Title --- */
+.right-sidebar .sidebar-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--text-primary);
+}
+
+/* --- Menu links --- */
+.sidebar-menu > li > a {
+    color: var(--text-secondary);
+}
+
+.sidebar-menu > li > a:hover {
+    color: var(--accent);
+    background: rgba(184, 146, 78, 0.06);
+}
+
+/* --- Submenu --- */
+.submenu-parent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.submenu-parent > .submenu-label {
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    padding: 0.5rem 0.6rem;
+    border-radius: 2px;
+    border-left: 2px solid transparent;
+    transition: color 0.25s, background 0.25s, border-color 0.25s;
+    flex: 1;
+    min-width: 0;
+}
+
+.submenu-parent > .submenu-label:hover {
+    color: var(--text-primary);
+    background: rgba(184, 146, 78, 0.04);
+    border-left-color: rgba(184, 146, 78, 0.35);
+}
+
+.submenu-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    font-size: 10px;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-radius: 4px;
+    flex-shrink: 0;
+    transition: color 0.25s, background 0.25s;
+    user-select: none;
+}
+
+.submenu-arrow:hover {
+    background: rgba(184, 146, 78, 0.1);
+    color: var(--accent);
+}
+
+.submenu li {
+    margin: 0;
+}
+
+.submenu li a {
+    display: block;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    padding: 0.35rem 0.6rem;
+    border-radius: 2px;
+    border-left: 2px solid transparent;
+    transition: color 0.25s, background 0.25s, border-color 0.25s;
+    cursor: pointer;
+}
+
+.submenu li a:hover {
+    color: var(--accent);
+    background: rgba(184, 146, 78, 0.06);
+    border-left-color: rgba(184, 146, 78, 0.35);
+}
+
+/* ============================================
    RESPONSIVE
    ============================================ */
 

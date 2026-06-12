@@ -84,29 +84,42 @@
           borderWidth: 0.5
         },
         emphasis: { disabled: true },
-        label: { show: false },
+        label: {
+          show: true,
+          color: 'rgba(228, 224, 216, 0.55)',
+          fontSize: 10,
+          fontFamily: 'Cormorant Garamond, Georgia, "Times New Roman", serif',
+          fontWeight: 400,
+          letterSpacing: 1.5,
+          textShadowColor: 'rgba(11, 11, 13, 0.7)',
+          textShadowBlur: 3
+        },
         regions: []
       },
 
-      series: [
+      series: (function () {
+        var s = [];
+
         // 第1层：涟漪效果（effectScatter）—— 呼吸光晕
-        (hasData ? [{
-          type: 'effectScatter',
-          coordinateSystem: 'geo',
-          data: scatterData,
-          symbolSize: 8,
-          showEffectOn: 'render',
-          rippleEffect: {
-            brushType: 'stroke', scale: 7, period: 5,
-            color: 'rgba(184, 146, 78, 0.35)'
-          },
-          itemStyle: { color: 'rgba(184, 146, 78, 0.6)' },
-          emphasis: { scale: 2, itemStyle: { color: 'rgba(255, 255, 255, 0.9)' } },
-          zlevel: 1, z: 1
-        }] : []),
+        if (hasData) {
+          s.push({
+            type: 'effectScatter',
+            coordinateSystem: 'geo',
+            data: scatterData,
+            symbolSize: 8,
+            showEffectOn: 'render',
+            rippleEffect: {
+              brushType: 'stroke', scale: 7, period: 5,
+              color: 'rgba(184, 146, 78, 0.35)'
+            },
+            itemStyle: { color: 'rgba(184, 146, 78, 0.6)' },
+            emphasis: { scale: 2, itemStyle: { color: 'rgba(255, 255, 255, 0.9)' } },
+            zlevel: 1, z: 1
+          });
+        }
 
         // 第2层：散点节点（可点击打开灯箱）
-        {
+        s.push({
           type: 'scatter',
           coordinateSystem: 'geo',
           data: scatterData,
@@ -132,14 +145,11 @@
           animation: true,
           animationDuration: 600,
           animationEasing: 'cubicOut'
-        }
-      ]
-    };
+        });
 
-    // 无数据时移除涟漪层（series[0] 为空数组时需清理）
-    if (!hasData) {
-      option.series = option.series.filter(function (s) { return Array.isArray(s) ? s.length > 0 : true; });
-    }
+        return s;
+      })()
+    };
 
     return option;
   }

@@ -20,7 +20,7 @@ function initSidebar(containerId, defaultCollapsed) {
         '<li><a href="/index.html">首页</a></li>' +
         '<li class="has-submenu">' +
           '<div class="submenu-parent">' +
-            '<a href="/projects/project_index.html">项目</a>' +
+            '<span class="submenu-label">项目</span>' +
             '<span class="submenu-arrow">▼</span>' +
           '</div>' +
           '<ul class="submenu">' +
@@ -29,7 +29,7 @@ function initSidebar(containerId, defaultCollapsed) {
         '</li>' +
         '<li class="has-submenu">' +
           '<div class="submenu-parent">' +
-            '<a href="/pictures/picture_index/picture_index.html">图片</a>' +
+            '<span class="submenu-label">图片</span>' +
             '<span class="submenu-arrow">▼</span>' +
           '</div>' +
           '<ul class="submenu">' +
@@ -39,7 +39,7 @@ function initSidebar(containerId, defaultCollapsed) {
         '</li>' +
         '<li class="has-submenu">' +
           '<div class="submenu-parent">' +
-            '<a href="/health/health_data.html">健康数据</a>' +
+            '<span class="submenu-label">健康数据</span>' +
             '<span class="submenu-arrow">▼</span>' +
           '</div>' +
           '<ul class="submenu">' +
@@ -48,7 +48,7 @@ function initSidebar(containerId, defaultCollapsed) {
         '</li>' +
         '<li class="has-submenu">' +
           '<div class="submenu-parent">' +
-            '<a href="/sharing/sharing.html">作品分享</a>' +
+            '<span class="submenu-label">作品分享</span>' +
             '<span class="submenu-arrow">▼</span>' +
           '</div>' +
           '<ul class="submenu">' +
@@ -57,7 +57,7 @@ function initSidebar(containerId, defaultCollapsed) {
         '</li>' +
         '<li class="has-submenu">' +
           '<div class="submenu-parent">' +
-            '<a href="/tools/tools_index.html">工具箱</a>' +
+            '<span class="submenu-label">工具箱</span>' +
             '<span class="submenu-arrow">▼</span>' +
           '</div>' +
           '<ul class="submenu">' +
@@ -74,7 +74,7 @@ function initSidebar(containerId, defaultCollapsed) {
   // 获取 DOM 元素
   var sidebar = container.querySelector('.right-sidebar');
   var toggleBtn = container.querySelector('.toggle-btn');
-  var submenuToggles = container.querySelectorAll('.submenu-arrow');
+  var submenuParents = container.querySelectorAll('.submenu-parent');
 
   // 主开关：折叠/展开侧边栏
   toggleBtn.addEventListener('click', function () {
@@ -95,17 +95,21 @@ function initSidebar(containerId, defaultCollapsed) {
   window.addEventListener('resize', handleResize);
   handleResize();
 
-  // 子菜单：点击箭头展开/折叠（不影响父链接的跳转）
-  submenuToggles.forEach(function (arrow) {
-    arrow.addEventListener('click', function (e) {
-      e.preventDefault();
-      e.stopPropagation();  // 防止冒泡到父链接
-      var parentLi = arrow.closest('.has-submenu');
+  // 子菜单：点击父级区域展开/折叠（父级文字不再是链接）
+  submenuParents.forEach(function (parent) {
+    parent.addEventListener('click', function (e) {
+      // 如果点击的是子菜单里的链接，不拦截，让它正常跳转
+      if (e.target.tagName === 'A') return;
+
+      var parentLi = parent.closest('.has-submenu');
       var submenu = parentLi ? parentLi.querySelector('.submenu') : null;
       if (!submenu) return;
 
       submenu.classList.toggle('open');
-      arrow.innerText = submenu.classList.contains('open') ? '▲' : '▼';
+      var arrow = parent.querySelector('.submenu-arrow');
+      if (arrow) {
+        arrow.innerText = submenu.classList.contains('open') ? '▲' : '▼';
+      }
     });
   });
 }
