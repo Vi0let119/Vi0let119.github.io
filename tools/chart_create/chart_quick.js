@@ -1,12 +1,12 @@
-/* ========================================
-   极速图表 — Quick Chart
-   数据处理 + 图表渲染 + 文件解析 + 下载
-   ======================================== */
+/**
+ * 极速图表 — 数据处理 + ECharts 渲染 + 文件解析 + HTML 下载
+ * 支持：柱状图 / 折线图 / 饼图 / 散点图 / 散点+拟合线
+ */
 
 (function () {
   'use strict';
 
-  // ── DOM 引用 ──────────────────────────────
+  // ── DOM 快捷引用 ──────────────────────────
   const $ = (sel) => document.querySelector(sel);
   const chartTypeEl    = $('#chartType');
   const dataInputEl    = $('#dataInput');

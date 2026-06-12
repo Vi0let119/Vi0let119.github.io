@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工具箱 · Tools</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Noto+Serif+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           工具箱目录 — 清露白描风 (Dew Sketch)
+           自适应网格，新增工具只需加一张卡片
+           ============================================ */
+
+        :root {
+            --bg: #f9faf8;
+            --surface: #ffffff;
+            --text: #3a3a3a;
+            --text-secondary: #8a8a84;
+            --text-muted: #b8b8b0;
+            --accent: #7a9a8a;
+            --accent-soft: rgba(122, 154, 138, 0.08);
+            --border: rgba(0, 0, 0, 0.06);
+            --border-hover: rgba(0, 0, 0, 0.14);
+            --shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+            --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.06);
+            --radius: 16px;
+            --font-sans: 'Work Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            --font-serif: 'Noto Serif SC', 'Source Han Serif SC', Georgia, serif;
+            --transition: 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-sans);
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* 极淡纸纹 — 模拟水彩纸纤维感 */
+        body {
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.35;
+            background:
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.008) 2px, rgba(0,0,0,0.008) 3px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.006) 2px, rgba(0,0,0,0.006) 3px);
+        }
+
+        /* ── 主容器 ── */
+        .main {
+            position: relative;
+            z-index: 1;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 8vh 28px 6vh;
+        }
+
+        /* ── 头部 ── */
+        .header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .header-mark {
+            display: inline-block;
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+            opacity: 0.5;
+            margin-bottom: 24px;
+            border-radius: 1px;
+        }
+
+        .header h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            font-weight: 400;
+            color: var(--text);
+            letter-spacing: 0.02em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            letter-spacing: 0.03em;
+        }
+
+        /* ── 工具卡片网格（自适应换行） ── */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        /* ── 卡片通用 ── */
+        .tool-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 32px 28px 28px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            overflow: hidden;
+            transition:
+                transform var(--transition),
+                box-shadow var(--transition),
+                border-color var(--transition);
+            animation: fadeUp 0.55s ease backwards;
+        }
+
+        .tool-card:nth-child(1) { animation-delay: 0.05s; }
+        .tool-card:nth-child(2) { animation-delay: 0.15s; }
+        .tool-card:nth-child(3) { animation-delay: 0.25s; }
+        .tool-card:nth-child(4) { animation-delay: 0.35s; }
+        .tool-card:nth-child(5) { animation-delay: 0.45s; }
+        .tool-card:nth-child(6) { animation-delay: 0.55s; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .tool-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--border-hover);
+        }
+
+        /* hover：边框加深 + 右上角箭头滑入 */
+        .tool-card::after {
+            content: '→';
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--text-muted);
+            opacity: 0;
+            transform: translateX(-6px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .tool-card:hover::after {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* 水彩斑点装饰 — 每张卡不同色 */
+        .tool-card .spot {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.06;
+            filter: blur(20px);
+        }
+
+        .tool-card:nth-child(1) .spot { background: #7a9a8a; bottom: -40px; right: -30px; }
+        .tool-card:nth-child(2) .spot { background: #8a9ab8; bottom: -40px; right: -30px; }
+        .tool-card:nth-child(3) .spot { background: #c4a87a; bottom: -40px; right: -30px; }
+        /* 后续新增卡片自动轮换色相 */
+        .tool-card:nth-child(4) .spot { background: #b88a9a; bottom: -40px; right: -30px; }
+        .tool-card:nth-child(5) .spot { background: #8ab89a; bottom: -40px; right: -30px; }
+        .tool-card:nth-child(6) .spot { background: #9a8ab8; bottom: -40px; right: -30px; }
+
+        /* ── 图标 ── */
+        .tool-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            color: var(--accent);
+        }
+
+        .tool-card:nth-child(1) .tool-icon { background: #eaf4ee; color: #7a9a8a; }
+        .tool-card:nth-child(2) .tool-icon { background: #eef1f7; color: #6b7fa0; }
+        .tool-card:nth-child(3) .tool-icon { background: #f7f1e7; color: #b8935a; }
+        .tool-card:nth-child(4) .tool-icon { background: #f7eaef; color: #b07a8c; }
+        .tool-card:nth-child(5) .tool-icon { background: #eaf7ee; color: #6ba07a; }
+        .tool-card:nth-child(6) .tool-icon { background: #f0eaf7; color: #8b7ab0; }
+
+        /* ── 标题 ── */
+        .tool-name {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 0.02em;
+        }
+
+        /* ── 描述 ── */
+        .tool-desc {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            margin-bottom: 16px;
+        }
+
+        /* ── 特性标签 ── */
+        .tool-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tool-tag {
+            font-family: var(--font-sans);
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            padding: 3px 10px;
+            border-radius: 20px;
+            background: var(--bg);
+            color: var(--text-secondary);
+            border: 1px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .tool-card:hover .tool-tag {
+            border-color: var(--border);
+        }
+
+        /* ── 底栏 ── */
+        .footer {
+            margin-top: 48px;
+            text-align: center;
+        }
+
+        .footer a {
+            font-family: var(--font-sans);
+            font-size: 0.82rem;
+            font-weight: 400;
+            color: var(--text-muted);
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            transition: color 0.25s ease;
+        }
+
+        .footer a:hover {
+            color: var(--accent);
+        }
+
+        .footer a::before {
+            content: '← ';
+        }
+
+        /* ── 响应式 ── */
+        @media (max-width: 640px) {
+            .main { padding: 5vh 16px 4vh; }
+            .header { margin-bottom: 36px; }
+            .header h1 { font-size: 1.5rem; }
+            .tools-grid { grid-template-columns: 1fr; gap: 14px; }
+            .tool-card { padding: 24px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="main">
+
+        <!-- ============ 头部 ============ -->
+        <header class="header">
+            <div class="header-mark"></div>
+            <h1>工具箱</h1>
+            <p>实用工具，随手可得</p>
+        </header>
+
+        <!-- ============ 工具卡片网格 ============ -->
+        <div class="tools-grid">
+
+            <!-- 图片色彩分析 -->
+            <a href="picture_analysis/picture_analysis.html" class="tool-card">
+                <div class="spot"></div>
+                <div class="tool-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                </div>
+                <h2 class="tool-name">图片色彩分析</h2>
+                <p class="tool-desc">
+                    上传图片，K-means 聚类提取主色调，LAB 色彩空间可视化，支持直方图与色板导出。
+                </p>
+                <div class="tool-tags">
+                    <span class="tool-tag">K-means</span>
+                    <span class="tool-tag">LAB空间</span>
+                    <span class="tool-tag">色板导出</span>
+                </div>
+            </a>
+
+            <!-- GPS 标记助手 -->
+            <a href="gps_helper/gps_helper.html" class="tool-card">
+                <div class="spot"></div>
+                <div class="tool-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                </div>
+                <h2 class="tool-name">GPS 标记助手</h2>
+                <p class="tool-desc">
+                    地址与经纬度双向转换，支持批量处理与地图预览，方便照片地理位置标注。
+                </p>
+                <div class="tool-tags">
+                    <span class="tool-tag">地址↔坐标</span>
+                    <span class="tool-tag">批量转换</span>
+                    <span class="tool-tag">地图预览</span>
+                </div>
+            </a>
+
+            <!-- 图表生成器 -->
+            <a href="chart_create/chart_landing.html" class="tool-card">
+                <div class="spot"></div>
+                <div class="tool-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="3" y1="9" x2="21" y2="9"/>
+                        <line x1="9" y1="3" x2="9" y2="21"/>
+                    </svg>
+                </div>
+                <h2 class="tool-name">图表生成器</h2>
+                <p class="tool-desc">
+                    基于 ECharts / D3，极速版粘贴即出图，AI 交互版支持多轮对话智能分析。
+                </p>
+                <div class="tool-tags">
+                    <span class="tool-tag">极速版</span>
+                    <span class="tool-tag">AI交互版</span>
+                    <span class="tool-tag">ECharts</span>
+                </div>
+            </a>
+
+            <!--
+            ============================================
+            未来扩展区 — 新增工具只需复制上面的 .tool-card
+            网格自动换行，无需调整 CSS
+            ============================================
+            -->
+
+        </div>
+
+        <!-- ============ 底栏 ============ -->
+        <footer class="footer">
+            <a href="../index.html">返回首页</a>
+        </footer>
+
+    </main>
+
+</body>
+</html>

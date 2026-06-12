@@ -1,531 +1,541 @@
+/**
+ * 图片颜色分析工具 — K-means 聚类 + RGB 直方图 + ECharts 可视化
+ * 依赖：ECharts
+ */
+
+// 检查 ECharts 是否已加载
 if (typeof echarts === 'undefined') {
-    console.error('ECharts 未加载，请检查网络或 CDN 链接');
+  console.error('ECharts 未加载，请检查网络或 CDN 链接');
 }
 
-/* K-means 颜色聚类算法类 */
+/* ================================================================
+   K-means 颜色聚类算法类
+   支持 RGB / LAB 两种颜色空间
+   ================================================================ */
 class KMeansColor {
-    constructor(maxIterations = 10) {
-        this.maxIterations = maxIterations;
-    }
+  constructor(maxIterations) {
+    if (maxIterations === undefined) maxIterations = 10;
+    this.maxIterations = maxIterations;
+  }
 
-    // 计算两点间欧式距离
-    distance(point1, point2) {
-        let dist = 0;
-        for (let i = 0; i < point1.length; i++) {
-            dist += Math.pow(point1[i] - point2[i], 2);
+  // 计算两点间欧氏距离
+  distance(point1, point2) {
+    var dist = 0;
+    for (var i = 0; i < point1.length; i++) {
+      dist += Math.pow(point1[i] - point2[i], 2);
+    }
+    return Math.sqrt(dist);
+  }
+
+  // RGB 转 LAB 色彩空间（标准 D65 白点）
+  rgbToLab(r, g, b) {
+    // 归一化到 0-1
+    var r1 = r / 255, g1 = g / 255, b1 = b / 255;
+
+    // 伽马校正（sRGB → 线性）
+    r1 = r1 > 0.04045 ? Math.pow((r1 + 0.055) / 1.055, 2.4) : r1 / 12.92;
+    g1 = g1 > 0.04045 ? Math.pow((g1 + 0.055) / 1.055, 2.4) : g1 / 12.92;
+    b1 = b1 > 0.04045 ? Math.pow((b1 + 0.055) / 1.055, 2.4) : b1 / 12.92;
+
+    // RGB → XYZ
+    var x = r1 * 0.4124564 + g1 * 0.3575761 + b1 * 0.1804375;
+    var y = r1 * 0.2126729 + g1 * 0.7151522 + b1 * 0.0721750;
+    var z = r1 * 0.0193339 + g1 * 0.1191920 + b1 * 0.9503041;
+
+    // XYZ 归一化
+    x = x / 0.95047;
+    y = y / 1.0;
+    z = z / 1.08883;
+
+    // XYZ → LAB
+    var fx = x > 0.008856 ? Math.pow(x, 1 / 3) : (7.787 * x) + 16 / 116;
+    var fy = y > 0.008856 ? Math.pow(y, 1 / 3) : (7.787 * y) + 16 / 116;
+    var fz = z > 0.008856 ? Math.pow(z, 1 / 3) : (7.787 * z) + 16 / 116;
+
+    var L = 116 * fy - 16;
+    var a = 500 * (fx - fy);
+    var bVal = 200 * (fy - fz);
+
+    // 映射到 0-255 范围
+    return [
+      Math.round((L / 100) * 255),
+      Math.round(((a + 86.185) / 184.444) * 255),
+      Math.round(((bVal + 107.863) / 202.345) * 255)
+    ];
+  }
+
+  // LAB 转回 RGB
+  labToRgb(l, a, bVal) {
+    l = (l / 255) * 100;
+    a = (a / 255) * 184.444 - 86.185;
+    bVal = (bVal / 255) * 202.345 - 107.863;
+
+    var fy = (l + 16) / 116;
+    var fx = a / 500 + fy;
+    var fz = fy - bVal / 200;
+
+    var x = Math.pow(fx, 3) > 0.008856 ? Math.pow(fx, 3) : (fx - 16 / 116) / 7.787;
+    var y = l > 7.9996 ? Math.pow(fy, 3) : (l / 903.3);
+    var z = Math.pow(fz, 3) > 0.008856 ? Math.pow(fz, 3) : (fz - 16 / 116) / 7.787;
+
+    x *= 0.95047;
+    y *= 1.0;
+    z *= 1.08883;
+
+    // XYZ → RGB
+    var r = x * 3.2404542 - y * 1.5371385 - z * 0.4985314;
+    var g = -x * 0.9692660 + y * 1.8760108 + z * 0.0415560;
+    var b1 = x * 0.0556434 - y * 0.2040259 + z * 1.0572252;
+
+    // 伽马校正（线性 → sRGB）
+    r = r <= 0.0031308 ? r * 12.92 : 1.055 * Math.pow(r, 1 / 2.4) - 0.055;
+    g = g <= 0.0031308 ? g * 12.92 : 1.055 * Math.pow(g, 1 / 2.4) - 0.055;
+    b1 = b1 <= 0.0031308 ? b1 * 12.92 : 1.055 * Math.pow(b1, 1 / 2.4) - 0.055;
+
+    return [
+      Math.max(0, Math.min(255, Math.round(r * 255))),
+      Math.max(0, Math.min(255, Math.round(g * 255))),
+      Math.max(0, Math.min(255, Math.round(b1 * 255)))
+    ];
+  }
+
+  // 按颜色空间预处理像素数据（每 4 个值取 RGB，跳过 Alpha）
+  preprocess(pixels, space) {
+    var data = [];
+    for (var i = 0; i < pixels.length; i += 4) {
+      var r = pixels[i], g = pixels[i + 1], b = pixels[i + 2];
+      if (space === 'lab') {
+        data.push(this.rgbToLab(r, g, b));
+      } else {
+        data.push([r, g, b]);
+      }
+    }
+    return data;
+  }
+
+  // 随机初始化 K 个质心
+  initializeCentroids(data, k) {
+    var centroids = [];
+    var usedIndices = new Set();
+    while (centroids.length < k) {
+      var randomIndex = Math.floor(Math.random() * data.length);
+      if (!usedIndices.has(randomIndex)) {
+        usedIndices.add(randomIndex);
+        centroids.push(data[randomIndex].slice());
+      }
+    }
+    return centroids;
+  }
+
+  // 核心 K-means 聚类
+  cluster(pixels, k, space) {
+    if (space === undefined) space = 'rgb';
+    console.log('[K-means] 开始聚类: K=' + k + ', 色彩空间=' + space);
+
+    var data = this.preprocess(pixels, space);
+    var centroids = this.initializeCentroids(data, k);
+    var labels = new Uint8Array(data.length);
+
+    // 迭代至收敛或达到最大次数
+    for (var iter = 0; iter < this.maxIterations; iter++) {
+      var converged = true;
+
+      // 分配每个像素到最近的质心
+      for (var i = 0; i < data.length; i++) {
+        var minDist = Infinity;
+        var clusterIdx = 0;
+        for (var j = 0; j < k; j++) {
+          var dist = this.distance(data[i], centroids[j]);
+          if (dist < minDist) {
+            minDist = dist;
+            clusterIdx = j;
+          }
         }
-        return Math.sqrt(dist);
-    }
-
-    // RGB转LAB核心转换（标准公式）
-    rgbToLab(r, g, b) {
-        // RGB归一化到0-1
-        let r1 = r / 255;
-        let g1 = g / 255;
-        let b1 = b / 255;
-
-        // 伽马校正
-        r1 = r1 > 0.04045 ? Math.pow((r1 + 0.055) / 1.055, 2.4) : r1 / 12.92;
-        g1 = g1 > 0.04045 ? Math.pow((g1 + 0.055) / 1.055, 2.4) : g1 / 12.92;
-        b1 = b1 > 0.04045 ? Math.pow((b1 + 0.055) / 1.055, 2.4) : b1 / 12.92;
-
-        // RGB转XYZ
-        let x = r1 * 0.4124564 + g1 * 0.3575761 + b1 * 0.1804375;
-        let y = r1 * 0.2126729 + g1 * 0.7151522 + b1 * 0.0721750;
-        let z = r1 * 0.0193339 + g1 * 0.1191920 + b1 * 0.9503041;
-
-        // XYZ归一化
-        x = x / 0.95047;
-        y = y / 1.0;
-        z = z / 1.08883;
-
-        // XYZ转LAB
-        const fx = x > 0.008856 ? Math.pow(x, 1/3) : (7.787 * x) + 16/116;
-        const fy = y > 0.008856 ? Math.pow(y, 1/3) : (7.787 * y) + 16/116;
-        const fz = z > 0.008856 ? Math.pow(z, 1/3) : (7.787 * z) + 16/116;
-
-        const L = 116 * fy - 16;
-        const a = 500 * (fx - fy);
-        const bVal = 200 * (fy - fz);
-
-        return [
-            Math.round((L / 100) * 255),
-            Math.round(((a + 86.185) / 184.444) * 255),
-            Math.round(((bVal + 107.863) / 202.345) * 255)
-        ];
-    }
-
-    // LAB转RGB
-    labToRgb(l, a, bVal) {
-        // 反归一化
-        l = (l / 255) * 100;
-        a = (a / 255) * 184.444 - 86.185;
-        bVal = (bVal / 255) * 202.345 - 107.863;
-
-        const fy = (l + 16) / 116;
-        const fx = a / 500 + fy;
-        const fz = fy - bVal / 200;
-
-        let x = Math.pow(fx, 3) > 0.008856 ? Math.pow(fx, 3) : (fx - 16/116) / 7.787;
-        let y = l > 7.9996 ? Math.pow(fy, 3) : (l / 903.3);
-        let z = Math.pow(fz, 3) > 0.008856 ? Math.pow(fz, 3) : (fz - 16/116) / 7.787;
-
-        x *= 0.95047;
-        y *= 1.0;
-        z *= 1.08883;
-
-        let r = x * 3.2404542 - y * 1.5371385 - z * 0.4985314;
-        let g = -x * 0.9692660 + y * 1.8760108 + z * 0.0415560;
-        let b1 = x * 0.0556434 - y * 0.2040259 + z * 1.0572252;
-
-        r = r <= 0.0031308 ? r * 12.92 : 1.055 * Math.pow(r, 1/2.4) - 0.055;
-        g = g <= 0.0031308 ? g * 12.92 : 1.055 * Math.pow(g, 1/2.4) - 0.055;
-        b1 = b1 <= 0.0031308 ? b1 * 12.92 : 1.055 * Math.pow(b1, 1/2.4) - 0.055;
-
-        return [
-            Math.max(0, Math.min(255, Math.round(r * 255))),
-            Math.max(0, Math.min(255, Math.round(g * 255))),
-            Math.max(0, Math.min(255, Math.round(b1 * 255)))
-        ];
-    }
-
-    // 预处理：根据颜色空间转换像素数据
-    preprocess(pixels, space) {
-        const data = [];
-        for (let i = 0; i < pixels.length; i += 4) {
-            const r = pixels[i];
-            const g = pixels[i + 1];
-            const b = pixels[i + 2];
-            // 按选择的颜色空间转换
-            if (space === 'lab') {
-                data.push(this.rgbToLab(r, g, b));
-            } else {
-                data.push([r, g, b]);
-            }
+        if (labels[i] !== clusterIdx) {
+          converged = false;
+          labels[i] = clusterIdx;
         }
-        return data;
+      }
+      if (converged) break;
+
+      // 更新质心：取每个聚类的均值
+      var counts = new Array(k).fill(0);
+      var newCentroids = Array.from({ length: k }, function () { return [0, 0, 0]; });
+      for (var m = 0; m < data.length; m++) {
+        var cluster = labels[m];
+        counts[cluster]++;
+        for (var n = 0; n < 3; n++) {
+          newCentroids[cluster][n] += data[m][n];
+        }
+      }
+      for (var p = 0; p < k; p++) {
+        if (counts[p] > 0) {
+          for (var q = 0; q < 3; q++) {
+            centroids[p][q] = newCentroids[p][q] / counts[p];
+          }
+        }
+      }
     }
 
-    // 初始化质心（随机选择）
-    initializeCentroids(data, k) {
-        const centroids = [];
-        const usedIndices = new Set();
-        while (centroids.length < k) {
-            const randomIndex = Math.floor(Math.random() * data.length);
-            if (!usedIndices.has(randomIndex)) {
-                usedIndices.add(randomIndex);
-                centroids.push([...data[randomIndex]]);
-            }
-        }
-        return centroids;
+    // 整理结果：每个聚类包含像素数和平均颜色
+    var clusters = Array.from({ length: k }, function () {
+      return { count: 0, color: [0, 0, 0] };
+    });
+    for (var t = 0; t < data.length; t++) {
+      var c = labels[t];
+      clusters[c].count++;
+      for (var u = 0; u < 3; u++) {
+        clusters[c].color[u] += data[t][u];
+      }
     }
 
-    // 核心聚类逻辑
-    cluster(pixels, k, space = 'rgb') {
-        console.log(`[算法] 开始 K-means 聚类: K=${k}, 空间=${space}`);
-        const data = this.preprocess(pixels, space);
-        let centroids = this.initializeCentroids(data, k);
-        let labels = new Uint8Array(data.length);
-
-        // 迭代聚类
-        for (let iter = 0; iter < this.maxIterations; iter++) {
-            let converged = true;
-            // 分配标签
-            for (let i = 0; i < data.length; i++) {
-                let minDist = Infinity;
-                let clusterIdx = 0;
-                for (let j = 0; j < k; j++) {
-                    const dist = this.distance(data[i], centroids[j]);
-                    if (dist < minDist) {
-                        minDist = dist;
-                        clusterIdx = j;
-                    }
-                }
-                if (labels[i] !== clusterIdx) {
-                    converged = false;
-                    labels[i] = clusterIdx;
-                }
-            }
-            if (converged) break;
-
-            // 更新质心
-            const counts = new Array(k).fill(0);
-            const newCentroids = Array.from({ length: k }, () => [0, 0, 0]);
-            for (let i = 0; i < data.length; i++) {
-                const cluster = labels[i];
-                counts[cluster]++;
-                for (let j = 0; j < 3; j++) {
-                    newCentroids[cluster][j] += data[i][j];
-                }
-            }
-            for (let i = 0; i < k; i++) {
-                if (counts[i] > 0) {
-                    for (let j = 0; j < 3; j++) {
-                        centroids[i][j] = newCentroids[i][j] / counts[i];
-                    }
-                }
-            }
+    // 计算平均颜色，LAB 需转回 RGB
+    for (var v = 0; v < k; v++) {
+      if (clusters[v].count > 0) {
+        var avgColor = clusters[v].color.map(function (c) { return c / clusters[v].count; });
+        if (space === 'lab') {
+          avgColor = this.labToRgb(avgColor[0], avgColor[1], avgColor[2]);
         }
-
-        // 整理结果（LAB需转回RGB）
-        const clusters = Array.from({ length: k }, () => ({ count: 0, color: [0, 0, 0] }));
-        for (let i = 0; i < data.length; i++) {
-            const cluster = labels[i];
-            clusters[cluster].count++;
-            for (let j = 0; j < 3; j++) {
-                clusters[cluster].color[j] += data[i][j];
-            }
-        }
-
-        // 计算平均颜色并转换回RGB
-        for (let i = 0; i < k; i++) {
-            if (clusters[i].count > 0) {
-                // 计算平均值
-                let avgColor = clusters[i].color.map(c => c / clusters[i].count);
-                // LAB空间需转回RGB
-                if (space === 'lab') {
-                    avgColor = this.labToRgb(...avgColor);
-                }
-                clusters[i].color = avgColor.map(c => Math.round(c));
-            }
-        }
-        return clusters;
+        clusters[v].color = avgColor.map(function (c) { return Math.round(c); });
+      }
     }
+    return clusters;
+  }
 }
 
-/*图片处理器类*/
+
+/* ================================================================
+   图片处理器类
+   管理图片上传、K-means 分析、ECharts 渲染、RGB 直方图绘制
+   ================================================================ */
 class ImageProcessor {
-    constructor() {
-        this.image = null; // 存储原始 Image 对象用于算法
-        this.kmeans = new KMeansColor();
-        this.myChart = null; // 存储 ECharts 实例
-        this.currentChartType = 'pie'; // 默认图表类型
-        this.histogramCanvas = null; // RGB直方图Canvas
-        this.histogramCtx = null; // RGB直方图Canvas上下文
+  constructor() {
+    this.image = null;
+    this.kmeans = new KMeansColor();
+    this.myChart = null;
+    this.currentChartType = 'pie';   // 'pie' | 'bar'
+    this.histogramCanvas = null;
+    this.histogramCtx = null;
+  }
+
+  // 初始化：绑定 DOM 和事件
+  init() {
+    this.fileInput = document.getElementById('imageInput');
+    this.imageElement = document.getElementById('displayImage');
+    this.startBtn = document.getElementById('startAnalysisBtn');
+    this.kSlider = document.getElementById('kValueSlider');
+    this.kDisplay = document.getElementById('kValueDisplay');
+    this.colorSpaceSelect = document.getElementById('spaceSelect');
+    this.chartContainer = document.getElementById('chartContainer');
+    this.chartTypeButtons = document.querySelectorAll('.chart-type-btn');
+
+    // 创建 RGB 直方图画布
+    this.histogramCanvas = document.createElement('canvas');
+    this.histogramCanvas.width = 400;
+    this.histogramCanvas.height = 300;
+    this.histogramCtx = this.histogramCanvas.getContext('2d');
+
+    var histogramContainer = document.getElementById('rgbHistogram');
+    if (histogramContainer) {
+      histogramContainer.appendChild(this.histogramCanvas);
     }
 
-    init() {
-        // 获取 DOM 元素
-        this.fileInput = document.getElementById('imageInput');
-        this.imageElement = document.getElementById('displayImage'); 
-        this.startBtn = document.getElementById('startAnalysisBtn');
-        this.kSlider = document.getElementById('kValueSlider');
-        this.kDisplay = document.getElementById('kValueDisplay');
-        this.colorSpaceSelect = document.getElementById('spaceSelect');
-        this.chartContainer = document.getElementById('chartContainer');
-
-        // 图表类型切换按钮
-        this.chartTypeButtons = document.querySelectorAll('.chart-type-btn');
-
-        // 初始化RGB直方图Canvas
-        this.histogramCanvas = document.createElement('canvas');
-        this.histogramCanvas.width = 400;
-        this.histogramCanvas.height = 300;
-        this.histogramCtx = this.histogramCanvas.getContext('2d');
-
-        // 将Canvas添加到RGB Histogram容器中
-        const histogramContainer = document.getElementById('rgbHistogram');
-        if (histogramContainer) {
-            histogramContainer.appendChild(this.histogramCanvas);
-        }
-
-        // 绑定事件
-        if (this.fileInput) {
-            this.fileInput.addEventListener('change', (e) => this.handleImageUpload(e));
-        }
-        if (this.kSlider) {
-            this.kSlider.addEventListener('input', (e) => {
-                this.kDisplay.textContent = e.target.value;
-            });
-        }
-        if (this.startBtn) {
-            this.startBtn.addEventListener('click', () => this.performAnalysis());
-        }
-        
-        // 绑定图表类型切换
-        this.chartTypeButtons.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                this.chartTypeButtons.forEach(b => b.classList.remove('active'));
-                e.target.classList.add('active');
-                this.currentChartType = e.target.dataset.type;
-                // 如果已有数据，重新渲染
-                if (this.lastClusters) {
-                    this.renderChart(this.lastClusters);
-                }
-            });
-        });
-
-        // 初始化 ECharts
-        if (this.chartContainer) {
-            this.myChart = echarts.init(this.chartContainer);
-        }
+    // 绑定事件
+    if (this.fileInput) {
+      this.fileInput.addEventListener('change', this.handleImageUpload.bind(this));
+    }
+    if (this.kSlider) {
+      this.kSlider.addEventListener('input', (function (e) {
+        this.kDisplay.textContent = e.target.value;
+      }).bind(this));
+    }
+    if (this.startBtn) {
+      this.startBtn.addEventListener('click', this.performAnalysis.bind(this));
     }
 
-    handleImageUpload(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            this.image = new Image();
-            this.image.onload = () => {
-                this.imageElement.src = this.image.src;
-                console.log("图片预览已更新");
-
-                // 上传新图片后，计算并绘制RGB直方图
-                const tempCanvas = document.createElement('canvas');
-                const ctx = tempCanvas.getContext('2d');
-                tempCanvas.width = this.image.width;
-                tempCanvas.height = this.image.height;
-                ctx.drawImage(this.image, 0, 0);
-
-                let imageData;
-                try {
-                    imageData = ctx.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
-                    this.computeAndDrawHistogram(imageData.data);
-                } catch (e) {
-                    console.error("无法获取图片像素数据", e);
-                }
-            };
-            this.image.src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-    }
-
-    performAnalysis() {
-        if (!this.image) {
-            alert("请先上传图片！");
-            return;
+    // 图表类型切换按钮
+    var self = this;
+    this.chartTypeButtons.forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        self.chartTypeButtons.forEach(function (b) { b.classList.remove('active'); });
+        e.target.classList.add('active');
+        self.currentChartType = e.target.dataset.type;
+        if (self.lastClusters) {
+          self.renderChart(self.lastClusters);
         }
+      });
+    });
 
-        const k = parseInt(this.kSlider.value);
-        const space = this.colorSpaceSelect.value;
+    // 初始化 ECharts 实例
+    if (this.chartContainer) {
+      this.myChart = echarts.init(this.chartContainer);
+    }
+  }
 
-        const tempCanvas = document.createElement('canvas');
-        const ctx = tempCanvas.getContext('2d');
-        tempCanvas.width = this.image.width;
-        tempCanvas.height = this.image.height;
-        ctx.drawImage(this.image, 0, 0);
+  // 处理图片上传：读取文件 → 预览 → 计算直方图
+  handleImageUpload(event) {
+    var file = event.target.files[0];
+    if (!file) return;
+    var self = this;
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      self.image = new Image();
+      self.image.onload = function () {
+        self.imageElement.src = self.image.src;
 
-        let imageData;
+        // 上传后自动绘制 RGB 直方图
+        var tempCanvas = document.createElement('canvas');
+        var ctx = tempCanvas.getContext('2d');
+        tempCanvas.width = self.image.width;
+        tempCanvas.height = self.image.height;
+        ctx.drawImage(self.image, 0, 0);
+
         try {
-            imageData = ctx.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
-        } catch (e) {
-            console.error("无法获取图片像素数据", e);
-            alert("图片分析失败");
-            return;
+          var imageData = ctx.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
+          self.computeAndDrawHistogram(imageData.data);
+        } catch (err) {
+          console.error('无法获取图片像素数据', err);
         }
+      };
+      self.image.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
 
-        const clusters = this.kmeans.cluster(imageData.data, k, space);
-        this.lastClusters = clusters; 
-        this.renderChart(clusters);
-
-        // 计算并绘制RGB直方图
-        this.computeAndDrawHistogram(imageData.data);
+  // 执行完整分析：K-means + 直方图 + 渲染图表
+  performAnalysis() {
+    if (!this.image) {
+      alert('请先上传图片！');
+      return;
     }
 
-    renderChart(clusters) {
-        if (!this.myChart) return;
+    var k = parseInt(this.kSlider.value);
+    var space = this.colorSpaceSelect.value;
 
-        // 准备 ECharts 数据
-        const colorData = clusters.map((cluster, index) => {
-            const [r, g, b] = cluster.color;
-            const colorHex = `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()}`;
-            return {
-                name: `颜色 ${index + 1}`,
-                value: cluster.count,
-                itemStyle: { color: colorHex }
-            };
-        });
+    // 将图片绘制到临时 canvas 以获取像素数据
+    var tempCanvas = document.createElement('canvas');
+    var ctx = tempCanvas.getContext('2d');
+    tempCanvas.width = this.image.width;
+    tempCanvas.height = this.image.height;
+    ctx.drawImage(this.image, 0, 0);
 
-        let option;
-        if (this.currentChartType === 'pie') {
-            option = {
-                title: { text: `颜色分布 (饼图 / ${this.colorSpaceSelect.value.toUpperCase()})`, left: 'center' },
-                tooltip: { trigger: 'item' },
-                legend: { orient: 'vertical', left: 'left' },
-                series: [{
-                    name: '颜色',
-                    type: 'pie',
-                    radius: '60%',
-                    data: colorData,
-                    emphasis: { itemStyle: { shadowBlur: 10, shadowOffsetX: 0, shadowColor: 'rgba(0,0,0,0.5)' } }
-                }]
-            };
-        } else {
-            option = {
-                title: { text: `颜色分布 (柱状图 / ${this.colorSpaceSelect.value.toUpperCase()})`, left: 'center' },
-                tooltip: {},
-                xAxis: { type: 'category', data: colorData.map(d => d.name) },
-                yAxis: { type: 'value' },
-                series: [{
-                    name: '像素数量',
-                    type: 'bar',
-                    data: colorData.map(d => d.value),
-                    itemStyle: { 
-                        color: (params) => colorData[params.dataIndex].itemStyle.color 
-                    }
-                }]
-            };
-        }
-
-        this.myChart.setOption(option, { notMerge: true });
+    var imageData;
+    try {
+      imageData = ctx.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
+    } catch (e) {
+      console.error('无法获取图片像素数据', e);
+      alert('图片分析失败');
+      return;
     }
 
-    // 计算RGB直方图
-    computeAndDrawHistogram(pixels) {
-        const rHist = new Array(256).fill(0);
-        const gHist = new Array(256).fill(0);
-        const bHist = new Array(256).fill(0);
+    // K-means 聚类 + 渲染
+    var clusters = this.kmeans.cluster(imageData.data, k, space);
+    this.lastClusters = clusters;
+    this.renderChart(clusters);
 
-        // 统计每个通道的像素值分布
-        for (let i = 0; i < pixels.length; i += 4) {
-            rHist[pixels[i]]++;     // R
-            gHist[pixels[i + 1]]++; // G
-            bHist[pixels[i + 2]]++; // B
-        }
+    // 同时更新 RGB 直方图
+    this.computeAndDrawHistogram(imageData.data);
+  }
 
-        // 绘制直方图
-        this.drawHistogram(rHist, gHist, bHist);
+  // 使用 ECharts 渲染颜色聚类结果（饼图/柱状图）
+  renderChart(clusters) {
+    if (!this.myChart) return;
+
+    // 构建 ECharts 数据
+    var colorData = clusters.map(function (cluster, index) {
+      var r = cluster.color[0], g = cluster.color[1], b = cluster.color[2];
+      var colorHex = '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
+      return {
+        name: '颜色 ' + (index + 1),
+        value: cluster.count,
+        itemStyle: { color: colorHex }
+      };
+    });
+
+    var option;
+    var spaceLabel = this.colorSpaceSelect.value.toUpperCase();
+
+    if (this.currentChartType === 'pie') {
+      // 饼图配置
+      option = {
+        title: { text: '颜色分布 (饼图 / ' + spaceLabel + ')', left: 'center' },
+        tooltip: { trigger: 'item' },
+        legend: { orient: 'vertical', left: 'left' },
+        series: [{
+          name: '颜色',
+          type: 'pie',
+          radius: '60%',
+          data: colorData,
+          emphasis: { itemStyle: { shadowBlur: 10, shadowOffsetX: 0, shadowColor: 'rgba(0,0,0,0.5)' } }
+        }]
+      };
+    } else {
+      // 柱状图配置
+      option = {
+        title: { text: '颜色分布 (柱状图 / ' + spaceLabel + ')', left: 'center' },
+        tooltip: {},
+        xAxis: { type: 'category', data: colorData.map(function (d) { return d.name; }) },
+        yAxis: { type: 'value' },
+        series: [{
+          name: '像素数量',
+          type: 'bar',
+          data: colorData.map(function (d) { return d.value; }),
+          itemStyle: {
+            color: function (params) { return colorData[params.dataIndex].itemStyle.color; }
+          }
+        }]
+      };
     }
 
-    // 绘制RGB直方图
-    drawHistogram(rHist, gHist, bHist) {
-        if (!this.histogramCtx) return;
+    this.myChart.setOption(option, { notMerge: true });
+  }
 
-        const canvas = this.histogramCanvas;
-        const width = canvas.clientWidth;
-        const height = canvas.clientHeight;
+  // 计算 RGB 三通道直方图
+  computeAndDrawHistogram(pixels) {
+    var rHist = new Array(256).fill(0);
+    var gHist = new Array(256).fill(0);
+    var bHist = new Array(256).fill(0);
 
-        if (canvas.width !== width || canvas.height !== height) {
-            canvas.width = width;
-            canvas.height = height;
-            this.histogramCtx = canvas.getContext('2d');
-        }
-
-        const ctx = this.histogramCtx;
-        ctx.imageSmoothingEnabled = false;
-
-        /* 风格二暗色分区面板：直方图底色 */
-        ctx.fillStyle = '#1a1d28';
-        ctx.fillRect(0, 0, width, height);
-
-        // 找到最大值用于归一化
-        const maxR = Math.max(...rHist);
-        const maxG = Math.max(...gHist);
-        const maxB = Math.max(...bHist);
-        const maxVal = Math.max(maxR, maxG, maxB);
-
-        // 绘制背景网格
-        ctx.strokeStyle = 'rgba(255,255,255,0.08)';
-        ctx.lineWidth = 1;
-        for (let i = 0; i <= 10; i++) {
-            const y = (height / 10) * i;
-            ctx.beginPath();
-            ctx.moveTo(0, y);
-            ctx.lineTo(width, y);
-            ctx.stroke();
-        }
-
-        const barWidth = width / 256;
-        const smoothHist = (hist, radius = 2) => {
-            const result = new Array(256).fill(0);
-            for (let i = 0; i < 256; i++) {
-                let sum = 0;
-                let count = 0;
-                for (let j = i - radius; j <= i + radius; j++) {
-                    if (j >= 0 && j < 256) {
-                        sum += hist[j];
-                        count++;
-                    }
-                }
-                result[i] = count ? sum / count : 0;
-            }
-            return result;
-        };
-
-        const rHistSm = smoothHist(rHist, 2);
-        const gHistSm = smoothHist(gHist, 2);
-        const bHistSm = smoothHist(bHist, 2);
-
-        const drawChannel = (hist, color) => {
-            ctx.fillStyle = color;
-            ctx.beginPath();
-            for (let i = 0; i < 256; i++) {
-                const x = i * barWidth;
-                const y = height - (hist[i] / maxVal) * height;
-                if (i === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            }
-            ctx.lineTo(width, height);
-            ctx.lineTo(0, height);
-            ctx.closePath();
-            ctx.fill();
-        };
-
-        ctx.globalCompositeOperation = 'lighter';
-        drawChannel(rHistSm, 'rgba(255, 0, 0, 0.24)');
-        drawChannel(gHistSm, 'rgba(0, 255, 0, 0.24)');
-        drawChannel(bHistSm, 'rgba(0, 0, 255, 0.24)');
-        ctx.globalCompositeOperation = 'source-over';
-
-        // 添加细线轮廓
-        const drawOutline = (hist, color) => {
-            ctx.strokeStyle = color;
-            ctx.lineWidth = 2;
-            ctx.lineJoin = 'round';
-            ctx.lineCap = 'round';
-            ctx.beginPath();
-            for (let i = 0; i < 256; i++) {
-                const x = i * barWidth + barWidth / 2;
-                const y = height - (hist[i] / maxVal) * height;
-                if (i === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            }
-            ctx.stroke();
-        };
-
-        drawOutline(rHistSm, 'rgba(255, 80, 80, 0.95)');
-        drawOutline(gHistSm, 'rgba(80, 255, 80, 0.95)');
-        drawOutline(bHistSm, 'rgba(120, 140, 255, 0.95)');
-
-        // 三色重叠显示白色区域（平滑填充）
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
-        ctx.beginPath();
-        for (let i = 0; i < 256; i++) {
-            const x = i * barWidth;
-            const rHeight = (rHistSm[i] / maxVal) * height;
-            const gHeight = (gHistSm[i] / maxVal) * height;
-            const bHeight = (bHistSm[i] / maxVal) * height;
-            const y = height - Math.min(rHeight, gHeight, bHeight);
-            if (i === 0) ctx.moveTo(x, y);
-            else ctx.lineTo(x, y);
-        }
-        ctx.lineTo(width, height);
-        ctx.lineTo(0, height);
-        ctx.closePath();
-        ctx.fill();
-
-         //添加文字说明
-         ctx.fillStyle = '#ccc';
-         ctx.font = '13px Arial';
-         ctx.fillText('RGB Histogram', 12, 22);
-        // ctx.fillStyle = '#f55';
-        // ctx.fillRect(width - 90, 12, 10, 10);
-        // ctx.fillStyle = '#ccc';
-        // ctx.fillText('R', width - 72, 21);
-        // ctx.fillStyle = '#6f6';
-        // ctx.fillRect(width - 90, 32, 10, 10);
-        // ctx.fillStyle = '#ccc';
-        // ctx.fillText('G', width - 72, 41);
-        // ctx.fillStyle = '#69f';
-        // ctx.fillRect(width - 90, 52, 10, 10);
-        // ctx.fillStyle = '#ccc';
-        // ctx.fillText('B', width - 72, 61);
+    for (var i = 0; i < pixels.length; i += 4) {
+      rHist[pixels[i]]++;       // R
+      gHist[pixels[i + 1]]++;   // G
+      bHist[pixels[i + 2]]++;   // B
     }
+
+    this.drawHistogram(rHist, gHist, bHist);
+  }
+
+  // 在 Canvas 上绘制 RGB 三通道平滑直方图（叠加显示）
+  drawHistogram(rHist, gHist, bHist) {
+    if (!this.histogramCtx) return;
+
+    var canvas = this.histogramCanvas;
+    var width = canvas.clientWidth;
+    var height = canvas.clientHeight;
+
+    // 适配 devicePixelRatio
+    if (canvas.width !== width || canvas.height !== height) {
+      canvas.width = width;
+      canvas.height = height;
+      this.histogramCtx = canvas.getContext('2d');
+    }
+
+    var ctx = this.histogramCtx;
+    ctx.imageSmoothingEnabled = false;
+
+    // 暗色背景
+    ctx.fillStyle = '#1a1d28';
+    ctx.fillRect(0, 0, width, height);
+
+    // 找到最大值用于归一化
+    var maxR = Math.max.apply(null, rHist);
+    var maxG = Math.max.apply(null, gHist);
+    var maxB = Math.max.apply(null, bHist);
+    var maxVal = Math.max(maxR, maxG, maxB);
+
+    // 背景网格线
+    ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+    ctx.lineWidth = 1;
+    for (var i = 0; i <= 10; i++) {
+      var yGrid = (height / 10) * i;
+      ctx.beginPath();
+      ctx.moveTo(0, yGrid);
+      ctx.lineTo(width, yGrid);
+      ctx.stroke();
+    }
+
+    var barWidth = width / 256;
+
+    // 平滑函数：用滑动窗口减少噪点
+    function smoothHist(hist, radius) {
+      if (radius === undefined) radius = 2;
+      var result = new Array(256).fill(0);
+      for (var i = 0; i < 256; i++) {
+        var sum = 0, count = 0;
+        for (var j = i - radius; j <= i + radius; j++) {
+          if (j >= 0 && j < 256) {
+            sum += hist[j];
+            count++;
+          }
+        }
+        result[i] = count ? sum / count : 0;
+      }
+      return result;
+    }
+
+    var rHistSm = smoothHist(rHist, 2);
+    var gHistSm = smoothHist(gHist, 2);
+    var bHistSm = smoothHist(bHist, 2);
+
+    // 绘制通道填充（使用 additive 混合）
+    function drawChannel(hist, color) {
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      for (var i = 0; i < 256; i++) {
+        var x = i * barWidth;
+        var y = height - (hist[i] / maxVal) * height;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.lineTo(width, height);
+      ctx.lineTo(0, height);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    ctx.globalCompositeOperation = 'lighter';
+    drawChannel(rHistSm, 'rgba(255, 0, 0, 0.24)');
+    drawChannel(gHistSm, 'rgba(0, 255, 0, 0.24)');
+    drawChannel(bHistSm, 'rgba(0, 0, 255, 0.24)');
+    ctx.globalCompositeOperation = 'source-over';
+
+    // 绘制轮廓线
+    function drawOutline(hist, color) {
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2;
+      ctx.lineJoin = 'round';
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      for (var i = 0; i < 256; i++) {
+        var x = i * barWidth + barWidth / 2;
+        var y = height - (hist[i] / maxVal) * height;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+    }
+
+    drawOutline(rHistSm, 'rgba(255, 80, 80, 0.95)');
+    drawOutline(gHistSm, 'rgba(80, 255, 80, 0.95)');
+    drawOutline(bHistSm, 'rgba(120, 140, 255, 0.95)');
+
+    // 三色重叠区域显示为白色
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+    ctx.beginPath();
+    for (var k = 0; k < 256; k++) {
+      var x = k * barWidth;
+      var rH = (rHistSm[k] / maxVal) * height;
+      var gH = (gHistSm[k] / maxVal) * height;
+      var bH = (bHistSm[k] / maxVal) * height;
+      var y = height - Math.min(rH, gH, bH);
+      if (k === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.lineTo(width, height);
+    ctx.lineTo(0, height);
+    ctx.closePath();
+    ctx.fill();
+
+    // 标题
+    ctx.fillStyle = '#ccc';
+    ctx.font = '13px Arial';
+    ctx.fillText('RGB Histogram', 12, 22);
+  }
 }
 
-// 初始化
-document.addEventListener('DOMContentLoaded', () => {
-    const processor = new ImageProcessor();
-    processor.init();
+
+// 页面加载完成后初始化
+document.addEventListener('DOMContentLoaded', function () {
+  var processor = new ImageProcessor();
+  processor.init();
 });

@@ -1,93 +1,149 @@
+/* ============================================
+   侧边栏组件样式 — 玻璃拟态风格
+   可被各页面覆写以适配不同主题
+   ============================================ */
+
+/* 侧边栏主体：固定在右侧 */
 .right-sidebar {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 10vw;
-    height: 100vh;
-    background: rgba(255,255,255,0.5);
-    backdrop-filter: blur(10px);
-    box-shadow: -20px 0 6px rgba(0,0,0,0.1);
-    padding: 20px;
-    transition: 0.3s ease;
-    z-index: 999;
-}
-.right-sidebar.collapsed {
-    transform: translateX(calc(100% - 20px));
-}
-.sidebar-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #333;
-    z-index: 999;
-}
-.sidebar-menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    z-index: 999;
-}
-.sidebar-menu li {
-    margin: 8px 0;
-    z-index: 999;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 10vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  box-shadow: -20px 0 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: 0.3s ease;
+  z-index: 999;
 }
 
-/* 一级菜单通用样式 */
+/* 折叠状态：向右平移，仅露出边缘 */
+.right-sidebar.collapsed {
+  transform: translateX(calc(100% - 20px));
+}
+
+/* 侧边栏标题 */
+.sidebar-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* 菜单列表 */
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  margin: 8px 0;
+}
+
+/* 一级菜单链接 */
 .sidebar-menu > li > a {
-    text-decoration: none;
-    color: #333;
-    font-size: 16px;
-    display: block;
-    padding: 8px 10px;
-    border-radius: 6px;
-    transition: 0.2s;
-    z-index: 999;
-    cursor: pointer;
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  display: block;
+  padding: 8px 10px;
+  border-radius: 6px;
+  transition: 0.2s;
+  cursor: pointer;
 }
+
 .sidebar-menu > li > a:hover {
-    background: rgba(0,0,0,0.05);
+  background: rgba(0, 0, 0, 0.05);
 }
-/* 子菜单容器样式 */
+
+/* 父级行：链接 + 展开箭头 */
+.submenu-parent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.submenu-parent > a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  transition: 0.2s;
+  flex: 1;
+  min-width: 0;
+}
+
+.submenu-parent > a:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* 展开箭头：小触控区，独立于链接 */
+.submenu-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  font-size: 10px;
+  color: #999;
+  cursor: pointer;
+  border-radius: 4px;
+  flex-shrink: 0;
+  transition: 0.2s;
+  user-select: none;
+}
+
+.submenu-arrow:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: #555;
+}
+
+/* 子菜单容器：默认折叠，通过 max-height 动画展开 */
 .submenu {
-    list-style: none;
-    padding-left: 20px; /* 子菜单缩进 */
-    margin: 4px 0;
-    max-height: 0; /* 默认折叠 */
-    overflow: hidden; /* 隐藏超出内容 */
-    transition: max-height 0.3s ease-in-out; /* 平滑动画 */
-    z-index: 999;
-    opacity: 0.8; /*增强视觉层级 */
+  list-style: none;
+  padding-left: 20px;
+  margin: 4px 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+  opacity: 0.8;
 }
-/* 修复：子菜单展开状态*/
+
+/* 子菜单展开状态 */
 .submenu.open {
-    max-height: 300px; /* 足够容纳所有子项，动画生效关键 */
-    opacity: 1;
+  max-height: 300px;
+  opacity: 1;
 }
-/* 子菜单项样式 */
+
+/* 子菜单项 */
 .submenu li a {
-    text-decoration: none;
-    color: #555; 
-    font-size: 14px; 
-    display: block;
-    padding: 6px 8px;
-    border-radius: 4px;
-    transition: 0.2s;
-    z-index: 999;
+  text-decoration: none;
+  color: #555;
+  font-size: 14px;
+  display: block;
+  padding: 6px 8px;
+  border-radius: 4px;
+  transition: 0.2s;
 }
+
 .submenu li a:hover {
-    background: rgba(0,0,0,0.03);
+  background: rgba(0, 0, 0, 0.03);
 }
-/* 切换按钮样式不变 */
+
+/* 折叠切换按钮：位于侧边栏左侧外部 */
 .toggle-btn {
-    position: absolute;
-    top: 20px;
-    left: -50px;
-    width: 40px;
-    height: 40px;
-    background: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 18px;
-    cursor: pointer;
-    z-index: 1000;
+  position: absolute;
+  top: 20px;
+  left: -50px;
+  width: 40px;
+  height: 40px;
+  background: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 1000;
 }

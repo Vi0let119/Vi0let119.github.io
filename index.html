@@ -1,122 +1,175 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Violet119的主页</title>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.2/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://code.jquery.com/ui/1.14.2/jquery-ui.js"></script>
-    <script src = "d3.v3.min.js"></script>
+    <title>Violet119</title>
+    <!-- 四种字体：DM Sans + DM Serif（亮色）/ Space Mono + Playfair Display（暗色） -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="d3.v3.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="siderbar/siderbar.css">
-    <style>
-        .touxiang{
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            position: absolute;
-            top: 8vh;
-            left: 50px;
-            border-radius: 50%;
-            z-index: 2;
-        }
-        .main-title {
-            position: absolute; 
-            top: 50px; 
-            left: 300px; 
-            color: rgb(182, 195, 230); 
-            z-index: 3; 
-            font-size: 30px;
-        }
-    </style>
-
     <script src="siderbar/sidebar.js"></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        initSidebar('sidebar-container');
-        loadRandomQuote();
-        alert("如果小屏浏览有遮挡，可以适当缩小网页喵(crlt+鼠标滚轮)");
-    });
-    </script>
-    <!-- <script>
-    $( function() {
-        $( "button, a" ).on( "click", function( event ) {
-        event.preventDefault();
-        $( "#dialog" ).dialog()
-        } );
-    } );
-  </script> -->
 </head>
 <body>
-    
     <div id="sidebar-container"></div>
-    
-    
 
-    <img class = "background" src="图片素材/搜图神器_1731042950796.png.jpg" alt="图片无法加载喵~">
-    <img class = "touxiang" src="图片素材/搜图神器_1731155695663.jpg" alt="图片无法加载喵~">
-    <h1 class="main-title">Violet119的主页</h1>
-    <h2 class = "jianjie" style="position: absolute; top: 120px; left: 300px; right: 410px; color: rgb(182, 195, 230);">
-        个人简介：本人目前是就读于上海华东师范大学计算机专业的本科生，学过一段时间的算法竞赛，到现在为止也只是一个蒟蒻，不想再花费太多时间在这上面，只是平时当作兴趣爱好随便做做题。后续想把重心转移到网站的制作和项目的开发上，学习一些实用性技能。同时本人在平时生活中比较喜欢健身，计划准备用表记录健身日期，也比较喜欢摄影会挑选一些照片放在网站上。平时会玩点游戏，玩的比较杂。偶尔看些比较出名的动漫，没有高强度追番。最喜欢的是薇尔莉特。
-    </h2>
+    <!-- 暗夜模式：纯 CSS 噪点纹理 -->
+    <div class="theme-grain" aria-hidden="true"></div>
 
-    <div class="content-wrapper">
-        <div class="block-container">
-            <h1 style="font-size: 35px; color: white; margin-bottom: 10px;">项目 projects</h1>
-            <h2 class="block_1" style="font-size: 25px; color: white;">
-                计划放置我的项目介绍和详细信息。
-                <br><br>
-                <br><br>
-                <a href="projects/project_index.html" style="color: white;">点我进入喵</a>
-            </h2>
+    <!-- 日/夜切换按钮 -->
+    <button class="theme-toggle" id="themeToggle" aria-label="切换日/夜模式" title="切换日/夜模式">
+        <span class="theme-icon theme-icon--light">☀</span>
+        <span class="theme-icon theme-icon--dark">☽</span>
+    </button>
+
+    <!-- 主内容区 -->
+    <main class="main">
+
+        <!-- ============ 头部 ============ -->
+        <header class="header">
+            <div class="avatar-wrap">
+                <img class="avatar" src="图片素材/搜图神器_1731155695663.jpg" alt="头像">
+                <!-- 暗夜：取景框十字线 -->
+                <div class="avatar-reticle" aria-hidden="true"></div>
+            </div>
+            <div class="header-text">
+                <h1 class="title">Violet<span class="title-sub">119</span></h1>
+                <p class="tags">
+                    <span>计算机科学</span><span>摄影</span><span>健身</span><span>阅读</span>
+                </p>
+                <p class="bio">
+                    就读于华东师范大学计算机专业。学过一些算法竞赛，现专注于网站开发与项目实践。平时热爱健身、摄影、阅读和动漫。
+                </p>
+            </div>
+            <!-- 暗夜：底片元信息 -->
+            <div class="film-meta" aria-hidden="true">
+                <span>FRAME 000</span><span class="fm-dot"></span>
+                <span>KODAK 5219</span><span class="fm-dot"></span>
+                <span>PUSH +1</span>
+            </div>
+        </header>
+
+        <!-- ============ 卡片网格 ============ -->
+        <div class="cards-grid">
+
+            <!-- #001 项目 -->
+            <a href="projects/project_index.html" class="card card--projects">
+                <span class="card-num">#001</span>
+                <div class="card-illo card-illo--code" aria-hidden="true">
+                    <span></span><span></span><span class="short"></span>
+                </div>
+                <div class="card-body">
+                    <span class="card-tag">Projects</span>
+                    <h2 class="card-title">项目</h2>
+                    <p class="card-desc">项目介绍和详细信息集中展示，记录开发过程中的思考与技术积累。</p>
+                </div>
+                <span class="card-arrow">→</span>
+            </a>
+
+            <!-- #002 映像 -->
+            <a href="pictures/picture_index/picture_index.html" class="card card--pictures">
+                <span class="card-num">#002</span>
+                <div class="card-illo card-illo--gallery" aria-hidden="true">
+                    <span></span><span></span><span></span>
+                </div>
+                <div class="card-body">
+                    <span class="card-tag">Pictures</span>
+                    <h2 class="card-title">映像</h2>
+                    <p class="card-desc">精选摄影作品归档。每张照片记录时间和地点，支持地图浏览。</p>
+                </div>
+                <span class="card-arrow">→</span>
+            </a>
+
+            <!-- #003 健康 -->
+            <a href="health/health_data.html" class="card card--health">
+                <span class="card-num">#003</span>
+                <div class="card-illo card-illo--pulse" aria-hidden="true">
+                    <span></span>
+                </div>
+                <div class="card-body">
+                    <span class="card-tag">Health</span>
+                    <h2 class="card-title">健康数据</h2>
+                    <p class="card-desc">体重追踪 · 睡眠监测</p>
+                </div>
+                <span class="card-arrow">→</span>
+            </a>
+
+            <!-- #004 书影分享 -->
+            <a href="sharing/sharing.html" class="card card--sharing">
+                <span class="card-num">#004</span>
+                <div class="card-illo card-illo--book" aria-hidden="true">
+                    <span></span>
+                </div>
+                <div class="card-body">
+                    <span class="card-tag">Books &amp; Movies</span>
+                    <h2 class="card-title">书影分享</h2>
+                    <p class="card-desc">读后感 · 影评 · 个人感想</p>
+                </div>
+                <span class="card-arrow">→</span>
+            </a>
+
+            <!-- #005 工具箱 -->
+            <a href="tools/tools_index.html" class="card card--tools">
+                <span class="card-num">#005</span>
+                <div class="card-illo card-illo--tools" aria-hidden="true">
+                    <span></span><span class="small"></span>
+                </div>
+                <div class="card-body">
+                    <span class="card-tag">Tools</span>
+                    <h2 class="card-title">工具箱</h2>
+                    <p class="card-desc">图片色彩分析 · GPS 坐标标记 · 图表生成器</p>
+                </div>
+                <span class="card-arrow">→</span>
+            </a>
+
         </div>
-        <div class="block-container">
-            <h1 style="font-size: 35px; color: white; margin-bottom: 10px;">图片 pictures</h1>
-            <h2 class="block_1" style="font-size: 25px; color: white;">
-                计划放置一些挑选过的摄影作品，因为服务器原因应该不会全部放进来，后续会把每次摄影的时间地点导出来做个热力图。
-                <br><br>
-                <a href="pictures/picture_index/picture_index.html" style="color: white;">点我进入喵</a>
-            </h2>
-        </div>
-        <div class="block-container">
-            <h1 style="font-size: 35px; color: white; margin-bottom: 10px;">健康数据 health data</h1>
-            <h2 class="block_1" style="font-size: 25px; color: white;">
-                本来计划放跑步路线，但是这学期锻炼主要是在健身房，还在考虑做什么内容，除了基本的体重线图。
-                <br><br>
-                <a href="health/health_data.html" style="color: white;">点我进入喵</a>
-            </h2>
-        </div>
 
-        <div class="block-container">
-            <h1 style="font-size: 35px; color: white; margin-bottom: 10px;">作品分享 books&movies</h1>
-            <h2 class="block_1" style="font-size: 25px; color: white;">
-                计划分享一些看过的不错的书或者影视作品，附加一些个人的评论和感想
-                <br><br>
-                <a href="sharing/sharing.html" style="color: white;">点我进入喵</a>
-            </h2>
+        <!-- 暗夜：卷尾标记 / 亮色：底部色带 -->
+        <div class="tail">
+            <span class="tail-text">END OF ROLL</span>
+            <span class="tail-line"></span>
+            <span class="tail-text">更多内容即将冲洗…</span>
+        </div>
+        <div class="color-strip" aria-hidden="true"></div>
 
+        <!-- ============ 名言区域 ============ -->
+        <div class="quote">
+            <div class="quote-container">
+                <div id="quoteText" class="quote-text">加载中...</div>
+                <div id="quoteAuthor" class="quote-author">—</div>
+            </div>
         </div>
 
-        <div class="block-container">
-            <h1 style="font-size: 35px; color: white; margin-bottom: 10px;">敬请期待 more blocks...</h1>
-            <h2 class="block_1" style="font-size: 25px; color: white;">
-                更多板块敬请期待，后续会继续完善和添加内容的喵~
-                <br><br>
-            </h2>
-        </div>
+    </main>
 
-        
+    <!-- 日/夜切换 + 侧边栏 + 名言加载 -->
+    <script>
+    (function() {
+        var html = document.documentElement;
+        var btn = document.getElementById('themeToggle');
 
-        
+        // 读取已保存的偏好
+        var saved = localStorage.getItem('theme');
+        if (saved === 'dark' || saved === 'light') {
+            html.setAttribute('data-theme', saved);
+        }
 
-    </div>
-    <div class="quote-section" style="z-index: 1; position: fixed; left: 0; bottom: 0; width: 95%; margin-bottom: 20px; text-align: center; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 12px 0; border-radius: 12px;">
-    <div class="quote-container">
-        <div id="quoteText" class="quote-text">加载中...</div>
-        <div id="quoteAuthor" class="quote-author">—</div>
-    </div>
-</div>
+        // 点击切换
+        btn.addEventListener('click', function() {
+            var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+        });
+
+        // 初始化侧边栏
+        initSidebar('sidebar-container');
+
+        // 加载随机名言
+        loadRandomQuote('quotes.json');
+    })();
+    </script>
 </body>
 </html>
