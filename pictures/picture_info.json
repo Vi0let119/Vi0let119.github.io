@@ -3290,20 +3290,6 @@
       "longitude": 121.402114,
       "shooting_date": "2026-06-02 00:44:14",
       "sort_order": 235
-    },
-    {
-      "filename": "_NIK2006.jpg",
-      "path": "../../图库/_NIK2006.jpg",
-      "width": 7237,
-      "height": 4815,
-      "format": "JPEG",
-      "file_size": 7734559,
-      "file_size_mb": 7.38,
-      "updated_at": "2026-06-02 18:31:42",
-      "latitude": 31.228492, 
-      "longitude": 121.402114,
-      "shooting_date": "2026-06-02 00:52:40",
-      "sort_order": 236
     }
   ]
 }

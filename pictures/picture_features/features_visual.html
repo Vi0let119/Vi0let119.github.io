@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>映像 · 视觉星图</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:ital,wght@0,300;0,400;0,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../siderbar/siderbar.css">
+    <link rel="stylesheet" href="features_visual.css">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+    <script src="umap_data.js"></script>
+</head>
+<body>
+    <div id="sidebar-container"></div>
+
+    <!-- 顶栏 -->
+    <header class="topbar">
+        <a href="../picture_index/picture_index.html" class="topbar-back">← Archive</a>
+        <h1 class="topbar-title">映 · 像 <span class="topbar-sub">视觉星图</span></h1>
+        <span class="topbar-info" id="topbarInfo"></span>
+    </header>
+
+    <!-- 主体：图例 + 星图 -->
+    <div class="main-layout">
+        <!-- 左侧图例 -->
+        <aside class="legend-panel" id="legendPanel">
+            <h3 class="legend-title">场景图例</h3>
+            <div class="legend-list" id="legendList"></div>
+        </aside>
+
+        <!-- 星图 -->
+        <main class="star-map" id="starMap">
+            <div class="chart-stage" id="chartStage"></div>
+
+            <!-- 悬浮提示 -->
+            <div class="tooltip-card" id="tooltipCard" style="display:none;">
+                <img class="tooltip-thumb" id="tooltipThumb" src="" alt="">
+                <div class="tooltip-body">
+                    <p class="tooltip-name" id="tooltipName"></p>
+                    <p class="tooltip-scene" id="tooltipScene"></p>
+                    <div class="tooltip-colors" id="tooltipColors"></div>
+                </div>
+            </div>
+
+            <!-- 刷选工具栏 -->
+            <div class="brush-bar" id="brushBar" style="display:none;">
+                <span class="brush-count" id="brushCount"></span>
+                <button class="brush-btn brush-view" id="brushViewBtn">▸ 查看选中图片</button>
+                <button class="brush-btn brush-clear" id="brushClearBtn">清除</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- 选中图集面板（底部滑出） -->
+    <section class="gallery-panel" id="galleryPanel" style="display:none;">
+        <div class="gallery-header">
+            <h2 class="gallery-title">选中图集 · <span id="galleryCount">0</span> 帧</h2>
+            <div class="gallery-controls">
+                <button class="gallery-nav" id="galleryPrev" disabled>‹ 上一页</button>
+                <span class="gallery-page" id="galleryPage">1 / 1</span>
+                <button class="gallery-nav" id="galleryNext" disabled>下一页 ›</button>
+                <button class="gallery-close-btn" id="galleryClose">× 收起</button>
+            </div>
+        </div>
+        <div class="gallery-grid" id="galleryGrid"></div>
+    </section>
+
+    <!-- 大图灯箱 -->
+    <div class="lightbox" id="lightbox" style="display:none;">
+        <button class="lightbox-close" id="lightboxClose">×</button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev">‹</button>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext">›</button>
+        <div class="lightbox-stage">
+            <img class="lightbox-img" id="lightboxImg" src="" alt="">
+        </div>
+        <footer class="lightbox-caption" id="lightboxCaption"></footer>
+    </div>
+
+    <script src="../../siderbar/sidebar.js"></script>
+    <script src="features_visual.js"></script>
+</body>
+</html>

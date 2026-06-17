@@ -231,6 +231,19 @@ body {
     color: var(--text-muted);
 }
 
+.sidebar-features-link {
+    display: inline-block;
+    margin-top: 6px;
+    font-family: var(--font-ui);
+    font-size: 0.6rem;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+.sidebar-features-link:hover { opacity: 1; }
+
 /* Sort toggle button */
 .sort-btn {
     background: rgba(24, 24, 29, 0.7);
