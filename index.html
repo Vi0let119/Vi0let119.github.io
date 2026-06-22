@@ -41,7 +41,7 @@
                     <span>计算机科学</span><span>摄影</span><span>健身</span><span>阅读</span>
                 </p>
                 <p class="bio">
-                    就读于华东师范大学计算机专业。学过一些算法竞赛，现专注于网站开发与项目实践。平时热爱健身、摄影、阅读和动漫。
+                    就读于华东师范大学计算机专业。学过一些算法竞赛，现专注于网站开发与项目实践。平时热爱健身、摄影、阅读，偶尔看些电影，动漫。
                 </p>
             </div>
             <!-- 暗夜：底片元信息 -->
@@ -159,7 +159,7 @@
 
         // 点击切换
         btn.addEventListener('click', function() {
-            var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            var next = html.getAttribute('data-theme') == 'dark' ? 'light' : 'dark';
             html.setAttribute('data-theme', next);
             localStorage.setItem('theme', next);
         });

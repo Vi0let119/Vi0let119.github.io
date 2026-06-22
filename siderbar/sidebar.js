@@ -35,6 +35,7 @@ function initSidebar(containerId, defaultCollapsed) {
           '<ul class="submenu">' +
             '<li><a href="/pictures/picture_index/picture_index.html">分页到达</a></li>' +
             '<li><a href="/pictures/picture_map/picture_map.html">地图浏览</a></li>' +
+            '<li><a href="/pictures/picture_features/features_visual.html">视觉星图</a></li>' +
           '</ul>' +
         '</li>' +
         '<li class="has-submenu">' +

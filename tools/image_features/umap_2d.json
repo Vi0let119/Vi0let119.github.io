@@ -1,0 +1,9153 @@
+[
+  {
+    "filename": "20251216-IMG_20251216_162641.jpg",
+    "x": 0.692653,
+    "y": 0.205069,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.5464,
+    "dominant_colors": [
+      {
+        "hex": "#110a03",
+        "rgb": [
+          17,
+          10,
+          3
+        ],
+        "percentage": 54.1
+      },
+      {
+        "hex": "#f8c57e",
+        "rgb": [
+          248,
+          197,
+          126
+        ],
+        "percentage": 14.4
+      },
+      {
+        "hex": "#452912",
+        "rgb": [
+          69,
+          41,
+          18
+        ],
+        "percentage": 13.2
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "person",
+        "count": 2,
+        "total_area_pct": 5.809999942779541
+      }
+    ]
+  },
+  {
+    "filename": "20251219-IMG_20251219_163210.jpg",
+    "x": 0.68679,
+    "y": 0.243783,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.5234,
+    "dominant_colors": [
+      {
+        "hex": "#1b2727",
+        "rgb": [
+          27,
+          39,
+          39
+        ],
+        "percentage": 41.1
+      },
+      {
+        "hex": "#72645b",
+        "rgb": [
+          114,
+          100,
+          91
+        ],
+        "percentage": 18.9
+      },
+      {
+        "hex": "#cab4ab",
+        "rgb": [
+          202,
+          180,
+          171
+        ],
+        "percentage": 18.2
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "car",
+        "count": 1,
+        "total_area_pct": 0.25
+      }
+    ]
+  },
+  {
+    "filename": "20251222-IMG_20251222_172335-2.jpg",
+    "x": 0.654569,
+    "y": 0.243714,
+    "scene_label": "夜景/灯饰",
+    "scene_confidence": 0.3457,
+    "dominant_colors": [
+      {
+        "hex": "#16130f",
+        "rgb": [
+          22,
+          19,
+          15
+        ],
+        "percentage": 36.8
+      },
+      {
+        "hex": "#132b33",
+        "rgb": [
+          19,
+          43,
+          51
+        ],
+        "percentage": 24.7
+      },
+      {
+        "hex": "#494846",
+        "rgb": [
+          73,
+          72,
+          70
+        ],
+        "percentage": 20.4
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "bus",
+        "count": 1,
+        "total_area_pct": 3.4700000286102295
+      },
+      {
+        "class": "person",
+        "count": 1,
+        "total_area_pct": 1.2000000476837158
+      }
+    ]
+  },
+  {
+    "filename": "20251225-IMG_20251225_164412.jpg",
+    "x": 0.588268,
+    "y": 0.250213,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.4709,
+    "dominant_colors": [
+      {
+        "hex": "#d0b0aa",
+        "rgb": [
+          208,
+          176,
+          170
+        ],
+        "percentage": 31.8
+      },
+      {
+        "hex": "#28170d",
+        "rgb": [
+          40,
+          23,
+          13
+        ],
+        "percentage": 29.7
+      },
+      {
+        "hex": "#977d79",
+        "rgb": [
+          151,
+          125,
+          121
+        ],
+        "percentage": 14.2
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "316DE73393DEF25EA64EC992E231BB83-1.jpg",
+    "x": 0.474987,
+    "y": 0.348952,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.1346,
+    "dominant_colors": [
+      {
+        "hex": "#aebfd9",
+        "rgb": [
+          174,
+          191,
+          217
+        ],
+        "percentage": 29.1
+      },
+      {
+        "hex": "#04366f",
+        "rgb": [
+          4,
+          54,
+          111
+        ],
+        "percentage": 23.1
+      },
+      {
+        "hex": "#72a5ce",
+        "rgb": [
+          114,
+          165,
+          206
+        ],
+        "percentage": 20.2
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "582873618C1CDEFB98B257F014F22FF0-1.jpg",
+    "x": 0.459106,
+    "y": 0.350225,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.3328,
+    "dominant_colors": [
+      {
+        "hex": "#658eb7",
+        "rgb": [
+          101,
+          142,
+          183
+        ],
+        "percentage": 23.4
+      },
+      {
+        "hex": "#123950",
+        "rgb": [
+          18,
+          57,
+          80
+        ],
+        "percentage": 21.5
+      },
+      {
+        "hex": "#3c6585",
+        "rgb": [
+          60,
+          101,
+          133
+        ],
+        "percentage": 19.2
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "bird",
+        "count": 1,
+        "total_area_pct": 0.14000000059604645
+      }
+    ]
+  },
+  {
+    "filename": "97EE1EEC803AD29F81CD6899CA837B60-1-2.jpg",
+    "x": 0.455701,
+    "y": 0.336844,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.2155,
+    "dominant_colors": [
+      {
+        "hex": "#718b94",
+        "rgb": [
+          113,
+          139,
+          148
+        ],
+        "percentage": 25.3
+      },
+      {
+        "hex": "#164c68",
+        "rgb": [
+          22,
+          76,
+          104
+        ],
+        "percentage": 24.5
+      },
+      {
+        "hex": "#072c3e",
+        "rgb": [
+          7,
+          44,
+          62
+        ],
+        "percentage": 23.3
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "boat",
+        "count": 1,
+        "total_area_pct": 0.6299999952316284
+      }
+    ]
+  },
+  {
+    "filename": "DSC03096-1.jpg",
+    "x": 0.151939,
+    "y": 0.290483,
+    "scene_label": "海洋/水面",
+    "scene_confidence": 0.2583,
+    "dominant_colors": [
+      {
+        "hex": "#091d15",
+        "rgb": [
+          9,
+          29,
+          21
+        ],
+        "percentage": 31.1
+      },
+      {
+        "hex": "#50776d",
+        "rgb": [
+          80,
+          119,
+          109
+        ],
+        "percentage": 22.3
+      },
+      {
+        "hex": "#244d3f",
+        "rgb": [
+          36,
+          77,
+          63
+        ],
+        "percentage": 22.2
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "DSC03102-1.jpg",
+    "x": 0.676011,
+    "y": 0.688273,
+    "scene_label": "建筑纹理/细节",
+    "scene_confidence": 0.097,
+    "dominant_colors": [
+      {
+        "hex": "#0e100c",
+        "rgb": [
+          14,
+          16,
+          12
+        ],
+        "percentage": 47.2
+      },
+      {
+        "hex": "#63492d",
+        "rgb": [
+          99,
+          73,
+          45
+        ],
+        "percentage": 18.6
+      },
+      {
+        "hex": "#c66c32",
+        "rgb": [
+          198,
+          108,
+          50
+        ],
+        "percentage": 17.3
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "DSC03107-1.jpg",
+    "x": 0.647464,
+    "y": 0.716486,
+    "scene_label": "海洋/水面",
+    "scene_confidence": 0.1873,
+    "dominant_colors": [
+      {
+        "hex": "#08262e",
+        "rgb": [
+          8,
+          38,
+          46
+        ],
+        "percentage": 42.8
+      },
+      {
+        "hex": "#0a4e68",
+        "rgb": [
+          10,
+          78,
+          104
+        ],
+        "percentage": 30.5
+      },
+      {
+        "hex": "#705f34",
+        "rgb": [
+          112,
+          95,
+          52
+        ],
+        "percentage": 10.8
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "DSC03115-1.jpg",
+    "x": 0.552045,
+    "y": 0.732951,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.5068,
+    "dominant_colors": [
+      {
+        "hex": "#172111",
+        "rgb": [
+          23,
+          33,
+          17
+        ],
+        "percentage": 46.0
+      },
+      {
+        "hex": "#4b5d30",
+        "rgb": [
+          75,
+          93,
+          48
+        ],
+        "percentage": 27.7
+      },
+      {
+        "hex": "#cbceab",
+        "rgb": [
+          203,
+          206,
+          171
+        ],
+        "percentage": 9.4
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "bear",
+        "count": 1,
+        "total_area_pct": 10.859999656677246
+      }
+    ]
+  },
+  {
+    "filename": "DSC03129-1.jpg",
+    "x": 0.118797,
+    "y": 0.283119,
+    "scene_label": "夜景/灯饰",
+    "scene_confidence": 0.1498,
+    "dominant_colors": [
+      {
+        "hex": "#10394b",
+        "rgb": [
+          16,
+          57,
+          75
+        ],
+        "percentage": 28.3
+      },
+      {
+        "hex": "#0e242c",
+        "rgb": [
+          14,
+          36,
+          44
+        ],
+        "percentage": 26.6
+      },
+      {
+        "hex": "#396c85",
+        "rgb": [
+          57,
+          108,
+          133
+        ],
+        "percentage": 16.5
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "DSC03140-1.jpg",
+    "x": 0.644073,
+    "y": 0.74049,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.1938,
+    "dominant_colors": [
+      {
+        "hex": "#1b2718",
+        "rgb": [
+          27,
+          39,
+          24
+        ],
+        "percentage": 48.3
+      },
+      {
+        "hex": "#3c5034",
+        "rgb": [
+          60,
+          80,
+          52
+        ],
+        "percentage": 22.8
+      },
+      {
+        "hex": "#739787",
+        "rgb": [
+          115,
+          151,
+          135
+        ],
+        "percentage": 13.0
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "DSC03146-1.jpg",
+    "x": 0.579308,
+    "y": 0.673271,
+    "scene_label": "建筑纹理/细节",
+    "scene_confidence": 0.1092,
+    "dominant_colors": [
+      {
+        "hex": "#0c1210",
+        "rgb": [
+          12,
+          18,
+          16
+        ],
+        "percentage": 55.8
+      },
+      {
+        "hex": "#2e3530",
+        "rgb": [
+          46,
+          53,
+          48
+        ],
+        "percentage": 20.3
+      },
+      {
+        "hex": "#5d625b",
+        "rgb": [
+          93,
+          98,
+          91
+        ],
+        "percentage": 8.6
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "DSC03158-1.jpg",
+    "x": 0.132443,
+    "y": 0.279433,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.259,
+    "dominant_colors": [
+      {
+        "hex": "#0c231d",
+        "rgb": [
+          12,
+          35,
+          29
+        ],
+        "percentage": 39.0
+      },
+      {
+        "hex": "#30483c",
+        "rgb": [
+          48,
+          72,
+          60
+        ],
+        "percentage": 21.3
+      },
+      {
+        "hex": "#616e62",
+        "rgb": [
+          97,
+          110,
+          98
+        ],
+        "percentage": 18.3
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "DSC03172-1.jpg",
+    "x": 0.618268,
+    "y": 0.670425,
+    "scene_label": "铁路/车站",
+    "scene_confidence": 0.0889,
+    "dominant_colors": [
+      {
+        "hex": "#121815",
+        "rgb": [
+          18,
+          24,
+          21
+        ],
+        "percentage": 52.6
+      },
+      {
+        "hex": "#3e4743",
+        "rgb": [
+          62,
+          71,
+          67
+        ],
+        "percentage": 25.3
+      },
+      {
+        "hex": "#928971",
+        "rgb": [
+          146,
+          137,
+          113
+        ],
+        "percentage": 13.2
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "train",
+        "count": 1,
+        "total_area_pct": 61.90999984741211
+      }
+    ]
+  },
+  {
+    "filename": "DSC03174-1.jpg",
+    "x": 0.172376,
+    "y": 0.267624,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.3423,
+    "dominant_colors": [
+      {
+        "hex": "#0b0e11",
+        "rgb": [
+          11,
+          14,
+          17
+        ],
+        "percentage": 38.8
+      },
+      {
+        "hex": "#ad7b72",
+        "rgb": [
+          173,
+          123,
+          114
+        ],
+        "percentage": 18.9
+      },
+      {
+        "hex": "#7b5855",
+        "rgb": [
+          123,
+          88,
+          85
+        ],
+        "percentage": 15.9
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "DSC03193-1.jpg",
+    "x": 0.174925,
+    "y": 0.268693,
+    "scene_label": "夜景/灯饰",
+    "scene_confidence": 0.3442,
+    "dominant_colors": [
+      {
+        "hex": "#0f110f",
+        "rgb": [
+          15,
+          17,
+          15
+        ],
+        "percentage": 39.1
+      },
+      {
+        "hex": "#1d3d5b",
+        "rgb": [
+          29,
+          61,
+          91
+        ],
+        "percentage": 19.1
+      },
+      {
+        "hex": "#4e5f76",
+        "rgb": [
+          78,
+          95,
+          118
+        ],
+        "percentage": 16.0
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "DSC03218-1.jpg",
+    "x": 0.855136,
+    "y": 0.843266,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.6631,
+    "dominant_colors": [
+      {
+        "hex": "#dbdee4",
+        "rgb": [
+          219,
+          222,
+          228
+        ],
+        "percentage": 43.0
+      },
+      {
+        "hex": "#98969b",
+        "rgb": [
+          152,
+          150,
+          155
+        ],
+        "percentage": 19.8
+      },
+      {
+        "hex": "#ccb7c5",
+        "rgb": [
+          204,
+          183,
+          197
+        ],
+        "percentage": 16.9
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "DSC03226-1.jpg",
+    "x": 0.096836,
+    "y": 0.291075,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.5669,
+    "dominant_colors": [
+      {
+        "hex": "#d4dad8",
+        "rgb": [
+          212,
+          218,
+          216
+        ],
+        "percentage": 35.3
+      },
+      {
+        "hex": "#949073",
+        "rgb": [
+          148,
+          144,
+          115
+        ],
+        "percentage": 23.9
+      },
+      {
+        "hex": "#b6b39b",
+        "rgb": [
+          182,
+          179,
+          155
+        ],
+        "percentage": 15.8
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "DSC03238-1.jpg",
+    "x": 0.874446,
+    "y": 0.841943,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.4214,
+    "dominant_colors": [
+      {
+        "hex": "#e5e1e6",
+        "rgb": [
+          229,
+          225,
+          230
+        ],
+        "percentage": 55.9
+      },
+      {
+        "hex": "#bab4b5",
+        "rgb": [
+          186,
+          180,
+          181
+        ],
+        "percentage": 23.2
+      },
+      {
+        "hex": "#9a9391",
+        "rgb": [
+          154,
+          147,
+          145
+        ],
+        "percentage": 11.1
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "DSC03239-1.jpg",
+    "x": 0.094505,
+    "y": 0.29796,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.3948,
+    "dominant_colors": [
+      {
+        "hex": "#dedbda",
+        "rgb": [
+          222,
+          219,
+          218
+        ],
+        "percentage": 29.1
+      },
+      {
+        "hex": "#525356",
+        "rgb": [
+          82,
+          83,
+          86
+        ],
+        "percentage": 20.0
+      },
+      {
+        "hex": "#323334",
+        "rgb": [
+          50,
+          51,
+          52
+        ],
+        "percentage": 18.6
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "vase",
+        "count": 1,
+        "total_area_pct": 3.4800000190734863
+      }
+    ]
+  },
+  {
+    "filename": "IMG_20240616_160940-4.jpg",
+    "x": 0.408327,
+    "y": 0.715328,
+    "scene_label": "建筑纹理/细节",
+    "scene_confidence": 0.3137,
+    "dominant_colors": [
+      {
+        "hex": "#1c261e",
+        "rgb": [
+          28,
+          38,
+          30
+        ],
+        "percentage": 39.2
+      },
+      {
+        "hex": "#761826",
+        "rgb": [
+          118,
+          24,
+          38
+        ],
+        "percentage": 27.6
+      },
+      {
+        "hex": "#c32442",
+        "rgb": [
+          195,
+          36,
+          66
+        ],
+        "percentage": 15.9
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "person",
+        "count": 2,
+        "total_area_pct": 0.9599999785423279
+      }
+    ]
+  },
+  {
+    "filename": "IMG_20240616_173717-3.jpg",
+    "x": 0.601823,
+    "y": 0.756904,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.2585,
+    "dominant_colors": [
+      {
+        "hex": "#0c1c0d",
+        "rgb": [
+          12,
+          28,
+          13
+        ],
+        "percentage": 32.3
+      },
+      {
+        "hex": "#eae7e2",
+        "rgb": [
+          234,
+          231,
+          226
+        ],
+        "percentage": 24.0
+      },
+      {
+        "hex": "#294f1d",
+        "rgb": [
+          41,
+          79,
+          29
+        ],
+        "percentage": 21.7
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20240711_151136-1.jpg",
+    "x": 0.559245,
+    "y": 0.463288,
+    "scene_label": "高山/山峰",
+    "scene_confidence": 0.168,
+    "dominant_colors": [
+      {
+        "hex": "#1f261c",
+        "rgb": [
+          31,
+          38,
+          28
+        ],
+        "percentage": 29.1
+      },
+      {
+        "hex": "#a6c4d3",
+        "rgb": [
+          166,
+          196,
+          211
+        ],
+        "percentage": 23.5
+      },
+      {
+        "hex": "#84949b",
+        "rgb": [
+          132,
+          148,
+          155
+        ],
+        "percentage": 17.4
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20240711_151152-1.jpg",
+    "x": 0.51139,
+    "y": 0.4091,
+    "scene_label": "高山/山峰",
+    "scene_confidence": 0.3076,
+    "dominant_colors": [
+      {
+        "hex": "#243e41",
+        "rgb": [
+          36,
+          62,
+          65
+        ],
+        "percentage": 23.1
+      },
+      {
+        "hex": "#c5c8d1",
+        "rgb": [
+          197,
+          200,
+          209
+        ],
+        "percentage": 22.2
+      },
+      {
+        "hex": "#455765",
+        "rgb": [
+          69,
+          87,
+          101
+        ],
+        "percentage": 19.4
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "person",
+        "count": 1,
+        "total_area_pct": 0.14000000059604645
+      }
+    ]
+  },
+  {
+    "filename": "IMG_20240712_163715-1.jpg",
+    "x": 0.459539,
+    "y": 0.386524,
+    "scene_label": "光斑/散景",
+    "scene_confidence": 0.1302,
+    "dominant_colors": [
+      {
+        "hex": "#051e10",
+        "rgb": [
+          5,
+          30,
+          16
+        ],
+        "percentage": 33.0
+      },
+      {
+        "hex": "#0294c4",
+        "rgb": [
+          2,
+          148,
+          196
+        ],
+        "percentage": 22.9
+      },
+      {
+        "hex": "#0b5e7b",
+        "rgb": [
+          11,
+          94,
+          123
+        ],
+        "percentage": 20.0
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20240908_175859-1.jpg",
+    "x": 0.756423,
+    "y": 0.571966,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.1534,
+    "dominant_colors": [
+      {
+        "hex": "#e1e3e7",
+        "rgb": [
+          225,
+          227,
+          231
+        ],
+        "percentage": 43.1
+      },
+      {
+        "hex": "#0f1a0b",
+        "rgb": [
+          15,
+          26,
+          11
+        ],
+        "percentage": 26.7
+      },
+      {
+        "hex": "#a3a8ad",
+        "rgb": [
+          163,
+          168,
+          173
+        ],
+        "percentage": 10.9
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20240909_175947-2.jpg",
+    "x": 0.603968,
+    "y": 0.26658,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.3818,
+    "dominant_colors": [
+      {
+        "hex": "#222221",
+        "rgb": [
+          34,
+          34,
+          33
+        ],
+        "percentage": 25.5
+      },
+      {
+        "hex": "#6b8ab8",
+        "rgb": [
+          107,
+          138,
+          184
+        ],
+        "percentage": 22.8
+      },
+      {
+        "hex": "#9ea5af",
+        "rgb": [
+          158,
+          165,
+          175
+        ],
+        "percentage": 21.1
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20250831_123551-1.jpg",
+    "x": 0.423482,
+    "y": 0.394766,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.1571,
+    "dominant_colors": [
+      {
+        "hex": "#152b2a",
+        "rgb": [
+          21,
+          43,
+          42
+        ],
+        "percentage": 29.9
+      },
+      {
+        "hex": "#c4ced3",
+        "rgb": [
+          196,
+          206,
+          211
+        ],
+        "percentage": 23.3
+      },
+      {
+        "hex": "#345e6d",
+        "rgb": [
+          52,
+          94,
+          109
+        ],
+        "percentage": 20.7
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "person",
+        "count": 1,
+        "total_area_pct": 2.0999999046325684
+      }
+    ]
+  },
+  {
+    "filename": "IMG_20250831_131448-1.jpg",
+    "x": 0.419391,
+    "y": 0.401965,
+    "scene_label": "海洋/水面",
+    "scene_confidence": 0.1289,
+    "dominant_colors": [
+      {
+        "hex": "#051f30",
+        "rgb": [
+          5,
+          31,
+          48
+        ],
+        "percentage": 28.2
+      },
+      {
+        "hex": "#0375c3",
+        "rgb": [
+          3,
+          117,
+          195
+        ],
+        "percentage": 20.4
+      },
+      {
+        "hex": "#bcc7ce",
+        "rgb": [
+          188,
+          199,
+          206
+        ],
+        "percentage": 19.1
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20250831_133319-1.jpg",
+    "x": 0.382957,
+    "y": 0.389866,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.1907,
+    "dominant_colors": [
+      {
+        "hex": "#a0c0cd",
+        "rgb": [
+          160,
+          192,
+          205
+        ],
+        "percentage": 28.2
+      },
+      {
+        "hex": "#5f898d",
+        "rgb": [
+          95,
+          137,
+          141
+        ],
+        "percentage": 22.9
+      },
+      {
+        "hex": "#2c5455",
+        "rgb": [
+          44,
+          84,
+          85
+        ],
+        "percentage": 21.6
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20250831_134932-1.jpg",
+    "x": 0.431237,
+    "y": 0.404218,
+    "scene_label": "高山/山峰",
+    "scene_confidence": 0.1132,
+    "dominant_colors": [
+      {
+        "hex": "#6691b3",
+        "rgb": [
+          102,
+          145,
+          179
+        ],
+        "percentage": 23.5
+      },
+      {
+        "hex": "#097dbc",
+        "rgb": [
+          9,
+          125,
+          188
+        ],
+        "percentage": 23.2
+      },
+      {
+        "hex": "#2a5d78",
+        "rgb": [
+          42,
+          93,
+          120
+        ],
+        "percentage": 22.6
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20251130_093001-1.jpg",
+    "x": 0.391952,
+    "y": 0.655441,
+    "scene_label": "建筑纹理/细节",
+    "scene_confidence": 0.114,
+    "dominant_colors": [
+      {
+        "hex": "#2b2f23",
+        "rgb": [
+          43,
+          47,
+          35
+        ],
+        "percentage": 29.0
+      },
+      {
+        "hex": "#505439",
+        "rgb": [
+          80,
+          84,
+          57
+        ],
+        "percentage": 27.5
+      },
+      {
+        "hex": "#77784c",
+        "rgb": [
+          119,
+          120,
+          76
+        ],
+        "percentage": 20.6
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20251212_100241-1.jpg",
+    "x": 0.667541,
+    "y": 0.265267,
+    "scene_label": "街景/道路",
+    "scene_confidence": 0.1931,
+    "dominant_colors": [
+      {
+        "hex": "#2c383a",
+        "rgb": [
+          44,
+          56,
+          58
+        ],
+        "percentage": 43.8
+      },
+      {
+        "hex": "#96bdf2",
+        "rgb": [
+          150,
+          189,
+          242
+        ],
+        "percentage": 27.4
+      },
+      {
+        "hex": "#118bea",
+        "rgb": [
+          17,
+          139,
+          234
+        ],
+        "percentage": 12.6
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20251216_162641-1.jpg",
+    "x": 0.670837,
+    "y": 0.204472,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.4434,
+    "dominant_colors": [
+      {
+        "hex": "#070402",
+        "rgb": [
+          7,
+          4,
+          2
+        ],
+        "percentage": 62.5
+      },
+      {
+        "hex": "#382116",
+        "rgb": [
+          56,
+          33,
+          22
+        ],
+        "percentage": 11.4
+      },
+      {
+        "hex": "#835f38",
+        "rgb": [
+          131,
+          95,
+          56
+        ],
+        "percentage": 10.8
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "person",
+        "count": 2,
+        "total_area_pct": 6.699999809265137
+      },
+      {
+        "class": "car",
+        "count": 1,
+        "total_area_pct": 1.2999999523162842
+      }
+    ]
+  },
+  {
+    "filename": "IMG_20251219_163023-1.jpg",
+    "x": 0.647374,
+    "y": 0.255562,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.3938,
+    "dominant_colors": [
+      {
+        "hex": "#363430",
+        "rgb": [
+          54,
+          52,
+          48
+        ],
+        "percentage": 34.9
+      },
+      {
+        "hex": "#dad0cc",
+        "rgb": [
+          218,
+          208,
+          204
+        ],
+        "percentage": 22.0
+      },
+      {
+        "hex": "#5a696b",
+        "rgb": [
+          90,
+          105,
+          107
+        ],
+        "percentage": 19.6
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20251220_162649-1.jpg",
+    "x": 0.386335,
+    "y": 0.605771,
+    "scene_label": "建筑纹理/细节",
+    "scene_confidence": 0.102,
+    "dominant_colors": [
+      {
+        "hex": "#63543f",
+        "rgb": [
+          99,
+          84,
+          63
+        ],
+        "percentage": 28.4
+      },
+      {
+        "hex": "#3c3819",
+        "rgb": [
+          60,
+          56,
+          25
+        ],
+        "percentage": 23.7
+      },
+      {
+        "hex": "#c1b9b9",
+        "rgb": [
+          193,
+          185,
+          185
+        ],
+        "percentage": 21.2
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "bicycle",
+        "count": 1,
+        "total_area_pct": 0.9599999785423279
+      }
+    ]
+  },
+  {
+    "filename": "IMG_20251222_172335-1.jpg",
+    "x": 0.669451,
+    "y": 0.240316,
+    "scene_label": "夜景/灯饰",
+    "scene_confidence": 0.3491,
+    "dominant_colors": [
+      {
+        "hex": "#151b13",
+        "rgb": [
+          21,
+          27,
+          19
+        ],
+        "percentage": 44.5
+      },
+      {
+        "hex": "#055558",
+        "rgb": [
+          5,
+          85,
+          88
+        ],
+        "percentage": 26.0
+      },
+      {
+        "hex": "#628588",
+        "rgb": [
+          98,
+          133,
+          136
+        ],
+        "percentage": 10.6
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "person",
+        "count": 1,
+        "total_area_pct": 1.2000000476837158
+      }
+    ]
+  },
+  {
+    "filename": "IMG_20251225_164412-1.jpg",
+    "x": 0.600118,
+    "y": 0.237963,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.3667,
+    "dominant_colors": [
+      {
+        "hex": "#1b1d19",
+        "rgb": [
+          27,
+          29,
+          25
+        ],
+        "percentage": 32.3
+      },
+      {
+        "hex": "#c9b6b1",
+        "rgb": [
+          201,
+          182,
+          177
+        ],
+        "percentage": 25.9
+      },
+      {
+        "hex": "#898186",
+        "rgb": [
+          137,
+          129,
+          134
+        ],
+        "percentage": 15.8
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20251227_085713-1.jpg",
+    "x": 0.415546,
+    "y": 0.643968,
+    "scene_label": "光斑/散景",
+    "scene_confidence": 0.0952,
+    "dominant_colors": [
+      {
+        "hex": "#2a3031",
+        "rgb": [
+          42,
+          48,
+          49
+        ],
+        "percentage": 30.6
+      },
+      {
+        "hex": "#3e5b59",
+        "rgb": [
+          62,
+          91,
+          89
+        ],
+        "percentage": 29.6
+      },
+      {
+        "hex": "#95824e",
+        "rgb": [
+          149,
+          130,
+          78
+        ],
+        "percentage": 14.7
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260124_161347-1.jpg",
+    "x": 0.377222,
+    "y": 0.387448,
+    "scene_label": "海洋/水面",
+    "scene_confidence": 0.1198,
+    "dominant_colors": [
+      {
+        "hex": "#8899a4",
+        "rgb": [
+          136,
+          153,
+          164
+        ],
+        "percentage": 32.1
+      },
+      {
+        "hex": "#5a7b7f",
+        "rgb": [
+          90,
+          123,
+          127
+        ],
+        "percentage": 24.1
+      },
+      {
+        "hex": "#3d5c5c",
+        "rgb": [
+          61,
+          92,
+          92
+        ],
+        "percentage": 21.4
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260201_085945_1-1.jpg",
+    "x": 0.704513,
+    "y": 0.224497,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.447,
+    "dominant_colors": [
+      {
+        "hex": "#0f0f10",
+        "rgb": [
+          15,
+          15,
+          16
+        ],
+        "percentage": 74.5
+      },
+      {
+        "hex": "#76645e",
+        "rgb": [
+          118,
+          100,
+          94
+        ],
+        "percentage": 14.3
+      },
+      {
+        "hex": "#3e302f",
+        "rgb": [
+          62,
+          48,
+          47
+        ],
+        "percentage": 6.3
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260201_090133(1)-1.jpg",
+    "x": 0.298253,
+    "y": 0.4387,
+    "scene_label": "街景/道路",
+    "scene_confidence": 0.1003,
+    "dominant_colors": [
+      {
+        "hex": "#122622",
+        "rgb": [
+          18,
+          38,
+          34
+        ],
+        "percentage": 40.4
+      },
+      {
+        "hex": "#265150",
+        "rgb": [
+          38,
+          81,
+          80
+        ],
+        "percentage": 23.1
+      },
+      {
+        "hex": "#a6c4df",
+        "rgb": [
+          166,
+          196,
+          223
+        ],
+        "percentage": 18.2
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "umbrella",
+        "count": 1,
+        "total_area_pct": 0.5699999928474426
+      }
+    ]
+  },
+  {
+    "filename": "IMG_20260201_090206-1.jpg",
+    "x": 0.353857,
+    "y": 0.433816,
+    "scene_label": "街景/道路",
+    "scene_confidence": 0.2061,
+    "dominant_colors": [
+      {
+        "hex": "#1e1b1a",
+        "rgb": [
+          30,
+          27,
+          26
+        ],
+        "percentage": 40.4
+      },
+      {
+        "hex": "#a2aaa3",
+        "rgb": [
+          162,
+          170,
+          163
+        ],
+        "percentage": 16.3
+      },
+      {
+        "hex": "#6a8883",
+        "rgb": [
+          106,
+          136,
+          131
+        ],
+        "percentage": 15.5
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260201_091528-1.jpg",
+    "x": 0.711835,
+    "y": 0.210822,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.2219,
+    "dominant_colors": [
+      {
+        "hex": "#0a0f0e",
+        "rgb": [
+          10,
+          15,
+          14
+        ],
+        "percentage": 59.2
+      },
+      {
+        "hex": "#203136",
+        "rgb": [
+          32,
+          49,
+          54
+        ],
+        "percentage": 14.2
+      },
+      {
+        "hex": "#ebc8c6",
+        "rgb": [
+          235,
+          200,
+          198
+        ],
+        "percentage": 10.4
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260202_150828(1)-1.jpg",
+    "x": 0.025777,
+    "y": 0.508924,
+    "scene_label": "建筑纹理/细节",
+    "scene_confidence": 0.2322,
+    "dominant_colors": [
+      {
+        "hex": "#10140a",
+        "rgb": [
+          16,
+          20,
+          10
+        ],
+        "percentage": 29.8
+      },
+      {
+        "hex": "#25302c",
+        "rgb": [
+          37,
+          48,
+          44
+        ],
+        "percentage": 22.3
+      },
+      {
+        "hex": "#90bbc6",
+        "rgb": [
+          144,
+          187,
+          198
+        ],
+        "percentage": 19.6
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260206_113453-5.jpg",
+    "x": 0.603065,
+    "y": 0.859976,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.3374,
+    "dominant_colors": [
+      {
+        "hex": "#1f1611",
+        "rgb": [
+          31,
+          22,
+          17
+        ],
+        "percentage": 46.8
+      },
+      {
+        "hex": "#5c3734",
+        "rgb": [
+          92,
+          55,
+          52
+        ],
+        "percentage": 18.5
+      },
+      {
+        "hex": "#e9a1b4",
+        "rgb": [
+          233,
+          161,
+          180
+        ],
+        "percentage": 14.6
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260206_113552-11.jpg",
+    "x": 0.022237,
+    "y": 0.380249,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.6118,
+    "dominant_colors": [
+      {
+        "hex": "#1e1413",
+        "rgb": [
+          30,
+          20,
+          19
+        ],
+        "percentage": 40.6
+      },
+      {
+        "hex": "#591e3d",
+        "rgb": [
+          89,
+          30,
+          61
+        ],
+        "percentage": 28.5
+      },
+      {
+        "hex": "#c12094",
+        "rgb": [
+          193,
+          32,
+          148
+        ],
+        "percentage": 13.5
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "potted plant",
+        "count": 1,
+        "total_area_pct": 71.62999725341797
+      }
+    ]
+  },
+  {
+    "filename": "IMG_20260206_113859-12.jpg",
+    "x": 0.825605,
+    "y": 0.864884,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.5752,
+    "dominant_colors": [
+      {
+        "hex": "#b8c7e1",
+        "rgb": [
+          184,
+          199,
+          225
+        ],
+        "percentage": 34.3
+      },
+      {
+        "hex": "#434a62",
+        "rgb": [
+          67,
+          74,
+          98
+        ],
+        "percentage": 27.9
+      },
+      {
+        "hex": "#4995c2",
+        "rgb": [
+          73,
+          149,
+          194
+        ],
+        "percentage": 16.9
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260206_113943-6.jpg",
+    "x": 0.55469,
+    "y": 0.77363,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.3083,
+    "dominant_colors": [
+      {
+        "hex": "#1d1810",
+        "rgb": [
+          29,
+          24,
+          16
+        ],
+        "percentage": 31.5
+      },
+      {
+        "hex": "#4a4435",
+        "rgb": [
+          74,
+          68,
+          53
+        ],
+        "percentage": 23.5
+      },
+      {
+        "hex": "#7d8b8d",
+        "rgb": [
+          125,
+          139,
+          141
+        ],
+        "percentage": 23.5
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260206_114932-7.jpg",
+    "x": 0.39969,
+    "y": 0.716245,
+    "scene_label": "建筑纹理/细节",
+    "scene_confidence": 0.1028,
+    "dominant_colors": [
+      {
+        "hex": "#18160a",
+        "rgb": [
+          24,
+          22,
+          10
+        ],
+        "percentage": 37.0
+      },
+      {
+        "hex": "#40311f",
+        "rgb": [
+          64,
+          49,
+          31
+        ],
+        "percentage": 32.7
+      },
+      {
+        "hex": "#785134",
+        "rgb": [
+          120,
+          81,
+          52
+        ],
+        "percentage": 13.6
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260206_114933-8.jpg",
+    "x": 0.071174,
+    "y": 0.485786,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.3733,
+    "dominant_colors": [
+      {
+        "hex": "#221614",
+        "rgb": [
+          34,
+          22,
+          20
+        ],
+        "percentage": 46.9
+      },
+      {
+        "hex": "#59382e",
+        "rgb": [
+          89,
+          56,
+          46
+        ],
+        "percentage": 24.3
+      },
+      {
+        "hex": "#876768",
+        "rgb": [
+          135,
+          103,
+          104
+        ],
+        "percentage": 11.5
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260206_115030-13.jpg",
+    "x": 0.397252,
+    "y": 0.751657,
+    "scene_label": "建筑纹理/细节",
+    "scene_confidence": 0.2325,
+    "dominant_colors": [
+      {
+        "hex": "#1f1f0a",
+        "rgb": [
+          31,
+          31,
+          10
+        ],
+        "percentage": 44.1
+      },
+      {
+        "hex": "#69601b",
+        "rgb": [
+          105,
+          96,
+          27
+        ],
+        "percentage": 20.0
+      },
+      {
+        "hex": "#bfba1e",
+        "rgb": [
+          191,
+          186,
+          30
+        ],
+        "percentage": 12.8
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "umbrella",
+        "count": 2,
+        "total_area_pct": 19.56999969482422
+      }
+    ]
+  },
+  {
+    "filename": "IMG_20260206_115412-14.jpg",
+    "x": 0.049227,
+    "y": 0.351865,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.2876,
+    "dominant_colors": [
+      {
+        "hex": "#05496f",
+        "rgb": [
+          5,
+          73,
+          111
+        ],
+        "percentage": 37.0
+      },
+      {
+        "hex": "#0a88bf",
+        "rgb": [
+          10,
+          136,
+          191
+        ],
+        "percentage": 21.5
+      },
+      {
+        "hex": "#1e2621",
+        "rgb": [
+          30,
+          38,
+          33
+        ],
+        "percentage": 20.8
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260206_141942-61.jpg",
+    "x": 0.153231,
+    "y": 0.385906,
+    "scene_label": "海洋/水面",
+    "scene_confidence": 0.1672,
+    "dominant_colors": [
+      {
+        "hex": "#889391",
+        "rgb": [
+          136,
+          147,
+          145
+        ],
+        "percentage": 29.8
+      },
+      {
+        "hex": "#5b6e6d",
+        "rgb": [
+          91,
+          110,
+          109
+        ],
+        "percentage": 25.3
+      },
+      {
+        "hex": "#234a4d",
+        "rgb": [
+          35,
+          74,
+          77
+        ],
+        "percentage": 24.4
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "bird",
+        "count": 3,
+        "total_area_pct": 0.550000011920929
+      }
+    ]
+  },
+  {
+    "filename": "IMG_20260206_143944-15.jpg",
+    "x": 0.009975,
+    "y": 0.488372,
+    "scene_label": "建筑纹理/细节",
+    "scene_confidence": 0.29,
+    "dominant_colors": [
+      {
+        "hex": "#131910",
+        "rgb": [
+          19,
+          25,
+          16
+        ],
+        "percentage": 37.6
+      },
+      {
+        "hex": "#3c4826",
+        "rgb": [
+          60,
+          72,
+          38
+        ],
+        "percentage": 23.2
+      },
+      {
+        "hex": "#7a794f",
+        "rgb": [
+          122,
+          121,
+          79
+        ],
+        "percentage": 14.9
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260206_144241(1)-9.jpg",
+    "x": 0.556345,
+    "y": 0.848294,
+    "scene_label": "街景/道路",
+    "scene_confidence": 0.2139,
+    "dominant_colors": [
+      {
+        "hex": "#1e1c19",
+        "rgb": [
+          30,
+          28,
+          25
+        ],
+        "percentage": 33.6
+      },
+      {
+        "hex": "#523b3a",
+        "rgb": [
+          82,
+          59,
+          58
+        ],
+        "percentage": 22.3
+      },
+      {
+        "hex": "#8d5a5f",
+        "rgb": [
+          141,
+          90,
+          95
+        ],
+        "percentage": 17.5
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260206_144344-16.jpg",
+    "x": 0.909546,
+    "y": 0.808596,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.4373,
+    "dominant_colors": [
+      {
+        "hex": "#0575b9",
+        "rgb": [
+          5,
+          117,
+          185
+        ],
+        "percentage": 29.9
+      },
+      {
+        "hex": "#b3c3e0",
+        "rgb": [
+          179,
+          195,
+          224
+        ],
+        "percentage": 29.6
+      },
+      {
+        "hex": "#6798c6",
+        "rgb": [
+          103,
+          152,
+          198
+        ],
+        "percentage": 21.2
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260206_144648-17.jpg",
+    "x": 0.544294,
+    "y": 0.794601,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.2617,
+    "dominant_colors": [
+      {
+        "hex": "#0d1b0c",
+        "rgb": [
+          13,
+          27,
+          12
+        ],
+        "percentage": 38.4
+      },
+      {
+        "hex": "#6f774f",
+        "rgb": [
+          111,
+          119,
+          79
+        ],
+        "percentage": 19.5
+      },
+      {
+        "hex": "#3c4b2b",
+        "rgb": [
+          60,
+          75,
+          43
+        ],
+        "percentage": 19.5
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260206_144802-10.jpg",
+    "x": 0.555381,
+    "y": 0.847573,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.3911,
+    "dominant_colors": [
+      {
+        "hex": "#5c463b",
+        "rgb": [
+          92,
+          70,
+          59
+        ],
+        "percentage": 26.5
+      },
+      {
+        "hex": "#8e675a",
+        "rgb": [
+          142,
+          103,
+          90
+        ],
+        "percentage": 21.3
+      },
+      {
+        "hex": "#c59587",
+        "rgb": [
+          197,
+          149,
+          135
+        ],
+        "percentage": 18.0
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260206_145534-18.jpg",
+    "x": 0.880732,
+    "y": 0.884338,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.2996,
+    "dominant_colors": [
+      {
+        "hex": "#ced9e5",
+        "rgb": [
+          206,
+          217,
+          229
+        ],
+        "percentage": 31.6
+      },
+      {
+        "hex": "#667c8e",
+        "rgb": [
+          102,
+          124,
+          142
+        ],
+        "percentage": 23.8
+      },
+      {
+        "hex": "#89c1e0",
+        "rgb": [
+          137,
+          193,
+          224
+        ],
+        "percentage": 20.5
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "kite",
+        "count": 2,
+        "total_area_pct": 17.260000228881836
+      }
+    ]
+  },
+  {
+    "filename": "IMG_20260206_150037-19.jpg",
+    "x": 0.422192,
+    "y": 0.780877,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.2922,
+    "dominant_colors": [
+      {
+        "hex": "#272a2c",
+        "rgb": [
+          39,
+          42,
+          44
+        ],
+        "percentage": 28.2
+      },
+      {
+        "hex": "#6e5860",
+        "rgb": [
+          110,
+          88,
+          96
+        ],
+        "percentage": 24.3
+      },
+      {
+        "hex": "#c5ccc8",
+        "rgb": [
+          197,
+          204,
+          200
+        ],
+        "percentage": 18.0
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260206_150751-1.jpg",
+    "x": 0.360076,
+    "y": 0.775792,
+    "scene_label": "建筑纹理/细节",
+    "scene_confidence": 0.1249,
+    "dominant_colors": [
+      {
+        "hex": "#2b2b35",
+        "rgb": [
+          43,
+          43,
+          53
+        ],
+        "percentage": 38.0
+      },
+      {
+        "hex": "#dceade",
+        "rgb": [
+          220,
+          234,
+          222
+        ],
+        "percentage": 22.1
+      },
+      {
+        "hex": "#473d4d",
+        "rgb": [
+          71,
+          61,
+          77
+        ],
+        "percentage": 18.8
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260206_150944-21.jpg",
+    "x": 0.05444,
+    "y": 0.477829,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.2064,
+    "dominant_colors": [
+      {
+        "hex": "#120d09",
+        "rgb": [
+          18,
+          13,
+          9
+        ],
+        "percentage": 54.9
+      },
+      {
+        "hex": "#502b15",
+        "rgb": [
+          80,
+          43,
+          21
+        ],
+        "percentage": 18.8
+      },
+      {
+        "hex": "#905238",
+        "rgb": [
+          144,
+          82,
+          56
+        ],
+        "percentage": 12.7
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260206_152920-22.jpg",
+    "x": 0.027423,
+    "y": 0.44938,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.3442,
+    "dominant_colors": [
+      {
+        "hex": "#082c21",
+        "rgb": [
+          8,
+          44,
+          33
+        ],
+        "percentage": 38.0
+      },
+      {
+        "hex": "#24572b",
+        "rgb": [
+          36,
+          87,
+          43
+        ],
+        "percentage": 24.3
+      },
+      {
+        "hex": "#65883d",
+        "rgb": [
+          101,
+          136,
+          61
+        ],
+        "percentage": 15.0
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260206_153503-23.jpg",
+    "x": 0.36841,
+    "y": 0.778471,
+    "scene_label": "建筑纹理/细节",
+    "scene_confidence": 0.1912,
+    "dominant_colors": [
+      {
+        "hex": "#b3c2c3",
+        "rgb": [
+          179,
+          194,
+          195
+        ],
+        "percentage": 24.2
+      },
+      {
+        "hex": "#152529",
+        "rgb": [
+          21,
+          37,
+          41
+        ],
+        "percentage": 23.8
+      },
+      {
+        "hex": "#363d3f",
+        "rgb": [
+          54,
+          61,
+          63
+        ],
+        "percentage": 22.2
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "boat",
+        "count": 1,
+        "total_area_pct": 49.09000015258789
+      },
+      {
+        "class": "person",
+        "count": 1,
+        "total_area_pct": 1.2400000095367432
+      }
+    ]
+  },
+  {
+    "filename": "IMG_20260206_153658-24.jpg",
+    "x": 0.464247,
+    "y": 0.746525,
+    "scene_label": "建筑纹理/细节",
+    "scene_confidence": 0.2075,
+    "dominant_colors": [
+      {
+        "hex": "#0c1d13",
+        "rgb": [
+          12,
+          29,
+          19
+        ],
+        "percentage": 55.6
+      },
+      {
+        "hex": "#41522f",
+        "rgb": [
+          65,
+          82,
+          47
+        ],
+        "percentage": 16.8
+      },
+      {
+        "hex": "#dee1dc",
+        "rgb": [
+          222,
+          225,
+          220
+        ],
+        "percentage": 14.2
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260206_153814-25.jpg",
+    "x": 0.538514,
+    "y": 0.747141,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.2031,
+    "dominant_colors": [
+      {
+        "hex": "#151d14",
+        "rgb": [
+          21,
+          29,
+          20
+        ],
+        "percentage": 65.3
+      },
+      {
+        "hex": "#3c462b",
+        "rgb": [
+          60,
+          70,
+          43
+        ],
+        "percentage": 13.7
+      },
+      {
+        "hex": "#76774c",
+        "rgb": [
+          118,
+          119,
+          76
+        ],
+        "percentage": 8.4
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260206_154001-26.jpg",
+    "x": 0.358052,
+    "y": 0.767282,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.1985,
+    "dominant_colors": [
+      {
+        "hex": "#141c23",
+        "rgb": [
+          20,
+          28,
+          35
+        ],
+        "percentage": 42.7
+      },
+      {
+        "hex": "#d1d5d2",
+        "rgb": [
+          209,
+          213,
+          210
+        ],
+        "percentage": 18.5
+      },
+      {
+        "hex": "#433f48",
+        "rgb": [
+          67,
+          63,
+          72
+        ],
+        "percentage": 13.9
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260206_154308-27.jpg",
+    "x": 0.008501,
+    "y": 0.466056,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.2186,
+    "dominant_colors": [
+      {
+        "hex": "#2d2e17",
+        "rgb": [
+          45,
+          46,
+          23
+        ],
+        "percentage": 53.6
+      },
+      {
+        "hex": "#656425",
+        "rgb": [
+          101,
+          100,
+          37
+        ],
+        "percentage": 20.9
+      },
+      {
+        "hex": "#ad9b6c",
+        "rgb": [
+          173,
+          155,
+          108
+        ],
+        "percentage": 11.8
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260206_154613-28.jpg",
+    "x": 0.343988,
+    "y": 0.760778,
+    "scene_label": "建筑纹理/细节",
+    "scene_confidence": 0.2172,
+    "dominant_colors": [
+      {
+        "hex": "#060508",
+        "rgb": [
+          6,
+          5,
+          8
+        ],
+        "percentage": 43.2
+      },
+      {
+        "hex": "#8b9cd4",
+        "rgb": [
+          139,
+          156,
+          212
+        ],
+        "percentage": 17.4
+      },
+      {
+        "hex": "#7a6372",
+        "rgb": [
+          122,
+          99,
+          114
+        ],
+        "percentage": 14.9
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260206_154714-1.jpg",
+    "x": 0.0,
+    "y": 0.481391,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.252,
+    "dominant_colors": [
+      {
+        "hex": "#242d1f",
+        "rgb": [
+          36,
+          45,
+          31
+        ],
+        "percentage": 46.0
+      },
+      {
+        "hex": "#515f27",
+        "rgb": [
+          81,
+          95,
+          39
+        ],
+        "percentage": 24.0
+      },
+      {
+        "hex": "#87970d",
+        "rgb": [
+          135,
+          151,
+          13
+        ],
+        "percentage": 13.0
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260206_175716-38.jpg",
+    "x": 0.836966,
+    "y": 0.474678,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.3245,
+    "dominant_colors": [
+      {
+        "hex": "#d49f90",
+        "rgb": [
+          212,
+          159,
+          144
+        ],
+        "percentage": 28.2
+      },
+      {
+        "hex": "#a97b70",
+        "rgb": [
+          169,
+          123,
+          112
+        ],
+        "percentage": 23.7
+      },
+      {
+        "hex": "#573d31",
+        "rgb": [
+          87,
+          61,
+          49
+        ],
+        "percentage": 21.3
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260206_175906-39.jpg",
+    "x": 0.174093,
+    "y": 0.392483,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.4021,
+    "dominant_colors": [
+      {
+        "hex": "#593726",
+        "rgb": [
+          89,
+          55,
+          38
+        ],
+        "percentage": 40.4
+      },
+      {
+        "hex": "#302015",
+        "rgb": [
+          48,
+          32,
+          21
+        ],
+        "percentage": 34.7
+      },
+      {
+        "hex": "#9b5624",
+        "rgb": [
+          155,
+          86,
+          36
+        ],
+        "percentage": 19.9
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "bird",
+        "count": 1,
+        "total_area_pct": 0.05000000074505806
+      }
+    ]
+  },
+  {
+    "filename": "IMG_20260206_175933-33.jpg",
+    "x": 0.845063,
+    "y": 0.539211,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.5791,
+    "dominant_colors": [
+      {
+        "hex": "#c87e42",
+        "rgb": [
+          200,
+          126,
+          66
+        ],
+        "percentage": 33.7
+      },
+      {
+        "hex": "#946040",
+        "rgb": [
+          148,
+          96,
+          64
+        ],
+        "percentage": 26.7
+      },
+      {
+        "hex": "#674024",
+        "rgb": [
+          103,
+          64,
+          36
+        ],
+        "percentage": 25.0
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260206_180011-34.jpg",
+    "x": 0.79328,
+    "y": 0.402976,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.3953,
+    "dominant_colors": [
+      {
+        "hex": "#2a1e1c",
+        "rgb": [
+          42,
+          30,
+          28
+        ],
+        "percentage": 43.9
+      },
+      {
+        "hex": "#522e22",
+        "rgb": [
+          82,
+          46,
+          34
+        ],
+        "percentage": 30.5
+      },
+      {
+        "hex": "#8a4529",
+        "rgb": [
+          138,
+          69,
+          41
+        ],
+        "percentage": 19.4
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260206_180249-1.jpg",
+    "x": 0.840526,
+    "y": 0.465246,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.394,
+    "dominant_colors": [
+      {
+        "hex": "#865641",
+        "rgb": [
+          134,
+          86,
+          65
+        ],
+        "percentage": 29.6
+      },
+      {
+        "hex": "#28251f",
+        "rgb": [
+          40,
+          37,
+          31
+        ],
+        "percentage": 25.8
+      },
+      {
+        "hex": "#624234",
+        "rgb": [
+          98,
+          66,
+          52
+        ],
+        "percentage": 20.3
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260206_181126-35.jpg",
+    "x": 0.886236,
+    "y": 0.566281,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.4995,
+    "dominant_colors": [
+      {
+        "hex": "#4f3b36",
+        "rgb": [
+          79,
+          59,
+          54
+        ],
+        "percentage": 35.7
+      },
+      {
+        "hex": "#32251e",
+        "rgb": [
+          50,
+          37,
+          30
+        ],
+        "percentage": 30.2
+      },
+      {
+        "hex": "#694535",
+        "rgb": [
+          105,
+          69,
+          53
+        ],
+        "percentage": 21.1
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "person",
+        "count": 2,
+        "total_area_pct": 8.890000343322754
+      }
+    ]
+  },
+  {
+    "filename": "IMG_20260206_181204-36.jpg",
+    "x": 0.868502,
+    "y": 0.593258,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.4316,
+    "dominant_colors": [
+      {
+        "hex": "#1e1713",
+        "rgb": [
+          30,
+          23,
+          19
+        ],
+        "percentage": 39.5
+      },
+      {
+        "hex": "#3a251d",
+        "rgb": [
+          58,
+          37,
+          29
+        ],
+        "percentage": 39.3
+      },
+      {
+        "hex": "#542e20",
+        "rgb": [
+          84,
+          46,
+          32
+        ],
+        "percentage": 20.4
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "person",
+        "count": 3,
+        "total_area_pct": 10.529999732971191
+      }
+    ]
+  },
+  {
+    "filename": "IMG_20260206_181323-37.jpg",
+    "x": 0.891872,
+    "y": 0.567538,
+    "scene_label": "夜景/灯饰",
+    "scene_confidence": 0.2747,
+    "dominant_colors": [
+      {
+        "hex": "#1f1c16",
+        "rgb": [
+          31,
+          28,
+          22
+        ],
+        "percentage": 38.7
+      },
+      {
+        "hex": "#362b25",
+        "rgb": [
+          54,
+          43,
+          37
+        ],
+        "percentage": 37.3
+      },
+      {
+        "hex": "#493127",
+        "rgb": [
+          73,
+          49,
+          39
+        ],
+        "percentage": 23.4
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "person",
+        "count": 2,
+        "total_area_pct": 8.050000190734863
+      }
+    ]
+  },
+  {
+    "filename": "IMG_20260206_181333-29.jpg",
+    "x": 0.884513,
+    "y": 0.571112,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.4534,
+    "dominant_colors": [
+      {
+        "hex": "#392a29",
+        "rgb": [
+          57,
+          42,
+          41
+        ],
+        "percentage": 39.2
+      },
+      {
+        "hex": "#231a17",
+        "rgb": [
+          35,
+          26,
+          23
+        ],
+        "percentage": 27.2
+      },
+      {
+        "hex": "#4d3026",
+        "rgb": [
+          77,
+          48,
+          38
+        ],
+        "percentage": 19.7
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "person",
+        "count": 2,
+        "total_area_pct": 5.840000152587891
+      }
+    ]
+  },
+  {
+    "filename": "IMG_20260207_193633-30.jpg",
+    "x": 0.838217,
+    "y": 0.672891,
+    "scene_label": "街景/道路",
+    "scene_confidence": 0.2452,
+    "dominant_colors": [
+      {
+        "hex": "#040301",
+        "rgb": [
+          4,
+          3,
+          1
+        ],
+        "percentage": 47.1
+      },
+      {
+        "hex": "#242018",
+        "rgb": [
+          36,
+          32,
+          24
+        ],
+        "percentage": 36.9
+      },
+      {
+        "hex": "#52391e",
+        "rgb": [
+          82,
+          57,
+          30
+        ],
+        "percentage": 10.2
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260207_193731-31.jpg",
+    "x": 0.837314,
+    "y": 0.681767,
+    "scene_label": "星空/夜空",
+    "scene_confidence": 0.1243,
+    "dominant_colors": [
+      {
+        "hex": "#000000",
+        "rgb": [
+          0,
+          0,
+          0
+        ],
+        "percentage": 64.0
+      },
+      {
+        "hex": "#242321",
+        "rgb": [
+          36,
+          35,
+          33
+        ],
+        "percentage": 24.6
+      },
+      {
+        "hex": "#181613",
+        "rgb": [
+          24,
+          22,
+          19
+        ],
+        "percentage": 10.0
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260207_193850-32.jpg",
+    "x": 0.053909,
+    "y": 0.445723,
+    "scene_label": "建筑纹理/细节",
+    "scene_confidence": 0.1954,
+    "dominant_colors": [
+      {
+        "hex": "#191913",
+        "rgb": [
+          25,
+          25,
+          19
+        ],
+        "percentage": 70.7
+      },
+      {
+        "hex": "#493217",
+        "rgb": [
+          73,
+          50,
+          23
+        ],
+        "percentage": 17.1
+      },
+      {
+        "hex": "#915d1f",
+        "rgb": [
+          145,
+          93,
+          31
+        ],
+        "percentage": 7.7
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260218_142312-40.jpg",
+    "x": 0.025371,
+    "y": 0.390161,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.3413,
+    "dominant_colors": [
+      {
+        "hex": "#4a512f",
+        "rgb": [
+          74,
+          81,
+          47
+        ],
+        "percentage": 33.5
+      },
+      {
+        "hex": "#23351f",
+        "rgb": [
+          35,
+          53,
+          31
+        ],
+        "percentage": 32.1
+      },
+      {
+        "hex": "#6a736a",
+        "rgb": [
+          106,
+          115,
+          106
+        ],
+        "percentage": 12.7
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260218_143050-41.jpg",
+    "x": 0.044716,
+    "y": 0.402531,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.139,
+    "dominant_colors": [
+      {
+        "hex": "#67a4bb",
+        "rgb": [
+          103,
+          164,
+          187
+        ],
+        "percentage": 22.8
+      },
+      {
+        "hex": "#163e44",
+        "rgb": [
+          22,
+          62,
+          68
+        ],
+        "percentage": 22.0
+      },
+      {
+        "hex": "#b5cbd0",
+        "rgb": [
+          181,
+          203,
+          208
+        ],
+        "percentage": 19.6
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260218_143523-42.jpg",
+    "x": 0.600368,
+    "y": 0.393862,
+    "scene_label": "天空/云彩",
+    "scene_confidence": 0.2883,
+    "dominant_colors": [
+      {
+        "hex": "#2f5366",
+        "rgb": [
+          47,
+          83,
+          102
+        ],
+        "percentage": 32.4
+      },
+      {
+        "hex": "#556c79",
+        "rgb": [
+          85,
+          108,
+          121
+        ],
+        "percentage": 25.8
+      },
+      {
+        "hex": "#7c8a93",
+        "rgb": [
+          124,
+          138,
+          147
+        ],
+        "percentage": 17.8
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260218_143601-60.jpg",
+    "x": 0.033792,
+    "y": 0.359881,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.4343,
+    "dominant_colors": [
+      {
+        "hex": "#96cbdc",
+        "rgb": [
+          150,
+          203,
+          220
+        ],
+        "percentage": 24.7
+      },
+      {
+        "hex": "#5d6729",
+        "rgb": [
+          93,
+          103,
+          41
+        ],
+        "percentage": 24.5
+      },
+      {
+        "hex": "#d3b206",
+        "rgb": [
+          211,
+          178,
+          6
+        ],
+        "percentage": 21.3
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260218_144043-44.jpg",
+    "x": 0.053502,
+    "y": 0.337225,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.4976,
+    "dominant_colors": [
+      {
+        "hex": "#537682",
+        "rgb": [
+          83,
+          118,
+          130
+        ],
+        "percentage": 31.1
+      },
+      {
+        "hex": "#75b2d2",
+        "rgb": [
+          117,
+          178,
+          210
+        ],
+        "percentage": 30.6
+      },
+      {
+        "hex": "#a1c0d1",
+        "rgb": [
+          161,
+          192,
+          209
+        ],
+        "percentage": 18.8
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260218_144600-45.jpg",
+    "x": 0.011068,
+    "y": 0.438495,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.3589,
+    "dominant_colors": [
+      {
+        "hex": "#18250a",
+        "rgb": [
+          24,
+          37,
+          10
+        ],
+        "percentage": 44.4
+      },
+      {
+        "hex": "#3d4f18",
+        "rgb": [
+          61,
+          79,
+          24
+        ],
+        "percentage": 24.8
+      },
+      {
+        "hex": "#6f7a2b",
+        "rgb": [
+          111,
+          122,
+          43
+        ],
+        "percentage": 16.3
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260218_145630-46.jpg",
+    "x": 0.526287,
+    "y": 0.785535,
+    "scene_label": "天空/云彩",
+    "scene_confidence": 0.1764,
+    "dominant_colors": [
+      {
+        "hex": "#252619",
+        "rgb": [
+          37,
+          38,
+          25
+        ],
+        "percentage": 45.3
+      },
+      {
+        "hex": "#bac6cc",
+        "rgb": [
+          186,
+          198,
+          204
+        ],
+        "percentage": 17.6
+      },
+      {
+        "hex": "#719fb1",
+        "rgb": [
+          113,
+          159,
+          177
+        ],
+        "percentage": 13.5
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260218_145838-47.jpg",
+    "x": 0.351354,
+    "y": 0.76858,
+    "scene_label": "建筑纹理/细节",
+    "scene_confidence": 0.0973,
+    "dominant_colors": [
+      {
+        "hex": "#191d17",
+        "rgb": [
+          25,
+          29,
+          23
+        ],
+        "percentage": 32.9
+      },
+      {
+        "hex": "#d3d3db",
+        "rgb": [
+          211,
+          211,
+          219
+        ],
+        "percentage": 19.7
+      },
+      {
+        "hex": "#35748d",
+        "rgb": [
+          53,
+          116,
+          141
+        ],
+        "percentage": 17.2
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260218_150112-48.jpg",
+    "x": 0.812314,
+    "y": 0.801937,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.542,
+    "dominant_colors": [
+      {
+        "hex": "#d4d1d9",
+        "rgb": [
+          212,
+          209,
+          217
+        ],
+        "percentage": 34.2
+      },
+      {
+        "hex": "#b0b1bf",
+        "rgb": [
+          176,
+          177,
+          191
+        ],
+        "percentage": 20.1
+      },
+      {
+        "hex": "#68686a",
+        "rgb": [
+          104,
+          104,
+          106
+        ],
+        "percentage": 19.0
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260218_150123-49.jpg",
+    "x": 0.087981,
+    "y": 0.371607,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.4062,
+    "dominant_colors": [
+      {
+        "hex": "#c0c7d0",
+        "rgb": [
+          192,
+          199,
+          208
+        ],
+        "percentage": 28.9
+      },
+      {
+        "hex": "#79807e",
+        "rgb": [
+          121,
+          128,
+          126
+        ],
+        "percentage": 23.0
+      },
+      {
+        "hex": "#41595c",
+        "rgb": [
+          65,
+          89,
+          92
+        ],
+        "percentage": 22.5
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260218_150248-50.jpg",
+    "x": 0.877453,
+    "y": 0.818766,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.4846,
+    "dominant_colors": [
+      {
+        "hex": "#84877f",
+        "rgb": [
+          132,
+          135,
+          127
+        ],
+        "percentage": 26.2
+      },
+      {
+        "hex": "#a7a79e",
+        "rgb": [
+          167,
+          167,
+          158
+        ],
+        "percentage": 20.2
+      },
+      {
+        "hex": "#cac8bd",
+        "rgb": [
+          202,
+          200,
+          189
+        ],
+        "percentage": 19.0
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260218_150311-51.jpg",
+    "x": 0.816915,
+    "y": 0.822379,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.5376,
+    "dominant_colors": [
+      {
+        "hex": "#4b5645",
+        "rgb": [
+          75,
+          86,
+          69
+        ],
+        "percentage": 22.3
+      },
+      {
+        "hex": "#dedcd5",
+        "rgb": [
+          222,
+          220,
+          213
+        ],
+        "percentage": 21.7
+      },
+      {
+        "hex": "#bab9a8",
+        "rgb": [
+          186,
+          185,
+          168
+        ],
+        "percentage": 20.0
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260218_150414-52.jpg",
+    "x": 0.159677,
+    "y": 0.373864,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.2167,
+    "dominant_colors": [
+      {
+        "hex": "#485041",
+        "rgb": [
+          72,
+          80,
+          65
+        ],
+        "percentage": 32.9
+      },
+      {
+        "hex": "#262a1d",
+        "rgb": [
+          38,
+          42,
+          29
+        ],
+        "percentage": 19.2
+      },
+      {
+        "hex": "#a8ab9b",
+        "rgb": [
+          168,
+          171,
+          155
+        ],
+        "percentage": 17.4
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260218_150756-53.jpg",
+    "x": 0.160155,
+    "y": 0.38143,
+    "scene_label": "海洋/水面",
+    "scene_confidence": 0.3269,
+    "dominant_colors": [
+      {
+        "hex": "#385b58",
+        "rgb": [
+          56,
+          91,
+          88
+        ],
+        "percentage": 26.4
+      },
+      {
+        "hex": "#174743",
+        "rgb": [
+          23,
+          71,
+          67
+        ],
+        "percentage": 22.0
+      },
+      {
+        "hex": "#839697",
+        "rgb": [
+          131,
+          150,
+          151
+        ],
+        "percentage": 19.6
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "bird",
+        "count": 1,
+        "total_area_pct": 0.12999999523162842
+      }
+    ]
+  },
+  {
+    "filename": "IMG_20260218_151905-54.jpg",
+    "x": 0.166818,
+    "y": 0.413693,
+    "scene_label": "高山/山峰",
+    "scene_confidence": 0.3357,
+    "dominant_colors": [
+      {
+        "hex": "#bcb7bc",
+        "rgb": [
+          188,
+          183,
+          188
+        ],
+        "percentage": 27.7
+      },
+      {
+        "hex": "#0d515f",
+        "rgb": [
+          13,
+          81,
+          95
+        ],
+        "percentage": 23.9
+      },
+      {
+        "hex": "#0e3d45",
+        "rgb": [
+          14,
+          61,
+          69
+        ],
+        "percentage": 23.0
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260218_152220-55.jpg",
+    "x": 0.0946,
+    "y": 0.394822,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.3008,
+    "dominant_colors": [
+      {
+        "hex": "#444008",
+        "rgb": [
+          68,
+          64,
+          8
+        ],
+        "percentage": 32.7
+      },
+      {
+        "hex": "#c3cad2",
+        "rgb": [
+          195,
+          202,
+          210
+        ],
+        "percentage": 19.3
+      },
+      {
+        "hex": "#a89719",
+        "rgb": [
+          168,
+          151,
+          25
+        ],
+        "percentage": 16.5
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260218_153038-56.jpg",
+    "x": 0.505499,
+    "y": 0.711639,
+    "scene_label": "街景/道路",
+    "scene_confidence": 0.2976,
+    "dominant_colors": [
+      {
+        "hex": "#ccc5c0",
+        "rgb": [
+          204,
+          197,
+          192
+        ],
+        "percentage": 40.2
+      },
+      {
+        "hex": "#858379",
+        "rgb": [
+          133,
+          131,
+          121
+        ],
+        "percentage": 30.7
+      },
+      {
+        "hex": "#32491f",
+        "rgb": [
+          50,
+          73,
+          31
+        ],
+        "percentage": 20.8
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "truck",
+        "count": 1,
+        "total_area_pct": 2.0399999618530273
+      },
+      {
+        "class": "cat",
+        "count": 1,
+        "total_area_pct": 1.7999999523162842
+      },
+      {
+        "class": "car",
+        "count": 2,
+        "total_area_pct": 1.1200000047683716
+      }
+    ]
+  },
+  {
+    "filename": "IMG_20260218_154326-57.jpg",
+    "x": 0.25581,
+    "y": 0.428427,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.1432,
+    "dominant_colors": [
+      {
+        "hex": "#091d05",
+        "rgb": [
+          9,
+          29,
+          5
+        ],
+        "percentage": 33.3
+      },
+      {
+        "hex": "#becac8",
+        "rgb": [
+          190,
+          202,
+          200
+        ],
+        "percentage": 26.1
+      },
+      {
+        "hex": "#22491e",
+        "rgb": [
+          34,
+          73,
+          30
+        ],
+        "percentage": 14.2
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260218_155029-58.jpg",
+    "x": 0.22673,
+    "y": 0.412504,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.2003,
+    "dominant_colors": [
+      {
+        "hex": "#b4d0d1",
+        "rgb": [
+          180,
+          208,
+          209
+        ],
+        "percentage": 29.3
+      },
+      {
+        "hex": "#1f3b0a",
+        "rgb": [
+          31,
+          59,
+          10
+        ],
+        "percentage": 28.0
+      },
+      {
+        "hex": "#6ca9aa",
+        "rgb": [
+          108,
+          169,
+          170
+        ],
+        "percentage": 17.3
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260218_162557-59.jpg",
+    "x": 0.136498,
+    "y": 0.40064,
+    "scene_label": "海洋/水面",
+    "scene_confidence": 0.2307,
+    "dominant_colors": [
+      {
+        "hex": "#c1c1b8",
+        "rgb": [
+          193,
+          193,
+          184
+        ],
+        "percentage": 23.8
+      },
+      {
+        "hex": "#6c7c71",
+        "rgb": [
+          108,
+          124,
+          113
+        ],
+        "percentage": 21.5
+      },
+      {
+        "hex": "#9ba39a",
+        "rgb": [
+          155,
+          163,
+          154
+        ],
+        "percentage": 20.4
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "kite",
+        "count": 1,
+        "total_area_pct": 0.05999999865889549
+      }
+    ]
+  },
+  {
+    "filename": "IMG_20260222_140625-62.jpg",
+    "x": 0.245808,
+    "y": 0.397204,
+    "scene_label": "河流/瀑布",
+    "scene_confidence": 0.1279,
+    "dominant_colors": [
+      {
+        "hex": "#0d4650",
+        "rgb": [
+          13,
+          70,
+          80
+        ],
+        "percentage": 27.7
+      },
+      {
+        "hex": "#2e6e82",
+        "rgb": [
+          46,
+          110,
+          130
+        ],
+        "percentage": 24.7
+      },
+      {
+        "hex": "#619ebc",
+        "rgb": [
+          97,
+          158,
+          188
+        ],
+        "percentage": 24.0
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260222_141110-63.jpg",
+    "x": 0.058591,
+    "y": 0.363274,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.5303,
+    "dominant_colors": [
+      {
+        "hex": "#2f2820",
+        "rgb": [
+          47,
+          40,
+          32
+        ],
+        "percentage": 42.8
+      },
+      {
+        "hex": "#5f4d3e",
+        "rgb": [
+          95,
+          77,
+          62
+        ],
+        "percentage": 22.9
+      },
+      {
+        "hex": "#abbbc0",
+        "rgb": [
+          171,
+          187,
+          192
+        ],
+        "percentage": 14.0
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260222_141152-64.jpg",
+    "x": 0.063798,
+    "y": 0.352639,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.6108,
+    "dominant_colors": [
+      {
+        "hex": "#56503d",
+        "rgb": [
+          86,
+          80,
+          61
+        ],
+        "percentage": 28.0
+      },
+      {
+        "hex": "#82755e",
+        "rgb": [
+          130,
+          117,
+          94
+        ],
+        "percentage": 24.5
+      },
+      {
+        "hex": "#b6a289",
+        "rgb": [
+          182,
+          162,
+          137
+        ],
+        "percentage": 19.2
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260224_192725-65.jpg",
+    "x": 0.013987,
+    "y": 0.461911,
+    "scene_label": "夜景/灯饰",
+    "scene_confidence": 0.1929,
+    "dominant_colors": [
+      {
+        "hex": "#0b1816",
+        "rgb": [
+          11,
+          24,
+          22
+        ],
+        "percentage": 52.3
+      },
+      {
+        "hex": "#046f9e",
+        "rgb": [
+          4,
+          111,
+          158
+        ],
+        "percentage": 27.6
+      },
+      {
+        "hex": "#034263",
+        "rgb": [
+          3,
+          66,
+          99
+        ],
+        "percentage": 16.4
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "kite",
+        "count": 1,
+        "total_area_pct": 2.869999885559082
+      }
+    ]
+  },
+  {
+    "filename": "IMG_20260225_191445-66.jpg",
+    "x": 0.023166,
+    "y": 0.482446,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.2507,
+    "dominant_colors": [
+      {
+        "hex": "#6b130b",
+        "rgb": [
+          107,
+          19,
+          11
+        ],
+        "percentage": 31.7
+      },
+      {
+        "hex": "#220c09",
+        "rgb": [
+          34,
+          12,
+          9
+        ],
+        "percentage": 25.6
+      },
+      {
+        "hex": "#cb0f0d",
+        "rgb": [
+          203,
+          15,
+          13
+        ],
+        "percentage": 18.0
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "umbrella",
+        "count": 1,
+        "total_area_pct": 0.9200000166893005
+      },
+      {
+        "class": "person",
+        "count": 1,
+        "total_area_pct": 0.3199999928474426
+      }
+    ]
+  },
+  {
+    "filename": "IMG_20260225_192815-67.jpg",
+    "x": 0.655808,
+    "y": 0.569137,
+    "scene_label": "夜景/灯饰",
+    "scene_confidence": 0.2335,
+    "dominant_colors": [
+      {
+        "hex": "#1a1b10",
+        "rgb": [
+          26,
+          27,
+          16
+        ],
+        "percentage": 52.1
+      },
+      {
+        "hex": "#353729",
+        "rgb": [
+          53,
+          55,
+          41
+        ],
+        "percentage": 33.0
+      },
+      {
+        "hex": "#515953",
+        "rgb": [
+          81,
+          89,
+          83
+        ],
+        "percentage": 11.1
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260227_074037-68.jpg",
+    "x": 0.076342,
+    "y": 0.463337,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.3015,
+    "dominant_colors": [
+      {
+        "hex": "#151d15",
+        "rgb": [
+          21,
+          29,
+          21
+        ],
+        "percentage": 51.1
+      },
+      {
+        "hex": "#3f4839",
+        "rgb": [
+          63,
+          72,
+          57
+        ],
+        "percentage": 17.9
+      },
+      {
+        "hex": "#757361",
+        "rgb": [
+          117,
+          115,
+          97
+        ],
+        "percentage": 12.7
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260302_183632-1.jpg",
+    "x": 0.876268,
+    "y": 0.724826,
+    "scene_label": "星空/夜空",
+    "scene_confidence": 0.1135,
+    "dominant_colors": [
+      {
+        "hex": "#404142",
+        "rgb": [
+          64,
+          65,
+          66
+        ],
+        "percentage": 50.8
+      },
+      {
+        "hex": "#272928",
+        "rgb": [
+          39,
+          41,
+          40
+        ],
+        "percentage": 21.4
+      },
+      {
+        "hex": "#353737",
+        "rgb": [
+          53,
+          55,
+          55
+        ],
+        "percentage": 20.2
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260304_203445_1-1.jpg",
+    "x": 0.106824,
+    "y": 0.451743,
+    "scene_label": "夜景/灯饰",
+    "scene_confidence": 0.1423,
+    "dominant_colors": [
+      {
+        "hex": "#120f0f",
+        "rgb": [
+          18,
+          15,
+          15
+        ],
+        "percentage": 57.5
+      },
+      {
+        "hex": "#27241f",
+        "rgb": [
+          39,
+          36,
+          31
+        ],
+        "percentage": 34.4
+      },
+      {
+        "hex": "#673c1c",
+        "rgb": [
+          103,
+          60,
+          28
+        ],
+        "percentage": 4.7
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "person",
+        "count": 1,
+        "total_area_pct": 0.8600000143051147
+      }
+    ]
+  },
+  {
+    "filename": "IMG_20260304_204030-1.jpg",
+    "x": 0.84127,
+    "y": 0.632925,
+    "scene_label": "星空/夜空",
+    "scene_confidence": 0.5122,
+    "dominant_colors": [
+      {
+        "hex": "#0d1d1b",
+        "rgb": [
+          13,
+          29,
+          27
+        ],
+        "percentage": 65.6
+      },
+      {
+        "hex": "#1f3330",
+        "rgb": [
+          31,
+          51,
+          48
+        ],
+        "percentage": 18.9
+      },
+      {
+        "hex": "#374e4c",
+        "rgb": [
+          55,
+          78,
+          76
+        ],
+        "percentage": 11.2
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "IMG_20260609_190559-1.jpg",
+    "x": 0.71526,
+    "y": 0.506527,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.25,
+    "dominant_colors": [
+      {
+        "hex": "#080d0a",
+        "rgb": [
+          8,
+          13,
+          10
+        ],
+        "percentage": 59.0
+      },
+      {
+        "hex": "#2e6687",
+        "rgb": [
+          46,
+          102,
+          135
+        ],
+        "percentage": 13.7
+      },
+      {
+        "hex": "#183d4e",
+        "rgb": [
+          24,
+          61,
+          78
+        ],
+        "percentage": 11.6
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "Image_1763657447102-1.jpg",
+    "x": 0.801586,
+    "y": 0.479346,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.4353,
+    "dominant_colors": [
+      {
+        "hex": "#180c05",
+        "rgb": [
+          24,
+          12,
+          5
+        ],
+        "percentage": 38.9
+      },
+      {
+        "hex": "#3d3433",
+        "rgb": [
+          61,
+          52,
+          51
+        ],
+        "percentage": 20.7
+      },
+      {
+        "hex": "#f19d89",
+        "rgb": [
+          241,
+          157,
+          137
+        ],
+        "percentage": 17.4
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "Image_1763657472833-1.jpg",
+    "x": 0.810984,
+    "y": 0.493814,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.6338,
+    "dominant_colors": [
+      {
+        "hex": "#180701",
+        "rgb": [
+          24,
+          7,
+          1
+        ],
+        "percentage": 34.7
+      },
+      {
+        "hex": "#502b0b",
+        "rgb": [
+          80,
+          43,
+          11
+        ],
+        "percentage": 20.4
+      },
+      {
+        "hex": "#93581c",
+        "rgb": [
+          147,
+          88,
+          28
+        ],
+        "percentage": 17.4
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "Image_1763657473124-1.jpg",
+    "x": 0.815045,
+    "y": 0.505554,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.4473,
+    "dominant_colors": [
+      {
+        "hex": "#154e5d",
+        "rgb": [
+          21,
+          78,
+          93
+        ],
+        "percentage": 25.9
+      },
+      {
+        "hex": "#282018",
+        "rgb": [
+          40,
+          32,
+          24
+        ],
+        "percentage": 25.7
+      },
+      {
+        "hex": "#777673",
+        "rgb": [
+          119,
+          118,
+          115
+        ],
+        "percentage": 20.5
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "Image_1763657473916-1.jpg",
+    "x": 0.429239,
+    "y": 0.622918,
+    "scene_label": "建筑纹理/细节",
+    "scene_confidence": 0.1458,
+    "dominant_colors": [
+      {
+        "hex": "#1b2e26",
+        "rgb": [
+          27,
+          46,
+          38
+        ],
+        "percentage": 41.2
+      },
+      {
+        "hex": "#4d583b",
+        "rgb": [
+          77,
+          88,
+          59
+        ],
+        "percentage": 18.5
+      },
+      {
+        "hex": "#8f8858",
+        "rgb": [
+          143,
+          136,
+          88
+        ],
+        "percentage": 15.4
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "Image_1763657473976-1.jpg",
+    "x": 0.589036,
+    "y": 0.744173,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.183,
+    "dominant_colors": [
+      {
+        "hex": "#2a7f5f",
+        "rgb": [
+          42,
+          127,
+          95
+        ],
+        "percentage": 30.1
+      },
+      {
+        "hex": "#0c3f25",
+        "rgb": [
+          12,
+          63,
+          37
+        ],
+        "percentage": 23.1
+      },
+      {
+        "hex": "#1cbca2",
+        "rgb": [
+          28,
+          188,
+          162
+        ],
+        "percentage": 20.1
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "Image_1763657484489-1.jpg",
+    "x": 0.815693,
+    "y": 0.532617,
+    "scene_label": "夜景/灯饰",
+    "scene_confidence": 0.304,
+    "dominant_colors": [
+      {
+        "hex": "#1a1b17",
+        "rgb": [
+          26,
+          27,
+          23
+        ],
+        "percentage": 28.7
+      },
+      {
+        "hex": "#3b5d72",
+        "rgb": [
+          59,
+          93,
+          114
+        ],
+        "percentage": 18.3
+      },
+      {
+        "hex": "#83807b",
+        "rgb": [
+          131,
+          128,
+          123
+        ],
+        "percentage": 18.1
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK0043-1.jpg",
+    "x": 0.745181,
+    "y": 0.431387,
+    "scene_label": "星空/夜空",
+    "scene_confidence": 0.3813,
+    "dominant_colors": [
+      {
+        "hex": "#000000",
+        "rgb": [
+          0,
+          0,
+          0
+        ],
+        "percentage": 69.7
+      },
+      {
+        "hex": "#222222",
+        "rgb": [
+          34,
+          34,
+          34
+        ],
+        "percentage": 23.5
+      },
+      {
+        "hex": "#181818",
+        "rgb": [
+          24,
+          24,
+          24
+        ],
+        "percentage": 5.8
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "sports ball",
+        "count": 1,
+        "total_area_pct": 0.6100000143051147
+      }
+    ]
+  },
+  {
+    "filename": "_NIK0057-1.jpg",
+    "x": 0.490273,
+    "y": 0.210312,
+    "scene_label": "铁路/车站",
+    "scene_confidence": 0.1853,
+    "dominant_colors": [
+      {
+        "hex": "#1e2122",
+        "rgb": [
+          30,
+          33,
+          34
+        ],
+        "percentage": 48.3
+      },
+      {
+        "hex": "#5b4744",
+        "rgb": [
+          91,
+          71,
+          68
+        ],
+        "percentage": 15.8
+      },
+      {
+        "hex": "#d1dfe3",
+        "rgb": [
+          209,
+          223,
+          227
+        ],
+        "percentage": 12.3
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "traffic light",
+        "count": 1,
+        "total_area_pct": 4.099999904632568
+      }
+    ]
+  },
+  {
+    "filename": "_NIK0063-1.jpg",
+    "x": 0.536168,
+    "y": 0.639378,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.2236,
+    "dominant_colors": [
+      {
+        "hex": "#5c5f5b",
+        "rgb": [
+          92,
+          95,
+          91
+        ],
+        "percentage": 21.7
+      },
+      {
+        "hex": "#eaeae9",
+        "rgb": [
+          234,
+          234,
+          233
+        ],
+        "percentage": 21.5
+      },
+      {
+        "hex": "#878783",
+        "rgb": [
+          135,
+          135,
+          131
+        ],
+        "percentage": 20.2
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK0066-1.jpg",
+    "x": 0.462842,
+    "y": 0.194703,
+    "scene_label": "铁路/车站",
+    "scene_confidence": 0.0851,
+    "dominant_colors": [
+      {
+        "hex": "#21201d",
+        "rgb": [
+          33,
+          32,
+          29
+        ],
+        "percentage": 24.9
+      },
+      {
+        "hex": "#a3a4a5",
+        "rgb": [
+          163,
+          164,
+          165
+        ],
+        "percentage": 24.8
+      },
+      {
+        "hex": "#727170",
+        "rgb": [
+          114,
+          113,
+          112
+        ],
+        "percentage": 22.6
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK0069-1.jpg",
+    "x": 0.528358,
+    "y": 0.631663,
+    "scene_label": "铁路/车站",
+    "scene_confidence": 0.1154,
+    "dominant_colors": [
+      {
+        "hex": "#1f2421",
+        "rgb": [
+          31,
+          36,
+          33
+        ],
+        "percentage": 26.6
+      },
+      {
+        "hex": "#6b6c67",
+        "rgb": [
+          107,
+          108,
+          103
+        ],
+        "percentage": 21.4
+      },
+      {
+        "hex": "#859290",
+        "rgb": [
+          133,
+          146,
+          144
+        ],
+        "percentage": 20.2
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK0073-1.jpg",
+    "x": 0.58421,
+    "y": 0.573996,
+    "scene_label": "城市建筑/街道",
+    "scene_confidence": 0.2294,
+    "dominant_colors": [
+      {
+        "hex": "#b3d0eb",
+        "rgb": [
+          179,
+          208,
+          235
+        ],
+        "percentage": 37.9
+      },
+      {
+        "hex": "#889fac",
+        "rgb": [
+          136,
+          159,
+          172
+        ],
+        "percentage": 20.5
+      },
+      {
+        "hex": "#6b7d87",
+        "rgb": [
+          107,
+          125,
+          135
+        ],
+        "percentage": 15.3
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK0113-1.jpg",
+    "x": 0.568897,
+    "y": 0.591269,
+    "scene_label": "桥梁/建筑结构",
+    "scene_confidence": 0.0891,
+    "dominant_colors": [
+      {
+        "hex": "#9acbe4",
+        "rgb": [
+          154,
+          203,
+          228
+        ],
+        "percentage": 32.9
+      },
+      {
+        "hex": "#8fabb3",
+        "rgb": [
+          143,
+          171,
+          179
+        ],
+        "percentage": 20.7
+      },
+      {
+        "hex": "#bddbe6",
+        "rgb": [
+          189,
+          219,
+          230
+        ],
+        "percentage": 20.3
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK0220.jpg",
+    "x": 0.665055,
+    "y": 0.333567,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.4287,
+    "dominant_colors": [
+      {
+        "hex": "#111613",
+        "rgb": [
+          17,
+          22,
+          19
+        ],
+        "percentage": 39.8
+      },
+      {
+        "hex": "#2e3c41",
+        "rgb": [
+          46,
+          60,
+          65
+        ],
+        "percentage": 29.1
+      },
+      {
+        "hex": "#927b6c",
+        "rgb": [
+          146,
+          123,
+          108
+        ],
+        "percentage": 14.4
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK0620.jpg",
+    "x": 0.590337,
+    "y": 0.29656,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.5894,
+    "dominant_colors": [
+      {
+        "hex": "#5d4880",
+        "rgb": [
+          93,
+          72,
+          128
+        ],
+        "percentage": 36.8
+      },
+      {
+        "hex": "#121218",
+        "rgb": [
+          18,
+          18,
+          24
+        ],
+        "percentage": 27.8
+      },
+      {
+        "hex": "#4b375c",
+        "rgb": [
+          75,
+          55,
+          92
+        ],
+        "percentage": 13.0
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK1022-1.jpg",
+    "x": 0.578512,
+    "y": 0.599658,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.2681,
+    "dominant_colors": [
+      {
+        "hex": "#c7dff6",
+        "rgb": [
+          199,
+          223,
+          246
+        ],
+        "percentage": 34.8
+      },
+      {
+        "hex": "#1d301e",
+        "rgb": [
+          29,
+          48,
+          30
+        ],
+        "percentage": 18.5
+      },
+      {
+        "hex": "#9babb0",
+        "rgb": [
+          155,
+          171,
+          176
+        ],
+        "percentage": 16.7
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK1035-1.jpg",
+    "x": 0.577817,
+    "y": 0.821602,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.2847,
+    "dominant_colors": [
+      {
+        "hex": "#c2c8cf",
+        "rgb": [
+          194,
+          200,
+          207
+        ],
+        "percentage": 28.2
+      },
+      {
+        "hex": "#717347",
+        "rgb": [
+          113,
+          115,
+          71
+        ],
+        "percentage": 27.4
+      },
+      {
+        "hex": "#3c4321",
+        "rgb": [
+          60,
+          67,
+          33
+        ],
+        "percentage": 20.1
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK1046-1.jpg",
+    "x": 0.385335,
+    "y": 0.126997,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.2742,
+    "dominant_colors": [
+      {
+        "hex": "#1a2b17",
+        "rgb": [
+          26,
+          43,
+          23
+        ],
+        "percentage": 49.5
+      },
+      {
+        "hex": "#3c5e2e",
+        "rgb": [
+          60,
+          94,
+          46
+        ],
+        "percentage": 25.5
+      },
+      {
+        "hex": "#7c9963",
+        "rgb": [
+          124,
+          153,
+          99
+        ],
+        "percentage": 12.3
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK1052-1.jpg",
+    "x": 0.533072,
+    "y": 0.808602,
+    "scene_label": "街景/道路",
+    "scene_confidence": 0.7603,
+    "dominant_colors": [
+      {
+        "hex": "#2d4329",
+        "rgb": [
+          45,
+          67,
+          41
+        ],
+        "percentage": 40.4
+      },
+      {
+        "hex": "#4a673e",
+        "rgb": [
+          74,
+          103,
+          62
+        ],
+        "percentage": 31.9
+      },
+      {
+        "hex": "#a0b931",
+        "rgb": [
+          160,
+          185,
+          49
+        ],
+        "percentage": 12.2
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK1061-1.jpg",
+    "x": 0.415832,
+    "y": 0.175202,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.1904,
+    "dominant_colors": [
+      {
+        "hex": "#2a4623",
+        "rgb": [
+          42,
+          70,
+          35
+        ],
+        "percentage": 24.7
+      },
+      {
+        "hex": "#b69f8c",
+        "rgb": [
+          182,
+          159,
+          140
+        ],
+        "percentage": 24.2
+      },
+      {
+        "hex": "#65774c",
+        "rgb": [
+          101,
+          119,
+          76
+        ],
+        "percentage": 23.4
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK1080-1.jpg",
+    "x": 0.541801,
+    "y": 0.245775,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.2993,
+    "dominant_colors": [
+      {
+        "hex": "#d0c8c1",
+        "rgb": [
+          208,
+          200,
+          193
+        ],
+        "percentage": 31.8
+      },
+      {
+        "hex": "#242823",
+        "rgb": [
+          36,
+          40,
+          35
+        ],
+        "percentage": 25.5
+      },
+      {
+        "hex": "#49585b",
+        "rgb": [
+          73,
+          88,
+          91
+        ],
+        "percentage": 19.8
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK1082.jpg",
+    "x": 0.604765,
+    "y": 0.299695,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.5273,
+    "dominant_colors": [
+      {
+        "hex": "#171718",
+        "rgb": [
+          23,
+          23,
+          24
+        ],
+        "percentage": 25.1
+      },
+      {
+        "hex": "#857f7f",
+        "rgb": [
+          133,
+          127,
+          127
+        ],
+        "percentage": 22.4
+      },
+      {
+        "hex": "#2e3a43",
+        "rgb": [
+          46,
+          58,
+          67
+        ],
+        "percentage": 19.7
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK2005-1.jpg",
+    "x": 0.67069,
+    "y": 0.324071,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.6719,
+    "dominant_colors": [
+      {
+        "hex": "#565059",
+        "rgb": [
+          86,
+          80,
+          89
+        ],
+        "percentage": 36.8
+      },
+      {
+        "hex": "#212323",
+        "rgb": [
+          33,
+          35,
+          35
+        ],
+        "percentage": 30.1
+      },
+      {
+        "hex": "#3f3b3f",
+        "rgb": [
+          63,
+          59,
+          63
+        ],
+        "percentage": 15.2
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK2036.jpg",
+    "x": 0.641861,
+    "y": 0.317537,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.3157,
+    "dominant_colors": [
+      {
+        "hex": "#8e92aa",
+        "rgb": [
+          142,
+          146,
+          170
+        ],
+        "percentage": 34.2
+      },
+      {
+        "hex": "#141e17",
+        "rgb": [
+          20,
+          30,
+          23
+        ],
+        "percentage": 27.8
+      },
+      {
+        "hex": "#caaab2",
+        "rgb": [
+          202,
+          170,
+          178
+        ],
+        "percentage": 16.9
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK3680-1.jpg",
+    "x": 0.573375,
+    "y": 0.271225,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.2883,
+    "dominant_colors": [
+      {
+        "hex": "#1a1a18",
+        "rgb": [
+          26,
+          26,
+          24
+        ],
+        "percentage": 32.4
+      },
+      {
+        "hex": "#be97a0",
+        "rgb": [
+          190,
+          151,
+          160
+        ],
+        "percentage": 26.1
+      },
+      {
+        "hex": "#806066",
+        "rgb": [
+          128,
+          96,
+          102
+        ],
+        "percentage": 18.0
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK3686-1.jpg",
+    "x": 0.56683,
+    "y": 0.272144,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.3779,
+    "dominant_colors": [
+      {
+        "hex": "#4e74ba",
+        "rgb": [
+          78,
+          116,
+          186
+        ],
+        "percentage": 30.4
+      },
+      {
+        "hex": "#151213",
+        "rgb": [
+          21,
+          18,
+          19
+        ],
+        "percentage": 26.9
+      },
+      {
+        "hex": "#165895",
+        "rgb": [
+          22,
+          88,
+          149
+        ],
+        "percentage": 17.3
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "train",
+        "count": 1,
+        "total_area_pct": 12.90999984741211
+      }
+    ]
+  },
+  {
+    "filename": "_NIK9270-1.jpg",
+    "x": 0.738942,
+    "y": 0.51968,
+    "scene_label": "天空/云彩",
+    "scene_confidence": 0.1467,
+    "dominant_colors": [
+      {
+        "hex": "#10100f",
+        "rgb": [
+          16,
+          16,
+          15
+        ],
+        "percentage": 31.1
+      },
+      {
+        "hex": "#5b666b",
+        "rgb": [
+          91,
+          102,
+          107
+        ],
+        "percentage": 20.5
+      },
+      {
+        "hex": "#374246",
+        "rgb": [
+          55,
+          66,
+          70
+        ],
+        "percentage": 19.4
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9274-1.jpg",
+    "x": 0.727922,
+    "y": 0.509759,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.1283,
+    "dominant_colors": [
+      {
+        "hex": "#120f0f",
+        "rgb": [
+          18,
+          15,
+          15
+        ],
+        "percentage": 33.1
+      },
+      {
+        "hex": "#36383d",
+        "rgb": [
+          54,
+          56,
+          61
+        ],
+        "percentage": 24.0
+      },
+      {
+        "hex": "#5f6363",
+        "rgb": [
+          95,
+          99,
+          99
+        ],
+        "percentage": 20.5
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9280-1.jpg",
+    "x": 0.834564,
+    "y": 0.872943,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.5273,
+    "dominant_colors": [
+      {
+        "hex": "#d8cbbc",
+        "rgb": [
+          216,
+          203,
+          188
+        ],
+        "percentage": 25.7
+      },
+      {
+        "hex": "#beaf97",
+        "rgb": [
+          190,
+          175,
+          151
+        ],
+        "percentage": 24.4
+      },
+      {
+        "hex": "#746d58",
+        "rgb": [
+          116,
+          109,
+          88
+        ],
+        "percentage": 21.1
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9288-1.jpg",
+    "x": 0.907134,
+    "y": 0.759778,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.332,
+    "dominant_colors": [
+      {
+        "hex": "#7e867b",
+        "rgb": [
+          126,
+          134,
+          123
+        ],
+        "percentage": 28.2
+      },
+      {
+        "hex": "#cccadc",
+        "rgb": [
+          204,
+          202,
+          220
+        ],
+        "percentage": 27.0
+      },
+      {
+        "hex": "#aaa9b4",
+        "rgb": [
+          170,
+          169,
+          180
+        ],
+        "percentage": 21.4
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9292-1.jpg",
+    "x": 0.92228,
+    "y": 0.747645,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.3833,
+    "dominant_colors": [
+      {
+        "hex": "#7c7a7a",
+        "rgb": [
+          124,
+          122,
+          122
+        ],
+        "percentage": 29.5
+      },
+      {
+        "hex": "#d8d3de",
+        "rgb": [
+          216,
+          211,
+          222
+        ],
+        "percentage": 27.7
+      },
+      {
+        "hex": "#afa2b3",
+        "rgb": [
+          175,
+          162,
+          179
+        ],
+        "percentage": 20.5
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9306-1.jpg",
+    "x": 0.735287,
+    "y": 0.513682,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.2991,
+    "dominant_colors": [
+      {
+        "hex": "#191d1e",
+        "rgb": [
+          25,
+          29,
+          30
+        ],
+        "percentage": 52.3
+      },
+      {
+        "hex": "#334149",
+        "rgb": [
+          51,
+          65,
+          73
+        ],
+        "percentage": 17.2
+      },
+      {
+        "hex": "#6e716c",
+        "rgb": [
+          110,
+          113,
+          108
+        ],
+        "percentage": 16.2
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9312-1.jpg",
+    "x": 0.32403,
+    "y": 0.069824,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.395,
+    "dominant_colors": [
+      {
+        "hex": "#2b2a10",
+        "rgb": [
+          43,
+          42,
+          16
+        ],
+        "percentage": 42.2
+      },
+      {
+        "hex": "#f8b201",
+        "rgb": [
+          248,
+          178,
+          1
+        ],
+        "percentage": 18.7
+      },
+      {
+        "hex": "#b45308",
+        "rgb": [
+          180,
+          83,
+          8
+        ],
+        "percentage": 14.5
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9318-1.jpg",
+    "x": 0.927686,
+    "y": 0.724172,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.2047,
+    "dominant_colors": [
+      {
+        "hex": "#f4bf0c",
+        "rgb": [
+          244,
+          191,
+          12
+        ],
+        "percentage": 28.6
+      },
+      {
+        "hex": "#484c1d",
+        "rgb": [
+          72,
+          76,
+          29
+        ],
+        "percentage": 20.3
+      },
+      {
+        "hex": "#c7ace0",
+        "rgb": [
+          199,
+          172,
+          224
+        ],
+        "percentage": 19.0
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "banana",
+        "count": 1,
+        "total_area_pct": 1.659999966621399
+      }
+    ]
+  },
+  {
+    "filename": "_NIK9337-1.jpg",
+    "x": 0.268365,
+    "y": 0.067564,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.3374,
+    "dominant_colors": [
+      {
+        "hex": "#353c1e",
+        "rgb": [
+          53,
+          60,
+          30
+        ],
+        "percentage": 31.2
+      },
+      {
+        "hex": "#706c3e",
+        "rgb": [
+          112,
+          108,
+          62
+        ],
+        "percentage": 25.5
+      },
+      {
+        "hex": "#bea78d",
+        "rgb": [
+          190,
+          167,
+          141
+        ],
+        "percentage": 22.2
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9341-1.jpg",
+    "x": 0.664301,
+    "y": 0.740944,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.2317,
+    "dominant_colors": [
+      {
+        "hex": "#1a2c18",
+        "rgb": [
+          26,
+          44,
+          24
+        ],
+        "percentage": 31.0
+      },
+      {
+        "hex": "#dbded9",
+        "rgb": [
+          219,
+          222,
+          217
+        ],
+        "percentage": 24.0
+      },
+      {
+        "hex": "#3a5d31",
+        "rgb": [
+          58,
+          93,
+          49
+        ],
+        "percentage": 16.4
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9350-1.jpg",
+    "x": 0.518916,
+    "y": 0.675027,
+    "scene_label": "微距/特写",
+    "scene_confidence": 0.1185,
+    "dominant_colors": [
+      {
+        "hex": "#1b2d1a",
+        "rgb": [
+          27,
+          45,
+          26
+        ],
+        "percentage": 32.8
+      },
+      {
+        "hex": "#4a6930",
+        "rgb": [
+          74,
+          105,
+          48
+        ],
+        "percentage": 24.4
+      },
+      {
+        "hex": "#7c8c7d",
+        "rgb": [
+          124,
+          140,
+          125
+        ],
+        "percentage": 20.1
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "person",
+        "count": 2,
+        "total_area_pct": 0.5799999833106995
+      },
+      {
+        "class": "fire hydrant",
+        "count": 1,
+        "total_area_pct": 0.47999998927116394
+      }
+    ]
+  },
+  {
+    "filename": "_NIK9366-1.jpg",
+    "x": 0.703082,
+    "y": 0.622591,
+    "scene_label": "街景/道路",
+    "scene_confidence": 0.4102,
+    "dominant_colors": [
+      {
+        "hex": "#f1ebe2",
+        "rgb": [
+          241,
+          235,
+          226
+        ],
+        "percentage": 38.0
+      },
+      {
+        "hex": "#06191a",
+        "rgb": [
+          6,
+          25,
+          26
+        ],
+        "percentage": 29.2
+      },
+      {
+        "hex": "#bab2a6",
+        "rgb": [
+          186,
+          178,
+          166
+        ],
+        "percentage": 14.8
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "traffic light",
+        "count": 1,
+        "total_area_pct": 2.0899999141693115
+      }
+    ]
+  },
+  {
+    "filename": "_NIK9368-1.jpg",
+    "x": 0.591466,
+    "y": 0.653262,
+    "scene_label": "街景/道路",
+    "scene_confidence": 0.2341,
+    "dominant_colors": [
+      {
+        "hex": "#25231a",
+        "rgb": [
+          37,
+          35,
+          26
+        ],
+        "percentage": 27.9
+      },
+      {
+        "hex": "#ced8d4",
+        "rgb": [
+          206,
+          216,
+          212
+        ],
+        "percentage": 26.8
+      },
+      {
+        "hex": "#58513e",
+        "rgb": [
+          88,
+          81,
+          62
+        ],
+        "percentage": 25.0
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9375-1.jpg",
+    "x": 0.614416,
+    "y": 0.616023,
+    "scene_label": "街景/道路",
+    "scene_confidence": 0.6382,
+    "dominant_colors": [
+      {
+        "hex": "#1f2c28",
+        "rgb": [
+          31,
+          44,
+          40
+        ],
+        "percentage": 29.7
+      },
+      {
+        "hex": "#415148",
+        "rgb": [
+          65,
+          81,
+          72
+        ],
+        "percentage": 21.9
+      },
+      {
+        "hex": "#9bd8d7",
+        "rgb": [
+          155,
+          216,
+          215
+        ],
+        "percentage": 20.3
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9378-1.jpg",
+    "x": 0.651686,
+    "y": 0.857525,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.3167,
+    "dominant_colors": [
+      {
+        "hex": "#1f2b23",
+        "rgb": [
+          31,
+          43,
+          35
+        ],
+        "percentage": 50.2
+      },
+      {
+        "hex": "#54624c",
+        "rgb": [
+          84,
+          98,
+          76
+        ],
+        "percentage": 19.0
+      },
+      {
+        "hex": "#9b9990",
+        "rgb": [
+          155,
+          153,
+          144
+        ],
+        "percentage": 13.5
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9381-1.jpg",
+    "x": 0.746088,
+    "y": 0.912917,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.5229,
+    "dominant_colors": [
+      {
+        "hex": "#1a3413",
+        "rgb": [
+          26,
+          52,
+          19
+        ],
+        "percentage": 34.5
+      },
+      {
+        "hex": "#3e6621",
+        "rgb": [
+          62,
+          102,
+          33
+        ],
+        "percentage": 23.1
+      },
+      {
+        "hex": "#7e9b32",
+        "rgb": [
+          126,
+          155,
+          50
+        ],
+        "percentage": 17.8
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9388-1.jpg",
+    "x": 0.692506,
+    "y": 0.85168,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.3877,
+    "dominant_colors": [
+      {
+        "hex": "#25291c",
+        "rgb": [
+          37,
+          41,
+          28
+        ],
+        "percentage": 49.2
+      },
+      {
+        "hex": "#4c543d",
+        "rgb": [
+          76,
+          84,
+          61
+        ],
+        "percentage": 24.6
+      },
+      {
+        "hex": "#948887",
+        "rgb": [
+          148,
+          136,
+          135
+        ],
+        "percentage": 13.6
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9392-1.jpg",
+    "x": 0.250385,
+    "y": 0.083587,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.1542,
+    "dominant_colors": [
+      {
+        "hex": "#13251b",
+        "rgb": [
+          19,
+          37,
+          27
+        ],
+        "percentage": 59.2
+      },
+      {
+        "hex": "#334829",
+        "rgb": [
+          51,
+          72,
+          41
+        ],
+        "percentage": 20.6
+      },
+      {
+        "hex": "#787e45",
+        "rgb": [
+          120,
+          126,
+          69
+        ],
+        "percentage": 7.4
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9399-1.jpg",
+    "x": 0.258308,
+    "y": 0.062508,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.1752,
+    "dominant_colors": [
+      {
+        "hex": "#143821",
+        "rgb": [
+          20,
+          56,
+          33
+        ],
+        "percentage": 56.7
+      },
+      {
+        "hex": "#1d8d1c",
+        "rgb": [
+          29,
+          141,
+          28
+        ],
+        "percentage": 13.8
+      },
+      {
+        "hex": "#83b951",
+        "rgb": [
+          131,
+          185,
+          81
+        ],
+        "percentage": 13.4
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9402-1.jpg",
+    "x": 0.667429,
+    "y": 0.769347,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.2238,
+    "dominant_colors": [
+      {
+        "hex": "#505a2c",
+        "rgb": [
+          80,
+          90,
+          44
+        ],
+        "percentage": 23.6
+      },
+      {
+        "hex": "#262d18",
+        "rgb": [
+          38,
+          45,
+          24
+        ],
+        "percentage": 23.5
+      },
+      {
+        "hex": "#e3e6dd",
+        "rgb": [
+          227,
+          230,
+          221
+        ],
+        "percentage": 19.0
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9406-1.jpg",
+    "x": 0.576984,
+    "y": 0.767626,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.1947,
+    "dominant_colors": [
+      {
+        "hex": "#242614",
+        "rgb": [
+          36,
+          38,
+          20
+        ],
+        "percentage": 43.2
+      },
+      {
+        "hex": "#464820",
+        "rgb": [
+          70,
+          72,
+          32
+        ],
+        "percentage": 24.9
+      },
+      {
+        "hex": "#736837",
+        "rgb": [
+          115,
+          104,
+          55
+        ],
+        "percentage": 16.2
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "giraffe",
+        "count": 1,
+        "total_area_pct": 9.140000343322754
+      }
+    ]
+  },
+  {
+    "filename": "_NIK9421-1.jpg",
+    "x": 0.561529,
+    "y": 0.679365,
+    "scene_label": "微距/特写",
+    "scene_confidence": 0.1448,
+    "dominant_colors": [
+      {
+        "hex": "#141c1a",
+        "rgb": [
+          20,
+          28,
+          26
+        ],
+        "percentage": 41.6
+      },
+      {
+        "hex": "#343831",
+        "rgb": [
+          52,
+          56,
+          49
+        ],
+        "percentage": 26.0
+      },
+      {
+        "hex": "#52564f",
+        "rgb": [
+          82,
+          86,
+          79
+        ],
+        "percentage": 20.6
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9427-1.jpg",
+    "x": 0.557262,
+    "y": 0.684983,
+    "scene_label": "微距/特写",
+    "scene_confidence": 0.122,
+    "dominant_colors": [
+      {
+        "hex": "#141c1a",
+        "rgb": [
+          20,
+          28,
+          26
+        ],
+        "percentage": 43.2
+      },
+      {
+        "hex": "#303833",
+        "rgb": [
+          48,
+          56,
+          51
+        ],
+        "percentage": 29.9
+      },
+      {
+        "hex": "#4e5958",
+        "rgb": [
+          78,
+          89,
+          88
+        ],
+        "percentage": 13.8
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "person",
+        "count": 1,
+        "total_area_pct": 0.5199999809265137
+      }
+    ]
+  },
+  {
+    "filename": "_NIK9435-1.jpg",
+    "x": 0.31937,
+    "y": 0.168708,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.1084,
+    "dominant_colors": [
+      {
+        "hex": "#254708",
+        "rgb": [
+          37,
+          71,
+          8
+        ],
+        "percentage": 27.8
+      },
+      {
+        "hex": "#487906",
+        "rgb": [
+          72,
+          121,
+          6
+        ],
+        "percentage": 27.4
+      },
+      {
+        "hex": "#6da604",
+        "rgb": [
+          109,
+          166,
+          4
+        ],
+        "percentage": 20.7
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9442-1.jpg",
+    "x": 0.651382,
+    "y": 0.689032,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.1009,
+    "dominant_colors": [
+      {
+        "hex": "#202824",
+        "rgb": [
+          32,
+          40,
+          36
+        ],
+        "percentage": 42.4
+      },
+      {
+        "hex": "#495149",
+        "rgb": [
+          73,
+          81,
+          73
+        ],
+        "percentage": 21.0
+      },
+      {
+        "hex": "#7e7e70",
+        "rgb": [
+          126,
+          126,
+          112
+        ],
+        "percentage": 15.7
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "train",
+        "count": 1,
+        "total_area_pct": 63.630001068115234
+      },
+      {
+        "class": "potted plant",
+        "count": 1,
+        "total_area_pct": 5.199999809265137
+      }
+    ]
+  },
+  {
+    "filename": "_NIK9447-1.jpg",
+    "x": 0.276883,
+    "y": 0.090004,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.1426,
+    "dominant_colors": [
+      {
+        "hex": "#edece8",
+        "rgb": [
+          237,
+          236,
+          232
+        ],
+        "percentage": 29.9
+      },
+      {
+        "hex": "#212823",
+        "rgb": [
+          33,
+          40,
+          35
+        ],
+        "percentage": 28.6
+      },
+      {
+        "hex": "#b4b4a9",
+        "rgb": [
+          180,
+          180,
+          169
+        ],
+        "percentage": 15.4
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9451-1.jpg",
+    "x": 0.644259,
+    "y": 0.823506,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.4714,
+    "dominant_colors": [
+      {
+        "hex": "#2b2921",
+        "rgb": [
+          43,
+          41,
+          33
+        ],
+        "percentage": 27.7
+      },
+      {
+        "hex": "#ebe8e2",
+        "rgb": [
+          235,
+          232,
+          226
+        ],
+        "percentage": 25.5
+      },
+      {
+        "hex": "#bfb4a2",
+        "rgb": [
+          191,
+          180,
+          162
+        ],
+        "percentage": 16.8
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9465-1.jpg",
+    "x": 0.570573,
+    "y": 0.746926,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.3379,
+    "dominant_colors": [
+      {
+        "hex": "#18160f",
+        "rgb": [
+          24,
+          22,
+          15
+        ],
+        "percentage": 38.7
+      },
+      {
+        "hex": "#dbdad6",
+        "rgb": [
+          219,
+          218,
+          214
+        ],
+        "percentage": 19.2
+      },
+      {
+        "hex": "#404331",
+        "rgb": [
+          64,
+          67,
+          49
+        ],
+        "percentage": 17.7
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9467-1.jpg",
+    "x": 0.288638,
+    "y": 0.144431,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.2322,
+    "dominant_colors": [
+      {
+        "hex": "#4e4243",
+        "rgb": [
+          78,
+          66,
+          67
+        ],
+        "percentage": 23.3
+      },
+      {
+        "hex": "#776a6c",
+        "rgb": [
+          119,
+          106,
+          108
+        ],
+        "percentage": 22.9
+      },
+      {
+        "hex": "#a6999c",
+        "rgb": [
+          166,
+          153,
+          156
+        ],
+        "percentage": 21.1
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9474-1.jpg",
+    "x": 0.241519,
+    "y": 0.062634,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.1138,
+    "dominant_colors": [
+      {
+        "hex": "#1b3128",
+        "rgb": [
+          27,
+          49,
+          40
+        ],
+        "percentage": 53.2
+      },
+      {
+        "hex": "#3d5d4b",
+        "rgb": [
+          61,
+          93,
+          75
+        ],
+        "percentage": 23.2
+      },
+      {
+        "hex": "#7a8f85",
+        "rgb": [
+          122,
+          143,
+          133
+        ],
+        "percentage": 13.3
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9476-1.jpg",
+    "x": 0.348921,
+    "y": 0.107995,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.2472,
+    "dominant_colors": [
+      {
+        "hex": "#23331c",
+        "rgb": [
+          35,
+          51,
+          28
+        ],
+        "percentage": 35.7
+      },
+      {
+        "hex": "#3b512b",
+        "rgb": [
+          59,
+          81,
+          43
+        ],
+        "percentage": 29.7
+      },
+      {
+        "hex": "#657c35",
+        "rgb": [
+          101,
+          124,
+          53
+        ],
+        "percentage": 15.5
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9478-1.jpg",
+    "x": 0.617947,
+    "y": 0.821221,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.1636,
+    "dominant_colors": [
+      {
+        "hex": "#173530",
+        "rgb": [
+          23,
+          53,
+          48
+        ],
+        "percentage": 40.4
+      },
+      {
+        "hex": "#43605d",
+        "rgb": [
+          67,
+          96,
+          93
+        ],
+        "percentage": 22.8
+      },
+      {
+        "hex": "#ddd9d2",
+        "rgb": [
+          221,
+          217,
+          210
+        ],
+        "percentage": 17.3
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9481-1.jpg",
+    "x": 0.253654,
+    "y": 0.071784,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.291,
+    "dominant_colors": [
+      {
+        "hex": "#192c1e",
+        "rgb": [
+          25,
+          44,
+          30
+        ],
+        "percentage": 57.1
+      },
+      {
+        "hex": "#365537",
+        "rgb": [
+          54,
+          85,
+          55
+        ],
+        "percentage": 22.1
+      },
+      {
+        "hex": "#7a865b",
+        "rgb": [
+          122,
+          134,
+          91
+        ],
+        "percentage": 12.6
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9485-1.jpg",
+    "x": 0.720199,
+    "y": 0.912882,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.5142,
+    "dominant_colors": [
+      {
+        "hex": "#21321b",
+        "rgb": [
+          33,
+          50,
+          27
+        ],
+        "percentage": 54.4
+      },
+      {
+        "hex": "#556f2a",
+        "rgb": [
+          85,
+          111,
+          42
+        ],
+        "percentage": 21.4
+      },
+      {
+        "hex": "#d0d0ca",
+        "rgb": [
+          208,
+          208,
+          202
+        ],
+        "percentage": 11.1
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9490-1.jpg",
+    "x": 0.256881,
+    "y": 0.016736,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.2196,
+    "dominant_colors": [
+      {
+        "hex": "#192f16",
+        "rgb": [
+          25,
+          47,
+          22
+        ],
+        "percentage": 50.6
+      },
+      {
+        "hex": "#b8c3c4",
+        "rgb": [
+          184,
+          195,
+          196
+        ],
+        "percentage": 19.8
+      },
+      {
+        "hex": "#435a35",
+        "rgb": [
+          67,
+          90,
+          53
+        ],
+        "percentage": 14.8
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9516-2.jpg",
+    "x": 0.329735,
+    "y": 0.074476,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.2362,
+    "dominant_colors": [
+      {
+        "hex": "#252918",
+        "rgb": [
+          37,
+          41,
+          24
+        ],
+        "percentage": 37.5
+      },
+      {
+        "hex": "#4e4f31",
+        "rgb": [
+          78,
+          79,
+          49
+        ],
+        "percentage": 24.5
+      },
+      {
+        "hex": "#d3c7c3",
+        "rgb": [
+          211,
+          199,
+          195
+        ],
+        "percentage": 17.7
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "orange",
+        "count": 1,
+        "total_area_pct": 0.1599999964237213
+      }
+    ]
+  },
+  {
+    "filename": "_NIK9517-1.jpg",
+    "x": 0.292797,
+    "y": 0.035266,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.2957,
+    "dominant_colors": [
+      {
+        "hex": "#20301c",
+        "rgb": [
+          32,
+          48,
+          28
+        ],
+        "percentage": 37.4
+      },
+      {
+        "hex": "#375f21",
+        "rgb": [
+          55,
+          95,
+          33
+        ],
+        "percentage": 30.3
+      },
+      {
+        "hex": "#c1ccca",
+        "rgb": [
+          193,
+          204,
+          202
+        ],
+        "percentage": 15.5
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9522-4.jpg",
+    "x": 0.255286,
+    "y": 0.001368,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.2133,
+    "dominant_colors": [
+      {
+        "hex": "#2e3e1d",
+        "rgb": [
+          46,
+          62,
+          29
+        ],
+        "percentage": 29.3
+      },
+      {
+        "hex": "#d4d4cc",
+        "rgb": [
+          212,
+          212,
+          204
+        ],
+        "percentage": 25.9
+      },
+      {
+        "hex": "#50850a",
+        "rgb": [
+          80,
+          133,
+          10
+        ],
+        "percentage": 16.3
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9525-1.jpg",
+    "x": 0.273067,
+    "y": 0.0,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.2072,
+    "dominant_colors": [
+      {
+        "hex": "#29361d",
+        "rgb": [
+          41,
+          54,
+          29
+        ],
+        "percentage": 36.4
+      },
+      {
+        "hex": "#bdc1ba",
+        "rgb": [
+          189,
+          193,
+          186
+        ],
+        "percentage": 22.3
+      },
+      {
+        "hex": "#617150",
+        "rgb": [
+          97,
+          113,
+          80
+        ],
+        "percentage": 20.1
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9529-6.jpg",
+    "x": 0.755216,
+    "y": 0.935446,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.6772,
+    "dominant_colors": [
+      {
+        "hex": "#223821",
+        "rgb": [
+          34,
+          56,
+          33
+        ],
+        "percentage": 27.9
+      },
+      {
+        "hex": "#526743",
+        "rgb": [
+          82,
+          103,
+          67
+        ],
+        "percentage": 21.7
+      },
+      {
+        "hex": "#7f8d78",
+        "rgb": [
+          127,
+          141,
+          120
+        ],
+        "percentage": 17.4
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "potted plant",
+        "count": 1,
+        "total_area_pct": 66.4000015258789
+      }
+    ]
+  },
+  {
+    "filename": "_NIK9535-7.jpg",
+    "x": 0.778781,
+    "y": 0.94909,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.7197,
+    "dominant_colors": [
+      {
+        "hex": "#193325",
+        "rgb": [
+          25,
+          51,
+          37
+        ],
+        "percentage": 30.9
+      },
+      {
+        "hex": "#cfb7b4",
+        "rgb": [
+          207,
+          183,
+          180
+        ],
+        "percentage": 20.9
+      },
+      {
+        "hex": "#545c4d",
+        "rgb": [
+          84,
+          92,
+          77
+        ],
+        "percentage": 20.8
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9536-8.jpg",
+    "x": 0.759104,
+    "y": 0.943994,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.5635,
+    "dominant_colors": [
+      {
+        "hex": "#1e2c21",
+        "rgb": [
+          30,
+          44,
+          33
+        ],
+        "percentage": 44.7
+      },
+      {
+        "hex": "#dfc6db",
+        "rgb": [
+          223,
+          198,
+          219
+        ],
+        "percentage": 24.5
+      },
+      {
+        "hex": "#2f644d",
+        "rgb": [
+          47,
+          100,
+          77
+        ],
+        "percentage": 18.5
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "potted plant",
+        "count": 1,
+        "total_area_pct": 72.29000091552734
+      }
+    ]
+  },
+  {
+    "filename": "_NIK9540-9.jpg",
+    "x": 0.263643,
+    "y": 0.007808,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.2637,
+    "dominant_colors": [
+      {
+        "hex": "#183421",
+        "rgb": [
+          24,
+          52,
+          33
+        ],
+        "percentage": 35.0
+      },
+      {
+        "hex": "#dbcada",
+        "rgb": [
+          219,
+          202,
+          218
+        ],
+        "percentage": 26.8
+      },
+      {
+        "hex": "#9f9394",
+        "rgb": [
+          159,
+          147,
+          148
+        ],
+        "percentage": 14.5
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9552-1.jpg",
+    "x": 0.726201,
+    "y": 0.92707,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.5664,
+    "dominant_colors": [
+      {
+        "hex": "#262c1e",
+        "rgb": [
+          38,
+          44,
+          30
+        ],
+        "percentage": 38.5
+      },
+      {
+        "hex": "#505a47",
+        "rgb": [
+          80,
+          90,
+          71
+        ],
+        "percentage": 24.5
+      },
+      {
+        "hex": "#e2b9d4",
+        "rgb": [
+          226,
+          185,
+          212
+        ],
+        "percentage": 16.2
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "potted plant",
+        "count": 1,
+        "total_area_pct": 72.26000213623047
+      },
+      {
+        "class": "vase",
+        "count": 1,
+        "total_area_pct": 14.59000015258789
+      }
+    ]
+  },
+  {
+    "filename": "_NIK9554-11.jpg",
+    "x": 0.63451,
+    "y": 0.869749,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.2649,
+    "dominant_colors": [
+      {
+        "hex": "#25361f",
+        "rgb": [
+          37,
+          54,
+          31
+        ],
+        "percentage": 50.1
+      },
+      {
+        "hex": "#476838",
+        "rgb": [
+          71,
+          104,
+          56
+        ],
+        "percentage": 22.0
+      },
+      {
+        "hex": "#798b81",
+        "rgb": [
+          121,
+          139,
+          129
+        ],
+        "percentage": 12.6
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9557-1.jpg",
+    "x": 0.702458,
+    "y": 0.76761,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.1553,
+    "dominant_colors": [
+      {
+        "hex": "#1b351e",
+        "rgb": [
+          27,
+          53,
+          30
+        ],
+        "percentage": 35.3
+      },
+      {
+        "hex": "#48693a",
+        "rgb": [
+          72,
+          105,
+          58
+        ],
+        "percentage": 17.6
+      },
+      {
+        "hex": "#7e9560",
+        "rgb": [
+          126,
+          149,
+          96
+        ],
+        "percentage": 17.4
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9559-1.jpg",
+    "x": 0.300177,
+    "y": 0.045152,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.2861,
+    "dominant_colors": [
+      {
+        "hex": "#1c331f",
+        "rgb": [
+          28,
+          51,
+          31
+        ],
+        "percentage": 43.9
+      },
+      {
+        "hex": "#485e3f",
+        "rgb": [
+          72,
+          94,
+          63
+        ],
+        "percentage": 17.8
+      },
+      {
+        "hex": "#d7cad1",
+        "rgb": [
+          215,
+          202,
+          209
+        ],
+        "percentage": 16.0
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9571-1.jpg",
+    "x": 0.264334,
+    "y": 0.002804,
+    "scene_label": "其他/未分类",
+    "scene_confidence": 0.0621,
+    "dominant_colors": [
+      {
+        "hex": "#162d1c",
+        "rgb": [
+          22,
+          45,
+          28
+        ],
+        "percentage": 48.8
+      },
+      {
+        "hex": "#333e2a",
+        "rgb": [
+          51,
+          62,
+          42
+        ],
+        "percentage": 25.4
+      },
+      {
+        "hex": "#576346",
+        "rgb": [
+          87,
+          99,
+          70
+        ],
+        "percentage": 9.8
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9598-1.jpg",
+    "x": 0.982101,
+    "y": 0.986558,
+    "scene_label": "宠物猫狗",
+    "scene_confidence": 0.9121,
+    "dominant_colors": [
+      {
+        "hex": "#a19f9f",
+        "rgb": [
+          161,
+          159,
+          159
+        ],
+        "percentage": 38.7
+      },
+      {
+        "hex": "#787673",
+        "rgb": [
+          120,
+          118,
+          115
+        ],
+        "percentage": 25.7
+      },
+      {
+        "hex": "#585451",
+        "rgb": [
+          88,
+          84,
+          81
+        ],
+        "percentage": 16.6
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "cat",
+        "count": 1,
+        "total_area_pct": 53.939998626708984
+      }
+    ]
+  },
+  {
+    "filename": "_NIK9599-1.jpg",
+    "x": 0.978627,
+    "y": 0.98252,
+    "scene_label": "宠物猫狗",
+    "scene_confidence": 0.8877,
+    "dominant_colors": [
+      {
+        "hex": "#aaa8a9",
+        "rgb": [
+          170,
+          168,
+          169
+        ],
+        "percentage": 37.7
+      },
+      {
+        "hex": "#82807e",
+        "rgb": [
+          130,
+          128,
+          126
+        ],
+        "percentage": 26.7
+      },
+      {
+        "hex": "#615e5c",
+        "rgb": [
+          97,
+          94,
+          92
+        ],
+        "percentage": 15.8
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "cat",
+        "count": 1,
+        "total_area_pct": 52.810001373291016
+      }
+    ]
+  },
+  {
+    "filename": "_NIK9607-1.jpg",
+    "x": 0.986714,
+    "y": 0.991257,
+    "scene_label": "宠物猫狗",
+    "scene_confidence": 0.8032,
+    "dominant_colors": [
+      {
+        "hex": "#575857",
+        "rgb": [
+          87,
+          88,
+          87
+        ],
+        "percentage": 29.0
+      },
+      {
+        "hex": "#6a7577",
+        "rgb": [
+          106,
+          117,
+          119
+        ],
+        "percentage": 22.1
+      },
+      {
+        "hex": "#939696",
+        "rgb": [
+          147,
+          150,
+          150
+        ],
+        "percentage": 21.8
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "cat",
+        "count": 1,
+        "total_area_pct": 35.880001068115234
+      }
+    ]
+  },
+  {
+    "filename": "_NIK9608-1.jpg",
+    "x": 1.0,
+    "y": 1.0,
+    "scene_label": "宠物猫狗",
+    "scene_confidence": 0.8389,
+    "dominant_colors": [
+      {
+        "hex": "#5e605f",
+        "rgb": [
+          94,
+          96,
+          95
+        ],
+        "percentage": 28.0
+      },
+      {
+        "hex": "#788080",
+        "rgb": [
+          120,
+          128,
+          128
+        ],
+        "percentage": 22.7
+      },
+      {
+        "hex": "#a1a09d",
+        "rgb": [
+          161,
+          160,
+          157
+        ],
+        "percentage": 19.7
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "cat",
+        "count": 1,
+        "total_area_pct": 47.290000915527344
+      }
+    ]
+  },
+  {
+    "filename": "_NIK9617-1.jpg",
+    "x": 0.866008,
+    "y": 0.860153,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.6514,
+    "dominant_colors": [
+      {
+        "hex": "#a6afb6",
+        "rgb": [
+          166,
+          175,
+          182
+        ],
+        "percentage": 23.0
+      },
+      {
+        "hex": "#4e544d",
+        "rgb": [
+          78,
+          84,
+          77
+        ],
+        "percentage": 22.0
+      },
+      {
+        "hex": "#899389",
+        "rgb": [
+          137,
+          147,
+          137
+        ],
+        "percentage": 21.8
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9618-1.jpg",
+    "x": 0.918363,
+    "y": 0.862294,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.5928,
+    "dominant_colors": [
+      {
+        "hex": "#90b0b7",
+        "rgb": [
+          144,
+          176,
+          183
+        ],
+        "percentage": 45.4
+      },
+      {
+        "hex": "#638d93",
+        "rgb": [
+          99,
+          141,
+          147
+        ],
+        "percentage": 21.5
+      },
+      {
+        "hex": "#4c6a6b",
+        "rgb": [
+          76,
+          106,
+          107
+        ],
+        "percentage": 20.0
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9632-1.jpg",
+    "x": 0.302369,
+    "y": 0.201885,
+    "scene_label": "天空/云彩",
+    "scene_confidence": 0.1902,
+    "dominant_colors": [
+      {
+        "hex": "#b3ccd0",
+        "rgb": [
+          179,
+          204,
+          208
+        ],
+        "percentage": 30.9
+      },
+      {
+        "hex": "#57b6c1",
+        "rgb": [
+          87,
+          182,
+          193
+        ],
+        "percentage": 22.7
+      },
+      {
+        "hex": "#8fa1a0",
+        "rgb": [
+          143,
+          161,
+          160
+        ],
+        "percentage": 21.5
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9648-1.jpg",
+    "x": 0.310156,
+    "y": 0.188862,
+    "scene_label": "海洋/水面",
+    "scene_confidence": 0.1818,
+    "dominant_colors": [
+      {
+        "hex": "#3f5937",
+        "rgb": [
+          63,
+          89,
+          55
+        ],
+        "percentage": 30.2
+      },
+      {
+        "hex": "#5e7c4e",
+        "rgb": [
+          94,
+          124,
+          78
+        ],
+        "percentage": 24.1
+      },
+      {
+        "hex": "#20351e",
+        "rgb": [
+          32,
+          53,
+          30
+        ],
+        "percentage": 20.1
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9660-1.jpg",
+    "x": 0.299859,
+    "y": 0.171759,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.2415,
+    "dominant_colors": [
+      {
+        "hex": "#5e8221",
+        "rgb": [
+          94,
+          130,
+          33
+        ],
+        "percentage": 29.8
+      },
+      {
+        "hex": "#3a5116",
+        "rgb": [
+          58,
+          81,
+          22
+        ],
+        "percentage": 28.4
+      },
+      {
+        "hex": "#97c019",
+        "rgb": [
+          151,
+          192,
+          25
+        ],
+        "percentage": 18.2
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9670-1.jpg",
+    "x": 0.583228,
+    "y": 0.827387,
+    "scene_label": "街景/道路",
+    "scene_confidence": 0.2053,
+    "dominant_colors": [
+      {
+        "hex": "#35361d",
+        "rgb": [
+          53,
+          54,
+          29
+        ],
+        "percentage": 33.2
+      },
+      {
+        "hex": "#636638",
+        "rgb": [
+          99,
+          102,
+          56
+        ],
+        "percentage": 29.5
+      },
+      {
+        "hex": "#979079",
+        "rgb": [
+          151,
+          144,
+          121
+        ],
+        "percentage": 16.4
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9674-1.jpg",
+    "x": 0.269987,
+    "y": 0.020438,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.1065,
+    "dominant_colors": [
+      {
+        "hex": "#2c3d1f",
+        "rgb": [
+          44,
+          61,
+          31
+        ],
+        "percentage": 39.1
+      },
+      {
+        "hex": "#546929",
+        "rgb": [
+          84,
+          105,
+          41
+        ],
+        "percentage": 29.4
+      },
+      {
+        "hex": "#cdb107",
+        "rgb": [
+          205,
+          177,
+          7
+        ],
+        "percentage": 15.1
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9682-1.jpg",
+    "x": 0.327773,
+    "y": 0.13072,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.201,
+    "dominant_colors": [
+      {
+        "hex": "#274526",
+        "rgb": [
+          39,
+          69,
+          38
+        ],
+        "percentage": 39.7
+      },
+      {
+        "hex": "#556827",
+        "rgb": [
+          85,
+          104,
+          39
+        ],
+        "percentage": 28.8
+      },
+      {
+        "hex": "#dcc407",
+        "rgb": [
+          220,
+          196,
+          7
+        ],
+        "percentage": 16.2
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9694-1.jpg",
+    "x": 0.418262,
+    "y": 0.173074,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.1923,
+    "dominant_colors": [
+      {
+        "hex": "#613d56",
+        "rgb": [
+          97,
+          61,
+          86
+        ],
+        "percentage": 29.0
+      },
+      {
+        "hex": "#c5bfc3",
+        "rgb": [
+          197,
+          191,
+          195
+        ],
+        "percentage": 28.1
+      },
+      {
+        "hex": "#898581",
+        "rgb": [
+          137,
+          133,
+          129
+        ],
+        "percentage": 20.5
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9698-1.jpg",
+    "x": 0.898703,
+    "y": 0.815234,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.23,
+    "dominant_colors": [
+      {
+        "hex": "#aebec1",
+        "rgb": [
+          174,
+          190,
+          193
+        ],
+        "percentage": 27.2
+      },
+      {
+        "hex": "#dfe2e2",
+        "rgb": [
+          223,
+          226,
+          226
+        ],
+        "percentage": 25.9
+      },
+      {
+        "hex": "#919a9a",
+        "rgb": [
+          145,
+          154,
+          154
+        ],
+        "percentage": 25.4
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9701-1.jpg",
+    "x": 0.913651,
+    "y": 0.804336,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.189,
+    "dominant_colors": [
+      {
+        "hex": "#dde7e9",
+        "rgb": [
+          221,
+          231,
+          233
+        ],
+        "percentage": 43.5
+      },
+      {
+        "hex": "#a8afaf",
+        "rgb": [
+          168,
+          175,
+          175
+        ],
+        "percentage": 27.8
+      },
+      {
+        "hex": "#c7d1d3",
+        "rgb": [
+          199,
+          209,
+          211
+        ],
+        "percentage": 13.9
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9704-1.jpg",
+    "x": 0.794457,
+    "y": 0.821877,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.4993,
+    "dominant_colors": [
+      {
+        "hex": "#f9f9f9",
+        "rgb": [
+          249,
+          249,
+          249
+        ],
+        "percentage": 45.1
+      },
+      {
+        "hex": "#d1d0cf",
+        "rgb": [
+          209,
+          208,
+          207
+        ],
+        "percentage": 24.7
+      },
+      {
+        "hex": "#acaba7",
+        "rgb": [
+          172,
+          171,
+          167
+        ],
+        "percentage": 15.8
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9706-1.jpg",
+    "x": 0.816017,
+    "y": 0.79203,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.4646,
+    "dominant_colors": [
+      {
+        "hex": "#dfdfde",
+        "rgb": [
+          223,
+          223,
+          222
+        ],
+        "percentage": 40.5
+      },
+      {
+        "hex": "#6a6451",
+        "rgb": [
+          106,
+          100,
+          81
+        ],
+        "percentage": 16.0
+      },
+      {
+        "hex": "#8d8980",
+        "rgb": [
+          141,
+          137,
+          128
+        ],
+        "percentage": 15.2
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9711-1.jpg",
+    "x": 0.922286,
+    "y": 0.805743,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.3396,
+    "dominant_colors": [
+      {
+        "hex": "#eaeae9",
+        "rgb": [
+          234,
+          234,
+          233
+        ],
+        "percentage": 57.1
+      },
+      {
+        "hex": "#b5b4b1",
+        "rgb": [
+          181,
+          180,
+          177
+        ],
+        "percentage": 19.8
+      },
+      {
+        "hex": "#98958b",
+        "rgb": [
+          152,
+          149,
+          139
+        ],
+        "percentage": 10.3
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9714-1.jpg",
+    "x": 0.916774,
+    "y": 0.797477,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.2578,
+    "dominant_colors": [
+      {
+        "hex": "#f2f2f2",
+        "rgb": [
+          242,
+          242,
+          242
+        ],
+        "percentage": 57.3
+      },
+      {
+        "hex": "#c2c1bf",
+        "rgb": [
+          194,
+          193,
+          191
+        ],
+        "percentage": 22.9
+      },
+      {
+        "hex": "#a9a7a2",
+        "rgb": [
+          169,
+          167,
+          162
+        ],
+        "percentage": 9.8
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9726-1.jpg",
+    "x": 0.415006,
+    "y": 0.172337,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.1945,
+    "dominant_colors": [
+      {
+        "hex": "#4a4f3a",
+        "rgb": [
+          74,
+          79,
+          58
+        ],
+        "percentage": 26.4
+      },
+      {
+        "hex": "#2a2f1c",
+        "rgb": [
+          42,
+          47,
+          28
+        ],
+        "percentage": 23.3
+      },
+      {
+        "hex": "#797860",
+        "rgb": [
+          121,
+          120,
+          96
+        ],
+        "percentage": 21.3
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9738-1.jpg",
+    "x": 0.781074,
+    "y": 0.801075,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.3069,
+    "dominant_colors": [
+      {
+        "hex": "#646359",
+        "rgb": [
+          100,
+          99,
+          89
+        ],
+        "percentage": 23.9
+      },
+      {
+        "hex": "#2f342b",
+        "rgb": [
+          47,
+          52,
+          43
+        ],
+        "percentage": 22.0
+      },
+      {
+        "hex": "#bcb9b7",
+        "rgb": [
+          188,
+          185,
+          183
+        ],
+        "percentage": 20.2
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9745-1.jpg",
+    "x": 0.941853,
+    "y": 0.830128,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.2186,
+    "dominant_colors": [
+      {
+        "hex": "#64d4db",
+        "rgb": [
+          100,
+          212,
+          219
+        ],
+        "percentage": 42.4
+      },
+      {
+        "hex": "#499b9c",
+        "rgb": [
+          73,
+          155,
+          156
+        ],
+        "percentage": 24.2
+      },
+      {
+        "hex": "#a4bebe",
+        "rgb": [
+          164,
+          190,
+          190
+        ],
+        "percentage": 13.6
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9747-1.jpg",
+    "x": 0.269494,
+    "y": 0.222868,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.2852,
+    "dominant_colors": [
+      {
+        "hex": "#e8e8e8",
+        "rgb": [
+          232,
+          232,
+          232
+        ],
+        "percentage": 37.0
+      },
+      {
+        "hex": "#81796c",
+        "rgb": [
+          129,
+          121,
+          108
+        ],
+        "percentage": 22.8
+      },
+      {
+        "hex": "#a79d94",
+        "rgb": [
+          167,
+          157,
+          148
+        ],
+        "percentage": 17.7
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9751-1.jpg",
+    "x": 0.419896,
+    "y": 0.195236,
+    "scene_label": "建筑纹理/细节",
+    "scene_confidence": 0.2126,
+    "dominant_colors": [
+      {
+        "hex": "#7c8781",
+        "rgb": [
+          124,
+          135,
+          129
+        ],
+        "percentage": 24.9
+      },
+      {
+        "hex": "#c0d5d5",
+        "rgb": [
+          192,
+          213,
+          213
+        ],
+        "percentage": 24.4
+      },
+      {
+        "hex": "#95bdbe",
+        "rgb": [
+          149,
+          189,
+          190
+        ],
+        "percentage": 22.9
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9759-1.jpg",
+    "x": 0.737264,
+    "y": 0.799248,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.2358,
+    "dominant_colors": [
+      {
+        "hex": "#a8a3a1",
+        "rgb": [
+          168,
+          163,
+          161
+        ],
+        "percentage": 23.6
+      },
+      {
+        "hex": "#63645f",
+        "rgb": [
+          99,
+          100,
+          95
+        ],
+        "percentage": 23.2
+      },
+      {
+        "hex": "#88847c",
+        "rgb": [
+          136,
+          132,
+          124
+        ],
+        "percentage": 20.5
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9772-1.jpg",
+    "x": 0.968483,
+    "y": 0.979684,
+    "scene_label": "宠物猫狗",
+    "scene_confidence": 0.6377,
+    "dominant_colors": [
+      {
+        "hex": "#79745e",
+        "rgb": [
+          121,
+          116,
+          94
+        ],
+        "percentage": 30.8
+      },
+      {
+        "hex": "#3e4129",
+        "rgb": [
+          62,
+          65,
+          41
+        ],
+        "percentage": 24.3
+      },
+      {
+        "hex": "#beb578",
+        "rgb": [
+          190,
+          181,
+          120
+        ],
+        "percentage": 19.4
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "cat",
+        "count": 1,
+        "total_area_pct": 11.350000381469727
+      }
+    ]
+  },
+  {
+    "filename": "_NIK9785-1.jpg",
+    "x": 0.782908,
+    "y": 0.533068,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.3833,
+    "dominant_colors": [
+      {
+        "hex": "#10505c",
+        "rgb": [
+          16,
+          80,
+          92
+        ],
+        "percentage": 32.5
+      },
+      {
+        "hex": "#09343a",
+        "rgb": [
+          9,
+          52,
+          58
+        ],
+        "percentage": 25.3
+      },
+      {
+        "hex": "#3d6870",
+        "rgb": [
+          61,
+          104,
+          112
+        ],
+        "percentage": 21.7
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9790-1.jpg",
+    "x": 0.654244,
+    "y": 0.379721,
+    "scene_label": "星空/夜空",
+    "scene_confidence": 0.3284,
+    "dominant_colors": [
+      {
+        "hex": "#475461",
+        "rgb": [
+          71,
+          84,
+          97
+        ],
+        "percentage": 30.0
+      },
+      {
+        "hex": "#10202a",
+        "rgb": [
+          16,
+          32,
+          42
+        ],
+        "percentage": 23.8
+      },
+      {
+        "hex": "#2c3b47",
+        "rgb": [
+          44,
+          59,
+          71
+        ],
+        "percentage": 20.3
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9794-1.jpg",
+    "x": 0.653033,
+    "y": 0.393991,
+    "scene_label": "星空/夜空",
+    "scene_confidence": 0.3882,
+    "dominant_colors": [
+      {
+        "hex": "#213d51",
+        "rgb": [
+          33,
+          61,
+          81
+        ],
+        "percentage": 29.0
+      },
+      {
+        "hex": "#3d5569",
+        "rgb": [
+          61,
+          85,
+          105
+        ],
+        "percentage": 25.9
+      },
+      {
+        "hex": "#062030",
+        "rgb": [
+          6,
+          32,
+          48
+        ],
+        "percentage": 25.2
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9797-1.jpg",
+    "x": 0.619256,
+    "y": 0.392073,
+    "scene_label": "星空/夜空",
+    "scene_confidence": 0.4041,
+    "dominant_colors": [
+      {
+        "hex": "#2f3c47",
+        "rgb": [
+          47,
+          60,
+          71
+        ],
+        "percentage": 27.0
+      },
+      {
+        "hex": "#4a525c",
+        "rgb": [
+          74,
+          82,
+          92
+        ],
+        "percentage": 25.0
+      },
+      {
+        "hex": "#14212a",
+        "rgb": [
+          20,
+          33,
+          42
+        ],
+        "percentage": 25.0
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9799-1.jpg",
+    "x": 0.638192,
+    "y": 0.377887,
+    "scene_label": "星空/夜空",
+    "scene_confidence": 0.4253,
+    "dominant_colors": [
+      {
+        "hex": "#0b1a24",
+        "rgb": [
+          11,
+          26,
+          36
+        ],
+        "percentage": 25.7
+      },
+      {
+        "hex": "#3f4a56",
+        "rgb": [
+          63,
+          74,
+          86
+        ],
+        "percentage": 25.1
+      },
+      {
+        "hex": "#263440",
+        "rgb": [
+          38,
+          52,
+          64
+        ],
+        "percentage": 24.1
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9807-1.jpg",
+    "x": 0.613923,
+    "y": 0.367182,
+    "scene_label": "星空/夜空",
+    "scene_confidence": 0.1654,
+    "dominant_colors": [
+      {
+        "hex": "#314550",
+        "rgb": [
+          49,
+          69,
+          80
+        ],
+        "percentage": 30.2
+      },
+      {
+        "hex": "#62686c",
+        "rgb": [
+          98,
+          104,
+          108
+        ],
+        "percentage": 21.3
+      },
+      {
+        "hex": "#1d3038",
+        "rgb": [
+          29,
+          48,
+          56
+        ],
+        "percentage": 21.2
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9808-1.jpg",
+    "x": 0.752242,
+    "y": 0.52211,
+    "scene_label": "夜景/灯饰",
+    "scene_confidence": 0.1571,
+    "dominant_colors": [
+      {
+        "hex": "#556f88",
+        "rgb": [
+          85,
+          111,
+          136
+        ],
+        "percentage": 35.3
+      },
+      {
+        "hex": "#908b8e",
+        "rgb": [
+          144,
+          139,
+          142
+        ],
+        "percentage": 25.4
+      },
+      {
+        "hex": "#43525e",
+        "rgb": [
+          67,
+          82,
+          94
+        ],
+        "percentage": 24.9
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9832-1.jpg",
+    "x": 0.691576,
+    "y": 0.477008,
+    "scene_label": "夜景/灯饰",
+    "scene_confidence": 0.386,
+    "dominant_colors": [
+      {
+        "hex": "#111211",
+        "rgb": [
+          17,
+          18,
+          17
+        ],
+        "percentage": 39.8
+      },
+      {
+        "hex": "#435a6d",
+        "rgb": [
+          67,
+          90,
+          109
+        ],
+        "percentage": 23.6
+      },
+      {
+        "hex": "#0c3855",
+        "rgb": [
+          12,
+          56,
+          85
+        ],
+        "percentage": 21.0
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9842-1.jpg",
+    "x": 0.722587,
+    "y": 0.414521,
+    "scene_label": "星空/夜空",
+    "scene_confidence": 0.4617,
+    "dominant_colors": [
+      {
+        "hex": "#010207",
+        "rgb": [
+          1,
+          2,
+          7
+        ],
+        "percentage": 70.1
+      },
+      {
+        "hex": "#242427",
+        "rgb": [
+          36,
+          36,
+          39
+        ],
+        "percentage": 22.3
+      },
+      {
+        "hex": "#1a1a1c",
+        "rgb": [
+          26,
+          26,
+          28
+        ],
+        "percentage": 7.0
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9847-1.jpg",
+    "x": 0.723235,
+    "y": 0.413793,
+    "scene_label": "星空/夜空",
+    "scene_confidence": 0.4807,
+    "dominant_colors": [
+      {
+        "hex": "#02050c",
+        "rgb": [
+          2,
+          5,
+          12
+        ],
+        "percentage": 70.1
+      },
+      {
+        "hex": "#24272b",
+        "rgb": [
+          36,
+          39,
+          43
+        ],
+        "percentage": 22.5
+      },
+      {
+        "hex": "#1a1c1e",
+        "rgb": [
+          26,
+          28,
+          30
+        ],
+        "percentage": 6.7
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9853-1.jpg",
+    "x": 0.678054,
+    "y": 0.438373,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.161,
+    "dominant_colors": [
+      {
+        "hex": "#1d2d3a",
+        "rgb": [
+          29,
+          45,
+          58
+        ],
+        "percentage": 27.3
+      },
+      {
+        "hex": "#314252",
+        "rgb": [
+          49,
+          66,
+          82
+        ],
+        "percentage": 25.0
+      },
+      {
+        "hex": "#8e929c",
+        "rgb": [
+          142,
+          146,
+          156
+        ],
+        "percentage": 18.7
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9865-1.jpg",
+    "x": 0.608001,
+    "y": 0.292178,
+    "scene_label": "日落/夕阳",
+    "scene_confidence": 0.385,
+    "dominant_colors": [
+      {
+        "hex": "#0f1617",
+        "rgb": [
+          15,
+          22,
+          23
+        ],
+        "percentage": 36.9
+      },
+      {
+        "hex": "#1f313b",
+        "rgb": [
+          31,
+          49,
+          59
+        ],
+        "percentage": 33.8
+      },
+      {
+        "hex": "#6c5245",
+        "rgb": [
+          108,
+          82,
+          69
+        ],
+        "percentage": 14.8
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9867-1.jpg",
+    "x": 0.582589,
+    "y": 0.386177,
+    "scene_label": "天空/云彩",
+    "scene_confidence": 0.3955,
+    "dominant_colors": [
+      {
+        "hex": "#2b5079",
+        "rgb": [
+          43,
+          80,
+          121
+        ],
+        "percentage": 30.1
+      },
+      {
+        "hex": "#525a6d",
+        "rgb": [
+          82,
+          90,
+          109
+        ],
+        "percentage": 23.2
+      },
+      {
+        "hex": "#707488",
+        "rgb": [
+          112,
+          116,
+          136
+        ],
+        "percentage": 19.6
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9873-1.jpg",
+    "x": 0.689825,
+    "y": 0.73914,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.2029,
+    "dominant_colors": [
+      {
+        "hex": "#132210",
+        "rgb": [
+          19,
+          34,
+          16
+        ],
+        "percentage": 66.3
+      },
+      {
+        "hex": "#334910",
+        "rgb": [
+          51,
+          73,
+          16
+        ],
+        "percentage": 17.3
+      },
+      {
+        "hex": "#687932",
+        "rgb": [
+          104,
+          121,
+          50
+        ],
+        "percentage": 6.7
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9883-1.jpg",
+    "x": 0.748985,
+    "y": 0.49229,
+    "scene_label": "天空/云彩",
+    "scene_confidence": 0.313,
+    "dominant_colors": [
+      {
+        "hex": "#53748a",
+        "rgb": [
+          83,
+          116,
+          138
+        ],
+        "percentage": 25.4
+      },
+      {
+        "hex": "#768b9c",
+        "rgb": [
+          118,
+          139,
+          156
+        ],
+        "percentage": 21.4
+      },
+      {
+        "hex": "#435763",
+        "rgb": [
+          67,
+          87,
+          99
+        ],
+        "percentage": 18.3
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9920-1.jpg",
+    "x": 0.214998,
+    "y": 0.079277,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.2974,
+    "dominant_colors": [
+      {
+        "hex": "#223315",
+        "rgb": [
+          34,
+          51,
+          21
+        ],
+        "percentage": 39.5
+      },
+      {
+        "hex": "#4f6534",
+        "rgb": [
+          79,
+          101,
+          52
+        ],
+        "percentage": 21.4
+      },
+      {
+        "hex": "#88936f",
+        "rgb": [
+          136,
+          147,
+          111
+        ],
+        "percentage": 19.5
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9922-1.jpg",
+    "x": 0.244303,
+    "y": 0.074401,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.3096,
+    "dominant_colors": [
+      {
+        "hex": "#11231a",
+        "rgb": [
+          17,
+          35,
+          26
+        ],
+        "percentage": 51.6
+      },
+      {
+        "hex": "#213a28",
+        "rgb": [
+          33,
+          58,
+          40
+        ],
+        "percentage": 31.5
+      },
+      {
+        "hex": "#2d6826",
+        "rgb": [
+          45,
+          104,
+          38
+        ],
+        "percentage": 10.2
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9928-1.jpg",
+    "x": 0.209736,
+    "y": 0.083603,
+    "scene_label": "绿叶/植被特写",
+    "scene_confidence": 0.1904,
+    "dominant_colors": [
+      {
+        "hex": "#21391b",
+        "rgb": [
+          33,
+          57,
+          27
+        ],
+        "percentage": 37.6
+      },
+      {
+        "hex": "#476e0e",
+        "rgb": [
+          71,
+          110,
+          14
+        ],
+        "percentage": 22.6
+      },
+      {
+        "hex": "#a0c2c2",
+        "rgb": [
+          160,
+          194,
+          194
+        ],
+        "percentage": 14.8
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9933-1.jpg",
+    "x": 0.777962,
+    "y": 0.910231,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.4961,
+    "dominant_colors": [
+      {
+        "hex": "#1c2a1a",
+        "rgb": [
+          28,
+          42,
+          26
+        ],
+        "percentage": 57.7
+      },
+      {
+        "hex": "#49641f",
+        "rgb": [
+          73,
+          100,
+          31
+        ],
+        "percentage": 20.2
+      },
+      {
+        "hex": "#997e71",
+        "rgb": [
+          153,
+          126,
+          113
+        ],
+        "percentage": 8.3
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "_NIK9944-1.jpg",
+    "x": 0.766186,
+    "y": 0.919702,
+    "scene_label": "花瓣/花蕊特写",
+    "scene_confidence": 0.6084,
+    "dominant_colors": [
+      {
+        "hex": "#263020",
+        "rgb": [
+          38,
+          48,
+          32
+        ],
+        "percentage": 51.8
+      },
+      {
+        "hex": "#4b563c",
+        "rgb": [
+          75,
+          86,
+          60
+        ],
+        "percentage": 21.4
+      },
+      {
+        "hex": "#83809f",
+        "rgb": [
+          131,
+          128,
+          159
+        ],
+        "percentage": 13.5
+      }
+    ],
+    "objects_summary": [
+      {
+        "class": "potted plant",
+        "count": 1,
+        "total_area_pct": 75.61000061035156
+      }
+    ]
+  },
+  {
+    "filename": "夜晚枫叶_1.jpg",
+    "x": 0.764477,
+    "y": 0.709927,
+    "scene_label": "星空/夜空",
+    "scene_confidence": 0.1296,
+    "dominant_colors": [
+      {
+        "hex": "#1e1308",
+        "rgb": [
+          30,
+          19,
+          8
+        ],
+        "percentage": 39.6
+      },
+      {
+        "hex": "#382818",
+        "rgb": [
+          56,
+          40,
+          24
+        ],
+        "percentage": 32.3
+      },
+      {
+        "hex": "#5b422b",
+        "rgb": [
+          91,
+          66,
+          43
+        ],
+        "percentage": 17.9
+      }
+    ],
+    "objects_summary": []
+  },
+  {
+    "filename": "夜晚枫叶_2.jpg",
+    "x": 0.727731,
+    "y": 0.722893,
+    "scene_label": "建筑纹理/细节",
+    "scene_confidence": 0.1536,
+    "dominant_colors": [
+      {
+        "hex": "#261d15",
+        "rgb": [
+          38,
+          29,
+          21
+        ],
+        "percentage": 40.3
+      },
+      {
+        "hex": "#443629",
+        "rgb": [
+          68,
+          54,
+          41
+        ],
+        "percentage": 30.9
+      },
+      {
+        "hex": "#6f5439",
+        "rgb": [
+          111,
+          84,
+          57
+        ],
+        "percentage": 15.8
+      }
+    ],
+    "objects_summary": []
+  }
+]
