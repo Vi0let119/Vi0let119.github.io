@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="轻笺 QingJian——轻量 Windows 碎片便签。随时唤醒碎片窗口,记录零散文字与图片,自动按天整理。">
+    <title>轻笺 QingJian · 轻量碎片便签</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="qingjian.css">
+</head>
+<body>
+
+    <!-- ============ A. 顶部导航 ============ -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a class="nav-logo" href="#top">
+                <span class="nav-logo-cn">轻笺</span>
+                <span class="nav-logo-en">QINGJIAN</span>
+            </a>
+            <div class="nav-links">
+                <a class="nav-link" href="#feature-1">碎片</a>
+                <a class="nav-link" href="#feature-2">个性化</a>
+                <a class="nav-link" href="#feature-3">内容区</a>
+                <span class="nav-dot" aria-hidden="true"></span>
+                <a class="nav-github" href="https://github.com/Vi0let119/qingjian" target="_blank" rel="noopener">GitHub</a>
+                <a class="btn btn--primary btn--sm" href="https://github.com/Vi0let119/qingjian" target="_blank" rel="noopener">下载</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============ B. Hero ============ -->
+    <header class="hero" id="top">
+        <div class="wrap hero-grid">
+            <div class="hero-copy">
+                <p class="eyebrow">轻量碎片便签 · DAILY FRAGMENTS</p>
+                <h1 class="hero-title">轻笺<span class="hero-title-dot">.</span></h1>
+                <p class="hero-sub">Capture the fragments. Keep the day.</p>
+                <p class="hero-desc">
+                    随时唤醒碎片窗口,记录零散的文字与图片——轻笺按天替你整理好每一片思绪。
+                    Tauri 2 + React 构建,安装包约 10MB,所有内容以 Markdown 存于本地。
+                </p>
+                <div class="hero-cta">
+                    <a class="btn btn--primary btn--lg" href="https://github.com/Vi0let119/qingjian" target="_blank" rel="noopener">点击下载</a>
+                    <a class="btn btn--ghost btn--lg" href="https://github.com/Vi0let119/qingjian" target="_blank" rel="noopener">
+                        <svg class="btn-icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                            <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.42 7.42 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                        </svg>
+                        GitHub 仓库
+                    </a>
+                </div>
+                <p class="hero-meta">开源 · Windows · 数据保存在本地</p>
+            </div>
+            <div class="hero-media">
+                <div class="hero-glow hero-glow--violet" aria-hidden="true"></div>
+                <div class="hero-glow hero-glow--cyan" aria-hidden="true"></div>
+                <img class="hero-img" src="pictures/image9.png" width="1644" height="1123"
+                     alt="轻笺概念插画:少女与橙子,暖色朦胧的治愈画面">
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ============ C1. 每日碎片记录 ============ -->
+        <section class="feature" id="feature-1">
+            <div class="wrap feature-grid">
+                <div class="feature-media" data-parallax="0.05">
+                    <div class="stack">
+                        <figure class="stack-card stack-card--main">
+                            <img src="pictures/image1.png" width="1642" height="1126" loading="lazy" decoding="async"
+                                 alt="碎片窗口界面:暖色调,动漫风插画背景">
+                        </figure>
+                        <figure class="stack-card stack-card--sub">
+                            <img src="pictures/image2.png" width="1549" height="1115" loading="lazy" decoding="async"
+                                 alt="每日碎片记录界面:按天整理的零散片段">
+                        </figure>
+                    </div>
+                </div>
+                <div class="feature-copy reveal">
+                    <p class="feature-num">01</p>
+                    <h2 class="feature-title">每日碎片记录</h2>
+                    <p class="feature-desc">
+                        每日碎片设计,可随时唤醒“碎片窗口”——灵感闪过时,一条文字或一张图片,
+                        几秒钟完成记录。轻笺按天自动归档,回看时每一天都清晰有序。
+                    </p>
+                    <ul class="feature-points">
+                        <li>多开碎片小窗,输入即自动保存</li>
+                        <li>当日碎片实时整合进按日期命名的 Markdown 文件</li>
+                        <li>进程重启或意外崩溃也不丢数据</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ C2. 高度自由的个性化 ============ -->
+        <section class="feature" id="feature-2">
+            <div class="wrap feature-grid feature-grid--flip">
+                <div class="feature-media" data-parallax="0.04">
+                    <div class="deck" id="themeDeck" tabindex="0" role="region"
+                         aria-roledescription="carousel"
+                         aria-label="主题样式预览,共 5 张,可用左右方向键切换">
+                        <div class="deck-window">
+                            <figure class="deck-slide">
+                                <img src="pictures/image3.png" width="1688" height="1080" loading="lazy" decoding="async"
+                                     alt="主题设置界面:紫色调,多色预设可选">
+                            </figure>
+                            <figure class="deck-slide">
+                                <img src="pictures/image4.png" width="1583" height="1121" loading="lazy" decoding="async"
+                                     alt="背景图片示例:神社屋檐下休憩的少女插画">
+                            </figure>
+                            <figure class="deck-slide">
+                                <img src="pictures/image5.png" width="1544" height="1117" loading="lazy" decoding="async"
+                                     alt="主题示例:白色清新绿植风格界面">
+                            </figure>
+                            <figure class="deck-slide">
+                                <img src="pictures/image6.png" width="1545" height="1117" loading="lazy" decoding="async"
+                                     alt="主题示例:粉紫渐变山景背景界面">
+                            </figure>
+                            <figure class="deck-slide">
+                                <img src="pictures/image7.png" width="1541" height="1122" loading="lazy" decoding="async"
+                                     alt="主题示例:米白暖色调,布局整洁的界面">
+                            </figure>
+                        </div>
+                        <button class="deck-arrow deck-arrow--prev" type="button" aria-label="上一张">←</button>
+                        <button class="deck-arrow deck-arrow--next" type="button" aria-label="下一张">→</button>
+                        <div class="deck-dots" role="group" aria-label="选择预览图">
+                            <button class="deck-dot" type="button" aria-label="查看第 1 张" aria-current="true"></button>
+                            <button class="deck-dot" type="button" aria-label="查看第 2 张"></button>
+                            <button class="deck-dot" type="button" aria-label="查看第 3 张"></button>
+                            <button class="deck-dot" type="button" aria-label="查看第 4 张"></button>
+                            <button class="deck-dot" type="button" aria-label="查看第 5 张"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-copy reveal">
+                    <p class="feature-num">02</p>
+                    <h2 class="feature-title">高度自由的个性化</h2>
+                    <p class="feature-desc">
+                        部件化的设计——导航栏、笔记列表、内容区、碎片窗口,每个模块都可独立装扮。
+                        支持背景图片更改,从多色预设到自己的照片,把轻笺变成你喜欢的样子。
+                    </p>
+                    <ul class="feature-points">
+                        <li>每个模块独立设置背景图片与雾化模糊</li>
+                        <li>文字颜色自动对比度适配(WCAG),可手动覆盖</li>
+                        <li>窗口级 Mica / 亚克力质感,预设即插即用</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ C3. 内容区简洁但不简单 ============ -->
+        <section class="feature" id="feature-3">
+            <div class="wrap feature-grid">
+                <div class="feature-media" data-parallax="0.05">
+                    <figure class="feature-single">
+                        <img src="pictures/image8.png" width="1756" height="1280" loading="lazy" decoding="async"
+                             alt="笔记内容区:雏菊装饰的文艺界面,支持文字样式与图片排版">
+                    </figure>
+                    <span class="feature-caption">雏菊 · 日记一角</span>
+                </div>
+                <div class="feature-copy reveal">
+                    <p class="feature-num">03</p>
+                    <h2 class="feature-title">内容区简洁但不简单</h2>
+                    <p class="feature-desc">
+                        自由控制文字样式、支持区域划分与图片上传——写日记、做清单、存灵感,
+                        一页之内各得其所。所有内容以 Markdown 存于本地,任何编辑器都能打开。
+                    </p>
+                    <ul class="feature-points">
+                        <li>字号 12–32px 自由调节,加粗 / 斜体 / 下划线</li>
+                        <li>支持区域划分,一页之内各得其所</li>
+                        <li>剪贴板粘贴或选择文件即可插入图片</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============ D. 页脚 ============ -->
+    <footer class="footer">
+        <div class="wrap footer-inner">
+            <p class="footer-quote">把每一片思绪,轻轻收好。</p>
+            <a class="btn btn--primary btn--lg" href="https://github.com/Vi0let119/qingjian" target="_blank" rel="noopener">点击下载</a>
+            <div class="footer-bottom">
+                <p class="footer-copy">© 2026 轻笺 qingjian · 开源软件</p>
+                <p class="footer-links">
+                    <a href="../project_index.html">← 返回项目列表</a>
+                    <a href="../../index.html">返回首页</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="qingjian.js"></script>
+</body>
+</html>
