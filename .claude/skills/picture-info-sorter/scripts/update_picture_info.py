@@ -15,36 +15,82 @@ Requirements:
 
 import json
 import os
+import re
 import subprocess
 import sys
 from datetime import datetime
 
 # Paths relative to the project root
-PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Script is at .claude/skills/picture-info-sorter/scripts/ — go up 5 levels to project root
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
 IMAGE_DIR = os.path.join(PROJECT_ROOT, '图库')
 EXIFTOOL = os.path.join(IMAGE_DIR, 'exiftool.exe')
-OUTPUT_FILE = os.path.join(PROJECT_ROOT, 'picture_info.json')
+OUTPUT_FILE = os.path.join(PROJECT_ROOT, 'pictures', 'picture_info.json')
 TMP_EXIF = os.path.join(os.environ.get('TEMP', '/tmp'), 'exif_data.json')
 
 
-def extract_exif():
-    """Run exiftool to extract metadata from all JPEG images."""
-    if not os.path.exists(EXIFTOOL):
-        print(f'Error: exiftool not found at {EXIFTOOL}', file=sys.stderr)
-        sys.exit(1)
+def _parse_gps_coordinate(value, ref):
+    """Parse exiftool GPS coordinate (DMS string or decimal) to decimal degrees.
 
-    cmd = [
-        EXIFTOOL,
-        '-json',
-        '-DateTimeOriginal', '-FileName', '-ImageWidth', '-ImageHeight',
-        '-FileSize', '-MIMEType', '-Make', '-Model',
-        '-GPSLatitude', '-GPSLongitude', '-GPSLatitudeRef', '-GPSLongitudeRef',
-        IMAGE_DIR,
-        '-ext', 'jpg', '-ext', 'jpeg',
-    ]
+    exiftool -json may return GPS as:
+      - "30 deg 59' 47.49\\" N" (combined string with direction)
+      - "30 deg 59' 47.49\\"" (string without direction, ref separate)
+      - 30.996525 (already decimal)
+    """
+    if value is None:
+        return None
 
+    s = str(value).strip()
+    if not s:
+        return None
+
+    # --- already a plain number ---
     try:
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+        return round(float(s), 6)
+    except ValueError:
+        pass
+
+    # --- DMS string possibly with trailing direction letter ---
+    direction = None
+    last_char = s[-1].upper()
+    if last_char in 'NSEW':
+        direction = last_char
+        s = s[:-1].strip()
+
+    m = re.match(r"([\d.]+)\s*deg\s*([\d.]+)'?\s*([\d.]+)\"?", s)
+    if m:
+        deg = float(m.group(1))
+        mn = float(m.group(2))
+        sec = float(m.group(3))
+        decimal = deg + mn / 60.0 + sec / 3600.0
+
+        # direction from ref parameter if not embedded
+        if direction is None and ref:
+            ref_str = str(ref).strip()
+            if ref_str:
+                direction = ref_str[0].upper()
+
+        if direction in ('S', 'W'):
+            decimal = -decimal
+
+        return round(decimal, 6)
+
+    return None
+
+
+EXIF_TAGS = [
+    '-DateTimeOriginal', '-FileName', '-ImageWidth', '-ImageHeight',
+    '-FileSize', '-MIMEType', '-Make', '-Model',
+    '-GPSLatitude', '-GPSLongitude', '-GPSLatitudeRef', '-GPSLongitudeRef',
+]
+
+
+def _query_exif(paths):
+    """Run exiftool on the given files/directory and return parsed JSON entries."""
+    cmd = [EXIFTOOL, '-json'] + EXIF_TAGS + list(paths)
+    try:
+        result = subprocess.run(cmd, capture_output=True, text=True,
+                                encoding='utf-8', timeout=120)
         if result.returncode != 0:
             print(f'Error running exiftool: {result.stderr}', file=sys.stderr)
             sys.exit(1)
@@ -55,6 +101,40 @@ def extract_exif():
     except json.JSONDecodeError as e:
         print(f'Error parsing exiftool output: {e}', file=sys.stderr)
         sys.exit(1)
+
+
+def extract_exif():
+    """Run exiftool to extract metadata from all JPEG images."""
+    if not os.path.exists(EXIFTOOL):
+        print(f'Error: exiftool not found at {EXIFTOOL}', file=sys.stderr)
+        sys.exit(1)
+
+    entries = _query_exif([IMAGE_DIR, '-ext', 'jpg', '-ext', 'jpeg'])
+
+    # exiftool mangles non-ASCII file names on Windows (system codepage
+    # conversion), so those entries never match a file on disk. Re-query the
+    # leftovers one file at a time: the per-file call receives the path via
+    # the wide API and the file name comes from our own directory listing.
+    def resolvable(e):
+        return os.path.exists(os.path.join(IMAGE_DIR, e.get('FileName', '')))
+
+    matched = {e.get('FileName') for e in entries if resolvable(e)}
+    missing = [f for f in sorted(os.listdir(IMAGE_DIR))
+               if f.lower().endswith(('.jpg', '.jpeg')) and f not in matched]
+    if missing:
+        extra = _query_exif([os.path.join(IMAGE_DIR, f) for f in missing])
+        if len(extra) == len(missing):
+            print(f'Re-queried {len(missing)} file(s) whose names exiftool '
+                  f'mangled: {", ".join(missing)}')
+            for fname, entry in zip(missing, extra):
+                entry['FileName'] = fname
+            entries = [e for e in entries if resolvable(e)] + extra
+        else:
+            print(f'Warning: rescue query mismatched '
+                  f'({len(missing)} files, {len(extra)} results); '
+                  f'falling back to batch results', file=sys.stderr)
+
+    return entries
 
 
 def process_images(exif_data):
@@ -99,9 +179,19 @@ def process_images(exif_data):
         make = entry.get('Make', '')
         model = entry.get('Model', '')
 
+        # GPS coordinates from EXIF
+        lat = _parse_gps_coordinate(
+            entry.get('GPSLatitude'),
+            entry.get('GPSLatitudeRef'),
+        )
+        lng = _parse_gps_coordinate(
+            entry.get('GPSLongitude'),
+            entry.get('GPSLongitudeRef'),
+        )
+
         image_info = {
             'filename': filename,
-            'path': f'图库/{filename}',
+            'path': f'../../图库/{filename}',
             'width': entry.get('ImageWidth', 0),
             'height': entry.get('ImageHeight', 0),
             'format': 'JPEG',
@@ -112,8 +202,8 @@ def process_images(exif_data):
                 'make': make,
                 'model': model,
             },
-            'latitude': None,   # Reserved for future use
-            'longitude': None,  # Reserved for future use
+            'latitude': lat,
+            'longitude': lng,
             'shooting_date': shooting_date,
         }
 

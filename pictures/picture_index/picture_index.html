@@ -7,15 +7,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:ital,wght@0,300;0,400;0,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../siderbar/siderbar.css">
     <link rel="stylesheet" href="picture_index.css">
 </head>
-<script>
-    alert("因为服务器问题现在图片和视频无法加载喵，得后面换网址服务器才有的看喵");
-</script>
 <body>
     <div id="sidebar-container"></div>
 
-    <!-- Hero — Full-viewport video -->
+    <!-- Hero — 全屏视频封面 -->
     <section id="hero">
         <video class="hero-video" autoplay loop muted playsinline>
             <source src="../视频/封面.mp4" type="video/mp4">
@@ -31,15 +29,16 @@
         </div>
     </section>
 
-    <!-- Gallery — Sidebar + Main display -->
+    <!-- Gallery — 左侧缩略图列表 + 右侧主图展示 -->
     <section id="gallery">
         <aside class="gallery-sidebar" id="sidebar">
             <header class="sidebar-header">
                 <h2 class="sidebar-title">Archive</h2>
                 <span class="sidebar-count" id="imageCount">232 frames</span>
+                <a href="../picture_features/features_visual.html" class="sidebar-features-link">视觉星图 →</a>
             </header>
             <div class="thumbnail-grid" id="thumbnailGrid">
-                <!-- Populated by JS -->
+                <!-- 缩略图由 JS 动态生成 -->
             </div>
         </aside>
         <main class="gallery-main" id="galleryMain">

@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI 图表 — AI Chart</title>
+    <link rel="stylesheet" href="../tools_theme.css">
     <link rel="stylesheet" href="chart_ai.css">
     <script src="../../echarts.min.js"></script>
 </head>
-<body>
+<body class="theme-tools-dark">
     <div class="app-container">
-        <!-- Top Bar -->
+        <!-- 顶栏：返回链接、标题与设置入口 -->
         <header class="top-bar">
             <div class="top-left">
                 <a href="chart_landing.html" class="back-link" title="返回选择">
@@ -17,7 +18,7 @@
                 </a>
                 <div>
                     <h1 class="top-title">AI 图表</h1>
-                    <p class="top-subtitle">DeepSeek 驱动 · 智能分析</p>
+                    <p class="top-subtitle">对话式整理数据并生成图表</p>
                 </div>
             </div>
             <div class="top-right">
@@ -27,7 +28,7 @@
             </div>
         </header>
 
-        <!-- API Settings Panel (collapsible) -->
+        <!-- API 设置面板（可折叠） -->
         <div class="settings-panel hidden" id="settingsPanel">
             <div class="settings-content">
                 <div class="settings-row">
@@ -54,32 +55,31 @@
             </div>
         </div>
 
-        <!-- Main Content -->
+        <!-- 主内容区 -->
         <main class="main-content">
-            <!-- Left: Chat Area -->
+            <!-- 左：对话区 -->
             <div class="chat-panel">
                 <div class="chat-messages" id="chatMessages">
-                    <!-- Welcome message -->
+                    <!-- 欢迎消息 -->
                     <div class="message bot">
                         <div class="message-avatar">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
                         </div>
                         <div class="message-body">
                             <div class="message-text">
-                                <p>你好！我是 AI 图表助手 👋</p>
+                                <p>把数据粘贴进来，或上传文件（txt / csv / xlsx / json），告诉我你想要什么样的图表。</p>
                                 <p>我可以帮你：</p>
                                 <ul>
                                     <li>分析你的数据，推荐最合适的图表类型</li>
-                                    <li>根据数据自动生成 ECharts 图表</li>
+                                    <li>自动生成 ECharts / D3.js 可视化图表</li>
                                     <li>根据你的反馈调整图表样式和细节</li>
                                 </ul>
-                                <p><strong>开始使用：</strong>粘贴数据或上传文件（txt/csv/xlsx），告诉我你想要什么样的图表。</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Loading indicator -->
+                <!-- 加载指示器 -->
                 <div class="chat-loading hidden" id="chatLoading">
                     <div class="loading-dots">
                         <span></span><span></span><span></span>
@@ -87,16 +87,20 @@
                     <span class="loading-text">AI 正在分析...</span>
                 </div>
 
-                <!-- Input Area -->
+                <!-- 输入区 -->
                 <div class="chat-input-area">
                     <div class="file-preview hidden" id="filePreviewBar">
-                        <span class="file-preview-name" id="filePreviewName"></span>
-                        <button class="file-preview-clear" id="filePreviewClear">✕</button>
+                        <div class="file-preview-header">
+                            <span class="file-preview-badge" id="filePreviewCount">0 个文件</span>
+                            <button class="file-preview-toggle" id="filePreviewToggle" title="展开/收起">▾</button>
+                            <button class="file-preview-clear" id="filePreviewClear">✕</button>
+                        </div>
+                        <ul class="file-preview-list" id="filePreviewList"></ul>
                     </div>
                     <div class="chat-input-row">
-                        <label class="attach-btn" title="上传文件">
+                        <label class="attach-btn" title="上传文件（支持多选）">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
-                            <input type="file" id="fileUpload" accept=".txt,.csv,.xlsx,.xls" class="file-input-hidden">
+                            <input type="file" id="fileUpload" accept=".txt,.csv,.xlsx,.xls,.json" class="file-input-hidden" multiple>
                         </label>
                         <textarea id="chatInput" class="chat-input" placeholder="描述你的需求，或粘贴数据..." rows="1" maxlength="4000"></textarea>
                         <button class="send-btn" id="sendBtn" title="发送">
@@ -106,7 +110,7 @@
                 </div>
             </div>
 
-            <!-- Right: Preview Panel -->
+            <!-- 右：图表预览区 -->
             <div class="preview-panel">
                 <div class="preview-header">
                     <h2 class="preview-title">图表预览</h2>

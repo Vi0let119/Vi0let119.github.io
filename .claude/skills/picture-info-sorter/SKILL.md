@@ -20,7 +20,7 @@ Manage the `picture_info.json` file that catalogs all images in the `图库/` di
 
 ## picture_info.json Structure
 
-The file lives at the project root: `picture_info.json`.
+The file lives at: `pictures/picture_info.json`.
 
 ```json
 {
@@ -34,7 +34,7 @@ The file lives at the project root: `picture_info.json`.
   "images": [
     {
       "filename": "IMG_20240711_151136-1.jpg",
-      "path": "图库/IMG_20240711_151136-1.jpg",
+      "path": "../../图库/IMG_20240711_151136-1.jpg",
       "width": 3305,
       "height": 4406,
       "format": "JPEG",
@@ -45,8 +45,8 @@ The file lives at the project root: `picture_info.json`.
         "make": "vivo",
         "model": "iQOO Neo5"
       },
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.4383,
+      "longitude": 100.323,
       "shooting_date": "2024-07-11 15:11:36",
       "sort_order": 1
     }
@@ -59,7 +59,7 @@ The file lives at the project root: `picture_info.json`.
 | Field | Type | Source | Description |
 |-------|------|--------|-------------|
 | `filename` | string | File system | Image filename with extension |
-| `path` | string | Computed | Relative path: `图库/<filename>` |
+| `path` | string | Computed | Relative path: `../../图库/<filename>` |
 | `width` | integer | EXIF `ImageWidth` | Image width in pixels |
 | `height` | integer | EXIF `ImageHeight` | Image height in pixels |
 | `format` | string | Fixed | Always `"JPEG"` |
@@ -68,8 +68,8 @@ The file lives at the project root: `picture_info.json`.
 | `updated_at` | string | `os.path.getmtime()` | File modification time, format `YYYY-MM-DD HH:mm:ss` |
 | `camera.make` | string | EXIF `Make` | Camera manufacturer |
 | `camera.model` | string | EXIF `Model` | Camera model name |
-| `latitude` | null | Reserved | GPS latitude — leave as `null` |
-| `longitude` | null | Reserved | GPS longitude — leave as `null` |
+| `latitude` | number or null | EXIF `GPSLatitude` + `GPSLatitudeRef` | Decimal degrees, negative for South |
+| `longitude` | number or null | EXIF `GPSLongitude` + `GPSLongitudeRef` | Decimal degrees, negative for West |
 | `shooting_date` | string | EXIF `DateTimeOriginal` | Format `YYYY-MM-DD HH:mm:ss` |
 | `sort_order` | integer | Computed | 1-based position after sorting |
 
@@ -113,7 +113,7 @@ Parse the exiftool JSON output:
 1. For each entry, read actual file size from the filesystem (`os.path.getsize()`)
 2. Read file modification time for `updated_at`
 3. Parse `DateTimeOriginal` from `YYYY:MM:DD HH:mm:ss` to `YYYY-MM-DD HH:mm:ss`
-4. GPS fields are reserved — always set `latitude` and `longitude` to `null`
+4. Parse GPS coordinates from exiftool's DMS format to decimal degrees
 5. Sort by shooting_date ascending (see Sorting Rule above)
 6. Assign sequential `sort_order`
 
@@ -144,4 +144,4 @@ python scripts/update_picture_info.py
 | Leaving old `sort_order` values after adding images | Always re-assign sort_order after sorting |
 | Forgetting to update `image_count` | Set to `len(images)` after processing |
 | Mixing date formats | Always convert to `YYYY-MM-DD HH:mm:ss` |
-| GPS fields filled with EXIF data | Always set `latitude` and `longitude` to `null` (reserved for future use) |
+| GPS fields left as null | Parse GPSLatitude/GPSLongitude from exiftool DMS format to decimal degrees |

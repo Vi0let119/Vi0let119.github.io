@@ -1,30 +1,26 @@
-/* ===== 风格：现代画廊风格 (Modern Gallery) ===== */
-/* picture_analysis.html 样式 */
-/* 来源：frontend-design.md 设计原则 */
-
-/* ===== Google Fonts ===== */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+/* ===== 图片色彩分析 — 墨色 × 铜金 ===== */
+/* 变量重指向 tools_theme.css 统一 token */
 
 /* ===== CSS 变量 ===== */
 :root {
-  --gallery-bg: #eae5dd;
-  --gallery-surface: #fdfdfb;
-  --gallery-surface-hover: #f5f3ee;
-  --gallery-text-primary: #1c1814;
-  --gallery-text-body: #3d3832;
-  --gallery-text-muted: #8a8278;
-  --gallery-accent: #3a5f73;
-  --gallery-accent-warm: #c47a4e;
-  --gallery-accent-dim: rgba(58, 95, 115, 0.06);
-  --gallery-border: #ded9d0;
-  --gallery-border-light: #ebe6dd;
-  --gallery-shadow-sm: 0 1px 3px rgba(30, 20, 10, 0.05);
-  --gallery-shadow-md: 0 2px 8px rgba(30, 20, 10, 0.07);
-  --gallery-shadow-lg: 0 4px 20px rgba(30, 20, 10, 0.08);
-  --gallery-radius-sm: 6px;
-  --gallery-radius-md: 12px;
-  --gallery-radius-lg: 20px;
-  --gallery-transition: 0.2s ease;
+  --gallery-bg: var(--bg-primary);
+  --gallery-surface: var(--bg-card);
+  --gallery-surface-hover: var(--bg-secondary);
+  --gallery-text-primary: var(--text-primary);
+  --gallery-text-body: var(--text-secondary);
+  --gallery-text-muted: var(--text-muted);
+  --gallery-accent: var(--accent);
+  --gallery-accent-warm: var(--accent);
+  --gallery-accent-dim: var(--accent-soft);
+  --gallery-border: var(--border);
+  --gallery-border-light: var(--hairline);
+  --gallery-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --gallery-shadow-md: 0 2px 10px rgba(0, 0, 0, 0.35);
+  --gallery-shadow-lg: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --gallery-radius-sm: var(--radius-sm);
+  --gallery-radius-md: var(--radius-md);
+  --gallery-radius-lg: var(--radius-lg);
+  --gallery-transition: 0.2s var(--ease);
 }
 
 /* ===== 全局重置 ===== */
@@ -35,12 +31,9 @@
 }
 
 body {
-  background:
-    radial-gradient(circle at 20% 10%, rgba(200, 180, 150, 0.15), transparent 40%),
-    radial-gradient(circle at 80% 80%, rgba(180, 200, 210, 0.12), transparent 40%),
-    #eae5dd;
+  background: var(--gallery-bg);
   color: var(--gallery-text-body);
-  font-family: 'Noto Serif SC', 'Cormorant Garamond', Georgia, 'SimSun', serif;
+  font-family: var(--font-body);
 }
 
 /* ===== 左侧图片面板 ===== */
@@ -55,20 +48,18 @@ body {
   border: 1px solid var(--gallery-border);
   border-radius: var(--gallery-radius-lg);
   padding: 28px;
-  box-shadow: var(--gallery-shadow-lg);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), var(--gallery-shadow-lg);
   z-index: 5;
 }
 
 .image-panel h3 {
   color: var(--gallery-text-primary);
-  background: var(--gallery-surface-hover);
-  padding: 14px 18px;
-  border-radius: var(--gallery-radius-md);
+  padding: 0 4px 14px;
   border-bottom: 1px solid var(--gallery-border-light);
-  font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
-  font-size: 1.4rem;
-  font-weight: 600;
-  letter-spacing: 0.03em;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
 }
 
 /* ===== 上传按钮 ===== */
@@ -84,10 +75,11 @@ body {
 /* ===== 图片预览区 ===== */
 .image-preview {
   width: 100%;
+  min-height: 55vh;
   max-height: 70vh;
   overflow: hidden;
-  background: var(--gallery-surface-hover);
-  border: 1px solid var(--gallery-border);
+  background: var(--bg-input);
+  border: 1px dashed var(--border-strong);
   border-radius: var(--gallery-radius-md);
   display: flex;
   align-items: center;
@@ -99,9 +91,8 @@ body {
 }
 
 .image-preview:hover {
-  background: #faf8f5;
-  border-color: var(--gallery-accent);
-  box-shadow: var(--gallery-shadow-md);
+  background: var(--gallery-surface-hover);
+  border-color: var(--accent-border);
 }
 
 .image-preview img {
@@ -122,7 +113,7 @@ body {
   padding: 20px;
   border: 1px solid var(--gallery-border);
   border-radius: var(--gallery-radius-lg);
-  box-shadow: var(--gallery-shadow-lg);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), var(--gallery-shadow-lg);
   font-size: clamp(13px, 1.2vw, 15px);
   line-height: 1.8;
   color: var(--gallery-text-body);
@@ -139,11 +130,10 @@ body {
   width: 100% !important;
   height: 300px;
   min-height: 200px;
-  background: var(--gallery-surface-hover) !important;
+  background: var(--bg-input) !important;
   border: 1px solid var(--gallery-border) !important;
   border-radius: var(--gallery-radius-md);
   margin-top: 15px;
-  box-shadow: var(--gallery-shadow-sm);
 }
 
 /* ===== RGB 直方图 Canvas ===== */
@@ -158,66 +148,64 @@ body {
   min-height: 200px;
   border: 1px solid var(--gallery-border);
   border-radius: var(--gallery-radius-md);
-  box-shadow: var(--gallery-shadow-sm);
-  background: #fdfdfb;
+  background: var(--bg-input);
 }
 
 /* ===== 按钮通用基础 ===== */
 .chart-type-btn,
 #startAnalysisBtn {
-  padding: 10px 20px;
+  padding: 9px 20px;
   font-size: 14px;
   border-radius: var(--gallery-radius-sm);
   border: 1px solid var(--gallery-border);
   cursor: pointer;
   transition: all var(--gallery-transition);
-  font-weight: 500;
-  letter-spacing: 0.03em;
-  font-family: 'Noto Serif SC', 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  font-family: var(--font-body);
 }
 
 /* 图表切换按钮 */
 .chart-type-btn {
-  background: var(--gallery-surface);
+  background: transparent;
   color: var(--gallery-text-body);
   margin: 0 6px;
 }
 
 .chart-type-btn:hover {
-  background: var(--gallery-surface-hover);
-  border-color: var(--gallery-accent);
+  background: var(--gallery-accent-dim);
+  border-color: var(--accent-border);
   color: var(--gallery-accent);
 }
 
 .chart-type-btn.active {
   background: var(--gallery-accent);
   border-color: var(--gallery-accent);
-  color: #fdfdfb;
-  font-weight: 600;
+  color: #141414;
+  font-weight: 500;
 }
 
 /* 开始分析按钮 */
 #startAnalysisBtn {
-  background: var(--gallery-accent-warm);
-  border-color: var(--gallery-accent-warm);
-  color: #fdfdfb;
+  background: var(--gallery-accent);
+  border-color: var(--gallery-accent);
+  color: #141414;
   width: 100%;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 500;
   margin-top: 20px;
   margin-bottom: 10px;
-  box-shadow: 0 2px 8px rgba(196, 122, 78, 0.2);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.14em;
 }
 
 #startAnalysisBtn:hover {
-  background: #b56a3e;
-  border-color: #b56a3e;
-  box-shadow: 0 4px 14px rgba(196, 122, 78, 0.3);
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  box-shadow: 0 2px 14px rgba(184, 146, 78, 0.25);
 }
 
 #startAnalysisBtn:focus {
-  outline: 2px solid var(--gallery-accent-warm);
+  outline: 1px solid var(--accent-border);
   outline-offset: 3px;
 }
 
@@ -230,8 +218,8 @@ body {
 
 /* ===== 下拉选择框 ===== */
 #spaceSelect {
-  background: var(--gallery-surface);
-  color: var(--gallery-text-body);
+  background: var(--bg-input);
+  color: var(--gallery-text-primary);
   border: 1px solid var(--gallery-border);
   border-radius: var(--gallery-radius-sm);
   padding: 8px 14px;
@@ -239,33 +227,34 @@ body {
   cursor: pointer;
   transition: all var(--gallery-transition);
   height: 40px;
-  font-family: 'Noto Serif SC', 'Cormorant Garamond', Georgia, serif;
+  font-family: var(--font-body);
 }
 
 #spaceSelect:hover {
-  border-color: var(--gallery-accent);
+  border-color: var(--accent-border);
   background: var(--gallery-surface-hover);
 }
 
 #spaceSelect:focus {
   outline: none;
-  border-color: var(--gallery-accent);
-  box-shadow: 0 0 0 3px rgba(58, 95, 115, 0.12);
+  border-color: var(--accent-border);
+  box-shadow: 0 0 0 3px rgba(184, 146, 78, 0.12);
 }
 
 /* ===== 滑块 ===== */
 #kValueSlider {
-  accent-color: var(--gallery-accent-warm);
+  accent-color: var(--gallery-accent);
   margin-left: 8px;
 }
 
 /* ===== 标签样式 ===== */
 .control-item label {
   margin-right: 10px;
-  font-weight: 500;
+  font-weight: 400;
   color: var(--gallery-text-body);
   white-space: nowrap;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
 }
 
 /* ===== 大屏布局：左右并排 ===== */
@@ -312,47 +301,6 @@ body {
 .picture_details::-webkit-scrollbar { width: 6px; }
 .picture_details::-webkit-scrollbar-track { background: transparent; }
 .picture_details::-webkit-scrollbar-thumb {
-  background: var(--gallery-border);
+  background: rgba(228, 224, 216, 0.12);
   border-radius: 3px;
-}
-
-/* ===== 右侧侧边栏覆盖（匹配画廊风格） ===== */
-.right-sidebar {
-  background: rgba(253, 253, 251, 0.92) !important;
-  backdrop-filter: blur(12px);
-  box-shadow: -2px 0 20px rgba(30, 20, 10, 0.06) !important;
-  border-left: 1px solid var(--gallery-border) !important;
-}
-
-.sidebar-title {
-  color: var(--gallery-text-primary) !important;
-}
-
-.sidebar-menu > li > a {
-  color: var(--gallery-text-body) !important;
-}
-
-.sidebar-menu > li > a:hover {
-  background: var(--gallery-accent-dim) !important;
-  color: var(--gallery-accent) !important;
-}
-
-.submenu li a {
-  color: var(--gallery-text-muted) !important;
-}
-
-.submenu li a:hover {
-  color: var(--gallery-accent) !important;
-  background: var(--gallery-accent-dim) !important;
-}
-
-.toggle-btn {
-  background: var(--gallery-surface) !important;
-  border: 1px solid var(--gallery-border) !important;
-  color: var(--gallery-text-body) !important;
-}
-
-.toggle-btn:hover {
-  color: var(--gallery-accent) !important;
-  border-color: var(--gallery-accent) !important;
 }

@@ -1,12 +1,12 @@
-/* ========================================
-   极速图表 — Quick Chart
-   数据处理 + 图表渲染 + 文件解析 + 下载
-   ======================================== */
+/**
+ * 极速图表 — 数据处理 + ECharts 渲染 + 文件解析 + HTML 下载
+ * 支持：柱状图 / 折线图 / 饼图 / 散点图 / 散点+拟合线
+ */
 
 (function () {
   'use strict';
 
-  // ── DOM 引用 ──────────────────────────────
+  // ── DOM 快捷引用 ──────────────────────────
   const $ = (sel) => document.querySelector(sel);
   const chartTypeEl    = $('#chartType');
   const dataInputEl    = $('#dataInput');
@@ -34,11 +34,52 @@
   let currentFileData = null;   // 从文件解析出的原始文本
   let activeInputMode = 'text'; // 'text' | 'file'
 
-  // ── 简约风调色板 ──────────────────────────
-  const MINIMAL_PALETTE = [
-    '#8aa4b0', '#b8a9a0', '#9bb5a0', '#c4a882',
-    '#8b9a9e', '#b0a098', '#a0b0a8', '#c8b8a8'
-  ];
+  // ── 图表配色（双主题：页面预览深色 / 下载成品浅色）──
+  const CHART_THEME = {
+    title: '#f0ece4',
+    subtitle: '#78746e',
+    axisName: '#78746e',
+    axisLabel: '#b0aca6',
+    axisLine: 'rgba(228,224,216,0.16)',
+    splitLine: 'rgba(228,224,216,0.08)',
+    tooltipBg: 'rgba(17,17,20,0.96)',
+    tooltipBorder: 'rgba(228,224,216,0.16)',
+    tooltipText: '#f0ece4',
+    empty: '#4a4640',
+    series: '#c9a86a',
+    seriesStrong: '#b8924e',
+    seriesHi: '#d4b072',
+    seriesEmphasis: '#d4b072',   // hover 时的强调色
+    seriesBorder: '#0e0e11',
+    areaTop: 'rgba(201,168,106,0.20)',
+    areaBottom: 'rgba(201,168,106,0.02)',
+    fitLine: '#8fb5a8',
+    danger: '#d0705f',
+    palette: ['#c9a86a', '#8fb5a8', '#a48a9e', '#7e9ab5', '#c78a6a', '#9db38a', '#b5b18e', '#8a8f9e']
+  };
+
+  const CHART_THEME_LIGHT = {
+    title: '#2c2c2c',
+    subtitle: '#999',
+    axisName: '#999',
+    axisLabel: '#666',
+    axisLine: '#e8e4e0',
+    splitLine: '#f0ede8',
+    tooltipBg: 'rgba(255,255,255,0.95)',
+    tooltipBorder: '#e8e4e0',
+    tooltipText: '#2c2c2c',
+    empty: '#ccc',
+    series: '#8aa4b0',
+    seriesStrong: '#8aa4b0',
+    seriesHi: '#9bbac8',
+    seriesEmphasis: '#9bbac8',   // hover 时的强调色
+    seriesBorder: '#fff',
+    areaTop: 'rgba(138,164,176,0.22)',
+    areaBottom: 'rgba(138,164,176,0.02)',
+    fitLine: '#c4a882',
+    danger: '#c06050',
+    palette: ['#8aa4b0', '#b8a9a0', '#9bb5a0', '#c4a882', '#8b9a9e', '#b0a098', '#a0b0a8', '#c8b8a8']
+  };
 
   // ── 初始化 ────────────────────────────────
   function init() {
@@ -231,7 +272,7 @@
 
     if (hasHeader && rows.length >= 1) {
       xHeader = rows[0][0] || '';
-      // 如果有第三列，用第三列作为Y轴表头
+      // 用第二列作为Y轴表头
       yHeader = rows[0][1] || '';
       dataRows = rows.slice(1);
     }
@@ -267,7 +308,7 @@
   }
 
   // ── 生成 ECharts Option ───────────────────
-  function getEChartsOption(chartType, data, config) {
+  function getEChartsOption(chartType, data, config, T = CHART_THEME) {
     const { labels, values, xHeader, yHeader } = data;
     const { xAxisName, yAxisName, chartTitle } = config;
     const hasData = labels.length > 0 && values.length > 0;
@@ -280,16 +321,16 @@
         textStyle: {
           fontSize: 17,
           fontWeight: 500,
-          color: '#2c2c2c',
+          color: T.title,
           fontFamily: '"PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif'
         },
-        subtextStyle: { color: '#999', fontSize: 12 }
+        subtextStyle: { color: T.subtitle, fontSize: 12 }
       },
       tooltip: {
-        backgroundColor: 'rgba(255,255,255,0.95)',
-        borderColor: '#e8e4e0',
+        backgroundColor: T.tooltipBg,
+        borderColor: T.tooltipBorder,
         borderWidth: 1,
-        textStyle: { color: '#2c2c2c', fontSize: 13 },
+        textStyle: { color: T.tooltipText, fontSize: 13 },
         extraCssText: 'box-shadow: 0 2px 12px rgba(0,0,0,0.06); border-radius: 8px; padding: 10px 14px;'
       }
     };
@@ -301,7 +342,7 @@
           type: 'text',
           left: 'center',
           top: 'center',
-          style: { text: '请在左侧输入数据', fill: '#ccc', fontSize: 16 }
+          style: { text: '请在左侧输入数据', fill: T.empty, fontSize: 16 }
         }
       };
     }
@@ -316,30 +357,30 @@
             type: 'category',
             data: labels,
             name: xAxisName || xHeader || '',
-            nameTextStyle: { color: '#999', fontSize: 12 },
-            axisLine: { lineStyle: { color: '#e8e4e0' } },
+            nameTextStyle: { color: T.axisName, fontSize: 12 },
+            axisLine: { lineStyle: { color: T.axisLine } },
             axisTick: { show: false },
-            axisLabel: { color: '#666', fontSize: 12, rotate: labels.length > 8 ? 30 : 0 }
+            axisLabel: { color: T.axisLabel, fontSize: 12, rotate: labels.length > 8 ? 30 : 0 }
           },
           yAxis: {
             type: 'value',
             name: yAxisName || yHeader || '',
-            nameTextStyle: { color: '#999', fontSize: 12 },
-            splitLine: { lineStyle: { color: '#f0ede8', type: 'dashed' } },
-            axisLabel: { color: '#666', fontSize: 12 }
+            nameTextStyle: { color: T.axisName, fontSize: 12 },
+            splitLine: { lineStyle: { color: T.splitLine, type: 'dashed' } },
+            axisLabel: { color: T.axisLabel, fontSize: 12 }
           },
           series: [{
             type: 'bar',
             data: values,
             itemStyle: {
               color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                { offset: 0, color: '#9bbac8' },
-                { offset: 1, color: '#8aa4b0' }
+                { offset: 0, color: T.seriesHi },
+                { offset: 1, color: T.seriesStrong }
               ]),
               borderRadius: [4, 4, 0, 0]
             },
             emphasis: {
-              itemStyle: { color: '#6b8b9a' }
+              itemStyle: { color: T.seriesEmphasis }
             },
             barWidth: Math.max(12, Math.min(40, 400 / labels.length))
           }]
@@ -354,18 +395,18 @@
             type: 'category',
             data: labels,
             name: xAxisName || xHeader || '',
-            nameTextStyle: { color: '#999', fontSize: 12 },
+            nameTextStyle: { color: T.axisName, fontSize: 12 },
             boundaryGap: false,
-            axisLine: { lineStyle: { color: '#e8e4e0' } },
+            axisLine: { lineStyle: { color: T.axisLine } },
             axisTick: { show: false },
-            axisLabel: { color: '#666', fontSize: 12, rotate: labels.length > 8 ? 30 : 0 }
+            axisLabel: { color: T.axisLabel, fontSize: 12, rotate: labels.length > 8 ? 30 : 0 }
           },
           yAxis: {
             type: 'value',
             name: yAxisName || yHeader || '',
-            nameTextStyle: { color: '#999', fontSize: 12 },
-            splitLine: { lineStyle: { color: '#f0ede8', type: 'dashed' } },
-            axisLabel: { color: '#666', fontSize: 12 }
+            nameTextStyle: { color: T.axisName, fontSize: 12 },
+            splitLine: { lineStyle: { color: T.splitLine, type: 'dashed' } },
+            axisLabel: { color: T.axisLabel, fontSize: 12 }
           },
           series: [{
             type: 'line',
@@ -373,12 +414,12 @@
             smooth: true,
             symbol: 'circle',
             symbolSize: 6,
-            lineStyle: { color: '#8aa4b0', width: 2.5 },
-            itemStyle: { color: '#8aa4b0' },
+            lineStyle: { color: T.series, width: 2.5 },
+            itemStyle: { color: T.series },
             areaStyle: {
               color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                { offset: 0, color: 'rgba(138,164,176,0.22)' },
-                { offset: 1, color: 'rgba(138,164,176,0.02)' }
+                { offset: 0, color: T.areaTop },
+                { offset: 1, color: T.areaBottom }
               ])
             }
           }]
@@ -400,28 +441,28 @@
             avoidLabelOverlap: true,
             itemStyle: {
               borderRadius: 6,
-              borderColor: '#fff',
+              borderColor: T.seriesBorder,
               borderWidth: 2
             },
             label: {
               show: true,
               position: 'outside',
               formatter: '{b}\n{d}%',
-              color: '#666',
+              color: T.axisLabel,
               fontSize: 12,
               distanceToLabelLine: 4
             },
             labelLine: {
               length: 20,
               length2: 30,
-              lineStyle: { color: '#ccc' }
+              lineStyle: { color: T.axisLine }
             },
             emphasis: {
               label: { fontSize: 15, fontWeight: 'bold' },
               scaleSize: 8
             },
             data: pieData,
-            color: MINIMAL_PALETTE
+            color: T.palette
           }]
         };
 
@@ -451,31 +492,31 @@
             xAxis: {
               type: 'value',
               name: xAxisName || xHeader || '',
-              nameTextStyle: { color: '#999', fontSize: 12 },
-              splitLine: { lineStyle: { color: '#f0ede8', type: 'dashed' } },
-              axisLabel: { color: '#666', fontSize: 12 }
+              nameTextStyle: { color: T.axisName, fontSize: 12 },
+              splitLine: { lineStyle: { color: T.splitLine, type: 'dashed' } },
+              axisLabel: { color: T.axisLabel, fontSize: 12 }
             },
             yAxis: {
               type: 'value',
               name: yAxisName || yHeader || '',
-              nameTextStyle: { color: '#999', fontSize: 12 },
-              splitLine: { lineStyle: { color: '#f0ede8', type: 'dashed' } },
-              axisLabel: { color: '#666', fontSize: 12 }
+              nameTextStyle: { color: T.axisName, fontSize: 12 },
+              splitLine: { lineStyle: { color: T.splitLine, type: 'dashed' } },
+              axisLabel: { color: T.axisLabel, fontSize: 12 }
             },
             series: [{
               type: 'scatter',
               data: numData,
               symbolSize: 12,
               itemStyle: {
-                color: '#8aa4b0',
-                borderColor: '#fff',
+                color: T.series,
+                borderColor: T.seriesBorder,
                 borderWidth: 2,
                 shadowBlur: 6,
-                shadowColor: 'rgba(0,0,0,0.08)'
+                shadowColor: 'rgba(0,0,0,0.4)'
               },
               emphasis: {
                 scale: 1.4,
-                itemStyle: { color: '#6b8b9a' }
+                itemStyle: { color: T.seriesEmphasis }
               }
             }]
           };
@@ -497,8 +538,8 @@
             xAxis: {
               type: 'value',
               name: xAxisName || xHeader || '',
-              nameTextStyle: { color: '#999', fontSize: 12 },
-              splitLine: { lineStyle: { color: '#f0ede8', type: 'dashed' } },
+              nameTextStyle: { color: T.axisName, fontSize: 12 },
+              splitLine: { lineStyle: { color: T.splitLine, type: 'dashed' } },
               axisLabel: {
                 color: '#666', fontSize: 12,
                 formatter: (val) => labels[val] || val
@@ -508,24 +549,24 @@
             yAxis: {
               type: 'value',
               name: yAxisName || yHeader || '',
-              nameTextStyle: { color: '#999', fontSize: 12 },
-              splitLine: { lineStyle: { color: '#f0ede8', type: 'dashed' } },
-              axisLabel: { color: '#666', fontSize: 12 }
+              nameTextStyle: { color: T.axisName, fontSize: 12 },
+              splitLine: { lineStyle: { color: T.splitLine, type: 'dashed' } },
+              axisLabel: { color: T.axisLabel, fontSize: 12 }
             },
             series: [{
               type: 'scatter',
               data: indexedData,
               symbolSize: 12,
               itemStyle: {
-                color: '#8aa4b0',
-                borderColor: '#fff',
+                color: T.series,
+                borderColor: T.seriesBorder,
                 borderWidth: 2,
                 shadowBlur: 6,
-                shadowColor: 'rgba(0,0,0,0.08)'
+                shadowColor: 'rgba(0,0,0,0.4)'
               },
               emphasis: {
                 scale: 1.4,
-                itemStyle: { color: '#6b8b9a' }
+                itemStyle: { color: T.seriesEmphasis }
               }
             }]
           };
@@ -543,8 +584,8 @@
             ...baseOption,
             title: {
               ...baseOption.title,
-              subtext: '⚠ X 轴数据非数值，无法拟合直线。请使用数值型数据（如 1.2  3.5）。',
-              subtextStyle: { color: '#c06050', fontSize: 11 }
+              subtext: 'X 轴数据非数值，无法拟合直线。请使用数值型数据（如 1.2  3.5）。',
+              subtextStyle: { color: T.danger, fontSize: 11 }
             },
             tooltip: {
               ...baseOption.tooltip,
@@ -559,8 +600,8 @@
             xAxis: {
               type: 'value',
               name: xAxisName || xHeader || '',
-              nameTextStyle: { color: '#999', fontSize: 12 },
-              splitLine: { lineStyle: { color: '#f0ede8', type: 'dashed' } },
+              nameTextStyle: { color: T.axisName, fontSize: 12 },
+              splitLine: { lineStyle: { color: T.splitLine, type: 'dashed' } },
               axisLabel: {
                 color: '#666', fontSize: 12,
                 formatter: (val) => labels[val] || val
@@ -570,9 +611,9 @@
             yAxis: {
               type: 'value',
               name: yAxisName || yHeader || '',
-              nameTextStyle: { color: '#999', fontSize: 12 },
-              splitLine: { lineStyle: { color: '#f0ede8', type: 'dashed' } },
-              axisLabel: { color: '#666', fontSize: 12 }
+              nameTextStyle: { color: T.axisName, fontSize: 12 },
+              splitLine: { lineStyle: { color: T.splitLine, type: 'dashed' } },
+              axisLabel: { color: T.axisLabel, fontSize: 12 }
             },
             series: [{
               type: 'scatter',
@@ -580,15 +621,15 @@
               name: '数据点',
               symbolSize: 12,
               itemStyle: {
-                color: '#8aa4b0',
-                borderColor: '#fff',
+                color: T.series,
+                borderColor: T.seriesBorder,
                 borderWidth: 2,
                 shadowBlur: 6,
-                shadowColor: 'rgba(0,0,0,0.08)'
+                shadowColor: 'rgba(0,0,0,0.4)'
               },
               emphasis: {
                 scale: 1.4,
-                itemStyle: { color: '#6b8b9a' }
+                itemStyle: { color: T.seriesEmphasis }
               }
             }]
           };
@@ -630,22 +671,22 @@
           legend: {
             data: ['数据点', '拟合线'],
             bottom: 10,
-            textStyle: { color: '#666', fontSize: 12 }
+            textStyle: { color: T.axisLabel, fontSize: 12 }
           },
           grid: { left: '3%', right: '4%', bottom: '12%', top: 85, containLabel: true },
           xAxis: {
             type: 'value',
             name: xAxisName || xHeader || '',
-            nameTextStyle: { color: '#999', fontSize: 12 },
-            splitLine: { lineStyle: { color: '#f0ede8', type: 'dashed' } },
-            axisLabel: { color: '#666', fontSize: 12 }
+            nameTextStyle: { color: T.axisName, fontSize: 12 },
+            splitLine: { lineStyle: { color: T.splitLine, type: 'dashed' } },
+            axisLabel: { color: T.axisLabel, fontSize: 12 }
           },
           yAxis: {
             type: 'value',
             name: yAxisName || yHeader || '',
-            nameTextStyle: { color: '#999', fontSize: 12 },
-            splitLine: { lineStyle: { color: '#f0ede8', type: 'dashed' } },
-            axisLabel: { color: '#666', fontSize: 12 }
+            nameTextStyle: { color: T.axisName, fontSize: 12 },
+            splitLine: { lineStyle: { color: T.splitLine, type: 'dashed' } },
+            axisLabel: { color: T.axisLabel, fontSize: 12 }
           },
           series: [{
             type: 'scatter',
@@ -653,15 +694,15 @@
             name: '数据点',
             symbolSize: 12,
             itemStyle: {
-              color: '#8aa4b0',
-              borderColor: '#fff',
+              color: T.series,
+              borderColor: T.seriesBorder,
               borderWidth: 2,
               shadowBlur: 6,
-              shadowColor: 'rgba(0,0,0,0.08)'
+              shadowColor: 'rgba(0,0,0,0.4)'
             },
             emphasis: {
               scale: 1.4,
-              itemStyle: { color: '#6b8b9a' }
+              itemStyle: { color: T.seriesEmphasis }
             },
             z: 2
           }]
@@ -677,7 +718,7 @@
             data: [[xMin, slope * xMin + intercept], [xMax, slope * xMax + intercept]],
             symbol: 'none',
             lineStyle: {
-              color: '#c4a882',
+              color: T.fitLine,
               width: 2,
               type: 'dashed'
             },
@@ -689,7 +730,7 @@
           fitScatterOption.title = {
             ...fitScatterOption.title,
             subtext: '拟合线: y = ' + intercept.toFixed(4) + ' ' + sign + slope.toFixed(4) + 'x    R² = ' + r2.toFixed(4),
-            subtextStyle: { color: '#999', fontSize: 11 }
+            subtextStyle: { color: T.subtitle, fontSize: 11 }
           };
         }
 
@@ -740,7 +781,6 @@
     updateUIState(hasData, parseResult);
 
     // 存储当前数据供下载使用
-    chartInstance._currentOption = option;
     chartInstance._currentData = parseResult;
     chartInstance._currentConfig = config;
   }
@@ -780,10 +820,12 @@
 
     if (name.endsWith('.xlsx') || name.endsWith('.xls')) {
       readExcelFile(file);
+    } else if (name.endsWith('.json')) {
+      readJSONFile(file);
     } else if (name.endsWith('.txt') || name.endsWith('.csv')) {
       readTextFile(file);
     } else {
-      showError('不支持的文件格式，请上传 .txt / .csv / .xlsx 文件。');
+      showError('不支持的文件格式，请上传 .txt / .csv / .xlsx / .json 文件。');
       return;
     }
 
@@ -829,6 +871,75 @@
     reader.readAsArrayBuffer(file);
   }
 
+  function readJSONFile(file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const parsed = JSON.parse(e.target.result);
+        currentFileData = jsonToTextTable(parsed);
+        dataInputEl.value = currentFileData;
+        updatePreview();
+      } catch (err) {
+        showError('JSON 文件解析失败：' + err.message);
+        console.error('JSON parse error:', err);
+      }
+    };
+    reader.onerror = () => {
+      showError('文件读取失败，请重试。');
+    };
+    reader.readAsText(file, 'UTF-8');
+  }
+
+  /**
+   * 将 JSON 数据转换为可读的表格文本
+   */
+  function jsonToTextTable(data) {
+    if (data === null || data === undefined) return '';
+
+    if (Array.isArray(data) && data.length > 0 && typeof data[0] === 'object' && data[0] !== null) {
+      const keys = [];
+      const seen = new Set();
+      for (const item of data) {
+        if (item && typeof item === 'object') {
+          for (const k of Object.keys(item)) {
+            if (!seen.has(k)) { seen.add(k); keys.push(k); }
+          }
+        }
+      }
+      const lines = [keys.join('\t')];
+      for (const item of data) {
+        const row = keys.map(k => {
+          const v = item[k];
+          if (v === null || v === undefined) return '';
+          if (typeof v === 'object') return JSON.stringify(v);
+          return String(v);
+        });
+        lines.push(row.join('\t'));
+      }
+      return lines.join('\n');
+    }
+
+    if (data && typeof data === 'object' && !Array.isArray(data)) {
+      const arrayKeys = Object.keys(data).filter(k => Array.isArray(data[k]));
+      if (arrayKeys.length >= 2) {
+        const maxLen = Math.max(...arrayKeys.map(k => data[k].length));
+        const lines = [arrayKeys.join('\t')];
+        for (let i = 0; i < maxLen; i++) {
+          const row = arrayKeys.map(k => {
+            const v = data[k][i];
+            if (v === null || v === undefined) return '';
+            if (typeof v === 'object') return JSON.stringify(v);
+            return String(v);
+          });
+          lines.push(row.join('\t'));
+        }
+        return lines.join('\n');
+      }
+    }
+
+    return JSON.stringify(data, null, 2);
+  }
+
   function clearFile() {
     currentFileData = null;
     fileInput.value = '';
@@ -845,8 +956,12 @@
     if (!chartInstance || chartInstance.isDisposed()) return;
     if (downloadBtn.disabled) return;
 
-    const option = chartInstance._currentOption;
-    if (!option) return;
+    const currentData = chartInstance._currentData;
+    const currentConfig = chartInstance._currentConfig;
+    if (!currentData || !currentConfig) return;
+
+    // 下载成品保持浅色皮肤：用浅色主题重新生成配置（页面预览是深色）
+    const option = getEChartsOption(chartTypeEl.value, currentData, currentConfig, CHART_THEME_LIGHT);
 
     const chartTitle = chartTitleEl.value || '图表';
     const optionJSON = JSON.stringify(option, null, 2);
@@ -887,9 +1002,6 @@
       try {
         if (option.series && option.series[0]) {
           var s = option.series[0];
-          if (s.type === 'bar' && s.itemStyle && s.itemStyle.color) {
-            // 简单颜色回退已足够
-          }
           if (s.type === 'line' && s.areaStyle && s.areaStyle.color) {
             s.areaStyle.color = new echarts.graphic.LinearGradient(0, 0, 0, 1, [
               { offset: 0, color: 'rgba(138,164,176,0.22)' },
@@ -936,7 +1048,7 @@
     // 简单的错误提示：在状态标签显示
     dataStatus.textContent = msg;
     dataStatus.classList.remove('has-data');
-    dataStatus.style.color = '#c06050';
+    dataStatus.style.color = '#d0705f';
     setTimeout(() => {
       dataStatus.style.color = '';
       updatePreview();

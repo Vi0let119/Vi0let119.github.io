@@ -1,0 +1,6 @@
+node_modules/
+# dist/ 构建产物要随静态站点一起提交（见 README「构建与发布」）
+.env.local
+.env.*.local
+*.local
+.DS_Store

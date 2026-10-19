@@ -7,16 +7,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:ital,wght@0,300;0,400;0,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../siderbar/siderbar.css">
     <link rel="stylesheet" href="picture_map.css">
 </head>
 <body>
     <div id="sidebar-container"></div>
 
-    <!-- Map Container -->
+    <!-- 地图容器 -->
     <div id="map-container">
         <div id="map-chart"></div>
 
-        <!-- Map overlay header -->
+        <!-- 悬浮顶栏：返回链接 / 标题 / 统计 -->
         <header class="map-header">
             <a href="../picture_index/picture_index.html" class="map-back-link" title="返回图库">
                 <span class="back-arrow">←</span>
@@ -27,13 +28,13 @@
             <span class="map-stats" id="mapStats"></span>
         </header>
 
-        <!-- Loading overlay -->
+        <!-- 加载遮罩 -->
         <div class="map-loading" id="mapLoading">
             <div class="loading-spinner"></div>
             <p class="loading-text">Loading cartographic data…</p>
         </div>
 
-        <!-- Empty state hint -->
+        <!-- 空态提示 -->
         <div class="map-empty-hint" id="mapEmptyHint" style="display:none;">
             <div class="empty-mark">※</div>
             <p class="empty-text">暂无可定位的照片</p>
@@ -41,7 +42,7 @@
         </div>
     </div>
 
-    <!-- Lightbox -->
+    <!-- 灯箱：大图查看（Esc 关闭，←/→ 切换） -->
     <div class="lightbox" id="lightbox" style="display:none;">
         <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
         <button class="lightbox-close" id="lightboxClose" title="关闭">×</button>

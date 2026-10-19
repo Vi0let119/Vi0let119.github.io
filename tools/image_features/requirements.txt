@@ -1,0 +1,11 @@
+ultralytics
+openai-clip
+torch
+torchvision
+opencv-python
+scikit-learn
+umap-learn
+flask
+flask-cors
+pillow
+numpy

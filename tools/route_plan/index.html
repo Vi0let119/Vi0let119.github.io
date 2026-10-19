@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>扫街路线规划器 · Street Shoot Planner</title>
+    <style>
+      /* 首屏底色防白闪（随后由打包 CSS 接管） */
+      html {
+        background: #0b0b0d;
+      }
+    </style>
+  </head>
+  <body class="theme-tools-dark">
+    <div id="root"></div>
+    <!-- 站点「快速到达」侧栏挂载点（发布版由 src/siteChrome.ts 注入内容） -->
+    <div id="sidebar-container"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

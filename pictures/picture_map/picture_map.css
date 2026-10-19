@@ -1,14 +1,13 @@
 /* ============================================
-   picture_map.css — Atlas / Map View
-   Dark editorial theme, full-viewport ECharts map
+   picture_map.css — 地图浏览（Atlas）页
+   暗色杂志风，全屏 ECharts 地图
    ============================================ */
 
-/* --- CSS Variables (shared with picture_index.css) --- */
+/* --- CSS 变量（与 picture_index.css 保持一致，两处需同步修改） --- */
 :root {
     --bg-primary: #0b0b0d;
     --bg-secondary: #111114;
     --bg-sidebar: #0e0e11;
-    --bg-hover: #18181d;
     --text-primary: #e4e0d8;
     --text-secondary: #8a8780;
     --text-muted: #4a4742;
@@ -19,10 +18,9 @@
     --border-light: rgba(228, 224, 216, 0.1);
     --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
     --font-ui: 'DM Mono', 'Courier New', monospace;
-    --transition-img: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* --- Reset & Base --- */
+/* --- Reset 与基础 --- */
 *,
 *::before,
 *::after {
@@ -50,7 +48,7 @@ body {
     overflow: hidden;
 }
 
-/* --- Scrollbar --- */
+/* --- 滚动条 --- */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
@@ -62,7 +60,7 @@ body {
 }
 
 /* ============================================
-   MAP CONTAINER
+   地图容器
    ============================================ */
 
 #map-container {
@@ -77,7 +75,7 @@ body {
 }
 
 /* ============================================
-   MAP HEADER — floating overlay
+   悬浮顶栏
    ============================================ */
 
 .map-header {
@@ -149,7 +147,7 @@ body {
 }
 
 /* ============================================
-   LOADING OVERLAY
+   加载遮罩
    ============================================ */
 
 .map-loading {
@@ -193,7 +191,7 @@ body {
 }
 
 /* ============================================
-   EMPTY STATE HINT
+   空态提示
    ============================================ */
 
 .map-empty-hint {
@@ -237,7 +235,7 @@ body {
 }
 
 /* ============================================
-   LIGHTBOX
+   灯箱（大图查看）
    ============================================ */
 
 .lightbox {
@@ -259,7 +257,7 @@ body {
     cursor: pointer;
 }
 
-/* Close / Nav buttons */
+/* 关闭 / 前后切换按钮 */
 .lightbox-close,
 .lightbox-prev,
 .lightbox-next {
@@ -310,7 +308,7 @@ body {
 .lightbox-prev { left: 1.5rem; }
 .lightbox-next { right: 1.5rem; }
 
-/* Lightbox body */
+/* 灯箱主体 */
 .lightbox-body {
     position: relative;
     z-index: 201;
@@ -342,7 +340,7 @@ body {
     }
 }
 
-/* Lightbox caption */
+/* 灯箱说明条 */
 .lightbox-caption {
     position: absolute;
     bottom: 2rem;
@@ -383,7 +381,131 @@ body {
 }
 
 /* ============================================
-   RESPONSIVE
+   右侧导航侧边栏 — 暗色主题覆写
+   ============================================ */
+
+/* --- 侧边栏面板 --- */
+.right-sidebar {
+    background:
+        linear-gradient(180deg, rgba(14, 14, 17, 0.97) 0%, rgba(11, 11, 13, 0.96) 100%);
+    backdrop-filter: blur(24px) saturate(0.6);
+    -webkit-backdrop-filter: blur(24px) saturate(0.6);
+    border-left: 1px solid var(--border);
+    color: var(--text-primary);
+}
+
+.right-sidebar.collapsed {
+    transform: translateX(calc(100% - 24px));
+}
+
+/* --- 折叠开关按钮 --- */
+.toggle-btn {
+    background: rgba(24, 24, 28, 0.95);
+    border: 1px solid rgba(184, 146, 78, 0.3);
+    color: var(--accent);
+}
+
+.toggle-btn:hover {
+    color: #d4a94e;
+    border-color: rgba(184, 146, 78, 0.6);
+    background: rgba(28, 28, 33, 0.97);
+}
+
+/* --- 标题 --- */
+.right-sidebar .sidebar-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--text-primary);
+}
+
+/* --- 一级菜单链接 --- */
+.sidebar-menu > li > a {
+    color: var(--text-secondary);
+}
+
+.sidebar-menu > li > a:hover {
+    color: var(--accent);
+    background: rgba(184, 146, 78, 0.06);
+}
+
+/* --- 子菜单 --- */
+.submenu-parent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.submenu-parent > .submenu-label {
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    padding: 0.5rem 0.6rem;
+    border-radius: 2px;
+    border-left: 2px solid transparent;
+    transition: color 0.25s, background 0.25s, border-color 0.25s;
+    flex: 1;
+    min-width: 0;
+}
+
+.submenu-parent > .submenu-label:hover {
+    color: var(--text-primary);
+    background: rgba(184, 146, 78, 0.04);
+    border-left-color: rgba(184, 146, 78, 0.35);
+}
+
+.submenu-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    font-size: 10px;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-radius: 4px;
+    flex-shrink: 0;
+    transition: color 0.25s, background 0.25s;
+    user-select: none;
+}
+
+.submenu-arrow:hover {
+    background: rgba(184, 146, 78, 0.1);
+    color: var(--accent);
+}
+
+.submenu li {
+    margin: 0;
+}
+
+.submenu li a {
+    display: block;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    padding: 0.35rem 0.6rem;
+    border-radius: 2px;
+    border-left: 2px solid transparent;
+    transition: color 0.25s, background 0.25s, border-color 0.25s;
+    cursor: pointer;
+}
+
+.submenu li a:hover {
+    color: var(--accent);
+    background: rgba(184, 146, 78, 0.06);
+    border-left-color: rgba(184, 146, 78, 0.35);
+}
+
+/* ============================================
+   响应式
    ============================================ */
 
 @media (max-width: 768px) {

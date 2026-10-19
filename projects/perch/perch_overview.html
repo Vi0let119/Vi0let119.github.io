@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Perch——基于 Bongo Cat 的桌面宠物计划提醒工具。白猫常驻 Windows 桌面，到点弹气泡提醒，支持 Live2D 换肤。">
+    <title>Perch · 桌面宠物计划提醒</title>
+    <link rel="icon" type="image/png" href="pictures/icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="perch.css">
+</head>
+<body>
+
+    <!-- ============ A. 顶部导航 ============ -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a class="nav-logo" href="#top">
+                <span class="nav-logo-cn">Perch</span>
+                <span class="nav-logo-en">DESKTOP PET</span>
+            </a>
+            <div class="nav-links">
+                <a class="nav-link" href="#remind">提醒</a>
+                <a class="nav-link" href="#panel">面板</a>
+                <a class="nav-link" href="#skins">换肤</a>
+                <span class="nav-dot" aria-hidden="true"></span>
+                <a class="nav-github" href="https://github.com/Vi0let119/perch" target="_blank" rel="noopener">GitHub</a>
+                <a class="btn btn--primary btn--sm" href="https://github.com/Vi0let119/perch" target="_blank" rel="noopener">前往仓库</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============ B. Hero:文案 + 通栏整屏桌面 ============ -->
+    <header class="hero" id="top">
+        <div class="wrap hero-copy">
+            <p class="eyebrow">桌面宠物计划提醒 · DESKTOP PET PLANNER</p>
+            <h1 class="hero-title">Perch<span class="hero-title-dot">.</span></h1>
+            <p class="hero-sub">Plans on time, paws on deck.</p>
+            <p class="hero-desc">
+                一只白猫常驻你的 Windows 桌面,按你设定的计划准时探出头来——
+                到点弹气泡、换个表情提醒你,打勾就算完成,次日自动重现。
+                基于 Bongo Cat 的桌面宠物计划提醒工具,Electron 构建,计划数据保存在本地。
+            </p>
+            <div class="hero-cta">
+                <a class="btn btn--primary btn--lg" href="https://github.com/Vi0let119/perch" target="_blank" rel="noopener">
+                    <svg class="btn-icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                        <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.42 7.42 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                    </svg>
+                    前往 GitHub 仓库
+                </a>
+                <a class="btn btn--ghost btn--lg" href="https://github.com/Vi0let119/perch#快速开始" target="_blank" rel="noopener">构建说明</a>
+            </div>
+            <p class="hero-meta">Windows · Electron · 目前需从源码构建</p>
+        </div>
+        <div class="wrap hero-media">
+            <div class="hero-glow hero-glow--pink" aria-hidden="true"></div>
+            <div class="hero-glow hero-glow--green" aria-hidden="true"></div>
+            <!-- 整屏截图实为 2560×1600(16:10),按固有比例展示,不做 16:9 裁切 -->
+            <img class="hero-ph" src="pictures/hero-desktop.png" width="2560" height="1600"
+                 alt="Perch 桌宠趴在桌面上，头顶气泡显示进行中的计划">
+        </div>
+    </header>
+
+    <main>
+        <!-- ============ C1. 提醒(方图 + 文案) ============ -->
+        <section class="feature" id="remind">
+            <div class="wrap feature-grid">
+                <div class="feature-copy reveal">
+                    <p class="feature-num">01</p>
+                    <h2 class="feature-title">它怎么提醒你</h2>
+                    <p class="feature-desc">
+                        计划可以每天重复、每周固定几天,或只在某个日期出现一次;每条都能带时间段,
+                        留空就是全天。空闲时头顶气泡常驻显示“进行中”的那件事——到点了,猫猫弹跳一下、
+                        换个表情,提醒就来了。
+                    </p>
+                    <ul class="feature-points">
+                        <li>每日 / 每周 / 单次,三种计划模式</li>
+                        <li>时间段自由设定,留空即全天任务</li>
+                        <li>到点弹跳 + 表情变化,提醒不打扰</li>
+                    </ul>
+                </div>
+                <div class="feature-media feature-media--square" data-parallax="0.05">
+                    <img src="pictures/bubble-zoom.png" width="460" height="460" loading="lazy" decoding="async"
+                         alt="Perch 桌宠近景：猫猫头顶的白底气泡显示当前计划">
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ C2. 管理面板(页签画廊) ============ -->
+        <section class="feature feature--gallery" id="panel">
+            <div class="wrap">
+                <div class="spec-head reveal">
+                    <p class="feature-num">02</p>
+                    <h2 class="feature-title">管理面板</h2>
+                    <p class="feature-desc">
+                        点一下猫猫就打开管理面板,和它自己一样分成几个页签——
+                        左边看今天、右边排计划,想改哪块点哪块。
+                    </p>
+                </div>
+
+                <div class="gallery" id="panelGallery">
+                    <div class="gallery-tabs" role="tablist" aria-label="管理面板页签">
+                        <button class="gallery-tab" type="button" role="tab" id="tab-today"
+                                aria-controls="panel-today" aria-selected="true">今日计划</button>
+                        <button class="gallery-tab" type="button" role="tab" id="tab-calendar"
+                                aria-controls="panel-calendar" aria-selected="false" tabindex="-1">日历便签</button>
+                        <button class="gallery-tab" type="button" role="tab" id="tab-plans"
+                                aria-controls="panel-plans" aria-selected="false" tabindex="-1">计划管理</button>
+                    </div>
+
+                    <!-- 页签 1:今日计划 -->
+                    <div class="gallery-stage" role="tabpanel" id="panel-today" aria-labelledby="tab-today">
+                        <div class="gallery-shot">
+                            <img src="pictures/panel-today.png" width="1600" height="1000" decoding="async"
+                                 alt="管理面板今日计划页：进度条与今日计划列表，部分条目已勾选">
+                        </div>
+                        <div class="gallery-copy">
+                            <h3>今天要做的事，一眼看完</h3>
+                            <p>顶部进度条显示完成比例，下面就是今天的计划列表。在气泡或这里点一下 ✓ 就算完成，当天消失、次日自动重现。</p>
+                        </div>
+                    </div>
+
+                    <!-- 页签 2:日历便签 -->
+                    <div class="gallery-stage" role="tabpanel" id="panel-calendar" aria-labelledby="tab-calendar" hidden>
+                        <div class="gallery-shot">
+                            <img src="pictures/panel-calendar.png" width="1600" height="1000" decoding="async"
+                                 alt="管理面板日历便签页：月历视图，有计划的日期标有圆点">
+                        </div>
+                        <div class="gallery-copy">
+                            <h3>跳出“今天”，看看这个月</h3>
+                            <p>月历视图里，有计划的日期会标上圆点。临时想加个某天的提醒，直接在日历上点选——单次计划就像一张贴在那天的便签。</p>
+                        </div>
+                    </div>
+
+                    <!-- 页签 3:计划管理 -->
+                    <div class="gallery-stage" role="tabpanel" id="panel-plans" aria-labelledby="tab-plans" hidden>
+                        <div class="gallery-shot">
+                            <img src="pictures/panel-plans.png" width="1600" height="1000" decoding="async"
+                                 alt="管理面板计划管理页：每日、每周、单次三种模式的计划列表">
+                        </div>
+                        <div class="gallery-copy">
+                            <h3>三种节奏，随便混着用</h3>
+                            <p>每天要做的、每周固定几天的、只在某天出现一次的，混在同一个列表里各自守时。改时间、改内容、删除，都在这一页完成。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ C3. 换肤(图文两栏) ============ -->
+        <section class="feature" id="skins">
+            <div class="wrap feature-grid feature-grid--flip">
+                <div class="feature-media feature-media--panel" data-parallax="0.04">
+                    <img src="pictures/panel-skins.png" width="1600" height="1000" loading="lazy" decoding="async"
+                         alt="管理面板外观页：皮肤列表，含 Live2D 与分层 PNG 皮肤">
+                </div>
+                <div class="feature-copy reveal">
+                    <p class="feature-num">03</p>
+                    <h2 class="feature-title">换一张脸，还是同一只猫</h2>
+                    <p class="feature-desc">
+                        内置于 Live2D Cubism 的皮肤带物理演算、眨眼与呼吸,猫爪按下还有反应;
+                        分层 PNG 皮肤同样支持。兼容 Bongo Cat Mver 社区皮肤——文件夹或 zip 放进来,自动转换导入。
+                    </p>
+                    <ul class="feature-points">
+                        <li>Live2D:物理演算 / 眨眼 / 呼吸 / 按爪动画</li>
+                        <li>分层 PNG:body / face / 左右手分层叠加</li>
+                        <li>兼容 Mver 皮肤包,拖进来即换装</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ C4. 其余功能(无图清单) ============ -->
+        <section class="feature feature--specs" id="features">
+            <div class="wrap">
+                <div class="spec-head reveal">
+                    <p class="feature-num">04</p>
+                    <h2 class="feature-title">还藏在细节里</h2>
+                    <p class="feature-desc">
+                        它是一只长期趴在桌面上的猫,所以不太吵、也不太占资源。
+                    </p>
+                </div>
+                <ul class="spec-grid">
+                    <li class="spec-card">
+                        <h3>托盘与菜单</h3>
+                        <p>左键点猫开面板，右键出菜单：今日计划、管理面板、置顶开关、退出。</p>
+                    </li>
+                    <li class="spec-card">
+                        <h3>记得住位置</h3>
+                        <p>窗口位置、猫猫缩放都记在配置里；开机自启可选，想让它一直在就在。</p>
+                    </li>
+                    <li class="spec-card">
+                        <h3>JSON 导入导出</h3>
+                        <p>计划可整体导出备份，也能整包导入；导入时校验格式，可选合并或替换。</p>
+                    </li>
+                    <li class="spec-card">
+                        <h3>轻量运行</h3>
+                        <p>默认禁用硬件加速、限制到 24fps，渲染进程崩溃会自动重载。</p>
+                    </li>
+                    <li class="spec-card">
+                        <h3>便携版</h3>
+                        <p>除安装包外另出便携版，解压即用，不往系统里写东西。</p>
+                    </li>
+                    <li class="spec-card">
+                        <h3>勾选留痕</h3>
+                        <p>完成记录保留 120 天，回看这阵子到底做完了些什么。</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============ D. 页脚 ============ -->
+    <footer class="footer">
+        <div class="wrap footer-inner">
+            <img class="footer-cat" src="pictures/cat.png" width="612" height="354" alt="" aria-hidden="true">
+            <p class="footer-quote">计划交给猫猫,你只管去做。</p>
+            <a class="btn btn--primary btn--lg" href="https://github.com/Vi0let119/perch" target="_blank" rel="noopener">前往 GitHub 仓库</a>
+            <p class="footer-note">
+                Perch 与 Bongo Cat 作者无关,仅使用社区皮肤资源与桌面猫的表现形式。
+                内置「洛茜」皮肤来自 Bongo Cat 社区,版权归原作者所有,仅限个人自用与非盈利直播,禁止二次售卖;
+                如原作者有异议将移除。
+            </p>
+            <div class="footer-bottom">
+                <p class="footer-copy">© 2026 Perch · 源码公开</p>
+                <p class="footer-links">
+                    <a href="../project_index.html">← 返回项目列表</a>
+                    <a href="../../index.html">返回首页</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="perch.js"></script>
+</body>
+</html>

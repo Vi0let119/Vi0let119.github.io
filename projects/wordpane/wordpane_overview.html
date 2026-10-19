@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="写作提词器 WordPane——Windows 悬浮词库小窗。AI 词汇扩展（同义词/成语/诗词名句/文风）+ 内嵌搜索，基于 Tauri 2。">
+    <title>写作提词器 WordPane · 悬浮写作助手</title>
+    <link rel="icon" type="image/png" href="pictures/app-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="wordpane.css">
+</head>
+<body>
+
+    <!-- ============ A. 顶部导航 ============ -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a class="nav-logo" href="#top">
+                <span class="nav-logo-cn">提词器</span>
+                <span class="nav-logo-en">WORDPANE</span>
+            </a>
+            <div class="nav-links">
+                <a class="nav-link" href="#library">词库</a>
+                <a class="nav-link" href="#search">搜索</a>
+                <a class="nav-link" href="#features">功能</a>
+                <span class="nav-dot" aria-hidden="true"></span>
+                <a class="nav-github" href="https://github.com/Vi0let119/word-pane" target="_blank" rel="noopener">GitHub</a>
+                <a class="btn btn--primary btn--sm" href="https://github.com/Vi0let119/word-pane" target="_blank" rel="noopener">前往仓库</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============ B. Hero:左文案 + 右竖窗 ============ -->
+    <header class="hero" id="top">
+        <div class="wrap hero-grid">
+            <div class="hero-copy">
+                <p class="eyebrow">悬浮写作助手 · ALWAYS AT HAND</p>
+                <h1 class="hero-title">写作提词器<span class="hero-title-dot">.</span></h1>
+                <p class="hero-sub">Look it up. Keep writing.</p>
+                <p class="hero-desc">
+                    一个 400 × 640 的无边框小窗,常驻在你的写作软件之上。卡壳时输入一个词,
+                    高级同义词、成语、诗词名句、高级表达流式呈现,点一下就复制进文稿;
+                    要查资料,窗内直接搜。AI 词汇扩展 + 内嵌搜索,Tauri 2 构建。
+                </p>
+                <div class="hero-cta">
+                    <a class="btn btn--primary btn--lg" href="https://github.com/Vi0let119/word-pane" target="_blank" rel="noopener">
+                        <svg class="btn-icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                            <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.42 7.42 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                        </svg>
+                        前往 GitHub 仓库
+                    </a>
+                    <a class="btn btn--ghost btn--lg" href="https://github.com/Vi0let119/word-pane#运行" target="_blank" rel="noopener">构建说明</a>
+                </div>
+                <p class="hero-meta">MIT 开源 · Windows · 目前需从源码构建</p>
+            </div>
+            <div class="hero-media">
+                <div class="hero-glow hero-glow--blue" aria-hidden="true"></div>
+                <div class="hero-glow hero-glow--orange" aria-hidden="true"></div>
+                <!-- 注意:当前 hero-window.png 是 160×256 的缩略图,展示宽度 400px 会被放大 2.5 倍而发虚。
+                     重新导出原图(800×1280)后直接覆盖同名文件即可,无需改代码。 -->
+                <img class="hero-ph" src="pictures/hero-window.png" width="160" height="256"
+                     alt="写作提词器悬浮窗:输入关键词后输出同义词、成语、诗词名句与高级表达">
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ============ C1. 桌面实景(通栏横图) ============ -->
+        <section class="feature feature--wide" id="float">
+            <div class="wrap">
+                <div class="wide-copy reveal">
+                    <p class="feature-num">01</p>
+                    <h2 class="feature-title">贴在你的写作软件之上</h2>
+                    <p class="feature-desc">
+                        无边框小窗常年浮在文稿之上,不抢焦点、不用切窗口。卡住的句子还在屏幕上,
+                        要查的词就在旁边——查完继续写,思路不断。
+                    </p>
+                </div>
+                <div class="wide-media" data-parallax="0.04">
+                    <img src="pictures/desktop-context.png" width="1600" height="900" loading="lazy" decoding="async"
+                         alt="写作提词器悬浮窗压在写作软件窗口之上">
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ C2. AI 词库(竖图 + 文案) ============ -->
+        <section class="feature" id="library">
+            <div class="wrap feature-grid">
+                <div class="feature-copy reveal">
+                    <p class="feature-num">02</p>
+                    <h2 class="feature-title">AI 词库，点击即用</h2>
+                    <p class="feature-desc">
+                        输入一个关键词,AI 流式返回同义词(口语 / 书面 / 高级三档)、成语、诗词名句与高级表达。
+                        输出按固定小节逐条排列,每条独立成行——点任意一条即复制,直接贴进文稿。
+                    </p>
+                    <ul class="feature-points">
+                        <li>四段产出:同义词三档、成语(拼音+释义+例句)、诗词名句、高级表达</li>
+                        <li>点击任意条目即复制,查询历史自动保存</li>
+                        <li>可加「文风」:文青、质朴、古风文言——只改语言气质,不改输出结构</li>
+                    </ul>
+                </div>
+                <div class="feature-media feature-media--portrait" data-parallax="0.05">
+                    <img src="pictures/copy-feedback.png" width="800" height="1280" loading="lazy" decoding="async"
+                         alt="点击词条后弹出已复制提示的瞬间">
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ C3. 内置搜索(竖图 + 文案) ============ -->
+        <section class="feature" id="search">
+            <div class="wrap feature-grid feature-grid--flip">
+                <div class="feature-media feature-media--portrait" data-parallax="0.04">
+                    <img src="pictures/search.png" width="800" height="1280" loading="lazy" decoding="async"
+                         alt="内置搜索:窗内直接浏览搜索结果页，右上角有转交系统浏览器按钮">
+                </div>
+                <div class="feature-copy reveal">
+                    <p class="feature-num">03</p>
+                    <h2 class="feature-title">窗内直接搜资料</h2>
+                    <p class="feature-desc">
+                        小窗里内嵌了一个迷你浏览器,必应 / 百度 / Google 的结果页直接在窗内浏览,
+                        还能点进子页面继续找。需要登录或操作复杂的页面,一键 ↗ 转交系统浏览器接着看。
+                    </p>
+                    <ul class="feature-points">
+                        <li>三个搜索引擎一键切换,后退 / 刷新齐全</li>
+                        <li>结果页里可继续点进子页面浏览</li>
+                        <li>一键转交系统浏览器,登录等操作不吃力</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ C4. 其余功能(无图清单) ============ -->
+        <section class="feature feature--specs" id="features">
+            <div class="wrap">
+                <div class="spec-head reveal">
+                    <p class="feature-num">04</p>
+                    <h2 class="feature-title">还有这些</h2>
+                    <p class="feature-desc">
+                        除了查词和搜索,小窗本身也按"长期开着"来设计——位置记得住、技能能自己写、
+                        配置和历史都留在本地。
+                    </p>
+                </div>
+                <ul class="spec-grid">
+                    <li class="spec-card">
+                        <h3>四种内置技能</h3>
+                        <p>词汇扩展、精准释义、句子润色、场景描写，下拉即切。</p>
+                    </li>
+                    <li class="spec-card">
+                        <h3>精准释义</h3>
+                        <p>核心语义、语义强弱与感情色彩、常见搭配、易混词辨析——客观说明，不掺文风。</p>
+                    </li>
+                    <li class="spec-card">
+                        <h3>自定义技能</h3>
+                        <p>往配置目录放一个 JSON（提示词模板 + 温度），重启即可在下拉框看到。</p>
+                    </li>
+                    <li class="spec-card">
+                        <h3>窗口记忆</h3>
+                        <p>位置、大小、置顶状态跨重启恢复；外接屏拔掉也会自动回到屏幕中央。</p>
+                    </li>
+                    <li class="spec-card">
+                        <h3>查询历史</h3>
+                        <p>自动保存最近 100 条，条目上带「文风：××」标记，点回看一并恢复。</p>
+                    </li>
+                    <li class="spec-card">
+                        <h3>任意兼容服务</h3>
+                        <p>默认智谱（glm-4.5-flash 免费），OpenAI 兼容协议，可换任何服务；支持演示模式无 Key 体验。</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============ D. 页脚 ============ -->
+    <footer class="footer">
+        <div class="wrap footer-inner">
+            <p class="footer-quote">词到用时,抬手可得。</p>
+            <a class="btn btn--primary btn--lg" href="https://github.com/Vi0let119/word-pane" target="_blank" rel="noopener">前往 GitHub 仓库</a>
+            <div class="footer-bottom">
+                <p class="footer-copy">© 2026 写作提词器 wordpane · MIT License</p>
+                <p class="footer-links">
+                    <a href="../project_index.html">← 返回项目列表</a>
+                    <a href="../../index.html">返回首页</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="wordpane.js"></script>
+</body>
+</html>

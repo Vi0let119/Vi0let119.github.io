@@ -1,13 +1,12 @@
 /* ============================================
-   picture_index.css — Editorial Dark Gallery
+   picture_index.css — 暗色杂志风图片画廊
    ============================================ */
 
-/* --- CSS Variables --- */
+/* --- CSS 变量 --- */
 :root {
     --bg-primary: #0b0b0d;
     --bg-secondary: #111114;
     --bg-sidebar: #0e0e11;
-    --bg-hover: #18181d;
     --text-primary: #e4e0d8;
     --text-secondary: #8a8780;
     --text-muted: #4a4742;
@@ -19,10 +18,9 @@
     --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
     --font-ui: 'DM Mono', 'Courier New', monospace;
     --sidebar-width: 33.333%;
-    --transition-img: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* --- Reset & Base --- */
+/* --- Reset 与基础 --- */
 *,
 *::before,
 *::after {
@@ -47,7 +45,7 @@ body {
     overflow-x: hidden;
 }
 
-/* --- Scrollbar --- */
+/* --- 滚动条 --- */
 ::-webkit-scrollbar {
     width: 4px;
 }
@@ -63,7 +61,7 @@ body {
 }
 
 /* ============================================
-   HERO SECTION
+   HERO 区 — 全屏视频封面
    ============================================ */
 
 #hero {
@@ -104,7 +102,7 @@ body {
     padding: 2rem;
 }
 
-/* Title — staggered fade-in */
+/* 标题 — 依次淡入 */
 .hero-title {
     font-family: var(--font-display);
     font-size: clamp(4rem, 8vw, 8rem);
@@ -131,7 +129,7 @@ body {
     animation: fadeUp 1.2s 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }
 
-/* Scroll indicator */
+/* 滚动指示器 */
 .scroll-indicator {
     position: absolute;
     bottom: 2.5rem;
@@ -176,7 +174,7 @@ body {
 }
 
 /* ============================================
-   GALLERY SECTION
+   GALLERY 区 — 左侧缩略图列表 + 右侧主图
    ============================================ */
 
 #gallery {
@@ -188,7 +186,7 @@ body {
     border-top: 1px solid var(--border);
 }
 
-/* --- Sidebar --- */
+/* --- 左侧缩略图栏 --- */
 
 .gallery-sidebar {
     position: relative;
@@ -231,7 +229,20 @@ body {
     color: var(--text-muted);
 }
 
-/* Sort toggle button */
+.sidebar-features-link {
+    display: inline-block;
+    margin-top: 6px;
+    font-family: var(--font-ui);
+    font-size: 0.6rem;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+.sidebar-features-link:hover { opacity: 1; }
+
+/* 排序切换按钮（由 JS 动态插入到计数旁） */
 .sort-btn {
     background: rgba(24, 24, 29, 0.7);
     border: 1px solid rgba(184, 146, 78, 0.25);
@@ -260,7 +271,7 @@ body {
     background: rgba(184, 146, 78, 0.1);
 }
 
-/* Thumbnail grid — 3 per row, absolutely positioned to force scroll */
+/* 缩略图网格 — 每行 3 张；绝对定位 + 大行距撑出滚动区 */
 .thumbnail-grid {
     position: absolute;
     top: 58px;
@@ -281,7 +292,7 @@ body {
     width: 3px;
 }
 
-/* Individual thumbnail */
+/* 单个缩略图 */
 .thumb-item {
     position: relative;
     aspect-ratio: 1;
@@ -325,7 +336,7 @@ body {
     filter: saturate(1) brightness(1.05);
 }
 
-/* --- Main Display --- */
+/* --- 主图展示区 --- */
 
 .gallery-main {
     flex: 1;
@@ -340,7 +351,7 @@ body {
         var(--bg-primary);
 }
 
-/* Placeholder */
+/* 未选中图片时的占位提示 */
 .main-placeholder {
     display: flex;
     flex-direction: column;
@@ -370,7 +381,7 @@ body {
     line-height: 1.8;
 }
 
-/* Image wrapper */
+/* 主图容器 */
 .main-image-wrap {
     position: absolute;
     inset: 0;
@@ -399,7 +410,7 @@ body {
     }
 }
 
-/* Caption */
+/* 图片说明（文件名 + 拍摄日期） */
 .image-caption {
     position: absolute;
     bottom: 2rem;
@@ -436,7 +447,7 @@ body {
     color: var(--border-light);
 }
 
-/* --- Loading state for thumbnails --- */
+/* --- 缩略图加载中（shimmer 微光动画） --- */
 .thumb-item.loading {
     animation: shimmer 1.5s infinite;
 }
@@ -448,7 +459,7 @@ body {
 }
 
 /* ============================================
-   RESPONSIVE
+   响应式
    ============================================ */
 
 @media (max-width: 900px) {
@@ -501,7 +512,8 @@ body {
 }
 
 /* ============================================
-   RIGHT SIDEBAR — Editorial Dark Overlay
+   右侧导航侧边栏 — 暗色主题整套装写
+   覆盖 siderbar.css 的基础样式
    ============================================ */
 
 .right-sidebar {
@@ -525,7 +537,7 @@ body {
     overflow: visible;
 }
 
-/* Decorative inner edge — gold hairline */
+/* 内侧装饰边 — 金色发丝线 */
 .right-sidebar::before {
     content: '';
     position: absolute;
@@ -545,7 +557,7 @@ body {
     transition: opacity 0.5s;
 }
 
-/* Subtle grain texture overlay */
+/* 细微颗粒纹理覆盖 */
 .right-sidebar::after {
     content: '';
     position: absolute;
@@ -562,12 +574,12 @@ body {
     opacity: 0.6;
 }
 
-/* Collapsed — slide off right, keep a thin sliver */
+/* 折叠态 — 滑出右侧，留一条窄边 */
 .right-sidebar.collapsed {
     transform: translateX(calc(100% - 24px));
 }
 
-/* --- Toggle Button --- */
+/* --- 折叠开关按钮 --- */
 .toggle-btn {
     position: absolute;
     top: 1.4rem;
@@ -604,7 +616,7 @@ body {
     box-shadow: 0 0 20px rgba(184, 146, 78, 0.18);
 }
 
-/* --- Title --- */
+/* --- 标题 --- */
 .right-sidebar .sidebar-title {
     font-family: var(--font-display);
     font-size: 1.15rem;
@@ -617,7 +629,7 @@ body {
     flex-shrink: 0;
 }
 
-/* Gold underline beneath title */
+/* 标题下的金色短线 */
 .right-sidebar .sidebar-title::after {
     content: '';
     position: absolute;
@@ -629,7 +641,7 @@ body {
     opacity: 0.5;
 }
 
-/* --- Menu --- */
+/* --- 菜单列表 --- */
 .sidebar-menu {
     list-style: none;
     padding: 0;
@@ -646,7 +658,7 @@ body {
     margin: 0;
 }
 
-/* Top-level links */
+/* 一级菜单链接 */
 .sidebar-menu > li > a {
     display: block;
     text-decoration: none;
@@ -672,14 +684,64 @@ body {
     border-left-color: rgba(184, 146, 78, 0.35);
 }
 
-/* Submenu toggle arrow treatment */
+/* 子菜单开关链接（箭头排布） */
 .sidebar-menu > li > a.submenu-toggle {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-/* --- Submenu --- */
+/* --- 子菜单父级行（文字 + 箭头） --- */
+.submenu-parent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.submenu-parent > .submenu-label {
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-family: var(--font-ui);
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    padding: 0.5rem 0.6rem;
+    border-radius: 2px;
+    border-left: 2px solid transparent;
+    transition: color 0.25s, background 0.25s, border-color 0.25s;
+    flex: 1;
+    min-width: 0;
+}
+
+.submenu-parent > .submenu-label:hover {
+    color: var(--text-primary);
+    background: rgba(184, 146, 78, 0.04);
+    border-left-color: rgba(184, 146, 78, 0.35);
+}
+
+/* --- 展开/折叠箭头 --- */
+.submenu-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    font-size: 10px;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-radius: 4px;
+    flex-shrink: 0;
+    transition: color 0.25s, background 0.25s;
+    user-select: none;
+}
+
+.submenu-arrow:hover {
+    background: rgba(184, 146, 78, 0.1);
+    color: var(--accent);
+}
+
+/* --- 子菜单（max-height 动画展开） --- */
 .submenu {
     list-style: none;
     padding: 0 0 0 1.1rem;
@@ -705,7 +767,7 @@ body {
 .submenu li a {
     display: block;
     text-decoration: none;
-    color: var(--text-muted);
+    color: var(--text-secondary);
     font-family: var(--font-ui);
     font-size: 1rem;
     font-weight: 300;
@@ -726,7 +788,7 @@ body {
     border-left-color: rgba(184, 146, 78, 0.25);
 }
 
-/* --- Scrollbar within sidebar menu --- */
+/* --- 菜单内滚动条 --- */
 .sidebar-menu::-webkit-scrollbar {
     width: 2px;
 }
@@ -741,7 +803,7 @@ body {
     background: rgba(228, 224, 216, 0.16);
 }
 
-/* --- Responsive: small screens --- */
+/* --- 响应式：小屏 --- */
 @media (max-width: 768px) {
     .right-sidebar {
         width: 240px;

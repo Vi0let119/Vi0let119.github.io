@@ -1,72 +1,32 @@
 /* ============================================
-   health_data.css — N E O N · T E R M I N A L
-   Dark sci-fi neon minimal — health monitor HUD
+   health_data.css — 身体星图（Star Atlas）
+   健康数据页专用：深夜天文台风格，作用域为 .star-atlas
+   夜空底 + 星轨图表 + 金色刻度 + 底部仪器条
+   布局：顶部横条（标题+统计）→ 通栏星图 → 底部仪器条 → 3D → 名言
    ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap');
 
-/* --- CSS Variables --- */
+/* --- CSS 变量 --- */
 :root {
-    --n-bg: #06080f;
-    --n-surface: rgba(8, 12, 24, 0.88);
-    --n-surface-alt: rgba(12, 16, 30, 0.92);
-    --n-cyan: #00e5ff;
-    --n-cyan-dim: rgba(0, 229, 255, 0.08);
-    --n-cyan-glow: rgba(0, 229, 255, 0.18);
-    --n-cyan-bright: rgba(0, 229, 255, 0.45);
-    --n-magenta: #ff4088;
-    --n-magenta-dim: rgba(255, 64, 136, 0.08);
-    --n-magenta-glow: rgba(255, 64, 136, 0.18);
-    --n-green: #39ff14;
-    --n-green-dim: rgba(57, 255, 20, 0.07);
-    --n-amber: #ffb74d;
-    --n-text: #d8e0ec;
-    --n-text-secondary: #7a8a9e;
-    --n-text-muted: #4a5568;
-    --n-border: rgba(0, 229, 255, 0.12);
-    --n-border-glow: rgba(0, 229, 255, 0.3);
-    --n-radius: 4px;
-    --n-radius-lg: 8px;
-    --font-display: 'Orbitron', 'Microsoft YaHei', sans-serif;
-    --font-mono: 'Share Tech Mono', 'Courier New', 'Microsoft YaHei', monospace;
-    --font-cn: 'Microsoft YaHei', 'PingFang SC', 'Noto Sans SC', sans-serif;
+    --sa-sky: #0d1322;            /* 夜空底 */
+    --sa-sky-deep: #0a0e1a;       /* 深一层夜空 */
+    --sa-star: #e8e6df;           /* 星白 */
+    --sa-star-dim: #8b93a6;       /* 弱星 */
+    --sa-star-faint: #565e72;     /* 更弱 */
+    --sa-gold: #c9a86a;           /* 金 — 主强调（体重/刻度） */
+    --sa-gold-bright: #dfc084;
+    --sa-astro: #7e93a8;          /* 青灰 — 睡眠 */
+    --sa-rose: #c49aa6;           /* 雾玫瑰 — 入睡时间 */
+    --sa-line: rgba(232, 230, 223, 0.10);       /* 发丝线 */
+    --sa-line-soft: rgba(232, 230, 223, 0.05);
+    --sa-radius: 4px;
+    --sa-font-serif: 'Noto Serif SC', 'Microsoft YaHei', serif;
+    --sa-font-num: 'Cormorant Garamond', 'Noto Serif SC', Georgia, serif;
 }
 
-/* --- Animations --- */
-@keyframes nScanline {
-    0%   { background-position: 0 0; }
-    100% { background-position: 0 4px; }
-}
-
-@keyframes nFlicker {
-    0%, 100% { opacity: 1; }
-    92%       { opacity: 1; }
-    93%       { opacity: 0.85; }
-    94%       { opacity: 1; }
-    96%       { opacity: 0.9; }
-    97%       { opacity: 1; }
-}
-
-@keyframes nPulseCyan {
-    0%, 100% { box-shadow: 0 0 0 0 var(--n-cyan-glow); }
-    50%      { box-shadow: 0 0 0 6px rgba(0, 229, 255, 0); }
-}
-
-@keyframes nPulseMagenta {
-    0%, 100% { box-shadow: 0 0 0 0 var(--n-magenta-glow); }
-    50%      { box-shadow: 0 0 0 6px rgba(255, 64, 136, 0); }
-}
-
-@keyframes nReveal {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes nBorderGlow {
-    0%, 100% { border-color: rgba(0, 229, 255, 0.2); }
-    50%      { border-color: rgba(0, 229, 255, 0.5); }
-}
-
+/* --- 动画 keyframes ---
+   slideIn / slideOut 由 health_data.js 的通知内联动画按名引用，改名前需同步 JS */
 @keyframes slideIn {
     from { transform: translateX(100%); opacity: 0; }
     to   { transform: translateX(0); opacity: 1; }
@@ -77,19 +37,16 @@
     to   { transform: translateX(100%); opacity: 0; }
 }
 
-/* --- Base Overrides (scoped to neon pages) --- */
-.neon-terminal {
-    background:
-        /* grid */
-        linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px),
-        /* vignette */
-        radial-gradient(ellipse at 50% 30%, rgba(0, 229, 255, 0.04) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 70%, rgba(255, 64, 136, 0.03) 0%, transparent 50%);
-    background-size: 32px 32px, 32px 32px, 100% 100%, 100% 100%;
-    background-color: #06080f;
-    color: var(--n-text) !important;
-    font-family: var(--font-mono);
+@keyframes saRise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- 基础覆写（仅作用于 .star-atlas 页面） --- */
+.star-atlas {
+    background-color: var(--sa-sky);
+    color: var(--sa-star) !important;
+    font-family: var(--sa-font-serif);
     font-size: 15px;
     margin: 0;
     padding: 0;
@@ -99,41 +56,57 @@
     min-height: 100vh;
 }
 
-/* Subtle scanline overlay */
-.neon-terminal::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    pointer-events: none;
-    background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0, 0, 0, 0.03) 2px,
-        rgba(0, 0, 0, 0.03) 4px
-    );
-    animation: nScanline 0.15s linear infinite;
-    opacity: 0.4;
-}
-
-.neon-terminal::after {
+/* 星野：亮星点缀 + 两层重复碎星 + 银河雾 */
+.star-atlas::before {
     content: '';
     position: fixed;
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    background: radial-gradient(ellipse at 30% 20%, transparent 40%, rgba(6, 8, 15, 0.7) 100%);
+    background-image:
+        /* 亮星（稀疏、稍大，几颗带金色） */
+        radial-gradient(1.2px 1.2px at 12% 22%, rgba(232, 230, 223, 0.9) 50%, transparent 51%),
+        radial-gradient(1px 1px at 68% 8%, rgba(232, 230, 223, 0.8) 50%, transparent 51%),
+        radial-gradient(1.4px 1.4px at 84% 34%, rgba(223, 192, 132, 0.85) 50%, transparent 51%),
+        radial-gradient(1px 1px at 32% 64%, rgba(232, 230, 223, 0.7) 50%, transparent 51%),
+        radial-gradient(1.3px 1.3px at 52% 84%, rgba(223, 192, 132, 0.7) 50%, transparent 51%),
+        radial-gradient(1px 1px at 92% 72%, rgba(232, 230, 223, 0.75) 50%, transparent 51%),
+        radial-gradient(1.1px 1.1px at 6% 88%, rgba(126, 147, 168, 0.8) 50%, transparent 51%),
+        radial-gradient(1px 1px at 44% 38%, rgba(232, 230, 223, 0.5) 50%, transparent 51%),
+        /* 中层碎星（重复平铺） */
+        radial-gradient(rgba(232, 230, 223, 0.35) 0.6px, transparent 0.6px),
+        radial-gradient(rgba(232, 230, 223, 0.2) 0.5px, transparent 0.5px),
+        /* 银河雾 */
+        radial-gradient(ellipse 60% 45% at 78% 12%, rgba(126, 147, 168, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 15% 80%, rgba(201, 168, 106, 0.05) 0%, transparent 60%);
+    background-size:
+        100% 100%, 100% 100%, 100% 100%, 100% 100%,
+        100% 100%, 100% 100%, 100% 100%, 100% 100%,
+        260px 260px, 340px 340px,
+        100% 100%, 100% 100%;
+}
+
+/* 地平线暗角 */
+.star-atlas::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse at 50% 115%, rgba(4, 6, 12, 0.75) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% -15%, rgba(4, 6, 12, 0.5) 0%, transparent 45%);
 }
 
 .hidden { display: none !important; }
 
-/* --- Background Image --- */
-.background {
-    display: none;
+/* --- 文字选中 — 金染夜空 --- */
+.star-atlas ::selection {
+    background: rgba(201, 168, 106, 0.28);
+    color: #fff;
 }
 
-/* --- Main Container --- */
+/* --- 主容器 --- */
 .main-container {
     position: relative;
     z-index: 1;
@@ -141,325 +114,311 @@
     flex-direction: column;
     min-height: 100vh;
     min-height: 100dvh;
-    padding: 2.5vh 3vw 1vh;
-    gap: 2vh;
+    /* 右侧留出全局侧边栏（11vw, min 140px）的通行空间 */
+    padding: 2vh 13vw 1.5vh 3vw;
+    gap: 2.2vh;
     box-sizing: border-box;
 }
 
-/* --- Upper Content --- */
-.upper-content {
+/* ============================================
+   顶部横条 — 星图名 + 观测摘要
+   ============================================ */
+.sky-topbar {
     display: flex;
-    flex: 0 0 auto;
-    gap: 2.5vw;
-    min-height: 0;
-    animation: nReveal 0.7s 0.1s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+    align-items: baseline;
+    gap: 2vw;
+    padding: 1.2vh 0.4vw 1.4vh;
+    border-bottom: 1px solid var(--sa-line);
+    animation: saRise 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 
-/* --- Chart Section (Left) --- */
+.sky-topbar h1 {
+    margin: 0;
+    font-family: var(--sa-font-serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.4em;
+    color: var(--sa-star);
+    white-space: nowrap;
+}
+
+/* 标题旁的金色小刻度线 */
+.sky-topbar h1::after {
+    content: '';
+    display: block;
+    width: 3.2em;
+    height: 2px;
+    margin-top: 6px;
+    background: linear-gradient(90deg, var(--sa-gold), transparent);
+}
+
+/* 观测摘要（统计数字）— 由 #statsInfo 注入 */
+.sky-topbar .sky-summary {
+    margin-left: auto;
+    display: flex;
+    align-items: baseline;
+    gap: 2.2vw;
+    flex-wrap: wrap;
+}
+
+.sky-topbar .stat-item {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6em;
+}
+
+.sky-topbar .stat-label {
+    font-family: var(--sa-font-serif);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: var(--sa-star-faint);
+}
+
+.sky-topbar .stat-value {
+    font-family: var(--sa-font-num);
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--sa-gold-bright);
+    letter-spacing: 0.02em;
+}
+
+/* --- 图表区（通栏） --- */
 .chart-section {
-    flex: 1 1 62%;
+    flex: 1 1 auto;
     display: flex;
     flex-direction: column;
     min-height: 0;
-    max-width: 62%;
+    max-width: 100%;
+    animation: saRise 0.7s 0.1s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 
 .chart-canvas {
     flex: 1;
-    background: var(--n-surface);
-    border: 1px solid var(--n-border);
-    border-radius: var(--n-radius-lg);
+    background: rgba(10, 14, 26, 0.45);
+    border: 1px solid var(--sa-line);
+    border-radius: var(--sa-radius);
     padding: 2.5vh 2vw;
-    color: var(--n-text-secondary);
-    font-size: 0.95rem;
-    letter-spacing: 0.04em;
-    line-height: 1.8;
+    color: var(--sa-star-dim);
+    font-family: var(--sa-font-serif);
+    font-size: 0.92rem;
+    letter-spacing: 0.05em;
+    line-height: 1.9;
     position: relative;
     overflow: hidden;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow:
-        0 4px 24px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 rgba(0, 229, 255, 0.04);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
-/* Top neon accent line */
+/* 内嵌发丝框 — 观测取景框 */
 .chart-canvas::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: -1px;
-    right: -1px;
-    height: 1px;
-    background: linear-gradient(90deg,
-        transparent 0%,
-        rgba(0, 229, 255, 0.5) 20%,
-        rgba(0, 229, 255, 0.8) 50%,
-        rgba(0, 229, 255, 0.5) 80%,
-        transparent 100%
-    );
+    inset: 8px;
+    border: 1px solid var(--sa-line-soft);
+    border-radius: 2px;
     pointer-events: none;
     z-index: 1;
-    animation: nFlicker 4s ease-in-out infinite;
 }
 
-/* Corner accents */
+/* 右上角观测编号 */
 .chart-canvas::after {
-    content: '';
+    content: 'PLATE — 身体星图 · No.182';
     position: absolute;
-    top: 8px;
-    right: 8px;
-    width: 6px;
-    height: 6px;
-    border-top: 1px solid rgba(0, 229, 255, 0.6);
-    border-right: 1px solid rgba(0, 229, 255, 0.6);
-    pointer-events: none;
+    top: 16px;
+    right: 22px;
     z-index: 1;
+    font-family: var(--sa-font-num);
+    font-size: 0.68rem;
+    letter-spacing: 0.28em;
+    color: var(--sa-star-faint);
+    pointer-events: none;
 }
 
 #chartContainer {
     width: 100%;
-    height: 52vh;
-    min-height: 40vh;
-}
-
-/* --- Control Panel (Right) --- */
-.control-panel {
-    width: 22vw;
-    min-width: 240px;
-    background: var(--n-surface);
-    border: 1px solid var(--n-border);
-    border-radius: var(--n-radius-lg);
-    padding: 2.5vh 1.6vw;
-    display: flex;
-    flex-direction: column;
-    gap: 1.6vh;
-    max-height: 80vh;
-    overflow-y: auto;
+    height: 50vh;
+    min-height: 38vh;
     position: relative;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow:
-        0 4px 24px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 rgba(0, 229, 255, 0.04);
+    z-index: 2;
 }
 
-/* Neon dot indicator */
+/* 图表区里的提示文字 */
+.chart-canvas s {
+    color: var(--sa-star-faint);
+}
+
+/* ============================================
+   底部仪器条 — 控制面板横排
+   ============================================ */
+.control-panel {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    background: rgba(10, 14, 26, 0.45);
+    border: 1px solid var(--sa-line);
+    border-radius: var(--sa-radius);
+    padding: 1.8vh 1.6vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 2vw;
+    position: relative;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    animation: saRise 0.7s 0.18s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+/* 右上角的金色呼吸点 — 观测中 */
 .control-panel::before {
     content: '';
     position: absolute;
-    top: 2vh;
+    top: 1.4vh;
     right: 1.2vw;
     width: 6px;
     height: 6px;
-    background: var(--n-cyan);
     border-radius: 50%;
-    animation: nPulseCyan 3s ease-in-out infinite;
-    box-shadow: 0 0 8px var(--n-cyan-glow);
+    background: var(--sa-gold);
+    box-shadow: 0 0 10px rgba(201, 168, 106, 0.6);
+    animation: saPulse 3s ease-in-out infinite;
 }
 
-/* Panel Header */
+@keyframes saPulse {
+    0%, 100% { opacity: 0.5; }
+    50%      { opacity: 1; }
+}
+
+/* 面板标题（横条内作第一组） */
 .panel-header h3 {
     margin: 0;
-    font-family: var(--font-display);
-    font-size: 1.15rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    color: var(--n-cyan);
-    padding-bottom: 1.2vh;
-    border-bottom: 1px solid var(--n-border);
-    text-transform: uppercase;
-    text-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+    font-family: var(--sa-font-serif);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    color: var(--sa-gold);
+    white-space: nowrap;
+    align-self: center;
 }
 
-/* --- Control Groups --- */
+/* 控制组 — 仪器条上的紧凑分组 */
 .control-group {
     display: flex;
     flex-direction: column;
     gap: 0.5vh;
+    min-width: 120px;
 }
 
 .control-group label {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-family: var(--sa-font-serif);
+    font-size: 0.7rem;
     font-weight: 400;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--n-text-muted);
+    letter-spacing: 0.24em;
+    color: var(--sa-star-faint);
 }
 
-/* Select Dropdowns */
+/* 下拉 — 暗玻璃 + 金色下划线 */
 .control-group select {
     width: 100%;
-    padding: 1vh 0.8vw;
-    background: var(--n-surface-alt);
-    border: 1px solid var(--n-border);
-    border-radius: var(--n-radius);
-    color: var(--n-text);
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
+    padding: 0.7vh 0.4em;
+    background: rgba(232, 230, 223, 0.04);
+    border: 1px solid var(--sa-line);
+    border-bottom: 1px solid rgba(201, 168, 106, 0.45);
+    border-radius: 2px;
+    color: var(--sa-star);
+    font-family: var(--sa-font-serif);
+    font-size: 0.88rem;
     font-weight: 400;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.08em;
     cursor: pointer;
-    transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+    transition: border-color 0.25s ease, background 0.25s ease;
     appearance: none;
     -webkit-appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2300e5ff' opacity='0.5'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23c9a86a'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 10px center;
-    padding-right: 28px;
+    background-position: right 8px center;
+    padding-right: 26px;
 }
 
 .control-group select:hover {
-    border-color: var(--n-border-glow);
-    background: rgba(16, 22, 40, 0.95);
+    background: rgba(232, 230, 223, 0.07);
+    border-bottom-color: var(--sa-gold);
 }
 
 .control-group select:focus {
     outline: none;
-    border-color: var(--n-cyan);
-    box-shadow: 0 0 12px var(--n-cyan-dim);
+    border-bottom-color: var(--sa-gold-bright);
 }
 
 .control-group select option {
-    background: #0c101e;
-    color: var(--n-text);
+    background: #10182a;
+    color: var(--sa-star);
 }
 
-/* --- Stats Box --- */
+/* 统计盒 — JS 注入目标已上移至顶栏，此处仅作后备隐藏 */
 .stats-box {
-    background: var(--n-surface-alt);
-    border: 1px solid var(--n-border);
-    border-radius: var(--n-radius);
-    padding: 1.2vh 1vw;
-    color: var(--n-text-secondary);
-    font-size: 0.82rem;
+    display: none;
 }
 
-.stats-box p {
-    margin: 0;
-    color: var(--n-text-muted);
-}
-
-.stat-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.7vh 0;
-    border-bottom: 1px solid rgba(0, 229, 255, 0.06);
-}
-
-.stat-item:last-child {
-    border-bottom: none;
-}
-
-.stat-label {
-    color: var(--n-text-muted);
-    font-size: 0.78rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-}
-
-.stat-value {
-    color: var(--n-cyan);
-    font-weight: 400;
-    font-size: 0.85rem;
-    letter-spacing: 0.03em;
-    text-shadow: 0 0 8px rgba(0, 229, 255, 0.2);
-}
-
-/* --- Update Button --- */
+/* 更新按钮 — 仪器条末端的金色刻印按钮 */
 .update-btn {
-    width: 100%;
-    padding: 1.2vh 0;
-    border: 1px solid rgba(0, 229, 255, 0.4);
-    border-radius: var(--n-radius);
+    padding: 0.9vh 2.4vw;
+    margin-left: auto;
+    border: 1px solid var(--sa-gold);
+    border-radius: 2px;
     background: transparent;
-    color: var(--n-cyan);
-    font-family: var(--font-display);
-    font-size: 0.82rem;
+    color: var(--sa-gold-bright);
+    font-family: var(--sa-font-serif);
+    font-size: 0.85rem;
     font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    text-indent: 0.4em;
     cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: auto;
+    transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
     position: relative;
-    overflow: hidden;
-}
-
-.update-btn::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg,
-        rgba(0, 229, 255, 0.1) 0%,
-        transparent 50%,
-        rgba(255, 64, 136, 0.05) 100%
-    );
-    opacity: 0;
-    transition: opacity 0.3s ease;
 }
 
 .update-btn:hover {
-    border-color: var(--n-cyan);
-    box-shadow: 0 0 24px var(--n-cyan-glow), inset 0 0 24px var(--n-cyan-dim);
-    color: #fff;
-    text-shadow: 0 0 12px rgba(0, 229, 255, 0.5);
-}
-
-.update-btn:hover::before {
-    opacity: 1;
+    background: var(--sa-gold);
+    color: var(--sa-sky-deep);
+    box-shadow: 0 0 18px rgba(201, 168, 106, 0.35);
 }
 
 .update-btn:active {
-    transform: scale(0.98);
+    transform: translateY(1px);
 }
 
-.update-btn:focus {
-    outline: none;
-    border-color: var(--n-cyan);
-    box-shadow: 0 0 16px var(--n-cyan-glow);
+.update-btn:focus-visible {
+    outline: 2px solid var(--sa-gold);
+    outline-offset: 3px;
 }
 
-/* --- 3D Chart Section --- */
+/* ============================================
+   3D 星座区
+   ============================================ */
 .chart3d-section {
     flex: 0 0 auto;
-    animation: nReveal 0.7s 0.25s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+    animation: saRise 0.7s 0.26s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 
 .chart3d-panel {
-    background: var(--n-surface);
-    border: 1px solid var(--n-border);
-    border-radius: var(--n-radius-lg);
+    background: rgba(10, 14, 26, 0.45);
+    border: 1px solid var(--sa-line);
+    border-radius: var(--sa-radius);
     padding: 2vh 1.5vw;
     position: relative;
     overflow: hidden;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow:
-        0 4px 24px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 rgba(0, 229, 255, 0.04);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
-/* Top accent — magenta this time for visual distinction */
 .chart3d-panel::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: -1px;
-    right: -1px;
-    height: 1px;
-    background: linear-gradient(90deg,
-        transparent 0%,
-        rgba(255, 64, 136, 0.5) 20%,
-        rgba(255, 64, 136, 0.8) 50%,
-        rgba(255, 64, 136, 0.5) 80%,
-        transparent 100%
-    );
+    inset: 8px;
+    border: 1px solid var(--sa-line-soft);
+    border-radius: 2px;
     pointer-events: none;
     z-index: 1;
-    animation: nFlicker 5s ease-in-out infinite;
 }
 
 .chart3d-header {
@@ -468,28 +427,38 @@
     gap: 1vw;
     margin-bottom: 1vh;
     padding-bottom: 1.2vh;
-    border-bottom: 1px solid var(--n-border);
+    border-bottom: 1px solid var(--sa-line);
+    position: relative;
+    z-index: 2;
 }
 
 .chart3d-header h3 {
     margin: 0;
-    font-family: var(--font-display);
-    font-size: 1.15rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    color: var(--n-magenta);
-    text-transform: uppercase;
-    text-shadow: 0 0 20px rgba(255, 64, 136, 0.3);
+    font-family: var(--sa-font-serif);
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    color: var(--sa-star);
+}
+
+/* 标题下的金色小线 */
+.chart3d-header h3::after {
+    content: '';
+    display: block;
+    width: 3em;
+    height: 2px;
+    margin-top: 6px;
+    background: linear-gradient(90deg, var(--sa-gold), transparent);
 }
 
 .chart3d-header .axis-legend {
     display: flex;
     gap: 1.5vw;
     margin-left: auto;
-    font-family: var(--font-mono);
+    font-family: var(--sa-font-serif);
     font-size: 0.75rem;
-    letter-spacing: 0.04em;
-    color: var(--n-text-muted);
+    letter-spacing: 0.08em;
+    color: var(--sa-star-dim);
 }
 
 .chart3d-header .axis-legend span {
@@ -505,39 +474,42 @@
     display: inline-block;
 }
 
-.chart3d-header .axis-legend .dot.x { background: var(--n-cyan); box-shadow: 0 0 6px var(--n-cyan); }
-.chart3d-header .axis-legend .dot.y { background: var(--n-green); box-shadow: 0 0 6px var(--n-green); }
-.chart3d-header .axis-legend .dot.z { background: var(--n-magenta); box-shadow: 0 0 6px var(--n-magenta); }
+/* 三轴圆点与 JS 图表里的轴色一一对应 */
+.chart3d-header .axis-legend .dot.x { background: var(--sa-gold); box-shadow: 0 0 6px rgba(201, 168, 106, 0.6); }
+.chart3d-header .axis-legend .dot.y { background: var(--sa-astro); box-shadow: 0 0 6px rgba(126, 147, 168, 0.6); }
+.chart3d-header .axis-legend .dot.z { background: var(--sa-rose); box-shadow: 0 0 6px rgba(196, 154, 166, 0.6); }
 
 #chart3dContainer {
     width: 100%;
-    height: 62vh;
-    min-height: 50vh;
+    height: 60vh;
+    min-height: 48vh;
+    position: relative;
+    z-index: 2;
 }
 
-/* --- Note Modal --- */
+/* --- 备注弹窗 — 暗玻璃星图卡 --- */
 .note-modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(4, 6, 12, 0.7);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    background: rgba(4, 6, 12, 0.65);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 10000;
-    animation: nReveal 0.2s ease both;
+    animation: saRise 0.2s ease both;
 }
 
 .note-modal {
-    width: min(92%, 400px);
-    background: var(--n-surface);
-    border: 1px solid var(--n-border-glow);
-    border-radius: var(--n-radius-lg);
+    width: min(92%, 420px);
+    background: rgba(13, 19, 34, 0.92);
+    border: 1px solid rgba(201, 168, 106, 0.35);
+    border-radius: var(--sa-radius);
     padding: 1.8rem;
-    box-shadow: 0 0 40px rgba(0, 229, 255, 0.1), 0 16px 48px rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 0 40px rgba(201, 168, 106, 0.08), 0 16px 48px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
 }
 
 .note-modal-header {
@@ -546,26 +518,25 @@
     align-items: center;
     margin-bottom: 1.2rem;
     padding-bottom: 0.8rem;
-    border-bottom: 1px solid var(--n-border);
+    border-bottom: 1px solid var(--sa-line);
 }
 
 .note-modal-header span {
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: var(--n-cyan);
-    letter-spacing: 0.04em;
-    text-shadow: 0 0 12px rgba(0, 229, 255, 0.2);
+    font-family: var(--sa-font-serif);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--sa-gold-bright);
+    letter-spacing: 0.08em;
 }
 
 .note-modal-close {
-    width: 32px;
-    height: 32px;
-    border: 1px solid var(--n-border);
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--sa-line);
     border-radius: 50%;
-    background: var(--n-surface-alt);
-    color: var(--n-text-secondary);
-    font-size: 1.1rem;
+    background: transparent;
+    color: var(--sa-star-dim);
+    font-size: 1rem;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -575,50 +546,36 @@
 }
 
 .note-modal-close:hover {
-    border-color: var(--n-magenta);
-    color: var(--n-magenta);
-    box-shadow: 0 0 12px var(--n-magenta-dim);
-    text-shadow: 0 0 8px rgba(255, 64, 136, 0.4);
+    border-color: var(--sa-gold);
+    color: var(--sa-gold-bright);
 }
 
 .note-content {
-    color: var(--n-text-secondary);
-    font-size: 0.85rem;
+    color: var(--sa-star);
+    font-family: var(--sa-font-serif);
+    font-size: 0.9rem;
     line-height: 2;
     white-space: pre-wrap;
     word-break: break-word;
-    padding: 1rem;
-    background: var(--n-surface-alt);
-    border: 1px solid var(--n-border);
-    border-radius: var(--n-radius);
+    padding: 0.4rem 0.2rem;
     min-height: 100px;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.05em;
 }
 
-/* --- Quote Section --- */
+/* --- 名言区 — 观测日志的题记 --- */
 .quote-section {
     flex-shrink: 0;
     z-index: 1;
-    background: var(--n-surface) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    border: 1px solid var(--n-border) !important;
-    border-radius: var(--n-radius-lg) !important;
-    padding: 1.5vh 0 !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    border-top: 1px solid var(--sa-line) !important;
+    border-radius: 0 !important;
+    padding: 1.5vh 4vw 1vh !important;
     margin: 0 2vw 1.5vh !important;
     position: relative !important;
-    animation: nReveal 0.7s 0.4s cubic-bezier(0.22, 0.61, 0.36, 1) both;
-}
-
-.quote-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 20%;
-    right: 20%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 64, 136, 0.4), transparent);
-    pointer-events: none;
+    animation: saRise 0.7s 0.34s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 
 .quote-container {
@@ -629,219 +586,156 @@
 }
 
 .quote-text {
-    font-family: var(--font-cn);
-    font-size: 1.25rem;
+    font-family: var(--sa-font-serif);
+    font-size: 1.1rem;
     font-style: normal;
     font-weight: 400;
-    color: var(--n-text) !important;
-    line-height: 1.5;
-    margin-bottom: 0.6vh;
+    color: var(--sa-star-dim) !important;
+    line-height: 1.9;
+    margin-bottom: 0.4vh;
     position: relative;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.08em;
+}
+
+/* 引号 — 金色 */
+.quote-text::before,
+.quote-text::after {
+    font-family: var(--sa-font-num);
+    font-size: 1.8rem;
+    color: var(--sa-gold);
+    position: absolute;
+    opacity: 0.6;
 }
 
 .quote-text::before {
-    content: '"';
-    font-size: 1.7rem;
-    color: var(--n-cyan);
-    position: absolute;
-    left: -16px;
-    top: -6px;
-    opacity: 0.5;
-    text-shadow: 0 0 8px rgba(0, 229, 255, 0.3);
+    content: '\201C';
+    left: -4px;
+    top: -8px;
 }
 
 .quote-text::after {
-    content: '"';
-    font-size: 1.7rem;
-    color: var(--n-cyan);
-    position: absolute;
-    right: -16px;
+    content: '\201D';
+    right: -4px;
     bottom: -12px;
-    opacity: 0.5;
-    text-shadow: 0 0 8px rgba(0, 229, 255, 0.3);
 }
 
 .quote-author {
-    font-family: var(--font-cn);
-    font-size: 0.88rem;
-    color: var(--n-text-muted) !important;
+    font-family: var(--sa-font-serif);
+    font-size: 0.82rem;
+    color: var(--sa-star-faint) !important;
     font-weight: 400;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.2em;
     margin-top: 0.5vh;
 }
 
-/* --- Notification Toast --- */
-div[style*="slideIn"] {
-    background: linear-gradient(135deg, #0a1628, #0c1a30) !important;
-    border: 1px solid var(--n-cyan) !important;
-    color: var(--n-cyan) !important;
-    font-family: var(--font-mono) !important;
+/* --- 通知浮窗 — 右上角星图快讯 ---
+   health_data.js 会给通知元素挂 .update-toast 类（内联动画仍引用 slideIn/slideOut） */
+.update-toast {
+    background: rgba(13, 19, 34, 0.94) !important;
+    border: 1px solid rgba(201, 168, 106, 0.4) !important;
+    border-left: 3px solid var(--sa-gold) !important;
+    color: var(--sa-gold-bright) !important;
+    font-family: var(--sa-font-serif) !important;
     font-weight: 400 !important;
-    letter-spacing: 0.06em !important;
-    box-shadow: 0 0 24px rgba(0, 229, 255, 0.2) !important;
-    text-shadow: 0 0 8px rgba(0, 229, 255, 0.3) !important;
+    letter-spacing: 0.08em !important;
+    box-shadow: 0 0 20px rgba(201, 168, 106, 0.12) !important;
+    text-shadow: none !important;
 }
 
-/* --- Scrollbar --- */
-.control-panel::-webkit-scrollbar {
+/* --- 滚动条 --- */
+.star-atlas::-webkit-scrollbar {
     width: 4px;
 }
 
-.control-panel::-webkit-scrollbar-track {
+.star-atlas::-webkit-scrollbar-track {
     background: transparent;
 }
 
-.control-panel::-webkit-scrollbar-thumb {
-    background: rgba(0, 229, 255, 0.15);
+.star-atlas::-webkit-scrollbar-thumb {
+    background: rgba(232, 230, 223, 0.15);
     border-radius: 999px;
 }
 
-.control-panel::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 229, 255, 0.3);
-}
-
-.neon-terminal::-webkit-scrollbar {
-    width: 4px;
-}
-
-.neon-terminal::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.neon-terminal::-webkit-scrollbar-thumb {
-    background: rgba(0, 229, 255, 0.08);
-    border-radius: 2px;
-}
-
-.neon-terminal::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 229, 255, 0.18);
-}
-
-/* --- Selection --- */
-.neon-terminal ::selection {
-    background: rgba(0, 229, 255, 0.2);
-    color: #fff;
+.star-atlas::-webkit-scrollbar-thumb:hover {
+    background: rgba(232, 230, 223, 0.3);
 }
 
 /* ============================================
-   Sidebar Overrides — scoped to .neon-terminal
-   Leaves siderbar.css untouched for other pages
+   侧边栏覆写 — 全部限定在 .star-atlas 作用域内
+   不修改 siderbar.css 本身，其他页面不受影响
    ============================================ */
-.neon-terminal .right-sidebar {
-    background: rgba(8, 12, 24, 0.92) !important;
-    backdrop-filter: blur(18px) !important;
-    -webkit-backdrop-filter: blur(18px) !important;
-    border-left: 1px solid rgba(0, 229, 255, 0.12) !important;
-    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.5) !important;
+.star-atlas .right-sidebar {
+    background: rgba(10, 14, 26, 0.92) !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    border-left: 1px solid var(--sa-line) !important;
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.45) !important;
 }
 
-.neon-terminal .right-sidebar::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 1px;
-    height: 100%;
-    background: linear-gradient(180deg,
-        transparent 0%,
-        rgba(0, 229, 255, 0.5) 20%,
-        rgba(0, 229, 255, 0.8) 50%,
-        rgba(0, 229, 255, 0.5) 80%,
-        transparent 100%
-    );
-    pointer-events: none;
-    z-index: 1001;
-}
-
-.neon-terminal .sidebar-title {
-    font-family: 'Orbitron', 'Microsoft YaHei', sans-serif !important;
+.star-atlas .sidebar-title {
+    font-family: var(--sa-font-serif) !important;
     font-size: 15px !important;
-    font-weight: 500 !important;
-    color: #00e5ff !important;
-    letter-spacing: 0.08em !important;
-    text-transform: uppercase;
-    text-shadow: 0 0 16px rgba(0, 229, 255, 0.25) !important;
-    border-bottom: 1px solid rgba(0, 229, 255, 0.1) !important;
+    font-weight: 600 !important;
+    color: var(--sa-gold-bright) !important;
+    letter-spacing: 0.3em !important;
+    border-bottom: 1px solid var(--sa-line) !important;
     padding-bottom: 10px;
 }
 
-.neon-terminal .sidebar-menu > li > a {
-    color: #7a8a9e !important;
-    font-family: 'Share Tech Mono', 'Microsoft YaHei', monospace !important;
-    font-size: 15px !important;
-    letter-spacing: 0.03em !important;
-    border: 1px solid transparent !important;
-    transition: all 0.25s ease !important;
-}
-
-.neon-terminal .sidebar-menu > li > a:hover {
-    color: #00e5ff !important;
-    background: rgba(0, 229, 255, 0.06) !important;
-    border-color: rgba(0, 229, 255, 0.15) !important;
-    text-shadow: 0 0 8px rgba(0, 229, 255, 0.3) !important;
-}
-
-.neon-terminal .submenu li a {
-    color: #556677 !important;
-    font-family: 'Share Tech Mono', 'Microsoft YaHei', monospace !important;
+.star-atlas .sidebar-menu > li > a {
+    color: var(--sa-star-dim) !important;
+    font-family: var(--sa-font-serif) !important;
     font-size: 14px !important;
-    letter-spacing: 0.02em !important;
-    border-left: 1px solid transparent !important;
-    transition: all 0.2s ease !important;
+    letter-spacing: 0.12em !important;
+    transition: color 0.2s ease, background 0.2s ease;
 }
 
-.neon-terminal .submenu li a:hover {
-    color: #ff4088 !important;
-    background: rgba(255, 64, 136, 0.06) !important;
-    border-left-color: rgba(255, 64, 136, 0.4) !important;
-    text-shadow: 0 0 6px rgba(255, 64, 136, 0.2) !important;
+.star-atlas .sidebar-menu > li > a:hover {
+    color: var(--sa-gold-bright) !important;
+    background: rgba(201, 168, 106, 0.08) !important;
 }
 
-.neon-terminal .toggle-btn {
-    background: rgba(8, 12, 24, 0.9) !important;
-    border: 1px solid rgba(0, 229, 255, 0.2) !important;
-    color: #00e5ff !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
+.star-atlas .submenu li a {
+    color: var(--sa-star-faint) !important;
+    font-family: var(--sa-font-serif) !important;
+    font-size: 13px !important;
+    letter-spacing: 0.08em !important;
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+.star-atlas .submenu li a:hover {
+    color: var(--sa-gold) !important;
+    background: rgba(201, 168, 106, 0.06) !important;
+}
+
+.star-atlas .toggle-btn {
+    background: rgba(13, 19, 34, 0.9) !important;
+    border: 1px solid rgba(201, 168, 106, 0.3) !important;
+    color: var(--sa-gold) !important;
     transition: all 0.25s ease !important;
 }
 
-.neon-terminal .toggle-btn:hover {
-    border-color: #00e5ff !important;
-    box-shadow: 0 0 12px rgba(0, 229, 255, 0.2) !important;
-    text-shadow: 0 0 8px rgba(0, 229, 255, 0.4) !important;
+.star-atlas .toggle-btn:hover {
+    border-color: var(--sa-gold-bright) !important;
+    color: var(--sa-gold-bright) !important;
+    box-shadow: 0 0 12px rgba(201, 168, 106, 0.25) !important;
 }
 
-/* --- Responsive --- */
+/* --- 响应式 --- */
 @media (max-width: 1100px) {
-    .upper-content {
+    .sky-topbar {
         flex-direction: column;
+        gap: 1vh;
     }
 
-    .chart-section {
-        max-width: 100%;
-        flex: 0 0 auto;
+    .sky-topbar .sky-summary {
+        margin-left: 0;
+        gap: 4vw;
     }
 
     .control-panel {
-        width: 100%;
-        min-width: 0;
-        max-width: 100%;
-        height: auto;
-        flex: 0 0 auto;
-        flex-direction: row;
         flex-wrap: wrap;
-        gap: 2vw;
-        padding: 2vh 3vw;
-    }
-
-    .control-panel::before {
-        display: none;
-    }
-
-    .panel-header {
-        width: 100%;
+        gap: 3vw;
     }
 
     .control-group {
@@ -850,9 +744,9 @@ div[style*="slideIn"] {
     }
 
     .update-btn {
-        width: auto;
-        padding: 1vh 2vw;
-        margin-top: 0;
+        margin-left: 0;
+        width: 100%;
+        padding: 1vh 0;
     }
 
     .chart3d-header {
@@ -867,6 +761,13 @@ div[style*="slideIn"] {
     }
 }
 
+@media (max-width: 768px) {
+    /* 小屏下侧边栏自动折叠为窄条，恢复边距 */
+    .main-container {
+        padding-right: 5vw;
+    }
+}
+
 @media (max-width: 600px) {
     .main-container {
         padding: 1.5vh 4vw 1vh;
@@ -876,22 +777,35 @@ div[style*="slideIn"] {
         padding: 2vh 3vw;
     }
 
+    .chart-canvas::after {
+        display: none;
+    }
+
     #chartContainer {
-        height: 40vh;
-        min-height: 30vh;
+        height: 38vh;
+        min-height: 28vh;
     }
 
     #chart3dContainer {
-        height: 46vh;
-        min-height: 36vh;
+        height: 44vh;
+        min-height: 34vh;
     }
 
     .control-panel {
-        padding: 1.5vh 4vw;
+        flex-direction: column;
+        align-items: stretch;
         gap: 1.5vh;
     }
 
+    .sky-topbar h1 {
+        font-size: 1.2rem;
+    }
+
+    .sky-topbar .stat-value {
+        font-size: 1.1rem;
+    }
+
     .quote-text {
-        font-size: 1rem;
+        font-size: 0.98rem;
     }
 }
