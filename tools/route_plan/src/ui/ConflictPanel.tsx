@@ -5,7 +5,7 @@ import type { Conflict } from '../model/types';
 export function ConflictPanel({ conflicts }: { conflicts: Conflict[] }) {
   return (
     <section className="conflicts">
-      <h3>⚠ 时间窗冲突（{conflicts.length}）</h3>
+      <h2>⚠ 时间窗冲突（{conflicts.length}）</h2>
       {conflicts.map((c) => (
         <div key={c.stopId} className="conflict-item">
           <strong>{c.stopName}</strong>

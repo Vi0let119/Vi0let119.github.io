@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="420" viewBox="0 0 1120 420" role="img" aria-label="图片页传输量从二百七十五兆降到八兆，视频从三十一点六兆降到二点四兆">
+  <rect width="1120" height="420" fill="#0d0d11"/>
+  <g font-family="'Noto Serif SC', 'Songti SC', serif" fill="#f0ece4">
+    <text x="56" y="56" font-size="24" letter-spacing="1">一次滚动，少了 267 兆</text>
+    <text x="56" y="84" font-size="13" fill="#78746e">390 像素宽，滚到画廊底部，cache disabled</text>
+  </g>
+  <g font-family="'DM Mono', Consolas, monospace">
+    <text x="56" y="140" font-size="12" fill="#78746e">改前</text>
+    <rect x="56" y="152" width="900" height="34" rx="3" fill="#c05a4a" fill-opacity="0.7"/>
+    <text x="970" y="175" font-size="14" fill="#d98a7c">275 MB</text>
+    <text x="56" y="222" font-size="12" fill="#78746e">改后</text>
+    <rect x="56" y="234" width="26" height="34" rx="3" fill="#5a9a7a"/>
+    <text x="96" y="257" font-size="14" fill="#9cc4ab">7.8 MB</text>
+    <text x="56" y="300" font-size="12" fill="#78746e">264 张原图，中位数 8 MB；缩略图 480 宽，1280 宽中间图点开才加载</text>
+    <text x="56" y="324" font-size="12" fill="#78746e">缩略图总计 6.6 MB，中间图总计 29.2 MB，视频 31.6 MB → 2.4 MB</text>
+  </g>
+  <line x1="56" y1="356" x2="1064" y2="356" stroke="#2a2a30"/>
+  <text x="56" y="386" font-size="12" fill="#78746e" font-family="'DM Mono', Consolas, monospace">口径：PerformanceResourceTiming.decodedBodySize 求和；未计浏览器缓存命中。</text>
+</svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" width="720" height="300" role="img" aria-label="轻笺项目页九张图片在改造前后的下载量对比：PNG 6,926 KB，WebP 手机 157 KB，桌面 268 KB">
+  <rect x="0.5" y="0.5" width="719" height="299" fill="#fbf7ee" stroke="#d8cbb4"/>
+  <text x="40" y="30" font-family="'Space Mono', monospace" font-size="11" letter-spacing="2" fill="#8a7c68">FIG. 07 — QINGJIAN / IMAGE PAYLOAD</text>
+  <text x="680" y="30" text-anchor="end" font-family="'Space Mono', monospace" font-size="10" letter-spacing="1.5" fill="#8a7c68">2026-10-20</text>
+  <text x="40" y="64" font-family="'Noto Serif SC', serif" font-size="20" fill="#2a241c">一张 1644 像素的图，显示在 340 像素里</text>
+  <line x1="40" y1="78" x2="680" y2="78" stroke="#c9bda8" stroke-width="0.7"/>
+
+  <text x="40" y="114" font-family="'Noto Serif SC', serif" font-size="12" fill="#2a241c">PNG 原图</text>
+  <rect x="180" y="101" width="400" height="20" fill="#9a4a32"/>
+  <text x="680" y="115" text-anchor="end" font-family="'Space Mono', monospace" font-size="12" fill="#2a241c">6,926 KB</text>
+
+  <text x="40" y="159" font-family="'Noto Serif SC', serif" font-size="12" fill="#2a241c">WebP · 手机</text>
+  <rect x="180" y="146" width="9" height="20" fill="#6a8a84"/>
+  <text x="680" y="160" text-anchor="end" font-family="'Space Mono', monospace" font-size="12" fill="#6a8a84">157 KB</text>
+
+  <text x="40" y="204" font-family="'Noto Serif SC', serif" font-size="12" fill="#2a241c">WebP · 桌面</text>
+  <rect x="180" y="191" width="15" height="20" fill="#d4a853"/>
+  <text x="680" y="205" text-anchor="end" font-family="'Space Mono', monospace" font-size="12" fill="#8a7c68">268 KB</text>
+
+  <line x1="40" y1="230" x2="680" y2="230" stroke="#e2d7c2" stroke-width="0.7"/>
+  <text x="40" y="252" font-family="'Noto Serif SC', serif" font-size="11" fill="#6b5f4d">九张图合计 · 390 与 1440 宽 · DPR 2 · 每张 800w / 1200w 两档</text>
+  <text x="40" y="274" font-family="'Space Mono', monospace" font-size="9.5" letter-spacing="0.6" fill="#8a7c68">cwebp -q 82 · PNG 保留作回退 · 布局未改</text>
+</svg>

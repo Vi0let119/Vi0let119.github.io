@@ -21,12 +21,13 @@
     <div id="sidebar-container"></div>
 
     <div class="layout-container">
+        <h1 class="visually-hidden">图片色彩分析</h1>
 
         <div class="image-panel">
-        <h3>图片浏览</h3>
+        <h2 class="image-panel-title">图片浏览</h2>
         <br>
         <div class="image-preview">
-            <input type="file" id="imageInput" accept="image/*" class="image-upload">
+            <input type="file" id="imageInput" accept="image/*" class="image-upload" aria-label="上传图片">
             <img id="displayImage" alt="点我上传图片">
         </div>
         </div>
@@ -36,12 +37,12 @@
 
         <div class="control-panel">
             <div class="control-item">
-                <label>K值 (聚类数量): <span id="kValueDisplay">5</span></label>
+                <label for="kValueSlider">K值 (聚类数量): <span id="kValueDisplay">5</span></label>
                 <input type="range" id="kValueSlider" min="2" max="10" value="5">
             </div>
 
             <div class="control-item">
-                <label>颜色空间:</label>
+                <label for="spaceSelect">颜色空间:</label>
                 <select id="spaceSelect">
                     <option value="rgb">RGB</option>
                     <option value="lab">LAB</option>
@@ -49,7 +50,7 @@
             </div>
 
             <div class="control-item">
-                <label>图表类型:</label>
+                <span class="control-label">图表类型:</span>
                 <button class="chart-type-btn active" data-type="pie">饼图</button>
                 <button class="chart-type-btn" data-type="bar">柱状图</button>
             </div>

@@ -301,6 +301,17 @@ class ImageProcessor {
     if (this.chartContainer) {
       this.myChart = echarts.init(this.chartContainer);
     }
+
+    // 视口变化（手机横竖屏、窗口缩放）时重新量容器。
+    // ECharts 只在 init 时取一次容器宽度；不 resize 就会保留旧宽度，
+    // 在窄屏上把布局视口撑大，整页字被缩小。
+    var resizeTimer = null;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        if (self.myChart) self.myChart.resize();
+      }, 150);
+    });
   }
 
   // 处理图片上传：读取文件 → 预览 → 计算直方图

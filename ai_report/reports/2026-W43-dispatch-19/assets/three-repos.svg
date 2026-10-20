@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="430" viewBox="0 0 1120 430" role="img" aria-label="三个仓库的关键数字：LightCraft 13981 星、Afilmory 2658 星、free-exercise-db 2026 星，核对日期 2026-10-20">
+  <rect width="1120" height="430" fill="#f7f5ef"/>
+  <g font-family="'Noto Serif SC', 'Songti SC', serif" fill="#1e1d19">
+    <text x="56" y="58" font-size="24">三个仓库，三种用法</text>
+    <text x="56" y="86" font-size="13" fill="#8b8577">星数、最近推送、许可证均于 2026-10-20 用 GitHub API 核对</text>
+  </g>
+
+  <g font-family="'DM Mono', Consolas, monospace">
+    <!-- card 1 -->
+    <rect x="56" y="120" width="312" height="248" rx="6" fill="#fffdf8" stroke="#1e1d19" stroke-opacity="0.18"/>
+    <text x="80" y="158" font-size="13" fill="#9c7c2c">01 / 冲洗</text>
+    <text x="80" y="192" font-size="17" fill="#1e1d19">storytold/lightcraft</text>
+    <text x="80" y="244" font-size="40" fill="#1e1d19">13,981</text>
+    <text x="80" y="264" font-size="12" fill="#8b8577">星 · 2026-09-30 创建</text>
+    <text x="80" y="300" font-size="12" fill="#4a463c">纯 Rust · v0.9.1</text>
+    <text x="80" y="322" font-size="12" fill="#4a463c">Apache-2.0</text>
+    <text x="80" y="344" font-size="12" fill="#8b8577">Windows MSI 89.9 MB</text>
+
+    <!-- card 2 -->
+    <rect x="404" y="120" width="312" height="248" rx="6" fill="#fffdf8" stroke="#1e1d19" stroke-opacity="0.18"/>
+    <text x="428" y="158" font-size="13" fill="#9c7c2c">02 / 陈列</text>
+    <text x="428" y="192" font-size="17" fill="#1e1d19">Afilmory/afilmory</text>
+    <text x="428" y="244" font-size="40" fill="#1e1d19">2,658</text>
+    <text x="428" y="264" font-size="12" fill="#8b8577">星 · 2025-06-05 创建</text>
+    <text x="428" y="300" font-size="12" fill="#4a463c">React + WebGPU 查看器</text>
+    <text x="428" y="322" font-size="12" fill="#4a463c">ANL v1.0（含 AGPL）</text>
+    <text x="428" y="344" font-size="12" fill="#8b8577">docker 仓库停滞 11 个月</text>
+
+    <!-- card 3 -->
+    <rect x="752" y="120" width="312" height="248" rx="6" fill="#fffdf8" stroke="#1e1d19" stroke-opacity="0.18"/>
+    <text x="776" y="158" font-size="13" fill="#9c7c2c">03 / 动作数据</text>
+    <text x="776" y="192" font-size="17" fill="#1e1d19">yuhonas/free-exercise-db</text>
+    <text x="776" y="244" font-size="40" fill="#1e1d19">2,026</text>
+    <text x="776" y="264" font-size="12" fill="#8b8577">星 · 2023-03-30 创建</text>
+    <text x="776" y="300" font-size="12" fill="#4a463c">800+ 动作 · JSON</text>
+    <text x="776" y="322" font-size="12" fill="#4a463c">Unlicense（公共领域）</text>
+    <text x="776" y="344" font-size="12" fill="#8b8577">英文，无训练计划</text>
+  </g>
+  <text x="56" y="404" font-size="12" fill="#8b8577" font-family="'DM Mono', Consolas, monospace">口径：GitHub REST API /repos 与 /releases/latest；未实际安装或部署。</text>
+</svg>

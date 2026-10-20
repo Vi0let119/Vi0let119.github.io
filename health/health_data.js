@@ -71,7 +71,6 @@
       });
 
       initNoteViewer();
-      loadRandomQuote('../quotes.json');
       startAutoUpdate();
     });
   };

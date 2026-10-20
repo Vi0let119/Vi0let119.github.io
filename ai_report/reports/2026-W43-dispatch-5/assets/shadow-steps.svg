@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="260" viewBox="0 0 720 260" role="img" aria-label="暗色主题的六个明度台阶，以及只在暗处成立的金色强调色">
+  <rect x="0" y="0" width="720" height="260" fill="#fbf7ee"/>
+  <rect x="0.5" y="0.5" width="719" height="259" fill="none" stroke="#d8cbb4"/>
+  <text x="36" y="34" font-family="Space Mono, monospace" font-size="11" letter-spacing="2" fill="#8a7c68">FIG. 05 — SHADOW</text>
+  <text x="684" y="34" text-anchor="end" font-family="Space Mono, monospace" font-size="10" letter-spacing="1" fill="#a89b88">AFTER TANIZAKI, 1933</text>
+  <text x="36" y="62" font-family="Noto Serif SC, serif" font-size="20" fill="#2a241c">阴翳不是一种颜色</text>
+  <line x1="36" y1="78" x2="684" y2="78" stroke="#c9bda8" stroke-width="0.7"/>
+
+  <rect x="36" y="96" width="88" height="88" fill="#14110e"/>
+  <rect x="124" y="96" width="88" height="88" fill="#1f1b16"/>
+  <rect x="212" y="96" width="88" height="88" fill="#2a241c"/>
+  <rect x="300" y="96" width="88" height="88" fill="#3a3530"/>
+  <rect x="388" y="96" width="88" height="88" fill="#5b5044"/>
+  <rect x="476" y="96" width="88" height="88" fill="#857a6b"/>
+
+  <g font-family="Space Mono, monospace" font-size="8.5" fill="#8a7c68" text-anchor="middle">
+    <text x="80" y="200">#14110E</text>
+    <text x="168" y="200">#1F1B16</text>
+    <text x="256" y="200">#2A241C</text>
+    <text x="344" y="200">#3A3530</text>
+    <text x="432" y="200">#5B5044</text>
+    <text x="520" y="200">#857A6B</text>
+  </g>
+
+  <rect x="588" y="96" width="96" height="88" fill="#d4a853"/>
+  <text x="636" y="146" text-anchor="middle" font-family="Space Mono, monospace" font-size="10" letter-spacing="1.5" fill="#2a241c">ACCENT</text>
+  <text x="636" y="200" text-anchor="middle" font-family="Space Mono, monospace" font-size="8.5" fill="#9a4a32">#D4A853</text>
+
+  <text x="36" y="226" font-family="Noto Serif SC, serif" font-size="11" fill="#5b5044">暗色不是把白反过来，是重新分配明度；金色只在暗处成立。</text>
+  <line x1="36" y1="240" x2="684" y2="240" stroke="#c9bda8" stroke-width="0.6" stroke-dasharray="2 5"/>
+  <text x="36" y="254" font-family="Space Mono, monospace" font-size="9" letter-spacing="1" fill="#a89b88">SITE TOKENS · DARK THEME · 6 STEPS + 1 ACCENT</text>
+  <text x="684" y="254" text-anchor="end" font-family="Space Mono, monospace" font-size="9" letter-spacing="1" fill="#a89b88">NOT AN INVERSION</text>
+</svg>

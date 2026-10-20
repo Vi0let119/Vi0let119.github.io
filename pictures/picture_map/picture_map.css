@@ -545,3 +545,10 @@ body {
         gap: 0.6rem;
     }
 }
+
+/* 固定侧栏展开时盖住右上角统计：给它让位 */
+@media (min-width: 769px) {
+    body:not(.sidebar-collapsed) .map-stats {
+        margin-right: 10vw;
+    }
+}

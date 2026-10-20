@@ -430,3 +430,10 @@ body::after {
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(216,212,204,0.08); border-radius: 2px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(216,212,204,0.16); }
+
+/* 固定侧栏展开时会盖住顶栏右侧信息：给它让出 10vw */
+@media (min-width: 769px) {
+  body:not(.sidebar-collapsed) .topbar {
+    padding-right: calc(24px + 10vw);
+  }
+}

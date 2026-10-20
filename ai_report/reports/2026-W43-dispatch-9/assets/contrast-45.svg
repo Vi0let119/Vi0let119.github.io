@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" width="720" height="360" role="img" aria-label="侧栏对比度修复前后：暗色组标题 1.28、暗色链接 2.03、亮色链接 2.59、亮色当前页 4.07，均低于 4.5；修复后为 5.28、5.34、6.06">
+  <rect x="0.5" y="0.5" width="719" height="359" fill="#fbf7ee" stroke="#d8cbb4"/>
+  <text x="40" y="30" font-family="'Space Mono', monospace" font-size="11" letter-spacing="2" fill="#8a7c68">FIG. 09 — CONTRAST / SIDEBAR</text>
+  <text x="680" y="30" text-anchor="end" font-family="'Space Mono', monospace" font-size="10" letter-spacing="1.5" fill="#8a7c68">WCAG AA · 4.5:1</text>
+  <text x="40" y="64" font-family="'Noto Serif SC', serif" font-size="20" fill="#2a241c">4.5 那条线</text>
+  <text x="680" y="64" text-anchor="end" font-family="'Noto Serif SC', serif" font-size="11" fill="#8a7c68">首页 · 侧栏展开</text>
+  <line x1="40" y1="78" x2="680" y2="78" stroke="#c9bda8" stroke-width="0.7"/>
+
+  <text x="40" y="99" font-family="'Space Mono', monospace" font-size="10.5" letter-spacing="1.2" fill="#8a7c68">改前</text>
+
+  <text x="40" y="122" font-family="'Noto Serif SC', serif" font-size="11" fill="#2a241c">暗色 · 子菜单组标题</text>
+  <rect x="240" y="110" width="21" height="14" fill="#9a4a32"/>
+  <text x="680" y="122" text-anchor="end" font-family="'Space Mono', monospace" font-size="11" fill="#9a4a32">1.28</text>
+
+  <text x="40" y="152" font-family="'Noto Serif SC', serif" font-size="11" fill="#2a241c">暗色 · 子菜单链接</text>
+  <rect x="240" y="140" width="78" height="14" fill="#9a4a32"/>
+  <text x="680" y="152" text-anchor="end" font-family="'Space Mono', monospace" font-size="11" fill="#9a4a32">2.03</text>
+
+  <text x="40" y="182" font-family="'Noto Serif SC', serif" font-size="11" fill="#2a241c">亮色 · 子菜单链接</text>
+  <rect x="240" y="170" width="121" height="14" fill="#c98a6a"/>
+  <text x="680" y="182" text-anchor="end" font-family="'Space Mono', monospace" font-size="11" fill="#9a4a32">2.59</text>
+
+  <text x="40" y="212" font-family="'Noto Serif SC', serif" font-size="11" fill="#2a241c">亮色 · 当前页</text>
+  <rect x="240" y="200" width="233" height="14" fill="#c98a6a"/>
+  <text x="680" y="212" text-anchor="end" font-family="'Space Mono', monospace" font-size="11" fill="#9a4a32">4.07</text>
+
+  <line x1="506" y1="96" x2="506" y2="222" stroke="#9a4a32" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="506" y="92" text-anchor="middle" font-family="'Space Mono', monospace" font-size="9" fill="#9a4a32">4.5</text>
+
+  <line x1="40" y1="232" x2="680" y2="232" stroke="#e2d7c2" stroke-width="0.7"/>
+  <text x="40" y="253" font-family="'Space Mono', monospace" font-size="10.5" letter-spacing="1.2" fill="#6a8a84">改后</text>
+
+  <text x="40" y="273" font-family="'Noto Serif SC', serif" font-size="11" fill="#2a241c">子菜单组标题</text>
+  <rect x="240" y="261" width="325" height="14" fill="#6a8a84"/>
+  <text x="680" y="273" text-anchor="end" font-family="'Space Mono', monospace" font-size="11" fill="#4d6f69">5.28</text>
+
+  <text x="40" y="301" font-family="'Noto Serif SC', serif" font-size="11" fill="#2a241c">子菜单链接</text>
+  <rect x="240" y="289" width="330" height="14" fill="#6a8a84"/>
+  <text x="680" y="301" text-anchor="end" font-family="'Space Mono', monospace" font-size="11" fill="#4d6f69">5.34</text>
+
+  <text x="40" y="329" font-family="'Noto Serif SC', serif" font-size="11" fill="#2a241c">当前页</text>
+  <rect x="240" y="317" width="385" height="14" fill="#4d6f69"/>
+  <text x="680" y="329" text-anchor="end" font-family="'Space Mono', monospace" font-size="11" fill="#4d6f69">6.06</text>
+
+  <text x="40" y="352" font-family="'Space Mono', monospace" font-size="8.5" letter-spacing="0.3" fill="#8a7c68">数值为文字色与背景色的对比度 · 折叠子菜单不计 · 2026-10-20</text>
+</svg>

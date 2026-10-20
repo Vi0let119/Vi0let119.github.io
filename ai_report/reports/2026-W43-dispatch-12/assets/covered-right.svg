@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="300" viewBox="0 0 720 300" role="img" aria-label="修复前五个页面的文字右边缘压在侧栏下的像素数：地图统计 123、视觉星图顶栏 120、图片分析控制栏 110、分享正文 40、GPS 页 6">
+  <rect x="0" y="0" width="720" height="300" fill="#fbf7ee"/>
+  <rect x="0.5" y="0.5" width="719" height="299" fill="none" stroke="#d8cbb4"/>
+  <text x="36" y="34" font-family="Space Mono, monospace" font-size="11" letter-spacing="2" fill="#8a7c68">FIG. 12 — COVERED</text>
+  <text x="684" y="34" text-anchor="end" font-family="Space Mono, monospace" font-size="10" letter-spacing="1" fill="#a89b88">1440 VIEWPORT · 10VW SIDEBAR</text>
+  <text x="36" y="62" font-family="Noto Serif SC, serif" font-size="20" fill="#2a241c">被压住的右边缘</text>
+  <line x1="36" y1="78" x2="684" y2="78" stroke="#c9bda8" stroke-width="0.7"/>
+
+  <text x="150" y="108" text-anchor="end" font-family="Noto Serif SC, serif" font-size="11" fill="#5b5044">地图统计</text>
+  <rect x="160" y="96" width="246" height="16" fill="#9a4a32" opacity="0.7"/>
+  <text x="414" y="108" font-family="Space Mono, monospace" font-size="9" fill="#9a4a32">123 px</text>
+
+  <text x="150" y="138" text-anchor="end" font-family="Noto Serif SC, serif" font-size="11" fill="#5b5044">视觉星图顶栏</text>
+  <rect x="160" y="126" width="240" height="16" fill="#9a4a32" opacity="0.7"/>
+  <text x="408" y="138" font-family="Space Mono, monospace" font-size="9" fill="#9a4a32">120 px</text>
+
+  <text x="150" y="168" text-anchor="end" font-family="Noto Serif SC, serif" font-size="11" fill="#5b5044">图片分析控制栏</text>
+  <rect x="160" y="156" width="220" height="16" fill="#9a4a32" opacity="0.7"/>
+  <text x="388" y="168" font-family="Space Mono, monospace" font-size="9" fill="#9a4a32">110 px</text>
+
+  <text x="150" y="198" text-anchor="end" font-family="Noto Serif SC, serif" font-size="11" fill="#5b5044">分享正文</text>
+  <rect x="160" y="186" width="80" height="16" fill="#9a4a32" opacity="0.7"/>
+  <text x="248" y="198" font-family="Space Mono, monospace" font-size="9" fill="#9a4a32">40 px</text>
+
+  <text x="150" y="228" text-anchor="end" font-family="Noto Serif SC, serif" font-size="11" fill="#5b5044">GPS 页（1366）</text>
+  <rect x="160" y="216" width="12" height="16" fill="#9a4a32" opacity="0.7"/>
+  <text x="180" y="228" font-family="Space Mono, monospace" font-size="9" fill="#9a4a32">6 px</text>
+
+  <text x="36" y="262" font-family="Noto Serif SC, serif" font-size="10.5" fill="#5b5044">修复后这五处都为 0：侧栏展开时正文让出 10vw，折叠时恢复原宽。</text>
+  <line x1="36" y1="272" x2="684" y2="272" stroke="#c9bda8" stroke-width="0.6" stroke-dasharray="2 5"/>
+  <text x="36" y="288" font-family="Space Mono, monospace" font-size="9" letter-spacing="1" fill="#a89b88">RIGHT EDGE · SIDEBAR LEFT · 2026-10-20</text>
+  <text x="684" y="288" text-anchor="end" font-family="Space Mono, monospace" font-size="9" letter-spacing="1" fill="#a89b88">ALL ZERO AFTER FIX</text>
+</svg>

@@ -89,7 +89,7 @@
   width: 28px;
   height: 28px;
   font-size: 10px;
-  color: #999;
+  color: #777;
   cursor: pointer;
   border-radius: 4px;
   flex-shrink: 0;
@@ -147,4 +147,24 @@
   font-size: 18px;
   cursor: pointer;
   z-index: 1000;
+}
+
+/* 当前页：无主题变量时至少保留字重差异 */
+.sidebar-menu a[aria-current="page"] {
+  font-weight: 600;
+}
+
+/* 键盘聚焦：只在键盘导航时显示焦点环 */
+.sidebar-menu a:focus-visible,
+.submenu-parent:focus-visible,
+.toggle-btn:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* 小屏：10vw 只有 39px，展开后放不下文字；展开态改成可用的抽屉宽度 */
+@media (max-width: 768px) {
+  .right-sidebar {
+    width: min(76vw, 260px);
+  }
 }

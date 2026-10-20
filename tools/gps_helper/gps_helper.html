@@ -32,6 +32,13 @@
 
         .container { max-width:1100px; margin:0 auto; }
 
+        /* 固定侧栏展开时，容器给它让出 10vw */
+        @media (min-width: 769px) {
+            body:not(.sidebar-collapsed) .container {
+                max-width: min(1100px, 78vw);
+            }
+        }
+
         h1 {
             font-family:var(--font-display);
             font-size:2.5rem; font-weight:400;
@@ -364,6 +371,13 @@
             margin-top:0.5rem;
         }
         .download-link:hover { color:#d4a85c; }
+
+        /* --- 小屏：手动输入行允许换行，页面边距收紧 --- */
+        @media (max-width: 600px) {
+            body { padding: 1rem; }
+            .manual-entry { flex-wrap: wrap; }
+            .manual-entry input { width: 130px; }
+        }
     </style>
     <link rel="stylesheet" href="../tools_theme.css">
 </head>
@@ -375,7 +389,7 @@
 
     <!-- ============ 第一部分：地名搜索 ============ -->
     <div class="search-box">
-        <input type="text" id="searchInput" placeholder="输入地名，例如：北京故宫、上海外滩、西湖、大理古城…" autofocus>
+        <input type="text" id="searchInput" aria-label="搜索地名" placeholder="输入地名，例如：北京故宫、上海外滩、西湖、大理古城…" autofocus>
         <button id="searchBtn">搜索</button>
     </div>
     <p class="search-hint">使用 <a href="https://nominatim.openstreetmap.org" target="_blank">Nominatim (OpenStreetMap)</a> 地理编码，免费、无需 API Key。返回坐标系：<span style="color:var(--accent);">WGS84</span>（需要魔法上网喵· 每秒限 1 次请求）</p>
@@ -389,18 +403,18 @@
     </div>
 
     <!-- Manual coordinate entry -->
-    <h3 class="section-title">手动输入坐标 · WGS84</h3>
+    <h2 class="section-title">手动输入坐标 · WGS84</h2>
     <div class="manual-entry">
         <span class="label">Lat (纬度):</span>
-        <input type="text" id="manualLat" placeholder="39.9042">
+        <input type="text" id="manualLat" aria-label="纬度（WGS84）" placeholder="39.9042">
         <span class="label">Lng (经度):</span>
-        <input type="text" id="manualLng" placeholder="116.4074">
+        <input type="text" id="manualLng" aria-label="经度（WGS84）" placeholder="116.4074">
         <button class="copy-btn" id="copyManual">复制</button>
         <span id="manualFeedback" style="font-size:0.65rem;color:#5a8;display:none;">已复制 ✓</span>
     </div>
 
     <!-- ============ 第二部分：批量坐标转换 ============ -->
-    <h3 class="section-title">批量坐标转换 · Coordinate Conversion</h3>
+    <h2 class="section-title">批量坐标转换 · Coordinate Conversion</h2>
     <p class="section-desc">
         支持 <strong>WGS84 ↔ GCJ02（火星/国测局）↔ BD09（百度）</strong> 全方向互转。
         每行输入一对坐标，格式：<code style="color:var(--accent);">纬度, 经度</code>（例：<code style="color:var(--text-muted);">39.9042, 116.4074</code>）。
@@ -408,13 +422,13 @@
     </p>
 
     <div class="conv-row">
-        <select id="convFrom">
+        <select id="convFrom" aria-label="源坐标系">
             <option value="wgs84">WGS84</option>
             <option value="gcj02">GCJ02（火星/国测局）</option>
             <option value="bd09">BD09（百度）</option>
         </select>
         <span class="arrow">→</span>
-        <select id="convTo">
+        <select id="convTo" aria-label="目标坐标系">
             <option value="gcj02">GCJ02（火星/国测局）</option>
             <option value="bd09">BD09（百度）</option>
             <option value="wgs84">WGS84</option>
@@ -422,14 +436,14 @@
         <button class="action-btn" id="convBtn">执行转换</button>
         <button class="copy-btn" id="convCopyAll" style="display:none;">复制全部结果</button>
     </div>
-    <textarea class="conv-row" id="convInput" placeholder="39.9042, 116.4074
+    <textarea class="conv-row" id="convInput" aria-label="待转换的坐标列表，每行一对纬度、经度" placeholder="39.9042, 116.4074
 31.2304, 121.4737
 22.5431, 114.0579" style="width:100%;"></textarea>
 
     <div class="conv-results" id="convResults" style="display:none;"></div>
 
     <!-- ============ 第三部分：批量地址转经纬度 ============ -->
-    <h3 class="section-title">批量地址转经纬度 · Batch Geocoding</h3>
+    <h2 class="section-title">批量地址转经纬度 · Batch Geocoding</h2>
     <p class="section-desc">
         使用 <strong>高德地图 Geocoding API</strong> 将文字地址批量转换为经纬度。
         每行一个地址，返回坐标系：<span style="color:var(--accent);">GCJ02</span>。
@@ -438,12 +452,12 @@
 
     <div class="api-key-row">
         <span class="label">高德 API Key:</span>
-        <input type="text" id="amapKey" placeholder="请输入高德 Web服务 API Key…">
+        <input type="text" id="amapKey" aria-label="高德 Web 服务 API Key" placeholder="请输入高德 Web服务 API Key…">
         <span class="api-key-status empty" id="apiKeyStatus">未设置</span>
         <button class="copy-btn" id="saveKeyBtn">保存</button>
     </div>
 
-    <textarea class="geocode-textarea" id="geocodeInput" placeholder="北京市东城区故宫博物院
+    <textarea class="geocode-textarea" id="geocodeInput" aria-label="批量地址列表，每行一个地址" placeholder="北京市东城区故宫博物院
 上海市黄浦区外滩
 浙江省杭州市西湖区西湖
 云南省大理白族自治州大理古城" style="width:100%;margin-bottom:0.6rem;"></textarea>
@@ -454,7 +468,7 @@
     <div class="conv-results" id="geocodeResults" style="display:none;"></div>
 
     <!-- Frequent cities -->
-    <h3 class="section-title">中国主要城市 · 快速参考（WGS84）</h3>
+    <h2 class="section-title">中国主要城市 · 快速参考（WGS84）</h2>
     <div class="quick-cities" id="quickCities"></div>
 </div>
 

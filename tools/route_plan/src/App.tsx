@@ -17,6 +17,7 @@ export default function App() {
 
   return (
     <div className="app">
+      <h1 className="sr-only">扫街摄影路线规划器</h1>
       <Toolbar onOpenKeySetup={() => setShowKeySetup(true)} />
       <div className="app-body">
         <Sidebar />

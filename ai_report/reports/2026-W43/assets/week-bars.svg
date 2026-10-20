@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="330" viewBox="0 0 720 330" role="img" aria-label="本周时间分配柱状图">
+  <rect x="0" y="0" width="720" height="330" fill="#fbf7ee"/>
+  <rect x="0.5" y="0.5" width="719" height="329" fill="none" stroke="#d8cbb4"/>
+  <text x="36" y="38" font-family="Space Mono, monospace" font-size="11" letter-spacing="2" fill="#8a7c68">FIG. 01 — TIME</text>
+  <text x="36" y="64" font-family="Noto Serif SC, serif" font-size="18" fill="#2a241c">本周时间分配</text>
+  <text x="684" y="64" text-anchor="end" font-family="Space Mono, monospace" font-size="11" fill="#8a7c68">UNIT: HOURS</text>
+  <g stroke="#c9bda8" stroke-width="0.6" stroke-dasharray="2 5">
+    <line x1="56" y1="110" x2="664" y2="110"/>
+    <line x1="56" y1="150" x2="664" y2="150"/>
+    <line x1="56" y1="190" x2="664" y2="190"/>
+    <line x1="56" y1="230" x2="664" y2="230"/>
+  </g>
+  <line x1="56" y1="270" x2="664" y2="270" stroke="#2a241c" stroke-width="1"/>
+  <g font-family="Space Mono, monospace" font-size="10" fill="#8a7c68">
+    <text x="42" y="114" text-anchor="end">16</text>
+    <text x="42" y="154" text-anchor="end">12</text>
+    <text x="42" y="194" text-anchor="end">8</text>
+    <text x="42" y="234" text-anchor="end">4</text>
+    <text x="42" y="274" text-anchor="end">0</text>
+  </g>
+  <g>
+    <rect x="86" y="90" width="86" height="180" fill="#2a241c" opacity="0.82"/>
+    <rect x="200" y="130" width="86" height="140" fill="#2a241c" opacity="0.82"/>
+    <rect x="314" y="210" width="86" height="60" fill="#2a241c" opacity="0.82"/>
+    <rect x="428" y="230" width="86" height="40" fill="#9a4a32" opacity="0.9"/>
+    <rect x="542" y="190" width="86" height="80" fill="#2a241c" opacity="0.82"/>
+  </g>
+  <g font-family="Space Mono, monospace" font-size="12" fill="#2a241c">
+    <text x="129" y="80" text-anchor="middle">18.0</text>
+    <text x="243" y="120" text-anchor="middle">14.0</text>
+    <text x="357" y="200" text-anchor="middle">6.0</text>
+    <text x="471" y="220" text-anchor="middle">4.0</text>
+    <text x="585" y="180" text-anchor="middle">8.0</text>
+  </g>
+  <g font-family="Noto Serif SC, serif" font-size="12" fill="#5b5044" text-anchor="middle">
+    <text x="129" y="292">搭建</text>
+    <text x="243" y="292">写作</text>
+    <text x="357" y="292">运动</text>
+    <text x="471" y="292">阅读</text>
+    <text x="585" y="292">杂事</text>
+  </g>
+  <text x="36" y="318" font-family="Space Mono, monospace" font-size="9" fill="#a89b88" letter-spacing="1">SOURCE: WEEKLY LOG · 2026-W43</text>
+</svg>

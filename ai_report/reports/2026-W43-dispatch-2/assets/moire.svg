@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="320" viewBox="0 0 720 320" role="img" aria-label="翻拍屏幕的三种摩尔纹，以及 DemoiréEdit 的两段式修复流程">
+  <defs>
+    <pattern id="stripes" width="3" height="3" patternUnits="userSpaceOnUse">
+      <rect width="3" height="3" fill="#f6efe2"/>
+      <rect width="1.1" height="3" fill="#2a241c" opacity="0.55"/>
+    </pattern>
+    <linearGradient id="banding" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6a8a84" stop-opacity="0.55"/>
+      <stop offset="0.18" stop-color="#f6efe2" stop-opacity="0.05"/>
+      <stop offset="0.38" stop-color="#9a4a32" stop-opacity="0.35"/>
+      <stop offset="0.55" stop-color="#f6efe2" stop-opacity="0.05"/>
+      <stop offset="0.74" stop-color="#6a8a84" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#9a4a32" stop-opacity="0.28"/>
+    </linearGradient>
+    <clipPath id="swA"><rect x="36" y="106" width="72" height="84"/></clipPath>
+    <clipPath id="swB"><rect x="116" y="106" width="72" height="84"/></clipPath>
+    <clipPath id="swC"><rect x="196" y="106" width="72" height="84"/></clipPath>
+  </defs>
+
+  <rect x="0" y="0" width="720" height="320" fill="#fbf7ee"/>
+  <rect x="0.5" y="0.5" width="719" height="319" fill="none" stroke="#d8cbb4"/>
+  <text x="36" y="34" font-family="Space Mono, monospace" font-size="11" letter-spacing="2" fill="#8a7c68">FIG. 02 — MOIRÉ</text>
+  <text x="684" y="34" text-anchor="end" font-family="Space Mono, monospace" font-size="10" letter-spacing="1" fill="#a89b88">HIT SHENZHEN</text>
+  <text x="36" y="62" font-family="Noto Serif SC, serif" font-size="20" fill="#2a241c">翻拍的纹，和两段修复</text>
+  <line x1="36" y1="78" x2="684" y2="78" stroke="#c9bda8" stroke-width="0.7"/>
+
+  <text x="36" y="96" font-family="Noto Serif SC, serif" font-size="11" fill="#5b5044">同一块屏幕，三种纹</text>
+  <rect x="36" y="106" width="72" height="84" fill="#f6efe2" stroke="#e0d4bf"/>
+  <rect x="36" y="106" width="72" height="84" fill="url(#stripes)" clip-path="url(#swA)"/>
+  <rect x="116" y="106" width="72" height="84" fill="#f6efe2" stroke="#e0d4bf"/>
+  <rect x="116" y="106" width="72" height="84" fill="url(#banding)" clip-path="url(#swB)"/>
+  <rect x="196" y="106" width="72" height="84" fill="#f6efe2" stroke="#e0d4bf"/>
+  <g clip-path="url(#swC)">
+    <rect x="196" y="106" width="72" height="84" fill="url(#banding)"/>
+    <rect x="196" y="106" width="72" height="84" fill="url(#stripes)" opacity="0.8"/>
+  </g>
+  <text x="72" y="208" text-anchor="middle" font-family="Noto Serif SC, serif" font-size="10" fill="#5b5044">高频条纹</text>
+  <text x="152" y="208" text-anchor="middle" font-family="Noto Serif SC, serif" font-size="10" fill="#5b5044">低频色带</text>
+  <text x="232" y="208" text-anchor="middle" font-family="Noto Serif SC, serif" font-size="10" fill="#5b5044">混合</text>
+
+  <text x="300" y="96" font-family="Noto Serif SC, serif" font-size="11" fill="#5b5044">DemoiréEdit 的两段推理</text>
+  <rect x="300" y="106" width="176" height="84" fill="#f6efe2" stroke="#e0d4bf"/>
+  <text x="312" y="126" font-family="Space Mono, monospace" font-size="10" letter-spacing="1" fill="#9a4a32">STAGE 1</text>
+  <text x="312" y="146" font-family="Noto Serif SC, serif" font-size="11.5" fill="#2a241c">短边 1024 · 10 步</text>
+  <text x="312" y="164" font-family="Noto Serif SC, serif" font-size="10.5" fill="#5b5044">黑色参考图，先压色带</text>
+  <text x="312" y="180" font-family="Noto Serif SC, serif" font-size="10.5" fill="#5b5044">与整体色偏</text>
+
+  <line x1="480" y1="148" x2="512" y2="148" stroke="#9a4a32" stroke-width="1"/>
+  <path d="M506 143 L513 148 L506 153" fill="none" stroke="#9a4a32" stroke-width="1"/>
+
+  <rect x="516" y="106" width="168" height="84" fill="#f6efe2" stroke="#e0d4bf"/>
+  <text x="528" y="126" font-family="Space Mono, monospace" font-size="10" letter-spacing="1" fill="#9a4a32">STAGE 2</text>
+  <text x="528" y="146" font-family="Noto Serif SC, serif" font-size="11.5" fill="#2a241c">全分辨率 · r = 0.3</text>
+  <text x="528" y="164" font-family="Noto Serif SC, serif" font-size="10.5" fill="#5b5044">前 30% 用第一段结果</text>
+  <text x="528" y="180" font-family="Noto Serif SC, serif" font-size="10.5" fill="#5b5044">后 70% 回原图找细节</text>
+
+  <text x="36" y="246" font-family="Space Mono, monospace" font-size="26" fill="#2a241c">71.3%</text>
+  <text x="120" y="246" font-family="Noto Serif SC, serif" font-size="10.5" fill="#5b5044">31 人盲测选它做整体最佳；最强基线 ESDNet-L 为 8.8%</text>
+  <text x="36" y="268" font-family="Space Mono, monospace" font-size="10" fill="#8a7c68">RMC −47.1% / −9.3% · MUSIQ +4.3% / +2.0% (FHDMi / UHDM)</text>
+  <text x="684" y="268" text-anchor="end" font-family="Space Mono, monospace" font-size="10" fill="#8a7c68">DailyMoiré130 · 130 CAPTURES</text>
+
+  <line x1="36" y1="286" x2="684" y2="286" stroke="#c9bda8" stroke-width="0.6" stroke-dasharray="2 5"/>
+  <text x="36" y="304" font-family="Space Mono, monospace" font-size="9.5" letter-spacing="1" fill="#a89b88">TWO-STAGE CONDITION SHIFT · arXiv:2610.26644</text>
+  <text x="684" y="304" text-anchor="end" font-family="Space Mono, monospace" font-size="9.5" letter-spacing="1" fill="#a89b88">NO ALIGNED GT · DETECTOR + HUMAN STUDY</text>
+</svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="240" viewBox="0 0 720 240" role="img" aria-label="长期记忆额度示意图：2200 个字符中已用 2176 个">
+  <rect x="0" y="0" width="720" height="240" fill="#fbf7ee"/>
+  <rect x="0.5" y="0.5" width="719" height="239" fill="none" stroke="#d8cbb4"/>
+  <text x="36" y="38" font-family="Space Mono, monospace" font-size="11" letter-spacing="2" fill="#8a7c68">FIG. 01 — MEMORY</text>
+  <text x="36" y="64" font-family="Noto Serif SC, serif" font-size="20" fill="#2a241c">记忆的架子</text>
+  <text x="684" y="64" text-anchor="end" font-family="Space Mono, monospace" font-size="11" fill="#8a7c68">UNIT: CHARACTERS</text>
+  <text x="36" y="96" font-family="Noto Serif SC, serif" font-size="11" fill="#8a7c68">一格 = 40 字符</text>
+  <text x="684" y="96" text-anchor="end" font-family="Space Mono, monospace" font-size="12" fill="#2a241c">2,176 / 2,200</text>
+  <defs>
+    <pattern id="cells" width="11.8" height="40" patternUnits="userSpaceOnUse">
+      <rect width="10.8" height="40" fill="#2a241c" opacity="0.82"/>
+    </pattern>
+  </defs>
+  <rect x="36" y="110" width="637.2" height="40" fill="url(#cells)"/>
+  <rect x="673.2" y="110" width="10.8" height="40" fill="#fbf7ee" stroke="#c9bda8" stroke-width="0.8"/>
+  <rect x="673.2" y="110" width="4.32" height="40" fill="#9a4a32" opacity="0.75"/>
+  <text x="36" y="178" font-family="Noto Serif SC, serif" font-size="15" fill="#5b5044">54 格满了，第 55 格写了 16 个字，还剩 24 个</text>
+  <text x="684" y="178" text-anchor="end" font-family="Space Mono, monospace" font-size="11" fill="#8a7c68">98.9%</text>
+  <line x1="36" y1="196" x2="684" y2="196" stroke="#c9bda8" stroke-width="0.6" stroke-dasharray="2 5"/>
+  <text x="36" y="218" font-family="Space Mono, monospace" font-size="10" letter-spacing="1" fill="#a89b88">SOURCE: MEMORY STORE · 2026-10-20</text>
+  <text x="684" y="218" text-anchor="end" font-family="Space Mono, monospace" font-size="10" letter-spacing="1" fill="#a89b88">ROOM LEFT: 24</text>
+</svg>

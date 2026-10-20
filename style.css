@@ -15,6 +15,7 @@
   --text-secondary: #6b6b6b;
   --text-muted: #a0a0a0;
   --accent: #5b7b8a;
+  --accent-strong: #42606c;
   --accent-soft: rgba(91, 123, 138, 0.08);
   --border: rgba(0, 0, 0, 0.06);
   --border-strong: rgba(0, 0, 0, 0.1);
@@ -30,6 +31,8 @@
   --card-lavender-hover: #eae5f0;
   --card-warm: #f2efe9;
   --card-warm-hover: #ede8e0;
+  --card-manila: #f1ead9;
+  --card-manila-hover: #ebe2ce;
 
   --card-radius: 20px;
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
@@ -70,6 +73,7 @@
   --text-secondary: rgba(232, 224, 213, 0.6);
   --text-muted: rgba(232, 224, 213, 0.25);
   --accent: #d4a853;
+  --accent-strong: #e8c47a;
   --accent-soft: rgba(212, 168, 83, 0.08);
   --border: rgba(232, 224, 213, 0.12);
   --border-strong: rgba(232, 224, 213, 0.2);
@@ -84,6 +88,8 @@
   --card-lavender-hover: rgba(50, 45, 40, 0.92);
   --card-warm: var(--surface);
   --card-warm-hover: rgba(50, 45, 40, 0.92);
+  --card-manila: var(--surface);
+  --card-manila-hover: rgba(50, 45, 40, 0.92);
 
   --card-radius: 0;
   --shadow: none;
@@ -560,10 +566,18 @@ body::after {
 }
 .card--health:hover { background: var(--card-apricot-hover); }
 
-/* 分享 — 小卡：列 4 × 行 2 */
-.card--sharing {
+/* AI 周报告 — 小卡：列 4 × 行 2 */
+.card--report {
   grid-column: 4 / 5;
   grid-row: 2 / 3;
+  background: var(--card-manila);
+}
+.card--report:hover { background: var(--card-manila-hover); }
+
+/* 分享 — 小卡：列 3 × 行 3 */
+.card--sharing {
+  grid-column: 3 / 4;
+  grid-row: 3 / 4;
   background: var(--card-lavender);
 }
 .card--sharing:hover { background: var(--card-lavender-hover); }
@@ -579,20 +593,21 @@ body::after {
 }
 .card--pictures:hover { background: var(--card-blue-hover); }
 
-/* 工具箱 — 中卡：列 3-4 × 行 3 */
+/* 工具箱 — 小卡：列 4 × 行 3 */
 .card--tools {
-  grid-column: 3 / 5;
+  grid-column: 4 / 5;
   grid-row: 3 / 4;
   background: var(--card-warm);
-  flex-direction: row;
-  align-items: center;
-  gap: 20px;
 }
 .card--tools:hover { background: var(--card-warm-hover); }
+.card--tools .card-desc { font-size: 0.72rem; line-height: 1.4; }
+.card--tools .card-tag,
+.card--tools .card-title { margin-bottom: 2px; }
 
 /* 暗色模式下全部复位为单列、纵排 */
 [data-theme="dark"] .card--projects,
 [data-theme="dark"] .card--health,
+[data-theme="dark"] .card--report,
 [data-theme="dark"] .card--sharing,
 [data-theme="dark"] .card--pictures,
 [data-theme="dark"] .card--tools {
@@ -607,6 +622,7 @@ body::after {
 [data-theme="dark"] .card--projects:hover,
 [data-theme="dark"] .card--pictures:hover,
 [data-theme="dark"] .card--health:hover,
+[data-theme="dark"] .card--report:hover,
 [data-theme="dark"] .card--sharing:hover,
 [data-theme="dark"] .card--tools:hover {
   background: var(--card-sage-hover);
@@ -673,6 +689,38 @@ body::after {
   border-radius: 2px 6px 6px 2px;
 }
 
+/* 纸页 + 印章 */
+.card-illo--report {
+  width: 48px; height: 38px; margin-bottom: 4px;
+}
+.card-illo--report span {
+  position: absolute;
+  width: 25px; height: 30px;
+  border: 1px solid rgba(154, 74, 50, 0.3);
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 1px;
+}
+.card-illo--report span:nth-child(1) {
+  left: 0; top: 6px;
+  transform: rotate(-7deg);
+}
+.card-illo--report span:nth-child(2) {
+  left: 6px; top: 2px;
+  background-image: repeating-linear-gradient(0deg, rgba(154, 74, 50, 0.16) 0 1px, transparent 1px 5px);
+}
+.card-illo--report span.stamp {
+  width: 11px; height: 11px;
+  left: 23px; top: 21px;
+  border: 1.5px solid rgba(154, 74, 50, 0.55);
+  border-radius: 50%;
+  background: none;
+  transform: rotate(-12deg);
+}
+
+.card--report .card-tag { margin-bottom: 4px; }
+.card--report .card-title { margin-bottom: 4px; }
+.card--report .card-desc { font-size: 0.78rem; line-height: 1.5; }
+
 /* 相框网格 */
 .card-illo--gallery {
   width: 56px; height: 56px;
@@ -732,7 +780,7 @@ body::after {
   height: 4px;
   border-radius: 2px;
   background: linear-gradient(90deg,
-    #edf2ed 0%, #f7f0e8 25%, #ebeff5 50%, #f0edf5 75%, #f2efe9 100%);
+    #edf2ed 0%, #f7f0e8 20%, #f1ead9 40%, #ebeff5 60%, #f0edf5 80%, #f2efe9 100%);
 }
 
 /* ============================================
@@ -831,14 +879,27 @@ body::after {
   background: var(--accent-soft) !important;
 }
 
+.submenu-parent > .submenu-label {
+  font-family: var(--font-sans) !important;
+  color: var(--text-secondary) !important;
+}
+
 .submenu li a {
   font-family: var(--font-sans) !important;
-  color: var(--text-muted) !important;
+  color: var(--text-secondary) !important;
 }
 
 .submenu li a:hover {
   color: var(--accent) !important;
   background: var(--accent-soft) !important;
+}
+
+/* 当前页：在同一组里保持可见的定位感；用更深的 accent 保证 4.5:1 */
+.sidebar-menu a[aria-current="page"],
+.submenu li a[aria-current="page"] {
+  color: var(--accent-strong) !important;
+  background: var(--accent-soft) !important;
+  font-weight: 600 !important;
 }
 
 .toggle-btn {
@@ -893,6 +954,7 @@ body::-webkit-scrollbar-thumb:hover {
 
   .card--projects,
   .card--health,
+  .card--report,
   .card--sharing,
   .card--pictures,
   .card--tools {
@@ -904,6 +966,7 @@ body::-webkit-scrollbar-thumb:hover {
   }
 
   .card-illo--gallery,
+  .card-illo--report,
   .card-illo--tools { margin-bottom: 8px; }
 
   .title { font-size: 1.8rem; }

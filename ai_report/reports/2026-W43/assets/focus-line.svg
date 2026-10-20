@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="300" viewBox="0 0 720 300" role="img" aria-label="每日专注时长折线图">
+  <rect x="0" y="0" width="720" height="300" fill="#fbf7ee"/>
+  <rect x="0.5" y="0.5" width="719" height="299" fill="none" stroke="#d8cbb4"/>
+  <text x="36" y="38" font-family="Space Mono, monospace" font-size="11" letter-spacing="2" fill="#8a7c68">FIG. 02 — FOCUS</text>
+  <text x="36" y="64" font-family="Noto Serif SC, serif" font-size="18" fill="#2a241c">每日专注时长</text>
+  <text x="684" y="64" text-anchor="end" font-family="Space Mono, monospace" font-size="11" fill="#8a7c68">UNIT: HOURS</text>
+  <g stroke="#c9bda8" stroke-width="0.6" stroke-dasharray="2 5">
+    <line x1="64" y1="104" x2="664" y2="104"/>
+    <line x1="64" y1="144" x2="664" y2="144"/>
+    <line x1="64" y1="184" x2="664" y2="184"/>
+    <line x1="64" y1="224" x2="664" y2="224"/>
+  </g>
+  <g font-family="Space Mono, monospace" font-size="10" fill="#8a7c68" text-anchor="end">
+    <text x="50" y="108">8</text>
+    <text x="50" y="148">6</text>
+    <text x="50" y="188">4</text>
+    <text x="50" y="228">2</text>
+  </g>
+  <line x1="64" y1="264" x2="664" y2="264" stroke="#2a241c" stroke-width="1"/>
+  <path d="M84 174 L180 144 L276 204 L372 124 L468 154 L564 184 L648 144 L648 264 L84 264 Z" fill="#b08d4f" opacity="0.16"/>
+  <path d="M84 174 L180 144 L276 204 L372 124 L468 154 L564 184 L648 144" fill="none" stroke="#9a4a32" stroke-width="2"/>
+  <g fill="#fbf7ee" stroke="#9a4a32" stroke-width="2">
+    <circle cx="84" cy="174" r="4"/>
+    <circle cx="180" cy="144" r="4"/>
+    <circle cx="276" cy="204" r="4"/>
+    <circle cx="372" cy="124" r="4"/>
+    <circle cx="468" cy="154" r="4"/>
+    <circle cx="564" cy="184" r="4"/>
+    <circle cx="648" cy="144" r="4"/>
+  </g>
+  <g font-family="Noto Serif SC, serif" font-size="12" fill="#5b5044" text-anchor="middle">
+    <text x="84" y="286">周一</text>
+    <text x="180" y="286">周二</text>
+    <text x="276" y="286">周三</text>
+    <text x="372" y="286">周四</text>
+    <text x="468" y="286">周五</text>
+    <text x="564" y="286">周六</text>
+    <text x="648" y="286">周日</text>
+  </g>
+  <text x="36" y="292" font-family="Space Mono, monospace" font-size="9" fill="#a89b88" letter-spacing="1">PEAK: THU 6.4H · AVG 5.1H</text>
+</svg>

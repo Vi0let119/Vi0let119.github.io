@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="320" viewBox="0 0 720 320" role="img" aria-label="三种面部对比度的拆解：整体、眼部、微对比，以及它们与人类判断的相关性">
+  <rect x="0" y="0" width="720" height="320" fill="#fbf7ee"/>
+  <rect x="0.5" y="0.5" width="719" height="319" fill="none" stroke="#d8cbb4"/>
+  <text x="36" y="34" font-family="Space Mono, monospace" font-size="11" letter-spacing="2" fill="#8a7c68">FIG. 01 — FACE CONTRAST</text>
+  <text x="684" y="34" text-anchor="end" font-family="Space Mono, monospace" font-size="10" letter-spacing="1" fill="#a89b88">DXOMARK × PARIS-SACLAY</text>
+  <text x="36" y="62" font-family="Noto Serif SC, serif" font-size="20" fill="#2a241c">一张脸的三种对比度</text>
+  <line x1="36" y1="78" x2="684" y2="78" stroke="#c9bda8" stroke-width="0.7"/>
+
+  <!-- column 1 -->
+  <rect x="36" y="96" width="204" height="64" fill="#f6efe2" stroke="#e0d4bf"/>
+  <g stroke="#2a241c" fill="none">
+    <rect x="88" y="108" width="100" height="40" stroke-opacity="0.22"/>
+    <rect x="102" y="114" width="72" height="28" stroke-opacity="0.4"/>
+    <rect x="118" y="120" width="40" height="16" stroke-opacity="0.62"/>
+    <rect x="130" y="124" width="16" height="8" stroke-opacity="0.9"/>
+  </g>
+  <text x="36" y="184" font-family="Space Mono, monospace" font-size="10" letter-spacing="1.5" fill="#9a4a32">01</text>
+  <text x="60" y="184" font-family="Noto Serif SC, serif" font-size="14" fill="#2a241c">整体</text>
+  <text x="240" y="184" text-anchor="end" font-family="Space Mono, monospace" font-size="9" letter-spacing="1" fill="#a89b88">OVERALL</text>
+  <text x="36" y="206" font-family="Noto Serif SC, serif" font-size="11.5" fill="#5b5044">多尺度局部变异系数</text>
+  <text x="36" y="222" font-family="Space Mono, monospace" font-size="10" fill="#8a7c68">r = 16 … 256 px</text>
+  <text x="36" y="252" font-family="Space Mono, monospace" font-size="22" fill="#2a241c">0.79</text>
+  <text x="112" y="252" font-family="Noto Serif SC, serif" font-size="10" fill="#8a7c68">混光 0.69</text>
+
+  <!-- column 2 -->
+  <rect x="264" y="96" width="204" height="64" fill="#f6efe2" stroke="#e0d4bf"/>
+  <ellipse cx="366" cy="128" rx="40" ry="20" fill="#ece1cd" stroke="#c9bda8"/>
+  <circle cx="366" cy="128" r="10" fill="#2a241c"/>
+  <circle cx="363" cy="125" r="2.4" fill="#fbf7ee" opacity="0.85"/>
+  <line x1="318" y1="128" x2="414" y2="128" stroke="#9a4a32" stroke-width="0.8" stroke-dasharray="3 3"/>
+  <text x="418" y="121" font-family="Space Mono, monospace" font-size="8" fill="#9a4a32">B</text>
+  <text x="418" y="138" font-family="Space Mono, monospace" font-size="8" fill="#9a4a32">D</text>
+  <text x="264" y="184" font-family="Space Mono, monospace" font-size="10" letter-spacing="1.5" fill="#9a4a32">02</text>
+  <text x="288" y="184" font-family="Noto Serif SC, serif" font-size="14" fill="#2a241c">眼部</text>
+  <text x="468" y="184" text-anchor="end" font-family="Space Mono, monospace" font-size="9" letter-spacing="1" fill="#a89b88">EYE</text>
+  <text x="264" y="206" font-family="Noto Serif SC, serif" font-size="11.5" fill="#5b5044">Otsu 明暗两类均值差</text>
+  <text x="264" y="222" font-family="Space Mono, monospace" font-size="10" fill="#8a7c68">C = μB − μD</text>
+  <text x="264" y="252" font-family="Space Mono, monospace" font-size="22" fill="#2a241c">0.88</text>
+  <text x="340" y="252" font-family="Noto Serif SC, serif" font-size="10" fill="#8a7c68">混光 0.89</text>
+
+  <!-- column 3 -->
+  <rect x="492" y="96" width="192" height="64" fill="#f6efe2" stroke="#e0d4bf"/>
+  <g fill="#2a241c">
+    <circle cx="512" cy="112" r="1.4" opacity="0.7"/><circle cx="524" cy="108" r="1.1" opacity="0.5"/><circle cx="536" cy="116" r="1.7" opacity="0.8"/><circle cx="548" cy="110" r="1.2" opacity="0.45"/><circle cx="560" cy="118" r="1.5" opacity="0.7"/><circle cx="572" cy="109" r="1.1" opacity="0.55"/><circle cx="584" cy="114" r="1.8" opacity="0.8"/><circle cx="596" cy="108" r="1.2" opacity="0.5"/><circle cx="608" cy="117" r="1.4" opacity="0.65"/><circle cx="620" cy="111" r="1.1" opacity="0.45"/><circle cx="632" cy="115" r="1.6" opacity="0.75"/><circle cx="644" cy="109" r="1.2" opacity="0.5"/><circle cx="656" cy="118" r="1.5" opacity="0.7"/><circle cx="668" cy="112" r="1.1" opacity="0.45"/>
+    <circle cx="518" cy="130" r="1.2" opacity="0.5"/><circle cx="530" cy="136" r="1.6" opacity="0.75"/><circle cx="542" cy="128" r="1.1" opacity="0.45"/><circle cx="554" cy="138" r="1.4" opacity="0.7"/><circle cx="566" cy="130" r="1.8" opacity="0.8"/><circle cx="578" cy="137" r="1.2" opacity="0.5"/><circle cx="590" cy="129" r="1.5" opacity="0.7"/><circle cx="602" cy="139" r="1.1" opacity="0.45"/><circle cx="614" cy="131" r="1.6" opacity="0.75"/><circle cx="626" cy="137" r="1.2" opacity="0.5"/><circle cx="638" cy="129" r="1.4" opacity="0.65"/><circle cx="650" cy="139" r="1.1" opacity="0.45"/><circle cx="662" cy="132" r="1.7" opacity="0.8"/>
+    <circle cx="524" cy="150" r="1.3" opacity="0.6"/><circle cx="538" cy="154" r="1.1" opacity="0.45"/><circle cx="552" cy="148" r="1.6" opacity="0.75"/><circle cx="566" cy="155" r="1.2" opacity="0.5"/><circle cx="580" cy="149" r="1.4" opacity="0.65"/><circle cx="594" cy="154" r="1.1" opacity="0.45"/><circle cx="608" cy="148" r="1.7" opacity="0.8"/><circle cx="622" cy="155" r="1.2" opacity="0.5"/><circle cx="636" cy="149" r="1.4" opacity="0.65"/><circle cx="650" cy="154" r="1.1" opacity="0.45"/>
+  </g>
+  <rect x="496" y="100" width="184" height="56" fill="none" stroke="#9a4a32" stroke-width="0.7" stroke-dasharray="4 4" opacity="0.5"/>
+  <text x="492" y="184" font-family="Space Mono, monospace" font-size="10" letter-spacing="1.5" fill="#9a4a32">03</text>
+  <text x="516" y="184" font-family="Noto Serif SC, serif" font-size="14" fill="#2a241c">微对比</text>
+  <text x="684" y="184" text-anchor="end" font-family="Space Mono, monospace" font-size="9" letter-spacing="1" fill="#a89b88">MICRO</text>
+  <text x="492" y="206" font-family="Noto Serif SC, serif" font-size="11.5" fill="#5b5044">log-DoG 带通 + 幂律压缩</text>
+  <text x="492" y="222" font-family="Space Mono, monospace" font-size="10" fill="#8a7c68">10–90 pct · skin mask</text>
+  <text x="492" y="252" font-family="Space Mono, monospace" font-size="22" fill="#2a241c">0.85</text>
+  <text x="568" y="252" font-family="Noto Serif SC, serif" font-size="10" fill="#8a7c68">混光 0.80</text>
+
+  <line x1="36" y1="278" x2="684" y2="278" stroke="#c9bda8" stroke-width="0.6" stroke-dasharray="2 5"/>
+  <text x="36" y="300" font-family="Space Mono, monospace" font-size="9.5" letter-spacing="1" fill="#a89b88">PLCC VS. HUMAN JOD · WITHIN / MIXED LIGHTING</text>
+  <text x="684" y="300" text-anchor="end" font-family="Space Mono, monospace" font-size="9.5" letter-spacing="1" fill="#a89b88">508 CAPTURES · 29 PHONES · 4 LUX</text>
+</svg>

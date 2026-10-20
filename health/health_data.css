@@ -289,7 +289,7 @@
 }
 
 /* 面板标题（横条内作第一组） */
-.panel-header h3 {
+.panel-header h2 {
     margin: 0;
     font-family: var(--sa-font-serif);
     font-size: 0.95rem;
@@ -432,7 +432,7 @@
     z-index: 2;
 }
 
-.chart3d-header h3 {
+.chart3d-header h2 {
     margin: 0;
     font-family: var(--sa-font-serif);
     font-size: 1.05rem;
@@ -442,7 +442,7 @@
 }
 
 /* 标题下的金色小线 */
-.chart3d-header h3::after {
+.chart3d-header h2::after {
     content: '';
     display: block;
     width: 3em;

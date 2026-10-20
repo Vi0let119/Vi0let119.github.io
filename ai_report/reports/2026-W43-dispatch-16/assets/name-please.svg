@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="264" viewBox="0 0 720 264" role="img" aria-label="十五个表单控件在视觉上有标签，在无障碍树里却没有名字；标题层级也从 h1 直接跳到 h3">
+  <rect x="0" y="0" width="720" height="264" fill="#fbf7ee"/>
+  <rect x="0.5" y="0.5" width="719" height="263" fill="none" stroke="#d8cbb4"/>
+  <text x="36" y="34" font-family="Space Mono, monospace" font-size="11" letter-spacing="2" fill="#8a7c68">FIG. 16 — NAME, PLEASE</text>
+  <text x="684" y="34" text-anchor="end" font-family="Space Mono, monospace" font-size="10" letter-spacing="1" fill="#a89b88">A11Y AUDIT · 18 PAGES</text>
+  <text x="36" y="62" font-family="Noto Serif SC, serif" font-size="20" fill="#2a241c">看不见的名字</text>
+  <line x1="36" y1="78" x2="684" y2="78" stroke="#c9bda8" stroke-width="0.7"/>
+
+  <text x="36" y="104" font-family="Space Mono, monospace" font-size="9.5" letter-spacing="1.5" fill="#9a4a32">看到的</text>
+  <text x="330" y="104" font-family="Space Mono, monospace" font-size="9.5" letter-spacing="1.5" fill="#5b7b8a">读到的</text>
+
+  <text x="36" y="128" font-family="Noto Serif SC, serif" font-size="11.5" fill="#2a241c">图表类型　时间范围　年份　月份</text>
+  <text x="330" y="128" font-family="Noto Serif SC, serif" font-size="11.5" fill="#857a6b">组合框</text>
+  <text x="36" y="150" font-family="Noto Serif SC, serif" font-size="11.5" fill="#2a241c">纬度　经度　源坐标系　目标坐标系</text>
+  <text x="330" y="150" font-family="Noto Serif SC, serif" font-size="11.5" fill="#857a6b">编辑框</text>
+  <text x="36" y="172" font-family="Noto Serif SC, serif" font-size="11.5" fill="#2a241c">API Key　地址列表　图片上传</text>
+  <text x="330" y="172" font-family="Noto Serif SC, serif" font-size="11.5" fill="#857a6b">按钮</text>
+
+  <line x1="36" y1="190" x2="684" y2="190" stroke="#c9bda8" stroke-width="0.6" stroke-dasharray="2 5"/>
+  <text x="36" y="212" font-family="Noto Serif SC, serif" font-size="10.5" fill="#5b5044">15 个控件，5 个页面：标签画在左边，但没有连到控件上。</text>
+  <text x="36" y="232" font-family="Noto Serif SC, serif" font-size="10.5" fill="#5b5044">标题层级另有 4 处跳级（h1 → h3），修好 3 处；route_plan 是构建产物，留作待办。</text>
+  <text x="36" y="252" font-family="Space Mono, monospace" font-size="9" letter-spacing="1" fill="#a89b88">ARIA-LABEL · LABEL[FOR] · H1 → H2 → H3</text>
+</svg>

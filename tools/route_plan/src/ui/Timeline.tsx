@@ -81,9 +81,9 @@ export function Timeline({ plan, result }: { plan: Plan; result: RouteResult }) 
 
   return (
     <section className="timeline">
-      <h3>
+      <h2>
         时刻表 <span className="solver-tag">{SOLVER_LABEL[result.solver]}</span>
-      </h3>
+      </h2>
       <div className="tl-overview">
         出发 {formatMin(result.departMin)} · 收工 {formatMin(result.stats.finishMin)} · 总里程{' '}
         {formatDistance(result.stats.totalDistanceM)} · 总耗时 {formatDuration(result.stats.totalElapsedMin)}

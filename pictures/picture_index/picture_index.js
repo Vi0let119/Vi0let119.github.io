@@ -107,6 +107,18 @@
         + '加载存档失败。</p>';
     });
 
+  // ── 缩略图路径：与原图同名，放在 thumbs/ 下 ──
+  function thumbPath(img) {
+    var stem = img.filename.replace(/\.[^.]+$/, '');
+    return 'thumbs/' + encodeURIComponent(stem) + '.webp';
+  }
+
+  // ── 主图路径：1280 宽的 medium/，点开时才加载 ──
+  function mediumPath(img) {
+    var stem = img.filename.replace(/\.[^.]+$/, '');
+    return 'medium/' + encodeURIComponent(stem) + '.webp';
+  }
+
   // ── 构建缩略图 DOM（仅设置 data-src，不立即加载）──
   function buildThumbnails(imageList) {
     var fragment = document.createDocumentFragment();
@@ -119,7 +131,8 @@
       item.title = img.filename;
 
       var thumb = document.createElement('img');
-      thumb.setAttribute('data-src', img.path);
+      thumb.setAttribute('data-src', thumbPath(img));
+      thumb.setAttribute('data-full', img.path);
       thumb.alt = img.filename;
       thumb.setAttribute('decoding', 'async');
 
@@ -167,8 +180,15 @@
       item.el.classList.remove('loading');
     }, { once: true });
     item.imgEl.addEventListener('error', function () {
-      item.el.classList.remove('loading');
-    }, { once: true });
+      // 缩略图缺失时退回原图，至少不让格子空着
+      var full = item.imgEl.getAttribute('data-full');
+      if (full && !item.imgEl.getAttribute('data-fallback')) {
+        item.imgEl.setAttribute('data-fallback', '1');
+        item.imgEl.src = full;
+      } else {
+        item.el.classList.remove('loading');
+      }
+    });
 
     observer.unobserve(item.el);
   }
@@ -188,8 +208,15 @@
     mainImageWrap.style.display = 'flex';
     imageCaption.style.display = 'flex';
 
-    // 设置图片源并触发淡入动画
-    mainImage.src = img.path;
+    // 设置图片源并触发淡入动画（先取 1280 宽的中间图，缺失时退回原图）
+    mainImage.onerror = function () {
+      if (mainImage.getAttribute('data-fallback') !== '1') {
+        mainImage.setAttribute('data-fallback', '1');
+        mainImage.src = img.path;
+      }
+    };
+    mainImage.removeAttribute('data-fallback');
+    mainImage.src = mediumPath(img);
     mainImage.alt = img.filename;
     mainImage.style.animation = 'none';
     void mainImage.offsetWidth;  // 强制回流以重置动画

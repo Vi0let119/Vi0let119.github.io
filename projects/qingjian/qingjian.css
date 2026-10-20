@@ -730,3 +730,8 @@ body::before {
     }
     .js-anim .reveal { opacity: 1; transform: none; }
 }
+
+/* 小屏:装饰光斑有意向边缘溢出 30px,但不应撑出横向滚动 */
+@media (max-width: 768px) {
+    html, body { overflow-x: clip; }
+}

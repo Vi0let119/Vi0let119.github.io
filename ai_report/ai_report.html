@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 周报告 — Violet119</title>
+    <meta name="description" content="每周一份 AI 生成的报告，按周装订成册，可翻阅每一期的归档。">
+    <script>
+        // 尽早应用主题，避免闪白
+        (function () {
+            var t = localStorage.getItem('theme');
+            if (t === 'light' || t === 'dark') {
+                document.documentElement.setAttribute('data-theme', t);
+            }
+        })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../siderbar/siderbar.css">
+    <link rel="stylesheet" href="ai_report.css">
+</head>
+<body class="ai-report-body">
+    <div id="sidebar-container"></div>
+    <div class="theme-grain" aria-hidden="true"></div>
+
+    <button class="theme-toggle" id="themeToggle" aria-label="切换日/夜模式" title="切换日/夜模式">
+        <span class="theme-icon theme-icon--light">☀</span>
+        <span class="theme-icon theme-icon--dark">☽</span>
+    </button>
+
+    <div class="ap-page">
+        <!-- ============ 报头 ============ -->
+        <header class="ap-masthead">
+            <div class="ap-masthead-top">
+                <span>VIOLET119 · ARCHIVE</span>
+                <span>WEEKLY DISPATCH · EST. 2026</span>
+            </div>
+            <div class="ap-masthead-main">
+                <div class="ap-masthead-titles">
+                    <h1>AI 周报告</h1>
+                    <p class="ap-deck">每周一份，装订成册。左边是索引，右边是这一期的纸页。</p>
+                </div>
+                <div class="ap-stamp" aria-hidden="true">
+                    <span class="ap-stamp-top">AI ARCHIVE</span>
+                    <span class="ap-stamp-num" id="issueCount">00</span>
+                    <span class="ap-stamp-bot">ISSUES ON FILE</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- ============ 索引 + 纸页 + 目录 ============ -->
+        <div class="ap-layout">
+            <aside class="ap-index" aria-label="周报索引">
+                <div class="ap-index-head">
+                    <span class="ap-index-label">INDEX</span>
+                    <span class="ap-index-count" id="indexCount">0 ISSUES</span>
+                </div>
+                <div class="ap-index-scroll" id="indexList" tabindex="0" role="group" aria-label="周报列表，可用方向键滚动"></div>
+                <div class="ap-index-foot">按周归档 · 点击周标题折叠</div>
+            </aside>
+
+            <main class="ap-main">
+                <article class="ap-sheet" id="sheet">
+                    <div class="ap-loading" id="sheetLoading">
+                        <span class="ap-loading-kicker">OPENING THE ARCHIVE</span>
+                        <span class="ap-loading-text">正在调阅档案<span class="ap-caret">▌</span></span>
+                    </div>
+
+                    <div class="ap-doc" id="docContent" hidden>
+                        <header class="ap-doc-head">
+                            <div class="ap-doc-line">
+                                <span id="docIssue">ISSUE —</span>
+                                <span id="docRange">—</span>
+                            </div>
+                            <h2 class="ap-doc-title" id="docTitle"></h2>
+                            <p class="ap-doc-summary" id="docSummary"></p>
+                            <div class="ap-doc-chips" id="docChips"></div>
+                        </header>
+                        <div class="ap-prose" id="docBody"></div>
+                        <footer class="ap-doc-footer">
+                            <span class="ap-endmark">END OF ISSUE · 已归档</span>
+                            <nav class="ap-pager" aria-label="翻阅其他期">
+                                <button class="ap-pager-btn" id="prevIssue" type="button">← 上一期</button>
+                                <button class="ap-pager-btn" id="nextIssue" type="button">下一期 →</button>
+                            </nav>
+                        </footer>
+                    </div>
+                </article>
+
+                <div class="ap-placeholder" id="stateEmpty" hidden>
+                    <div class="ap-placeholder-inner">
+                        <span class="ap-placeholder-kicker">NO ISSUES ON FILE</span>
+                        <h2>档案柜还是空的</h2>
+                        <p>在 <code>ai_report/reports/</code> 下新建一个期号文件夹，放入 <code>report.md</code>，然后运行 <code>python build_manifest.py</code>。</p>
+                        <p class="ap-placeholder-hint">目录契约与 front-matter 写法见 <code>ai_report/README.md</code>。</p>
+                    </div>
+                </div>
+
+                <div class="ap-placeholder ap-placeholder--error" id="stateError" hidden>
+                    <div class="ap-placeholder-inner">
+                        <span class="ap-placeholder-kicker">READ FAILED</span>
+                        <h2>这一页没有取出来</h2>
+                        <p id="errorDetail">请检查 manifest.json 与报告文件是否存在。</p>
+                        <p class="ap-placeholder-hint">修改后运行 <code>python build_manifest.py</code> 再刷新。</p>
+                    </div>
+                </div>
+            </main>
+
+            <aside class="ap-toc" id="tocPanel" aria-label="本期目录">
+                <div class="ap-toc-head">CONTENTS</div>
+                <nav class="ap-toc-list" id="tocList"></nav>
+            </aside>
+        </div>
+
+        <!-- ============ 页脚 ============ -->
+        <div class="ap-quote">
+            <div id="quoteText" class="quote-text">加载中...</div>
+            <div id="quoteAuthor" class="quote-author">—</div>
+        </div>
+
+        <footer class="ap-footer">
+            <span>ARCHIVE OF AI WEEKLY · <b id="footCount">0</b> ISSUES</span>
+            <span><a href="../index.html">回到首页</a> · <span id="footYear">2026</span></span>
+        </footer>
+    </div>
+
+    <!-- ============ 图片灯箱 ============ -->
+    <div class="ap-lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="图片预览" hidden>
+        <button class="ap-lightbox-close" id="lightboxClose" type="button" aria-label="关闭预览">×</button>
+        <figure class="ap-lightbox-figure">
+            <img id="lightboxImg" alt="">
+            <figcaption id="lightboxCap"></figcaption>
+        </figure>
+    </div>
+
+    <script src="../siderbar/sidebar.js"></script>
+    <script src="vendor/marked.min.js"></script>
+    <script src="vendor/purify.min.js"></script>
+    <script src="ai_report.js"></script>
+</body>
+</html>

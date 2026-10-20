@@ -52,6 +52,20 @@
   box-sizing: border-box;
 }
 
+/* 只给读屏软件的标题：不占布局，但留在无障碍树里 */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 html {
   /* 让原生 date/time/select 弹层也走暗色 */
   color-scheme: dark;
@@ -724,7 +738,7 @@ body.has-site-sidebar:not(.sidebar-collapsed) .toolbar {
   padding: 8px 10px;
 }
 
-.conflicts h3 {
+.conflicts h2 {
   margin: 0 0 6px;
   font-size: 13px;
   color: var(--danger-text);
@@ -754,7 +768,7 @@ body.has-site-sidebar:not(.sidebar-collapsed) .toolbar {
   padding: 8px 10px;
 }
 
-.timeline h3 {
+.timeline h2 {
   margin: 0 0 4px;
   font-size: 13px;
   display: flex;

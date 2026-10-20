@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="270" viewBox="0 0 720 270" role="img" aria-label="三篇图表论文分别检查判、改、层三个环节：1653 道判断、92438 条编辑、53791 个图层编辑">
+  <rect x="0" y="0" width="720" height="270" fill="#fbf7ee"/>
+  <rect x="0.5" y="0.5" width="719" height="269" fill="none" stroke="#d8cbb4"/>
+  <text x="36" y="34" font-family="Space Mono, monospace" font-size="11" letter-spacing="2" fill="#8a7c68">FIG. 15 — JUDGE, EDIT, LAYER</text>
+  <text x="684" y="34" text-anchor="end" font-family="Space Mono, monospace" font-size="10" letter-spacing="1" fill="#a89b88">CHART-TO-CODE · 2026-09</text>
+  <text x="36" y="62" font-family="Noto Serif SC, serif" font-size="20" fill="#2a241c">图表不是像素</text>
+  <line x1="36" y1="78" x2="684" y2="78" stroke="#c9bda8" stroke-width="0.7"/>
+
+  <rect x="36" y="98" width="196" height="112" fill="none" stroke="#d8cbb4"/>
+  <text x="52" y="124" font-family="Space Mono, monospace" font-size="10" letter-spacing="2" fill="#9a4a32">01 · 判</text>
+  <text x="52" y="150" font-family="Noto Serif SC, serif" font-size="14" fill="#2a241c">1,653 道判断</text>
+  <text x="52" y="174" font-family="Noto Serif SC, serif" font-size="10.5" fill="#5b5044">位置偏差 · 过度接受</text>
+  <text x="52" y="194" font-family="Noto Serif SC, serif" font-size="10.5" fill="#5b5044">风格匹配差 · RL 更宽松</text>
+
+  <rect x="252" y="98" width="196" height="112" fill="none" stroke="#d8cbb4"/>
+  <text x="268" y="124" font-family="Space Mono, monospace" font-size="10" letter-spacing="2" fill="#5b7b8a">02 · 改</text>
+  <text x="268" y="150" font-family="Noto Serif SC, serif" font-size="14" fill="#2a241c">92,438 条编辑</text>
+  <text x="268" y="174" font-family="Noto Serif SC, serif" font-size="10.5" fill="#5b5044">344 种操作 · 20 类图</text>
+  <text x="268" y="194" font-family="Noto Serif SC, serif" font-size="10.5" fill="#5b5044">精确编辑率 +22%</text>
+
+  <rect x="468" y="98" width="216" height="112" fill="none" stroke="#d8cbb4"/>
+  <text x="484" y="124" font-family="Space Mono, monospace" font-size="10" letter-spacing="2" fill="#857a6b">03 · 层</text>
+  <text x="484" y="150" font-family="Noto Serif SC, serif" font-size="14" fill="#2a241c">53,791 个变体</text>
+  <text x="484" y="174" font-family="Noto Serif SC, serif" font-size="10.5" fill="#5b5044">遮挡顺序只有 61.46%</text>
+  <text x="484" y="194" font-family="Noto Serif SC, serif" font-size="10.5" fill="#5b5044">编辑器 mIoU 1.5–4.9%</text>
+
+  <text x="36" y="238" font-family="Noto Serif SC, serif" font-size="10.5" fill="#5b5044">三篇都在说同一件事：能画出来，不等于能判断、能改对、能理解图层。</text>
+  <line x1="36" y1="250" x2="684" y2="250" stroke="#c9bda8" stroke-width="0.6" stroke-dasharray="2 5"/>
+  <text x="36" y="264" font-family="Space Mono, monospace" font-size="9" letter-spacing="1" fill="#a89b88">CHARTJUDGEBENCH · CHARTREVISE · LAYERWISEBENCH</text>
+</svg>
