@@ -6,11 +6,18 @@ Extracts EXIF metadata using exiftool, collects file info from the filesystem,
 sorts images by shooting_date ascending, and writes the updated catalog.
 
 Usage:
-    python update_picture_info.py
+    python update_picture_info.py              # rebuild, keep existing GPS
+    python update_picture_info.py --reset-gps  # rebuild, ignore existing GPS
 
 Requirements:
     - exiftool.exe must exist at 图库/exiftool.exe
     - Images must be in the 图库/ directory
+
+Note:
+    Watermark exports strip the GPS EXIF block, so the coordinates in an
+    existing picture_info.json are the only copy. Rebuilding therefore
+    inherits latitude/longitude (and camera info) from the previous catalog
+    by file name; pass --reset-gps to drop them on purpose.
 """
 
 import json
@@ -137,10 +144,32 @@ def extract_exif():
     return entries
 
 
-def process_images(exif_data):
+def load_previous():
+    """Load the current catalog so coordinates survive a rebuild.
+
+    GPS EXIF is stripped from the watermark exports, so latitude/longitude
+    already stored in picture_info.json are the source of truth. Returns a
+    {filename: entry} map; an unreadable catalog yields an empty map.
+    """
+    if not os.path.exists(OUTPUT_FILE):
+        return {}
+    try:
+        with open(OUTPUT_FILE, encoding='utf-8') as f:
+            data = json.load(f)
+        return {img['filename']: img for img in data.get('images', [])
+                if img.get('filename')}
+    except (OSError, json.JSONDecodeError, KeyError) as e:
+        print(f'Warning: could not read previous catalog ({e}); '
+              f'GPS will come from EXIF only', file=sys.stderr)
+        return {}
+
+
+def process_images(exif_data, previous=None):
     """Process exiftool data into the picture_info.json format."""
+    previous = previous or {}
     images = []
     skipped = 0
+    inherited = 0
 
     for entry in exif_data:
         filename = entry.get('FileName', '')
@@ -175,11 +204,12 @@ def process_images(exif_data):
             except ValueError:
                 shooting_date = dt_original
 
-        # Camera info
-        make = entry.get('Make', '')
-        model = entry.get('Model', '')
+        # Camera info (fall back to the previous catalog when EXIF is gone)
+        prev = previous.get(filename) or {}
+        make = entry.get('Make', '') or (prev.get('camera') or {}).get('make', '')
+        model = entry.get('Model', '') or (prev.get('camera') or {}).get('model', '')
 
-        # GPS coordinates from EXIF
+        # GPS coordinates from EXIF, else keep what the catalog already had
         lat = _parse_gps_coordinate(
             entry.get('GPSLatitude'),
             entry.get('GPSLatitudeRef'),
@@ -188,6 +218,11 @@ def process_images(exif_data):
             entry.get('GPSLongitude'),
             entry.get('GPSLongitudeRef'),
         )
+        if lat is None and lng is None:
+            lat = prev.get('latitude')
+            lng = prev.get('longitude')
+            if lat is not None or lng is not None:
+                inherited += 1
 
         image_info = {
             'filename': filename,
@@ -222,7 +257,7 @@ def process_images(exif_data):
     for i, img in enumerate(images):
         img['sort_order'] = i + 1
 
-    return images, skipped
+    return images, skipped, inherited
 
 
 def main():
@@ -230,8 +265,19 @@ def main():
     exif_data = extract_exif()
     print(f'Found {len(exif_data)} entries from exiftool')
 
+    reset_gps = '--reset-gps' in sys.argv[1:]
+    previous = {} if reset_gps else load_previous()
+    if previous:
+        with_coords = sum(1 for e in previous.values()
+                          if e.get('latitude') is not None)
+        print(f'Previous catalog loaded: {len(previous)} entries '
+              f'({with_coords} with coordinates)')
+
     print('Processing images...')
-    images, skipped = process_images(exif_data)
+    images, skipped, inherited = process_images(exif_data, previous)
+    if inherited:
+        print(f'Preserved coordinates for {inherited} image(s) '
+              f'from the previous catalog')
 
     if skipped:
         print(f'Skipped {skipped} missing files')

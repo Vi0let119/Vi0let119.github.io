@@ -480,7 +480,7 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
       </div>
       <div class="message-body">
-        <div class="message-text" style="font-size:12px;color:#78746e;">${escapeHTML(text)}</div>
+        <div class="message-text" style="font-size:12px;color:#9a958c;">${escapeHTML(text)}</div>
       </div>
     `;
     chatMessages.appendChild(div);
@@ -525,6 +525,11 @@
     axisLine: '#e8e4e0', splitLine: '#f0ede8',
     tooltipBg: 'rgba(255,255,255,0.95)', tooltipBorder: '#e8e4e0', tooltipText: '#2c2c2c'
   };
+
+  // 预览跟随全站主题;下载成品保持浅色(见 currentOptionLight)
+  function currentSkin() {
+    return document.documentElement.getAttribute('data-theme') === 'light' ? CHART_SKIN_LIGHT : CHART_SKIN_DARK;
+  }
 
   function skinChartOption(option, s) {
     if (!option || typeof option !== 'object') return option;
@@ -580,16 +585,23 @@
     emptyState.style.display = 'none';
   }
 
+  // 主题切换:用保存的原始 option 按新皮肤重绘
+  document.addEventListener('themechange', function () {
+    if (currentOption && chartInstance && !chartInstance.isDisposed()) {
+      chartInstance.setOption(skinChartOption(cloneOption(currentOption), currentSkin()), true);
+    }
+  });
+
   function renderECharts(option) {
     clearChartPreview();
     chartInstance = echarts.init(chartContainer);
 
-    // 深色预览 + 保留一份浅色皮肤配置供下载
-    currentOption = option;
+    // 预览跟随主题 + 保留一份浅色皮肤配置供下载
+    currentOption = cloneOption(option);
     currentOptionLight = skinChartOption(cloneOption(option), CHART_SKIN_LIGHT);
 
     try {
-      chartInstance.setOption(skinChartOption(option, CHART_SKIN_DARK), true);
+      chartInstance.setOption(skinChartOption(cloneOption(option), currentSkin()), true);
       chartStatus.textContent = 'ECharts 图表已生成';
       chartStatus.classList.add('has-chart');
       downloadBtn.classList.remove('hidden');

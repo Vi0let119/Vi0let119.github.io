@@ -44,16 +44,23 @@ python .claude/skills/picture-info-sorter/scripts/update_picture_info.py
 ```
 
 - 依赖 `图库/exiftool.exe`（已随库提供），缺失会直接报错退出。
-- **全量重新生成** `picture_info.json`：读取所有 JPEG 的 EXIF（尺寸、相机、GPS、拍摄时间），按 `shooting_date` 升序排序（无拍摄时间的按文件名排在最后），并重新分配 `sort_order`、更新 `image_count` 和 `last_updated`。
+- **全量重新生成** `picture_info.json`：读取所有 JPEG 的 EXIF（尺寸、相机、拍摄时间），按 `shooting_date` 升序排序（无拍摄时间的按文件名排在最后），并重新分配 `sort_order`、更新 `image_count` 和 `last_updated`。
+- **经纬度会从旧的 `picture_info.json` 按文件名继承**。水印导出流程剥掉了 GPS EXIF，所以文件里已有的 `latitude` / `longitude` 是唯一副本，重建时脚本会保留它们；确实要清空坐标时才加 `--reset-gps`：
+  ```bash
+  python .claude/skills/picture-info-sorter/scripts/update_picture_info.py --reset-gps
+  ```
+- 新增图片如果 EXIF 里没有 GPS，坐标为 `null`，地图页会自动跳过（不显示该点）。
 - 只处理 `.jpg` / `.jpeg`；不存在的文件自动跳过。
-- ⚠️ `pictures/update_picture_info.py` 是一份旧版脚本（PIL 实现、硬编码路径），请使用上面 skill 目录里的新版。
+- ⚠️ `pictures/update_picture_info.py` 是一份旧版脚本（PIL 实现、硬编码路径），**会清空经纬度**且不再维护，请勿使用；运行时会直接拒绝执行。
 
 ### 第 2 步：特征提取 + UMAP 训练（生成星图数据）
 
-```bash
-# 在项目根目录执行
-python tools/image_features/batch_process.py --cli
+```bat
+:: 在项目根目录执行（cmd / PowerShell）
+tools\image_features\run.bat --cli
 ```
+
+⚠️ **不要直接敲 `python tools/image_features/batch_process.py`**：默认 PATH 里的 `python` 是 Anaconda base（3.9），缺少 `flask-cors` / `torch` / `ultralytics`，会报 `ModuleNotFoundError`。`run.bat` 会固定调用装好依赖的 Python 3.12：`C:\Users\violet\AppData\Local\Programs\Python\Python312\python.exe`。
 
 这一步就是星图的"训练"，实际是**增量特征提取 + 全量 UMAP 降维**，不需要训练模型（用的都是预训练模型）：
 
@@ -67,8 +74,8 @@ python tools/image_features/batch_process.py --cli
 
 也可以启动带进度条的 API 模式（浏览器打开输出的地址，点开始即可）：
 
-```bash
-python tools/image_features/batch_process.py        # 不加 --cli
+```bat
+tools\image_features\run.bat        :: 不加 --cli
 # 可视化入口 http://127.0.0.1:5000/visualize（端口 5000-5100 自动找空闲）
 ```
 

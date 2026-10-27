@@ -1,0 +1,71 @@
+/* ============================================
+   theme-toggle.css — 日/夜切换按钮 + 夜间噪点颗粒
+   被 theme.css 引用;自带完整令牌体系的页面(图片区)
+   可只链本文件获得切换件,不接入全站令牌
+   ============================================ */
+
+/* ---------- 日/夜切换按钮 ---------- */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 10000;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong, rgba(0, 0, 0, 0.1));
+  background: var(--surface, rgba(255, 255, 255, 0.9));
+  color: var(--text-secondary, #6b6b6b);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.3s ease;
+  box-shadow: var(--shadow, 0 1px 2px rgba(0, 0, 0, 0.03));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.theme-toggle:hover {
+  box-shadow: var(--shadow-hover, 0 8px 30px rgba(0, 0, 0, 0.07));
+}
+
+.theme-icon {
+  font-size: 1.15rem;
+  line-height: 1;
+  position: absolute;
+  transition: opacity 0.3s ease, transform 0.4s ease;
+}
+
+/* 日间:显示太阳 */
+.theme-icon--light { opacity: 1; transform: rotate(0deg); }
+.theme-icon--dark  { opacity: 0; transform: rotate(90deg); }
+
+/* 夜间:显示月亮 */
+[data-theme="dark"] .theme-icon--light { opacity: 0; transform: rotate(-90deg); }
+[data-theme="dark"] .theme-icon--dark { opacity: 1; transform: rotate(0deg); }
+
+/* ---------- 噪点颗粒(仅夜间) ---------- */
+.theme-grain {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0.55;
+  mix-blend-mode: overlay;
+  background:
+    repeating-radial-gradient(circle at 17% 33%, rgba(255,255,255,0.008) 0px, rgba(0,0,0,0.012) 1px, rgba(255,255,255,0.006) 2px, rgba(0,0,0,0.008) 3px) 0 0 / 3px 3px,
+    repeating-radial-gradient(circle at 63% 78%, rgba(255,255,255,0.01) 0px, rgba(0,0,0,0.015) 2px, rgba(255,255,255,0.005) 3px, rgba(0,0,0,0.01) 5px) 1px 1px / 6px 6px,
+    repeating-radial-gradient(circle at 45% 15%, transparent 0px, transparent 3px, rgba(0,0,0,0.02) 3px, rgba(0,0,0,0.02) 4px, transparent 4px, transparent 7px) 2px 2px / 8px 8px;
+}
+
+[data-theme="dark"] .theme-grain { display: block; }
+
+/* ---------- 减少动态效果 ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle, .theme-icon { transition: none !important; }
+}

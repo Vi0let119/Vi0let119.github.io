@@ -8,12 +8,12 @@
     <link rel="icon" type="image/png" href="pictures/icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="perch.css">
 </head>
 <body>
 
-    <!-- ============ A. 顶部导航 ============ -->
+    <!-- ============ A. 顶部导航(贴纸条) ============ -->
     <nav class="nav">
         <div class="nav-inner">
             <a class="nav-logo" href="#top">
@@ -24,50 +24,71 @@
                 <a class="nav-link" href="#remind">提醒</a>
                 <a class="nav-link" href="#panel">面板</a>
                 <a class="nav-link" href="#skins">换肤</a>
-                <span class="nav-dot" aria-hidden="true"></span>
                 <a class="nav-github" href="https://github.com/Vi0let119/perch" target="_blank" rel="noopener">GitHub</a>
                 <a class="btn btn--primary btn--sm" href="https://github.com/Vi0let119/perch" target="_blank" rel="noopener">前往仓库</a>
             </div>
         </div>
     </nav>
 
-    <!-- ============ B. Hero:文案 + 通栏整屏桌面 ============ -->
+    <!-- ============ B. Hero:左文案 + 右「猫与气泡」贴纸 ============ -->
     <header class="hero" id="top">
-        <div class="wrap hero-copy">
-            <p class="eyebrow">桌面宠物计划提醒 · DESKTOP PET PLANNER</p>
-            <h1 class="hero-title">Perch<span class="hero-title-dot">.</span></h1>
-            <p class="hero-sub">Plans on time, paws on deck.</p>
-            <p class="hero-desc">
-                一只白猫常驻你的 Windows 桌面,按你设定的计划准时探出头来——
-                到点弹气泡、换个表情提醒你,打勾就算完成,次日自动重现。
-                基于 Bongo Cat 的桌面宠物计划提醒工具,Electron 构建,计划数据保存在本地。
-            </p>
-            <div class="hero-cta">
-                <a class="btn btn--primary btn--lg" href="https://github.com/Vi0let119/perch" target="_blank" rel="noopener">
-                    <svg class="btn-icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
-                        <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.42 7.42 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-                    </svg>
-                    前往 GitHub 仓库
-                </a>
-                <a class="btn btn--ghost btn--lg" href="https://github.com/Vi0let119/perch#快速开始" target="_blank" rel="noopener">构建说明</a>
+        <div class="wrap hero-grid">
+            <div class="hero-copy">
+                <p class="tag-sticker eyebrow">桌面宠物计划提醒 · DESKTOP PET PLANNER</p>
+                <h1 class="hero-title">Perch<span class="hero-title-dot">.</span></h1>
+                <p class="hero-sub">Plans on time, paws on deck.</p>
+                <p class="hero-desc">
+                    一只白猫常驻你的 Windows 桌面,按你设定的计划准时探出头来——
+                    到点弹气泡、换个表情提醒你,打勾就算完成,次日自动重现。
+                    基于 Bongo Cat 的桌面宠物计划提醒工具,Electron 构建,计划数据保存在本地。
+                </p>
+                <div class="hero-cta">
+                    <a class="btn btn--primary btn--lg" href="https://github.com/Vi0let119/perch" target="_blank" rel="noopener">
+                        <svg class="btn-icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                            <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.42 7.42 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                        </svg>
+                        前往 GitHub 仓库
+                    </a>
+                    <a class="btn btn--ghost btn--lg" href="https://github.com/Vi0let119/perch#快速开始" target="_blank" rel="noopener">构建说明</a>
+                </div>
+                <p class="hero-meta">Windows · Electron · 目前需从源码构建</p>
             </div>
-            <p class="hero-meta">Windows · Electron · 目前需从源码构建</p>
-        </div>
-        <div class="wrap hero-media">
-            <div class="hero-glow hero-glow--pink" aria-hidden="true"></div>
-            <div class="hero-glow hero-glow--green" aria-hidden="true"></div>
-            <!-- 整屏截图实为 2560×1600(16:10),按固有比例展示,不做 16:9 裁切 -->
-            <img class="hero-ph" src="pictures/hero-desktop.png" width="2560" height="1600"
-                 srcset="pictures/hero-desktop-1200.webp 1200w, pictures/hero-desktop-1600.webp 1600w"
-                 sizes="(max-width: 768px) 90vw, 1152px"
-                 alt="Perch 桌宠趴在桌面上，头顶气泡显示进行中的计划">
+            <div class="hero-media">
+                <!-- 首屏主角是白猫本体:线稿猫 + 单行提醒气泡(内容取自应用真实计划),标注示意 -->
+                <figure class="sticker sticker--hero">
+                    <div class="mock-scene mock-scene--hero" role="img"
+                         aria-label="示意:白猫趴在桌面上,头顶弹出提醒气泡,显示时间段与事项">
+                        <div class="mock-bubble mock-bubble--one" aria-hidden="true">
+                            <span class="mock-chip">17:00–19:00</span>该吃药啦
+                        </div>
+                        <img class="mock-cat" src="pictures/cat.png" width="612" height="354" alt="" aria-hidden="true">
+                    </div>
+                    <figcaption class="sticker-caption">到点了,它先开口 · 界面示意</figcaption>
+                </figure>
+            </div>
         </div>
     </header>
 
     <main>
-        <!-- ============ C1. 提醒(方图 + 文案) ============ -->
+        <!-- ============ C1. 提醒(气泡卡 + 文案) ============ -->
         <section class="feature" id="remind">
             <div class="wrap feature-grid">
+                <div class="feature-media feature-media--square" data-parallax="0.05">
+                    <!-- 深色桌面实拍会淹没猫和气泡,改用「到点一刻」示意场景:
+                         气泡内容逐字取自应用真实提醒(bubble-zoom 截图) -->
+                    <figure class="sticker sticker--bubble">
+                        <div class="mock-scene" role="img"
+                             aria-label="示意:到点时,猫猫头顶弹出今日待办气泡,显示时间段、事项与稍后提醒">
+                            <div class="mock-bubble" aria-hidden="true">
+                                <p class="mock-bubble-head">今日待办 <span>稍后 1 条 · 1 条已过时间</span></p>
+                                <p class="mock-bubble-row"><span class="mock-chip">17:00–19:00</span>吃药,记得和牛奶一起喝<span class="mock-check"></span></p>
+                                <p class="mock-bubble-next">稍后 <b>22:00</b> · 第二次吃药</p>
+                            </div>
+                            <img class="mock-cat" src="pictures/cat.png" width="612" height="354" alt="" aria-hidden="true">
+                        </div>
+                        <figcaption class="sticker-caption">到点的一刻 · 界面示意</figcaption>
+                    </figure>
+                </div>
                 <div class="feature-copy reveal">
                     <p class="feature-num">01</p>
                     <h2 class="feature-title">它怎么提醒你</h2>
@@ -81,10 +102,6 @@
                         <li>时间段自由设定,留空即全天任务</li>
                         <li>到点弹跳 + 表情变化,提醒不打扰</li>
                     </ul>
-                </div>
-                <div class="feature-media feature-media--square" data-parallax="0.05">
-                    <img src="pictures/bubble-zoom.png" width="460" height="460" loading="lazy" decoding="async"
-                         alt="Perch 桌宠近景：猫猫头顶的白底气泡显示当前计划">
                 </div>
             </div>
         </section>
@@ -113,61 +130,69 @@
 
                     <!-- 页签 1:今日计划 -->
                     <div class="gallery-stage" role="tabpanel" id="panel-today" aria-labelledby="tab-today">
-                        <div class="gallery-shot">
+                        <figure class="sticker sticker--panel">
                             <img src="pictures/panel-today.png" width="1600" height="1000" decoding="async"
                                  srcset="pictures/panel-today-800.webp 800w, pictures/panel-today-1200.webp 1200w"
                                  sizes="(max-width: 768px) 90vw, 802px"
-                                 alt="管理面板今日计划页：进度条与今日计划列表，部分条目已勾选">
-                        </div>
-                        <div class="gallery-copy">
-                            <h3>今天要做的事，一眼看完</h3>
-                            <p>顶部进度条显示完成比例，下面就是今天的计划列表。在气泡或这里点一下 ✓ 就算完成，当天消失、次日自动重现。</p>
-                        </div>
+                                 alt="管理面板今日计划页:进度条与今日计划列表,部分条目已勾选">
+                            <figcaption class="gallery-copy">
+                                <h3>今天要做的事,一眼看完</h3>
+                                <p>顶部进度条显示完成比例,下面就是今天的计划列表。在气泡或这里点一下 ✓ 就算完成,当天消失、次日自动重现。</p>
+                            </figcaption>
+                        </figure>
                     </div>
 
                     <!-- 页签 2:日历便签 -->
                     <div class="gallery-stage" role="tabpanel" id="panel-calendar" aria-labelledby="tab-calendar" hidden>
-                        <div class="gallery-shot">
+                        <figure class="sticker sticker--panel">
                             <img src="pictures/panel-calendar.png" width="1600" height="1000" decoding="async"
                                  srcset="pictures/panel-calendar-800.webp 800w, pictures/panel-calendar-1200.webp 1200w"
                                  sizes="(max-width: 768px) 90vw, 802px"
-                                 alt="管理面板日历便签页：月历视图，有计划的日期标有圆点">
-                        </div>
-                        <div class="gallery-copy">
-                            <h3>跳出“今天”，看看这个月</h3>
-                            <p>月历视图里，有计划的日期会标上圆点。临时想加个某天的提醒，直接在日历上点选——单次计划就像一张贴在那天的便签。</p>
-                        </div>
+                                 alt="管理面板日历便签页:月历视图,有计划的日期标有圆点">
+                            <figcaption class="gallery-copy">
+                                <h3>跳出“今天”,看看这个月</h3>
+                                <p>月历视图里,有计划的日期会标上圆点。临时想加个某天的提醒,直接在日历上点选——单次计划就像一张贴在那天的便签。</p>
+                            </figcaption>
+                        </figure>
                     </div>
 
                     <!-- 页签 3:计划管理 -->
                     <div class="gallery-stage" role="tabpanel" id="panel-plans" aria-labelledby="tab-plans" hidden>
-                        <div class="gallery-shot">
+                        <figure class="sticker sticker--panel">
                             <img src="pictures/panel-plans.png" width="1600" height="1000" decoding="async"
                                  srcset="pictures/panel-plans-800.webp 800w, pictures/panel-plans-1200.webp 1200w"
                                  sizes="(max-width: 768px) 90vw, 802px"
-                                 alt="管理面板计划管理页：每日、每周、单次三种模式的计划列表">
-                        </div>
-                        <div class="gallery-copy">
-                            <h3>三种节奏，随便混着用</h3>
-                            <p>每天要做的、每周固定几天的、只在某天出现一次的，混在同一个列表里各自守时。改时间、改内容、删除，都在这一页完成。</p>
-                        </div>
+                                 alt="管理面板计划管理页:每日、每周、单次三种模式的计划列表">
+                            <figcaption class="gallery-copy">
+                                <h3>三种节奏,随便混着用</h3>
+                                <p>每天要做的、每周固定几天的、只在某天出现一次的,混在同一个列表里各自守时。改时间、改内容、删除,都在这一页完成。</p>
+                            </figcaption>
+                        </figure>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ============ C3. 换肤(图文两栏) ============ -->
+        <!-- ============ C3. 换肤(贴纸 + 文案) ============ -->
         <section class="feature" id="skins">
             <div class="wrap feature-grid feature-grid--flip">
                 <div class="feature-media feature-media--panel" data-parallax="0.04">
-                    <img src="pictures/panel-skins.png" width="1600" height="1000" loading="lazy" decoding="async"
-                         srcset="pictures/panel-skins-800.webp 800w, pictures/panel-skins-1200.webp 1200w"
-                         sizes="(max-width: 768px) 90vw, 660px"
-                         alt="管理面板外观页：皮肤列表，含 Live2D 与分层 PNG 皮肤">
+                    <figure class="sticker">
+                        <img src="pictures/panel-skins.png" width="1600" height="1000" loading="lazy" decoding="async"
+                             srcset="pictures/panel-skins-800.webp 800w, pictures/panel-skins-1200.webp 1200w"
+                             sizes="(max-width: 768px) 90vw, 660px"
+                             alt="管理面板外观页:皮肤列表,含 Live2D 与分层 PNG 皮肤">
+                    </figure>
+                    <!-- Live2D 皮肤的实拍:红头巾「洛茜」,归位到换肤区 -->
+                    <figure class="sticker sticker--mini">
+                        <img src="pictures/bubble-zoom.png" width="460" height="460" loading="lazy" decoding="async"
+                             alt="Live2D 皮肤「洛茜」:猫猫头顶弹出今日待办气泡的实拍">
+                        <figcaption class="sticker-caption">Live2D · 洛茜</figcaption>
+                    </figure>
                 </div>
                 <div class="feature-copy reveal">
                     <p class="feature-num">03</p>
-                    <h2 class="feature-title">换一张脸，还是同一只猫</h2>
+                    <h2 class="feature-title">换一张脸,还是同一只猫</h2>
                     <p class="feature-desc">
                         内置于 Live2D Cubism 的皮肤带物理演算、眨眼与呼吸,猫爪按下还有反应;
                         分层 PNG 皮肤同样支持。兼容 Bongo Cat Mver 社区皮肤——文件夹或 zip 放进来,自动转换导入。
@@ -181,7 +206,7 @@
             </div>
         </section>
 
-        <!-- ============ C4. 其余功能(无图清单) ============ -->
+        <!-- ============ C4. 其余功能(贴纸清单) ============ -->
         <section class="feature feature--specs" id="features">
             <div class="wrap">
                 <div class="spec-head reveal">
@@ -194,27 +219,27 @@
                 <ul class="spec-grid">
                     <li class="spec-card">
                         <h3>托盘与菜单</h3>
-                        <p>左键点猫开面板，右键出菜单：今日计划、管理面板、置顶开关、退出。</p>
+                        <p>左键点猫开面板,右键出菜单:今日计划、管理面板、置顶开关、退出。</p>
                     </li>
                     <li class="spec-card">
                         <h3>记得住位置</h3>
-                        <p>窗口位置、猫猫缩放都记在配置里；开机自启可选，想让它一直在就在。</p>
+                        <p>窗口位置、猫猫缩放都记在配置里;开机自启可选,想让它一直在就在。</p>
                     </li>
                     <li class="spec-card">
                         <h3>JSON 导入导出</h3>
-                        <p>计划可整体导出备份，也能整包导入；导入时校验格式，可选合并或替换。</p>
+                        <p>计划可整体导出备份,也能整包导入;导入时校验格式,可选合并或替换。</p>
                     </li>
                     <li class="spec-card">
                         <h3>轻量运行</h3>
-                        <p>默认禁用硬件加速、限制到 24fps，渲染进程崩溃会自动重载。</p>
+                        <p>默认禁用硬件加速、限制到 24fps,渲染进程崩溃会自动重载。</p>
                     </li>
                     <li class="spec-card">
                         <h3>便携版</h3>
-                        <p>除安装包外另出便携版，解压即用，不往系统里写东西。</p>
+                        <p>除安装包外另出便携版,解压即用,不往系统里写东西。</p>
                     </li>
                     <li class="spec-card">
                         <h3>勾选留痕</h3>
-                        <p>完成记录保留 120 天，回看这阵子到底做完了些什么。</p>
+                        <p>完成记录保留 120 天,回看这阵子到底做完了些什么。</p>
                     </li>
                 </ul>
             </div>

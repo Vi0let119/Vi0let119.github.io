@@ -2,24 +2,16 @@
    主页 — 日/夜双模主题
    亮色：便当网格 (Bento) / 暗色：噪点底片 (Grain Archive)
    切换：左上角 ☀/☽ 按钮 + localStorage 记忆
+   通用主题令牌/颗粒/切换按钮已抽到 theme.css(见 @import)
    ============================================ */
 
+@import url('theme.css');
+
 /* ============================================
-   一、CSS 自定义属性 — 亮色模式（默认）
+   一、主页专属令牌 — 亮色便当
    ============================================ */
 :root,
 [data-theme="light"] {
-  --bg: #faf7f2;
-  --surface: #ffffff;
-  --text: #2c2c2c;
-  --text-secondary: #6b6b6b;
-  --text-muted: #a0a0a0;
-  --accent: #5b7b8a;
-  --accent-strong: #42606c;
-  --accent-soft: rgba(91, 123, 138, 0.08);
-  --border: rgba(0, 0, 0, 0.06);
-  --border-strong: rgba(0, 0, 0, 0.1);
-
   /* 卡片底色 */
   --card-sage: #edf2ed;
   --card-sage-hover: #e4ece5;
@@ -35,21 +27,17 @@
   --card-manila-hover: #ebe2ce;
 
   --card-radius: 20px;
-  --shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
-  --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.07);
-  --font-sans: 'DM Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  --font-serif: 'DM Serif Display', 'Noto Serif SC', Georgia, serif;
 
   --main-width: 880px;
   --card-gap: 16px;
   --card-row-h: 160px;
 
   /* 可见性 */
-  --show-grain: none;
   --show-reticle: none;
   --show-film-meta: none;
   --show-card-num: none;
   --show-card-illo: block;
+  --show-card-mini: flex;
   --show-tail: none;
   --show-strip: block;
   --avatar-ring: conic-gradient(from 0deg, #a0a0a0 0deg, #5b7b8a 120deg, #a0a0a0 240deg, #5b7b8a 360deg);
@@ -60,24 +48,12 @@
   --card-hover-transform: translateY(-4px);
   --card-arrow-opacity: 0;
   --card-arrow-hover-opacity: 0.5;
-  --sidebar-bg: rgba(255, 255, 255, 0.85);
 }
 
 /* ============================================
-   二、CSS 自定义属性 — 暗色模式
+   二、主页专属令牌 — 暗色底片
    ============================================ */
 [data-theme="dark"] {
-  --bg: #3a3530;
-  --surface: rgba(45, 40, 36, 0.85);
-  --text: #e8e0d5;
-  --text-secondary: rgba(232, 224, 213, 0.6);
-  --text-muted: rgba(232, 224, 213, 0.25);
-  --accent: #d4a853;
-  --accent-strong: #e8c47a;
-  --accent-soft: rgba(212, 168, 83, 0.08);
-  --border: rgba(232, 224, 213, 0.12);
-  --border-strong: rgba(232, 224, 213, 0.2);
-
   --card-sage: var(--surface);
   --card-sage-hover: rgba(50, 45, 40, 0.92);
   --card-blue: var(--surface);
@@ -92,20 +68,16 @@
   --card-manila-hover: rgba(50, 45, 40, 0.92);
 
   --card-radius: 0;
-  --shadow: none;
-  --shadow-hover: 0 0 40px rgba(26, 23, 20, 0.4), inset 0 0 60px rgba(212, 168, 83, 0.03);
-  --font-sans: 'Space Mono', 'Courier New', 'Microsoft YaHei', monospace;
-  --font-serif: 'Playfair Display', 'Noto Serif SC', Georgia, serif;
 
   --main-width: 720px;
   --card-gap: 1px;
   --card-row-h: auto;
 
-  --show-grain: block;
   --show-reticle: block;
   --show-film-meta: flex;
   --show-card-num: inline;
   --show-card-illo: none;
+  --show-card-mini: none;
   --show-tail: flex;
   --show-strip: none;
   --avatar-ring: none;
@@ -116,7 +88,6 @@
   --card-hover-transform: scale(1.015);
   --card-arrow-opacity: 1;
   --card-arrow-hover-opacity: 1;
-  --sidebar-bg: rgba(26, 23, 20, 0.7);
 }
 
 /* ============================================
@@ -124,98 +95,9 @@
    ============================================ */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-sans);
-  font-size: 16px;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  transition: background 0.4s ease, color 0.4s ease;
-}
-
 body {
   min-height: 100vh;
 }
-
-/* 暗夜：底片暗角 */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0;
-  background:
-    radial-gradient(ellipse at 50% 30%, transparent 40%, rgba(26, 23, 20, 0.55) 100%),
-    radial-gradient(ellipse at 20% 80%, transparent 50%, rgba(26, 23, 20, 0.3) 100%);
-  transition: opacity 0.4s ease;
-}
-
-[data-theme="dark"] body::after { opacity: 1; }
-
-/* ============================================
-   四、噪点纹理（仅暗夜）
-   ============================================ */
-.theme-grain {
-  display: var(--show-grain);
-  position: fixed;
-  inset: 0;
-  z-index: 9998;
-  pointer-events: none;
-  opacity: 0.55;
-  mix-blend-mode: overlay;
-  background:
-    repeating-radial-gradient(circle at 17% 33%, rgba(255,255,255,0.008) 0px, rgba(0,0,0,0.012) 1px, rgba(255,255,255,0.006) 2px, rgba(0,0,0,0.008) 3px) 0 0 / 3px 3px,
-    repeating-radial-gradient(circle at 63% 78%, rgba(255,255,255,0.01) 0px, rgba(0,0,0,0.015) 2px, rgba(255,255,255,0.005) 3px, rgba(0,0,0,0.01) 5px) 1px 1px / 6px 6px,
-    repeating-radial-gradient(circle at 45% 15%, transparent 0px, transparent 3px, rgba(0,0,0,0.02) 3px, rgba(0,0,0,0.02) 4px, transparent 4px, transparent 7px) 2px 2px / 8px 8px;
-}
-
-/* ============================================
-   五、主题切换按钮
-   ============================================ */
-.theme-toggle {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 10000;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: 1px solid var(--border-strong);
-  background: var(--surface);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition:
-    background 0.4s ease,
-    border-color 0.4s ease,
-    box-shadow 0.3s ease;
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-.theme-toggle:hover {
-  box-shadow: var(--shadow-hover);
-}
-
-.theme-icon {
-  font-size: 1.15rem;
-  line-height: 1;
-  position: absolute;
-  transition: opacity 0.3s ease, transform 0.4s ease;
-}
-
-/* 亮色模式：显示太阳 */
-.theme-icon--light { opacity: 1; transform: rotate(0deg); }
-.theme-icon--dark  { opacity: 0; transform: rotate(90deg); }
-
-/* 暗色模式：显示月亮 */
-[data-theme="dark"] .theme-icon--light { opacity: 0; transform: rotate(-90deg); }
-[data-theme="dark"] .theme-icon--dark  { opacity: 1; transform: rotate(0deg); }
 
 /* ============================================
    六、主容器
@@ -365,7 +247,7 @@ body::after {
 
 [data-theme="dark"] .bio {
   font-family: var(--font-serif);
-  font-style: italic;
+  letter-spacing: 0.02em;
 }
 
 /* 暗夜：底片元信息 */
@@ -477,6 +359,40 @@ body::after {
 }
 
 .card:hover .card-num { opacity: 1; }
+
+/* 项目卡中部的项目名索引（仅亮色便当） */
+.card-projects-items {
+  display: var(--show-card-mini);
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.card-projects-items span {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.02rem;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  transition: color 0.35s ease, transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.card-projects-items i {
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  opacity: 0.75;
+}
+
+.card--projects:hover .card-projects-items span {
+  color: var(--text-secondary);
+  transform: translateX(4px);
+}
 
 /* 卡片内容区 */
 .card-body {
@@ -849,87 +765,8 @@ body::after {
 }
 
 /* ============================================
-   十四、侧边栏 — 双模覆写
+   十四、滚动条 & 选中 — 已移入 theme.css
    ============================================ */
-.right-sidebar {
-  background: var(--sidebar-bg) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  border-left: 1px solid var(--border) !important;
-  transition: background 0.4s ease, border-color 0.4s ease;
-}
-
-.sidebar-title {
-  font-family: var(--font-sans) !important;
-  font-weight: 600 !important;
-  color: var(--text-secondary) !important;
-  border-bottom: 1px solid var(--border) !important;
-  transition: color 0.4s ease;
-}
-
-.sidebar-menu > li > a {
-  font-family: var(--font-sans) !important;
-  color: var(--text-secondary) !important;
-  border-radius: 8px !important;
-  transition: color 0.25s ease, background 0.25s ease;
-}
-
-.sidebar-menu > li > a:hover {
-  color: var(--text) !important;
-  background: var(--accent-soft) !important;
-}
-
-.submenu-parent > .submenu-label {
-  font-family: var(--font-sans) !important;
-  color: var(--text-secondary) !important;
-}
-
-.submenu li a {
-  font-family: var(--font-sans) !important;
-  color: var(--text-secondary) !important;
-}
-
-.submenu li a:hover {
-  color: var(--accent) !important;
-  background: var(--accent-soft) !important;
-}
-
-/* 当前页：在同一组里保持可见的定位感；用更深的 accent 保证 4.5:1 */
-.sidebar-menu a[aria-current="page"],
-.submenu li a[aria-current="page"] {
-  color: var(--accent-strong) !important;
-  background: var(--accent-soft) !important;
-  font-weight: 600 !important;
-}
-
-.toggle-btn {
-  background: var(--surface) !important;
-  border: 1px solid var(--border) !important;
-  color: var(--text-secondary) !important;
-  border-radius: 8px !important;
-  transition: all 0.25s ease;
-}
-
-.toggle-btn:hover {
-  border-color: var(--accent) !important;
-  color: var(--accent) !important;
-}
-
-/* ============================================
-   十五、滚动条 & 选中
-   ============================================ */
-body::-webkit-scrollbar { width: 4px; }
-body::-webkit-scrollbar-track { background: transparent; }
-body::-webkit-scrollbar-thumb {
-  background: rgba(128, 128, 128, 0.2);
-  border-radius: 2px;
-}
-body::-webkit-scrollbar-thumb:hover {
-  background: rgba(128, 128, 128, 0.35);
-}
-
-::selection { background: rgba(91, 123, 138, 0.18); color: var(--text); }
-[data-theme="dark"] ::selection { background: rgba(212, 168, 83, 0.25); color: #fff; }
 
 /* ============================================
    十六、响应式

@@ -55,5 +55,8 @@ node_modules/
 # ── 图像特征工具（本地产出，不随站点发布）──
 tools/image_features/
 
+# ── 临时草稿（下划线前缀的分析中间产物）──
+pictures/_*.json
+
 # ── 打包副本 ───────────────────────────────
 tools/chart_create.zip

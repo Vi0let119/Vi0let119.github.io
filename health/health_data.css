@@ -127,7 +127,8 @@
     display: flex;
     align-items: baseline;
     gap: 2vw;
-    padding: 1.2vh 0.4vw 1.4vh;
+    /* 左内边距让位给固定主题切换按钮(42px + 间距) */
+    padding: 1.2vh 0.4vw 1.4vh 64px;
     border-bottom: 1px solid var(--sa-line);
     animation: saRise 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
@@ -171,7 +172,7 @@
     font-family: var(--sa-font-serif);
     font-size: 0.72rem;
     letter-spacing: 0.2em;
-    color: var(--sa-star-faint);
+    color: var(--sa-star-dim);
 }
 
 .sky-topbar .stat-value {
@@ -198,7 +199,7 @@
     border: 1px solid var(--sa-line);
     border-radius: var(--sa-radius);
     padding: 2.5vh 2vw;
-    color: var(--sa-star-dim);
+    color: #9aa3b8; /* 观测提示:比弱星亮一档,深底对比 ≥6 */
     font-family: var(--sa-font-serif);
     font-size: 0.92rem;
     letter-spacing: 0.05em;
@@ -242,9 +243,15 @@
     z-index: 2;
 }
 
-/* 图表区里的提示文字 */
+/* 图表区里的提示文字:划掉的旧记录保持「更弱」层级 */
 .chart-canvas s {
-    color: var(--sa-star-faint);
+    color: #6a7288;
+    /* 划线是「已作废记录」的有意标记,降低线条强度以免读作渲染故障 */
+    text-decoration-color: rgba(122, 130, 148, 0.55);
+}
+
+[data-theme="light"] .chart-canvas s {
+    text-decoration-color: rgba(90, 82, 68, 0.45);
 }
 
 /* ============================================
@@ -313,7 +320,7 @@
     font-size: 0.7rem;
     font-weight: 400;
     letter-spacing: 0.24em;
-    color: var(--sa-star-faint);
+    color: var(--sa-star-dim);
 }
 
 /* 下拉 — 暗玻璃 + 金色下划线 */
@@ -664,12 +671,21 @@
    侧边栏覆写 — 全部限定在 .star-atlas 作用域内
    不修改 siderbar.css 本身，其他页面不受影响
    ============================================ */
-.star-atlas .right-sidebar {
+/* 夜间:深夜玻璃;日间:纸面玻璃(底色按主题切换) */
+[data-theme="dark"] .star-atlas .right-sidebar {
     background: rgba(10, 14, 26, 0.92) !important;
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.45) !important;
+}
+
+[data-theme="light"] .star-atlas .right-sidebar {
+    background: rgba(253, 251, 246, 0.92) !important;
+    box-shadow: -4px 0 24px rgba(60, 50, 30, 0.12) !important;
+}
+
+.star-atlas .right-sidebar {
     backdrop-filter: blur(14px) !important;
     -webkit-backdrop-filter: blur(14px) !important;
     border-left: 1px solid var(--sa-line) !important;
-    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.45) !important;
 }
 
 .star-atlas .sidebar-title {
@@ -696,7 +712,7 @@
 }
 
 .star-atlas .submenu li a {
-    color: var(--sa-star-faint) !important;
+    color: var(--sa-star-dim) !important;
     font-family: var(--sa-font-serif) !important;
     font-size: 13px !important;
     letter-spacing: 0.08em !important;
@@ -809,3 +825,652 @@
         font-size: 0.98rem;
     }
 }
+
+
+/* ============================================
+   日间 — 观测日志(与 index 日间统一)
+   纸面底 + 墨字 + 深金强调;星点换成淡墨星,
+   保留一点天文台的观测感;地平线暗角关闭
+   ============================================ */
+[data-theme="light"] {
+    --sa-sky: #f4f1e8;
+    --sa-sky-deep: #efeadd;
+    --sa-star: #2c2c2c;
+    --sa-star-dim: #6b6b6b;
+    --sa-star-faint: #a49d90;
+    --sa-gold: #8a6b2c;
+    --sa-gold-bright: #a8823f;
+    --sa-astro: #4f6d84;
+    --sa-rose: #a55a68;
+    --sa-line: rgba(0, 0, 0, 0.1);
+    --sa-line-soft: rgba(0, 0, 0, 0.05);
+}
+
+/* 日间:淡墨星点 */
+[data-theme="light"] .star-atlas::before {
+    background-image:
+        radial-gradient(1.2px 1.2px at 12% 22%, rgba(60, 54, 44, 0.5) 50%, transparent 51%),
+        radial-gradient(1px 1px at 68% 8%, rgba(60, 54, 44, 0.42) 50%, transparent 51%),
+        radial-gradient(1.4px 1.4px at 84% 34%, rgba(138, 107, 44, 0.45) 50%, transparent 51%),
+        radial-gradient(1px 1px at 32% 64%, rgba(60, 54, 44, 0.38) 50%, transparent 51%),
+        radial-gradient(1.3px 1.3px at 52% 84%, rgba(138, 107, 44, 0.36) 50%, transparent 51%),
+        radial-gradient(1px 1px at 92% 72%, rgba(60, 54, 44, 0.4) 50%, transparent 51%),
+        radial-gradient(1.1px 1.1px at 6% 88%, rgba(79, 109, 132, 0.45) 50%, transparent 51%),
+        radial-gradient(1px 1px at 44% 38%, rgba(60, 54, 44, 0.28) 50%, transparent 51%),
+        radial-gradient(rgba(60, 54, 44, 0.2) 0.6px, transparent 0.6px),
+        radial-gradient(rgba(60, 54, 44, 0.12) 0.5px, transparent 0.5px),
+        radial-gradient(ellipse 60% 45% at 78% 12%, rgba(79, 109, 132, 0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 15% 80%, rgba(138, 107, 44, 0.05) 0%, transparent 60%);
+}
+
+/* 日间:地平线暗角关闭 */
+[data-theme="light"] .star-atlas::after { content: none; }
+
+/* 日间:面板底色转纸面 */
+[data-theme="light"] .chart-canvas,
+[data-theme="light"] .control-panel,
+[data-theme="light"] .chart3d-panel {
+    background: rgba(253, 251, 246, 0.72);
+}
+
+/* 日间:文字选中 — 金染纸面 */
+[data-theme="light"] .star-atlas ::selection {
+    background: rgba(138, 107, 44, 0.22);
+    color: #2c2c2c;
+}
+
+/* 日间:3D 星图装裱为「夜间观测窗」——黑是刻意的装裱,不是漏换肤 */
+[data-theme="light"] .chart3d-panel #chart3dContainer {
+    border-radius: 6px;
+    box-shadow: inset 0 0 0 1px rgba(60, 50, 30, 0.35), inset 0 0 40px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="light"] .chart3d-panel #chart3dContainer::before {
+    content: '夜间观测窗 · 每点为一次入睡记录';
+    position: absolute;
+    top: 10px;
+    left: 14px;
+    z-index: 3;
+    font-family: var(--sa-font-serif);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: rgba(232, 224, 213, 0.5);
+    pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   逐日手帐 — 日历方格 + 详情卡
+   手帐气质：纸格 + 墨字 + 金点 + 朱红备注印记；双主题随 --sa-*
+   ═══════════════════════════════════════════════════════════ */
+
+/* 空态（替代 alert） */
+.chart-empty {
+    margin: 0;
+    padding: 8vh 2rem;
+    text-align: center;
+    font-family: var(--sa-font-serif);
+    font-size: 0.95rem;
+    letter-spacing: 0.12em;
+    color: var(--sa-star-dim);
+}
+
+/* ---------- 手帐区骨架 ---------- */
+.journal-section {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    background: rgba(253, 251, 246, 0.72);
+    border: 1px solid var(--sa-line);
+    border-radius: var(--sa-radius);
+    padding: 2.5vh 2vw;
+    position: relative;
+    z-index: 2;
+    animation: saRise 0.7s 0.2s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+[data-theme="dark"] .journal-section {
+    background: rgba(10, 14, 26, 0.45);
+}
+
+/* 手帐内页点阵 */
+.journal-section::before {
+    content: '';
+    position: absolute;
+    inset: 10px;
+    border-radius: 2px;
+    pointer-events: none;
+    background-image: radial-gradient(var(--sa-line) 1px, transparent 1.2px);
+    background-size: 22px 22px;
+    opacity: 0.5;
+}
+
+.journal-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.4rem;
+    margin-bottom: 2.6vh;
+    position: relative;
+    z-index: 1;
+}
+
+.journal-title {
+    font-family: var(--sa-font-serif);
+    font-size: clamp(1.3rem, 2vw, 1.7rem);
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    color: var(--sa-star);
+    margin: 0 0 4px;
+    border-bottom: 2px solid var(--sa-gold);
+    display: inline-block;
+    padding-bottom: 6px;
+}
+
+.journal-sub {
+    margin: 0;
+    font-family: var(--sa-font-num);
+    font-size: 0.7rem;
+    letter-spacing: 0.26em;
+    color: var(--sa-star-faint);
+}
+
+/* 月导航 */
+.month-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+}
+
+.month-label {
+    font-family: var(--sa-font-serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--sa-star);
+    min-width: 9.5em;
+    text-align: center;
+}
+
+.month-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(201, 168, 106, 0.45);
+    background: transparent;
+    color: var(--sa-gold);
+    font-size: 1.15rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.month-btn:hover {
+    border-color: var(--sa-gold);
+    color: var(--sa-gold-bright);
+    transform: scale(1.06);
+}
+
+.month-btn:focus-visible {
+    outline: 2px solid var(--sa-gold);
+    outline-offset: 3px;
+}
+
+/* ---------- 日历主体：左月历 + 右详情卡 ---------- */
+.journal-body {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
+    gap: 2vw;
+    align-items: start;
+}
+
+.calendar-wrap { min-width: 0; }
+
+.cal-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.cal-weekdays span {
+    text-align: center;
+    font-family: var(--sa-font-serif);
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: var(--sa-star-faint);
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--sa-line);
+}
+
+.cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+}
+
+/* ---------- 日格 ---------- */
+.cal-cell {
+    position: relative;
+    min-height: 76px;
+    border: 1px solid var(--sa-line);
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.35);
+    padding: 6px 7px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    color: inherit;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease,
+                background 0.2s ease;
+    animation: cellDevelop 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+[data-theme="dark"] .cal-cell { background: rgba(232, 230, 223, 0.04); }
+
+@keyframes cellDevelop {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: none; }
+}
+
+.cal-cell:hover {
+    border-color: rgba(201, 168, 106, 0.55);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px -8px rgba(0, 0, 0, 0.35);
+    z-index: 2;
+}
+
+.cal-cell:focus-visible {
+    outline: 2px solid var(--sa-gold);
+    outline-offset: 2px;
+}
+
+.cal-day {
+    font-family: var(--sa-font-num);
+    font-size: 0.78rem;
+    color: var(--sa-star-dim);
+    line-height: 1;
+}
+
+/* 体重：金点 + 数字 */
+.cal-weight {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--sa-font-num);
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--sa-star);
+    line-height: 1.2;
+}
+
+.cal-weight::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--sa-gold);
+    box-shadow: 0 0 6px rgba(201, 168, 106, 0.5);
+    flex-shrink: 0;
+}
+
+/* 睡眠横条：长度 ∝ 时长（2–10h 映射 12%–100%） */
+.cal-sleep {
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--sa-line);
+    overflow: hidden;
+}
+
+.cal-sleep i {
+    display: block;
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--sa-astro), var(--sa-astro-light, #a8bccb));
+}
+
+[data-theme="light"] .cal-sleep i {
+    background: linear-gradient(90deg, #4f6d84, #7e93a8);
+}
+
+/* 备注印记：朱红 ✦ */
+.cal-notemark {
+    position: absolute;
+    top: 5px;
+    right: 6px;
+    font-size: 0.6rem;
+    color: var(--sa-rose, #c49aa6);
+    line-height: 1;
+}
+
+[data-theme="light"] .cal-notemark { color: #b0584a; }
+
+/* 无记录日 / 未来日 */
+.cal-cell.is-empty { cursor: default; background: transparent; border-style: dashed; }
+.cal-cell.is-empty:hover { transform: none; box-shadow: none; border-color: var(--sa-line); }
+.cal-cell.is-empty .cal-day { color: var(--sa-star-faint); opacity: 0.6; }
+
+.cal-cell.is-future { opacity: 0.35; cursor: default; background: transparent; }
+.cal-cell.is-future:hover { transform: none; box-shadow: none; border-color: var(--sa-line); }
+
+.cal-cell.is-outside { visibility: hidden; }
+
+/* 选中日：金环 */
+.cal-cell.selected {
+    border-color: var(--sa-gold);
+    box-shadow: 0 0 0 1.5px var(--sa-gold), 0 6px 18px -8px rgba(201, 168, 106, 0.5);
+    background: rgba(201, 168, 106, 0.08);
+}
+
+/* 未测但日期有效 */
+.cal-cell.unmeasured .cal-weight { color: var(--sa-star-faint); }
+.cal-cell.unmeasured .cal-weight::before { background: var(--sa-star-faint); box-shadow: none; }
+
+/* ---------- 详情卡 ---------- */
+.day-card {
+    position: sticky;
+    top: 84px;
+    border: 1px solid var(--sa-line);
+    border-top: 3px solid var(--sa-gold);
+    border-radius: var(--sa-radius);
+    background: rgba(255, 255, 255, 0.5);
+    padding: 20px 20px 22px;
+    box-shadow: 0 14px 34px -18px rgba(0, 0, 0, 0.35);
+    font-family: var(--sa-font-serif);
+    animation: saRise 0.6s 0.3s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+[data-theme="dark"] .day-card { background: rgba(16, 22, 38, 0.6); }
+
+.day-card-empty {
+    margin: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.14em;
+    color: var(--sa-star-faint);
+}
+
+.day-card-date {
+    display: block;
+    font-family: var(--sa-font-num);
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--sa-star);
+    letter-spacing: 0.04em;
+    margin-bottom: 2px;
+}
+
+.day-card-week {
+    display: block;
+    font-family: var(--sa-font-num);
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    color: var(--sa-star-faint);
+    margin-bottom: 14px;
+}
+
+.day-card dl {
+    margin: 0 0 14px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 7px 14px;
+}
+
+.day-card dt {
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: var(--sa-star-dim);
+}
+
+.day-card dd {
+    margin: 0;
+    font-family: var(--sa-font-num);
+    font-size: 1.02rem;
+    color: var(--sa-star);
+}
+
+.day-card dd.pos { color: var(--sa-gold-bright); }
+.day-card dd.slp { color: var(--sa-astro); }
+.day-card dd.ons { color: var(--sa-rose); }
+.day-card dd.na { color: var(--sa-star-faint); font-size: 0.9rem; }
+
+/* 备注批注：手写体 */
+.day-card-note {
+    border-top: 1px dashed var(--sa-line);
+    padding-top: 12px;
+    margin-top: 4px;
+}
+
+.day-card-note .note-kicker {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--sa-star-faint);
+    margin-bottom: 6px;
+}
+
+.day-card-note p {
+    margin: 0;
+    font-family: 'Ma Shan Zheng', 'STKaiti', 'KaiTi', var(--sa-font-serif);
+    font-size: 1.02rem;
+    line-height: 1.8;
+    color: var(--sa-star);
+    word-break: break-word;
+}
+
+.day-card-note p.no-note {
+    font-family: var(--sa-font-serif);
+    font-size: 0.85rem;
+    color: var(--sa-star-faint);
+    letter-spacing: 0.1em;
+}
+
+/* ---------- 三维观测井（折叠） ---------- */
+.well-details {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    border: 1px solid var(--sa-line);
+    border-radius: var(--sa-radius);
+    background: rgba(253, 251, 246, 0.72);
+    position: relative;
+    z-index: 2;
+}
+
+[data-theme="dark"] .well-details { background: rgba(10, 14, 26, 0.45); }
+
+.well-summary {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    padding: 2vh 2vw;
+    cursor: pointer;
+    list-style: none;
+}
+
+.well-summary::-webkit-details-marker { display: none; }
+
+.well-summary-title {
+    font-family: var(--sa-font-serif);
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--sa-star);
+}
+
+.well-summary-title::before {
+    content: '▸';
+    margin-right: 0.6em;
+    color: var(--sa-gold);
+    transition: transform 0.25s ease;
+    display: inline-block;
+}
+
+.well-details[open] .well-summary-title::before { transform: rotate(90deg); }
+
+.well-summary-hint {
+    font-family: var(--sa-font-num);
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    color: var(--sa-star-faint);
+}
+
+.well-summary:hover .well-summary-title { color: var(--sa-gold-bright); }
+
+.well-details .chart3d-panel {
+    margin: 0 2vw 2vh;
+    position: relative;
+    border: 1px solid var(--sa-line);
+    border-radius: var(--sa-radius);
+    overflow: hidden;
+}
+
+.well-details #chart3dContainer {
+    height: 60vh;
+    min-height: 440px;
+}
+
+/* 观测井交互角标 */
+.well-chip {
+    position: absolute;
+    right: 14px;
+    bottom: 12px;
+    z-index: 3;
+    font-family: var(--sa-font-num);
+    font-size: 0.66rem;
+    letter-spacing: 0.18em;
+    color: rgba(232, 224, 213, 0.55);
+    background: rgba(10, 14, 26, 0.55);
+    border: 1px solid rgba(232, 230, 223, 0.14);
+    border-radius: 3px;
+    padding: 4px 10px;
+    pointer-events: none;
+}
+
+/* ---------- 降级 ---------- */
+@media (max-width: 1023px) {
+    .journal-body { grid-template-columns: 1fr; }
+    .day-card { position: static; }
+    .journal-body .day-card { order: 2; }
+    .calendar-wrap { order: 1; }
+    .month-label { min-width: 7.5em; font-size: 1.05rem; }
+    .cal-cell { min-height: 62px; padding: 4px 5px 6px; }
+    .cal-weight { font-size: 0.8rem; }
+}
+
+@media (max-width: 560px) {
+    .cal-cell { min-height: 52px; padding: 3px 4px 5px; gap: 2px; }
+    .cal-day { font-size: 0.68rem; }
+    .cal-weight { font-size: 0.72rem; gap: 3px; }
+    .cal-weight::before { width: 5px; height: 5px; }
+    .cal-notemark { font-size: 0.52rem; top: 3px; right: 4px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cal-cell { animation: none; }
+    .day-card { animation: none; }
+}
+
+/* ── 手帐评审修复 ── */
+
+/* 日期号提升一档 */
+.cal-day { font-size: 0.85rem; color: var(--sa-star); }
+
+/* 空格统一为虚线（未来日与无记录日同语义） */
+.cal-cell.is-future { border-style: dashed; }
+
+/* 夜间睡眠条轨道提亮 */
+[data-theme="dark"] .cal-sleep { background: rgba(232, 230, 223, 0.16); }
+
+/* 趋势图提示与手记折叠 */
+.canvas-hint {
+    margin: 0 0 4px;
+    font-size: 0.86rem;
+    letter-spacing: 0.06em;
+    color: var(--sa-star-dim);
+}
+
+.canvas-notes { margin-top: 6px; }
+
+.canvas-notes summary {
+    cursor: pointer;
+    font-family: var(--sa-font-serif);
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
+    color: var(--sa-star-faint);
+    transition: color 0.2s ease;
+}
+
+.canvas-notes summary:hover { color: var(--sa-gold); }
+
+.canvas-notes p {
+    margin: 8px 0 0;
+    font-family: var(--sa-font-serif);
+    font-size: 0.85rem;
+    line-height: 1.9;
+    color: var(--sa-star-dim);
+}
+
+.canvas-notes .canvas-meta {
+    font-size: 0.75rem;
+    color: var(--sa-star-faint);
+}
+
+/* 移动端工具条折叠 */
+.toolbar-toggle { display: none; }
+
+@media (max-width: 767px) {
+    .control-panel .control-group,
+    .control-panel .update-btn { display: none; }
+
+    .control-panel.toolbar-open .control-group,
+    .control-panel.toolbar-open .update-btn { display: flex; }
+
+    .control-panel.toolbar-open .update-btn { display: inline-flex; width: 100%; }
+
+    .toolbar-toggle {
+        display: block;
+        width: 100%;
+        padding: 1.1vh 1.2rem;
+        background: transparent;
+        border: none;
+        border-bottom: 1px dashed var(--sa-line);
+        cursor: pointer;
+        font-family: var(--sa-font-serif);
+        font-size: 0.9rem;
+        letter-spacing: 0.24em;
+        color: var(--sa-gold);
+        text-align: left;
+    }
+
+    .control-panel { flex-direction: column; gap: 1.4vh; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .canvas-notes, .canvas-hint { transition: none; }
+}
+
+/* 今天：右上角小标 */
+.cal-cell.is-today::after {
+    content: '今';
+    position: absolute;
+    top: 4px;
+    right: 5px;
+    font-family: var(--sa-font-serif);
+    font-size: 0.6rem;
+    color: var(--sa-gold);
+    border: 1px solid rgba(201, 168, 106, 0.5);
+    border-radius: 2px;
+    padding: 0 3px;
+    line-height: 1.4;
+}
+
+.cal-cell.is-today.has-note .cal-notemark { right: 26px; }

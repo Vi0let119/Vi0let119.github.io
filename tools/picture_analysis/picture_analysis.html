@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <!-- 图片色彩分析工具页：左侧上传预览图片，右侧控制参数并渲染主色饼图/柱状图与 RGB 直方图
      分析逻辑全部在 imageAnalyzer.js（K-means 聚类 + 色彩空间转换） -->
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        /* 尽早应用主题，避免闪白(theme.js 提供切换) */
+        (function () {
+            var t = localStorage.getItem('theme');
+            if (t === 'light' || t === 'dark') {
+                document.documentElement.setAttribute('data-theme', t);
+            }
+        })();
+    </script>
     <title>图片色彩分析 — Color Analysis</title>
+    <link rel="stylesheet" href="../../theme.css">
     <link rel="stylesheet" href="../tools_theme.css">
     <link rel="stylesheet" href="picture_analysis.css">
     <link rel="stylesheet" href="../../siderbar/siderbar.css">
@@ -18,17 +28,26 @@
     </script>
 </head>
 <body class="theme-tools-dark">
+    <button class="theme-toggle" id="themeToggle" aria-label="切换日/夜模式" title="切换日/夜模式">
+        <span class="theme-icon theme-icon--light">☀</span>
+        <span class="theme-icon theme-icon--dark">☽</span>
+    </button>
     <div id="sidebar-container"></div>
 
+    <!-- 页头:与工具区其他页一致的衬线标题 -->
+    <header class="pa-header">
+        <h1>图片色彩分析</h1>
+        <p class="pa-sub">K-means 聚类提取主色 · RGB / LAB 色彩空间 · RGB 直方图</p>
+    </header>
+
     <div class="layout-container">
-        <h1 class="visually-hidden">图片色彩分析</h1>
 
         <div class="image-panel">
         <h2 class="image-panel-title">图片浏览</h2>
-        <br>
         <div class="image-preview">
             <input type="file" id="imageInput" accept="image/*" class="image-upload" aria-label="上传图片">
-            <img id="displayImage" alt="点我上传图片">
+            <img id="displayImage" alt="已上传的待分析图片">
+            <span class="image-preview-hint" aria-hidden="true">点击上传图片<i>PNG · JPG · WebP</i></span>
         </div>
         </div>
 
@@ -59,8 +78,10 @@
                 <button id="startAnalysisBtn">开始分析</button>
             </div>
 
+            <h3 class="pa-section-label">主色图表</h3>
             <div id="chartContainer"></div>
 
+            <h3 class="pa-section-label">RGB 直方图</h3>
             <div id="rgbHistogram"></div>
 
             

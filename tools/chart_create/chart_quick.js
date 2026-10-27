@@ -69,16 +69,16 @@
     tooltipBorder: '#e8e4e0',
     tooltipText: '#2c2c2c',
     empty: '#ccc',
-    series: '#8aa4b0',
-    seriesStrong: '#8aa4b0',
-    seriesHi: '#9bbac8',
-    seriesEmphasis: '#9bbac8',   // hover 时的强调色
-    seriesBorder: '#fff',
-    areaTop: 'rgba(138,164,176,0.22)',
-    areaBottom: 'rgba(138,164,176,0.02)',
-    fitLine: '#c4a882',
+    series: '#a8763c',
+    seriesStrong: '#96622e',
+    seriesHi: '#c08a4a',
+    seriesEmphasis: '#c08a4a',   // hover 时的强调色
+    seriesBorder: '#fdfbf6',
+    areaTop: 'rgba(168, 118, 60, 0.2)',
+    areaBottom: 'rgba(168, 118, 60, 0.02)',
+    fitLine: '#5a7d8a',
     danger: '#c06050',
-    palette: ['#8aa4b0', '#b8a9a0', '#9bb5a0', '#c4a882', '#8b9a9e', '#b0a098', '#a0b0a8', '#c8b8a8']
+    palette: ['#a8763c', '#5a7d8a', '#9a8a5a', '#b0705a', '#7d8a6a', '#8a7a9a', '#a8927a', '#6a8a84']
   };
 
   // ── 初始化 ────────────────────────────────
@@ -101,6 +101,22 @@
         chartInstance.resize();
       }
     });
+    // 容器自身尺寸变化(字体加载/布局稳定)也同步,否则画布保持旧尺寸、底部被裁
+    if (window.ResizeObserver) {
+      const ro = new ResizeObserver(() => {
+        if (chartInstance && !chartInstance.isDisposed()) chartInstance.resize();
+      });
+      ro.observe(chartContainer);
+    }
+    // 主题切换:按新色板重绘预览
+    document.addEventListener('themechange', () => {
+      if (chartInstance && !chartInstance.isDisposed()) updatePreview();
+    });
+  }
+
+  // 预览跟随全站主题;下载成品保持浅色(见 964 行)
+  function currentChartTheme() {
+    return document.documentElement.getAttribute('data-theme') === 'light' ? CHART_THEME_LIGHT : CHART_THEME;
   }
 
   function insertSampleData() {
@@ -357,6 +373,8 @@
             type: 'category',
             data: labels,
             name: xAxisName || xHeader || '',
+            nameLocation: 'middle',
+            nameGap: 30,
             nameTextStyle: { color: T.axisName, fontSize: 12 },
             axisLine: { lineStyle: { color: T.axisLine } },
             axisTick: { show: false },
@@ -395,6 +413,8 @@
             type: 'category',
             data: labels,
             name: xAxisName || xHeader || '',
+            nameLocation: 'middle',
+            nameGap: 30,
             nameTextStyle: { color: T.axisName, fontSize: 12 },
             boundaryGap: false,
             axisLine: { lineStyle: { color: T.axisLine } },
@@ -492,6 +512,8 @@
             xAxis: {
               type: 'value',
               name: xAxisName || xHeader || '',
+              nameLocation: 'middle',
+              nameGap: 30,
               nameTextStyle: { color: T.axisName, fontSize: 12 },
               splitLine: { lineStyle: { color: T.splitLine, type: 'dashed' } },
               axisLabel: { color: T.axisLabel, fontSize: 12 }
@@ -538,6 +560,8 @@
             xAxis: {
               type: 'value',
               name: xAxisName || xHeader || '',
+              nameLocation: 'middle',
+              nameGap: 30,
               nameTextStyle: { color: T.axisName, fontSize: 12 },
               splitLine: { lineStyle: { color: T.splitLine, type: 'dashed' } },
               axisLabel: {
@@ -600,6 +624,8 @@
             xAxis: {
               type: 'value',
               name: xAxisName || xHeader || '',
+              nameLocation: 'middle',
+              nameGap: 30,
               nameTextStyle: { color: T.axisName, fontSize: 12 },
               splitLine: { lineStyle: { color: T.splitLine, type: 'dashed' } },
               axisLabel: {
@@ -677,6 +703,8 @@
           xAxis: {
             type: 'value',
             name: xAxisName || xHeader || '',
+            nameLocation: 'middle',
+            nameGap: 30,
             nameTextStyle: { color: T.axisName, fontSize: 12 },
             splitLine: { lineStyle: { color: T.splitLine, type: 'dashed' } },
             axisLabel: { color: T.axisLabel, fontSize: 12 }
@@ -770,7 +798,7 @@
       chartTitle: chartTitleEl.value
     };
 
-    const option = getEChartsOption(chartType, parseResult, config);
+    const option = getEChartsOption(chartType, parseResult, config, currentChartTheme());
 
     if (chartInstance && !chartInstance.isDisposed()) {
       chartInstance.setOption(option, true);

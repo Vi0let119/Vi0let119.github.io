@@ -125,8 +125,11 @@ Update `image_count`, `last_updated` timestamp, and write to `picture_info.json`
 
 See `scripts/update_picture_info.py` for the reusable update script. Run it:
 ```bash
-python scripts/update_picture_info.py
+python scripts/update_picture_info.py            # keeps existing GPS/camera
+python scripts/update_picture_info.py --reset-gps  # drops all coordinates
 ```
+
+**GPS is inherited from the existing catalog.** The watermark export pipeline strips the GPS EXIF block, so `latitude`/`longitude` in `picture_info.json` are the only copy. The script loads the old file first and copies coordinates (and camera make/model) for every filename where EXIF has none; only `--reset-gps` starts from zero. New photos without coordinates get `null` and are skipped by the map page.
 
 ## Handling Edge Cases
 

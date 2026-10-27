@@ -708,32 +708,10 @@
     });
   }
 
-  /* ---------------- 主题 / 名言 ---------------- */
-
-  function bindTheme() {
-    var btn = $('themeToggle');
-    if (!btn) return;
-    btn.addEventListener('click', function () {
-      var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-    });
-  }
-
-  function loadQuote() {
-    fetch('../quotes.json', { cache: 'no-cache' }).then(function (res) {
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      return res.json();
-    }).then(function (list) {
-      if (!Array.isArray(list) || !list.length) throw new Error('empty');
-      var q = list[Math.floor(Math.random() * list.length)];
-      els.quoteText.textContent = q.text || '';
-      els.quoteAuthor.textContent = '— ' + (q.author || '佚名');
-    }).catch(function () {
-      els.quoteText.textContent = '暂无名言数据';
-      els.quoteAuthor.textContent = '—';
-    });
-  }
+  /* ---------------- 主题 / 名言 ----------------
+     主题切换交给全站 theme.js(读 localStorage、广播 themechange);
+     名言交由 sidebar.js 的 loadRandomQuote() 统一处理。
+     本文件不再重复实现，避免两套逻辑各自演化。 */
 
   /* ---------------- 启动 ---------------- */
 
@@ -743,8 +721,7 @@
       'sheet', 'sheetLoading', 'docContent', 'docIssue', 'docRange',
       'docTitle', 'docSummary', 'docChips', 'docBody', 'tocPanel', 'tocList',
       'prevIssue', 'nextIssue', 'stateEmpty', 'stateError', 'errorDetail',
-      'lightbox', 'lightboxImg', 'lightboxCap', 'lightboxClose',
-      'quoteText', 'quoteAuthor'
+      'lightbox', 'lightboxImg', 'lightboxCap', 'lightboxClose'
     ].forEach(function (id) { els[id] = $(id); });
 
     // 别名：源码里用短名，DOM id 保持语义化
@@ -758,9 +735,9 @@
     els.footYear.textContent = new Date().getFullYear();
 
     if (window.initSidebar) initSidebar('sidebar-container');
-    bindTheme();
     bindLightbox();
-    loadQuote();
+    // 名言用侧边栏组件的统一实现；主题按钮由 theme.js 绑定
+    if (window.loadRandomQuote) loadRandomQuote('../quotes.json');
 
     loadManifest().then(function (list) {
       renderIndex();

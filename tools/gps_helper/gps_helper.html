@@ -1,13 +1,24 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        /* 尽早应用主题，避免闪白(theme.js 提供切换) */
+        (function () {
+            var t = localStorage.getItem('theme');
+            if (t === 'light' || t === 'dark') {
+                document.documentElement.setAttribute('data-theme', t);
+            }
+        })();
+    </script>
     <title>GPS 标记助手 · Geocoding Tool</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:ital,wght@0,300;0,400;0,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../theme.css">
     <link rel="stylesheet" href="../../siderbar/siderbar.css">
+    <script src="../../theme.js" defer></script>
     <style>
         :root {
             --bg-primary: #0b0b0d;
@@ -23,6 +34,23 @@
             --font-display: 'Cormorant Garamond', Georgia, serif;
             --font-ui: 'DM Mono', 'Courier New', monospace;
         }
+
+        /* ── 日间:纸面工坊(与 index 日间统一) ── */
+        [data-theme="light"] {
+            --bg-primary: #f6f3ec;
+            --bg-secondary: #efeadd;
+            --bg-card: #fdfbf6;
+            --text-primary: #2c2c2c;
+            --text-secondary: #6b6b6b;
+            --text-muted: #9c968c;
+            --accent: #8a6b2c;
+            --accent-glow: rgba(138, 107, 44, 0.2);
+            --accent-green: #4c7a5f;
+            --border: rgba(0, 0, 0, 0.1);
+            --sidebar-bg: rgba(255, 255, 255, 0.85);
+        }
+        :root { --bg: var(--bg-primary); --sidebar-bg: rgba(26, 23, 20, 0.78); }
+        [data-theme="light"] { --sidebar-bg: rgba(255, 255, 255, 0.85); }
         * { margin:0; padding:0; box-sizing:border-box; }
         html { background:var(--bg-primary); color:var(--text-primary); font-family:var(--font-ui); font-size:16px; }
         body { min-height:100vh; padding:2rem; }
@@ -382,6 +410,10 @@
     <link rel="stylesheet" href="../tools_theme.css">
 </head>
 <body class="theme-tools-dark">
+    <button class="theme-toggle" id="themeToggle" aria-label="切换日/夜模式" title="切换日/夜模式">
+        <span class="theme-icon theme-icon--light">☀</span>
+        <span class="theme-icon theme-icon--dark">☽</span>
+    </button>
 <div id="sidebar-container"></div>
 <div class="container">
     <h1>GPS 标记助手</h1>
@@ -1016,3 +1048,24 @@
 <script>initSidebar('sidebar-container');</script>
 </body>
 </html>
+
+        /* ── 日间:主操作按钮实底深铜,对比达标(与图片分析页一致) ── */
+        [data-theme="light"] .action-btn,
+        [data-theme="light"] #searchBtn,
+        [data-theme="light"] #geocodeBtn {
+            background: #8a6b2c;
+            border-color: #8a6b2c;
+            color: #fdfbf6;
+        }
+        [data-theme="light"] .action-btn:hover,
+        [data-theme="light"] #searchBtn:hover,
+        [data-theme="light"] #geocodeBtn:hover {
+            background: #a8823f;
+            border-color: #a8823f;
+            color: #fdfbf6;
+        }
+        [data-theme="light"] .action-btn:disabled {
+            background: rgba(138, 107, 44, 0.3);
+            border-color: transparent;
+            color: rgba(255, 255, 255, 0.75);
+        }

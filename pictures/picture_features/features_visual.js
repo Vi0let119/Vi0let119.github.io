@@ -172,8 +172,25 @@ function buildLegend() {
 // ============================================================
 // Init ECharts
 // ============================================================
+function chartPalette() {
+    const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    return {
+        bg: dark ? '#08080b' : '#f6f3ec',
+        glowBlur: dark ? 6 : 0,
+        glowColor: dark ? 'rgba(0,0,0,0)' : 'rgba(0,0,0,0)',
+        dotLine: dark ? 'rgba(255,255,255,0.06)' : 'rgba(44,38,28,0.35)',
+        toolLine: dark ? 'rgba(184,146,78,0.5)' : 'rgba(138,107,44,0.55)',
+        toolHot: dark ? '#b8924e' : '#8a6b2c',
+        brushFill: dark ? 'rgba(184,146,78,0.08)' : 'rgba(138,107,44,0.08)',
+        brushLine: dark ? 'rgba(184,146,78,0.7)' : 'rgba(138,107,44,0.75)',
+        hotShadow: dark ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.8)',
+        hotLine: dark ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.95)',
+    };
+}
+
 function initChart() {
-    chart = echarts.init(dom.chartStage, null, { backgroundColor: '#08080b' });
+    const P = chartPalette();
+    chart = echarts.init(dom.chartStage, null, { backgroundColor: P.bg });
 
     // 计算数据边界，x2 扩展确保任何缩放级别都能自由拖拽平移
     let xMin = Infinity, xMax = -Infinity, yMin = Infinity, yMax = -Infinity;
@@ -193,10 +210,10 @@ function initChart() {
         _scene: d.sc,
         itemStyle: {
             color: sceneColor(d.sc),
-            borderColor: 'rgba(255,255,255,0.06)',
+            borderColor: P.dotLine,
             borderWidth: 0.5,
-            shadowBlur: 6,
-            shadowColor: sceneColor(d.sc) + '66',
+            shadowBlur: P.glowBlur,
+            shadowColor: P.glowColor,
         },
     }));
 
@@ -210,12 +227,12 @@ function initChart() {
             top: 10,
             left: 10,
             iconStyle: {
-                borderColor: 'rgba(184,146,78,0.5)',
+                borderColor: P.toolLine,
                 borderWidth: 1.5,
             },
             emphasis: {
                 iconStyle: {
-                    borderColor: '#b8924e',
+                    borderColor: P.toolHot,
                     borderWidth: 2,
                     shadowBlur: 10,
                     shadowColor: 'rgba(184,146,78,0.35)',
@@ -265,8 +282,8 @@ function initChart() {
             outOfBrush: { colorAlpha: 0.12 },
             brushStyle: {
                 borderWidth: 2,
-                color: 'rgba(184,146,78,0.08)',
-                borderColor: 'rgba(184,146,78,0.7)',
+                color: P.brushFill,
+                borderColor: P.brushLine,
             },
         },
         grid: { left: 10, right: 10, top: 50, bottom: 10 },
@@ -281,9 +298,9 @@ function initChart() {
                 focus: 'self',
                 itemStyle: {
                     shadowBlur: 20,
-                    shadowColor: 'rgba(255,255,255,0.7)',
+                    shadowColor: P.hotShadow,
                     borderWidth: 2,
-                    borderColor: 'rgba(255,255,255,0.9)',
+                    borderColor: P.hotLine,
                 },
             },
             data: allData,
@@ -296,6 +313,15 @@ function initChart() {
     chart.on('click', onClick);
     chart.on('brushSelected', onBrushSelected);
 }
+
+// 主题切换:按新调色板重建星图
+document.addEventListener('themechange', function () {
+    if (!chart || !rawData) return;
+    if (dom.tooltipCard) dom.tooltipCard.style.display = 'none';
+    chart.dispose();
+    chart = null;
+    initChart();
+});
 
 // ============================================================
 // Tooltip

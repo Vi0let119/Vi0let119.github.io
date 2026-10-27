@@ -1,10 +1,21 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        /* 尽早应用主题，避免闪白(theme.js 提供切换) */
+        (function () {
+            var t = localStorage.getItem('theme');
+            if (t === 'light' || t === 'dark') {
+                document.documentElement.setAttribute('data-theme', t);
+            }
+        })();
+    </script>
     <title>工具箱 · Tools</title>
+    <link rel="stylesheet" href="../theme.css">
     <link rel="stylesheet" href="tools_theme.css">
+    <script src="../theme.js" defer></script>
     <style>
         /* ============================================
            工具箱目录 — 墨色 × 铜金
@@ -70,10 +81,10 @@
             letter-spacing: 0.28em;
         }
 
-        /* ── 工具卡片网格（自适应换行） ── */
+        /* ── 工具卡片网格（自适应换行;960px 容器下 300px 列宽恰好 2×2,不落单卡） ── */
         .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 18px;
         }
 
@@ -248,9 +259,17 @@
             .tools-grid { grid-template-columns: 1fr; gap: 14px; }
             .tool-card { padding: 24px 20px 22px; }
         }
+    
+        /* 夜间:能力芯片提亮,日间加深(评审:对比不足) */
+        [data-theme="dark"] .tool-tag { color: rgba(232, 216, 182, 0.78); border-color: rgba(232, 216, 182, 0.28); }
+        [data-theme="light"] .tool-tag { color: #6b6558; border-color: rgba(0, 0, 0, 0.22); }
     </style>
 </head>
 <body class="theme-tools-dark">
+    <button class="theme-toggle" id="themeToggle" aria-label="切换日/夜模式" title="切换日/夜模式">
+        <span class="theme-icon theme-icon--light">☀</span>
+        <span class="theme-icon theme-icon--dark">☽</span>
+    </button>
 
     <main class="main">
 

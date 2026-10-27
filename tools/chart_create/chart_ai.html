@@ -1,14 +1,27 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        /* 尽早应用主题，避免闪白(theme.js 提供切换) */
+        (function () {
+            var t = localStorage.getItem('theme');
+            if (t === 'light' || t === 'dark') {
+                document.documentElement.setAttribute('data-theme', t);
+            }
+        })();
+    </script>
     <title>AI 图表 — AI Chart</title>
     <link rel="stylesheet" href="../tools_theme.css">
     <link rel="stylesheet" href="chart_ai.css">
     <script src="../../echarts.min.js"></script>
 </head>
 <body class="theme-tools-dark">
+    <button class="theme-toggle" id="themeToggle" aria-label="切换日/夜模式" title="切换日/夜模式">
+        <span class="theme-icon theme-icon--light">☀</span>
+        <span class="theme-icon theme-icon--dark">☽</span>
+    </button>
     <div class="app-container">
         <!-- 顶栏：返回链接、标题与设置入口 -->
         <header class="top-bar">

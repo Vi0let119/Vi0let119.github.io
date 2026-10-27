@@ -1,14 +1,24 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>项目 · Projects</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script>
+        // 尽早应用主题，避免闪白
+        (function () {
+            var t = localStorage.getItem('theme');
+            if (t === 'light' || t === 'dark') {
+                document.documentElement.setAttribute('data-theme', t);
+            }
+        })();
+    </script>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../siderbar/siderbar.css">
+    <script src="../theme.js"></script>
     <script src="../siderbar/sidebar.js"></script>
     <style>
         /* ============================================
@@ -56,6 +66,8 @@
 
         .proj-list li + li { border-top: 1px solid rgba(0, 0, 0, 0.07); }
 
+        [data-theme="dark"] .proj-list li + li { border-top-color: rgba(232, 224, 213, 0.12); }
+
         .proj-row {
             display: grid;
             grid-template-columns: 56px 1fr auto auto;
@@ -69,6 +81,7 @@
         }
 
         .proj-row:hover { background: #fff; }
+        [data-theme="dark"] .proj-row:hover { background: rgba(232, 224, 213, 0.06); }
         .proj-row:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
         .proj-num {
@@ -130,6 +143,11 @@
         .tag--dev  { color: #b07a3c; background: #f7efe2; }
         .tag--plan { color: #6b7280; background: #eceef1; }
 
+        /* 夜间:底片上的状态标签,提字降底 */
+        [data-theme="dark"] .tag--done { color: #a9c9b4; background: rgba(169, 201, 180, 0.1); }
+        [data-theme="dark"] .tag--dev  { color: #cfb984; background: rgba(212, 168, 83, 0.1); }
+        [data-theme="dark"] .tag--plan { color: rgba(232, 224, 213, 0.55); background: rgba(232, 224, 213, 0.07); }
+
         /* ── 箭头 ── */
         .proj-arrow {
             font-size: 1.05rem;
@@ -176,6 +194,12 @@
 </head>
 <body>
     <div id="sidebar-container"></div>
+    <div class="theme-grain" aria-hidden="true"></div>
+
+    <button class="theme-toggle" id="themeToggle" aria-label="切换日/夜模式" title="切换日/夜模式">
+        <span class="theme-icon theme-icon--light">☀</span>
+        <span class="theme-icon theme-icon--dark">☽</span>
+    </button>
 
     <main class="main proj-page">
 

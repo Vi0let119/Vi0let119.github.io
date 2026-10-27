@@ -437,3 +437,61 @@ body::after {
     padding-right: calc(24px + 10vw);
   }
 }
+
+
+/* ============================================
+   日间 — 白昼星图(与 index 日间统一)
+   星点为分类色,双主题通用;底/字/线随主题反转
+   ============================================ */
+[data-theme="light"] {
+    --bg-deep: #f6f3ec;
+    --bg-base: #efeadd;
+    --bg-card: #fdfbf6;
+    --bg-hover: #e8e2d3;
+    --text: #2c2c2c;
+    --text-dim: #6b6b6b;
+    --text-faint: #a49d90;
+    --accent: #8a6b2c;
+    --accent-dim: rgba(138, 107, 44, 0.1);
+    --accent-glow: rgba(138, 107, 44, 0.18);
+    --border: rgba(0, 0, 0, 0.08);
+    --border-light: rgba(0, 0, 0, 0.15);
+}
+
+
+/* ── 右侧抽屉:夜间墨玻璃 / 日间纸玻璃 ── */
+.right-sidebar {
+    backdrop-filter: blur(18px) !important;
+    -webkit-backdrop-filter: blur(18px) !important;
+}
+
+[data-theme="dark"] .right-sidebar {
+    background: rgba(14, 14, 18, 0.72) !important;
+    border-left: 1px solid var(--border-light) !important;
+}
+
+[data-theme="light"] .right-sidebar {
+    background: rgba(253, 251, 246, 0.88) !important;
+    border-left: 1px solid var(--border-light) !important;
+}
+
+[data-theme="light"] .right-sidebar .sidebar-title {
+    color: var(--text);
+}
+
+[data-theme="light"] .right-sidebar .sidebar-menu > li > a,
+[data-theme="light"] .right-sidebar .submenu-parent > .submenu-label,
+[data-theme="light"] .right-sidebar .submenu li a {
+    color: var(--text-dim);
+}
+
+[data-theme="light"] .right-sidebar .toggle-btn {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    color: var(--text-dim);
+}
+
+/* 左上角返回链接让出固定主题切换按钮(42px + 间距) */
+.topbar {
+    padding-left: 64px;
+}

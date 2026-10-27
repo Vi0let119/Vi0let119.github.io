@@ -1,16 +1,32 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>拾遗集 · 作品分享</title>
+    <script>
+        // 尽早应用主题，避免闪白
+        (function () {
+            var t = localStorage.getItem('theme');
+            if (t === 'light' || t === 'dark') {
+                document.documentElement.setAttribute('data-theme', t);
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="../theme.css">
     <link rel="stylesheet" href="../siderbar/siderbar.css">
     <link rel="stylesheet" href="sharing.css">
+    <script src="../theme.js" defer></script>
     <script src="../siderbar/sidebar.js"></script>
 </head>
 <body>
     <h1 class="sr-only">拾遗集 · 书影分享</h1>
     <div id="sidebar-container"></div>
+    <div class="theme-grain" aria-hidden="true"></div>
+    <button class="theme-toggle" id="themeToggle" aria-label="切换日/夜模式" title="切换日/夜模式">
+        <span class="theme-icon theme-icon--light">☀</span>
+        <span class="theme-icon theme-icon--dark">☽</span>
+    </button>
     <div class="bg-texture"></div>
     <div class="sharing-page-wrapper">
         <!-- 左侧分类导航：三个分组按钮 + 各自的条目子菜单 -->
@@ -189,13 +205,13 @@
 
             <section class="sharing-panel" id="book-9">
                 <h2>《鼠疫》</h2>
-                <p><span class="lead-kicker">梗概</span></p>
+                <p><span class="lead-kicker">梗概</span>海滨的奥兰洋溢着空白的美好，直到老鼠尸体的出现，一只，两只，一堆，一卡车......鼠疫笼罩了这片宁静的小镇。医生，罪人，记者，法官，偷渡客，朝圣者，教父......还有无数个普通人，经历了从身体到心灵的碰撞。当希望已经消失时，鼠疫却突然走了，留下城里颤抖的人们。可或许鼠疫从来没有离开，却带走了很多......</p>
                 <ul>
                     <li>作者：阿尔贝·加缪</li>
                     <li>主题：瘟疫、人性、荒诞</li>
                     <li>推荐指数：★★★</li>
                 </ul>
-                <p class="panel-empty-note">这一篇还在心里，尚未落笔。</p>
+                <p class="panel-empty-note">这本书看到前面的时候，只是感觉有些无聊，都是关于疫病的描写，人们前后的对比，防疫的措施，时不时有些明显的叙述在表达加缪想传达的东西。加缪想要表达的东西很多，我一时不能想清楚，只是往后看着，但是总的来说对我确实少了些吸引力。可是读到后面还是有些不一样，里面好几位人物的弧光在故事中得到体现，才让我真正走进了这个故事，走进了这场绝望又荒诞的鼠疫。因为很多地方没想清楚，所以下来我去看了解析视频，里面有提到加缪在影射当时的欧洲形势，但是我并不关注这一点，我关注的是加缪所要表达的荒诞。可是看下来也没有得到想要的答案。或许塔鲁已经说的很清楚，虽然医生里厄算是小说的视角上的主角，但是在后面里厄与塔鲁真心交谈过之后，我才发现塔鲁才是真正的主角，是这部小说的灵魂角色。这个角色蕴含着加缪对荒诞与反抗的深刻见解。其实这本小说的人物形象才是我觉得写的最好的，人物一点点地圆满，加缪要表达的东西才慢慢从每个不同的角色上浮现。</p>
             </section>
 
             <!-- ════ 动漫（占位，成文后按书籍面板模板补全） ════ -->

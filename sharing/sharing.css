@@ -31,7 +31,7 @@
   /* 墨色系 */
   --sj-ink: #1c1b18;
   --sj-ink-2: #4a463c;
-  --sj-ink-3: #8d8676;
+  --sj-ink-3: #7d7666;
 
   /* 松绿 — 全刊强调色（hover / active / 刊头规则） */
   --sj-pine: #2e4b3f;
@@ -183,7 +183,8 @@ body {
   position: sticky;
   top: 0;
   height: 100vh;
-  padding: var(--sj-pad, 2.2rem) 1.8rem;
+  /* 顶部让位给固定主题切换按钮(左上角 42px 圆钮) */
+  padding: calc(var(--sj-pad, 2.2rem) + 56px) 1.8rem var(--sj-pad, 2.2rem);
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
@@ -708,9 +709,9 @@ body {
 
 .sharing-notice {
   position: fixed;
-  top: 22px;
+  bottom: 24px; /* 底部居中纸笺:报头与两侧目录都不遮挡 */
   left: 50%;
-  transform: translate(-50%, -16px);
+  transform: translate(-50%, 16px);
   display: flex;
   align-items: flex-start;
   gap: 14px;
@@ -1016,4 +1017,88 @@ body {
   body:not(.sidebar-collapsed) .sharing-content {
     padding-right: 7.5vw;
   }
+}
+
+/* ============================================
+   夜间 — 底片暗房(与 index 夜间统一)
+   报纸变成「晚报」:墨底、米字、松绿让位给铜金
+   ============================================ */
+[data-theme="dark"] {
+  --sj-paper: #3a3530;
+  --sj-card: #454039;
+  --sj-card-2: #423d36;
+  --sj-card-deep: #332f2a;
+
+  --sj-ink: #e8e0d5;
+  --sj-ink-2: rgba(232, 224, 213, 0.68);
+  --sj-ink-3: rgba(232, 224, 213, 0.52);
+
+  --sj-pine: #c9a86a;
+  --sj-pine-deep: #dcb87e;
+  --sj-pine-dim: rgba(212, 168, 83, 0.1);
+  --sj-gold: #d4a853;
+  --sj-cinnabar: #cf7a5d;
+
+  --sj-rule: rgba(232, 224, 213, 0.16);
+  --sj-rule-soft: rgba(232, 224, 213, 0.08);
+
+  --sj-shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* 夜间:纸张纤维纹理转亮线 */
+[data-theme="dark"] .bg-texture {
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(232, 224, 213, 0.014) 2px, rgba(232, 224, 213, 0.014) 3px),
+    repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(232, 224, 213, 0.01) 3px, rgba(232, 224, 213, 0.01) 5px),
+    radial-gradient(rgba(232, 224, 213, 0.02) 0.4px, transparent 0.4px),
+    radial-gradient(rgba(232, 224, 213, 0.016) 0.3px, transparent 0.3px);
+}
+
+[data-theme="dark"] .bg-texture::after {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255, 235, 200, 0.05) 0%, transparent 40%),
+    radial-gradient(ellipse at 10% 100%, rgba(0, 0, 0, 0.2) 0%, transparent 45%),
+    radial-gradient(ellipse at 100% 80%, rgba(0, 0, 0, 0.16) 0%, transparent 40%);
+}
+
+/* 夜间:左目录栏由纸面转为暗面 */
+[data-theme="dark"] .sharing-sidebar {
+  background: linear-gradient(180deg, #403a34 0%, #3a3530 100%);
+}
+
+[data-theme="dark"] .sharing-sidebar::after {
+  background: linear-gradient(90deg,
+    rgba(212, 168, 83, 0.28) 0%,
+    rgba(212, 168, 83, 0.1) 55%,
+    transparent 100%);
+}
+
+/* 夜间:报头底色晕染转暗金 */
+[data-theme="dark"] .sj-dateline,
+[data-theme="dark"] .sharing-content {
+  scrollbar-color: rgba(232, 224, 213, 0.2) transparent;
+}
+
+/* 夜间:零散的深色细线/底色改亮 */
+[data-theme="dark"] .sharing-nav::-webkit-scrollbar-thumb { background: rgba(212, 168, 83, 0.35); }
+[data-theme="dark"] .sharing-content::-webkit-scrollbar-thumb { background: rgba(232, 224, 213, 0.2); }
+[data-theme="dark"] .sharing-content::-webkit-scrollbar-thumb:hover { background: rgba(232, 224, 213, 0.32); }
+[data-theme="dark"] .sharing-nav-item:hover::after { border-bottom-color: rgba(212, 168, 83, 0.45); }
+[data-theme="dark"] .lead-kicker { border-color: rgba(212, 168, 83, 0.45); }
+[data-theme="dark"] .sharing-panel a { border-bottom-color: rgba(212, 168, 83, 0.35); }
+[data-theme="dark"] .sharing-more-button:hover { outline-color: rgba(212, 168, 83, 0.4); }
+[data-theme="dark"] .sharing-more-content { box-shadow: none; }
+[data-theme="dark"] .sharing-more-content::before {
+  background: linear-gradient(90deg, var(--sj-pine) 0%, rgba(212, 168, 83, 0.15) 60%, transparent 100%);
+}
+[data-theme="dark"] .sharing-notice-seal { background: rgba(207, 122, 93, 0.12); }
+
+/* 夜间:巨型底纹字与选中 */
+[data-theme="dark"] .sharing-page-wrapper::after { color: rgba(232, 224, 213, 0.04); }
+[data-theme="dark"] ::selection { background: rgba(212, 168, 83, 0.28); color: #fff; }
+
+/* 夜间:全局侧栏(本页覆写为 11vw 米面,夜间换暗面) */
+[data-theme="dark"] .right-sidebar {
+  background: rgba(26, 23, 20, 0.82) !important;
+  border-left: 1px solid rgba(232, 224, 213, 0.12) !important;
 }

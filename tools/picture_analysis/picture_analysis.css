@@ -50,14 +50,37 @@ body {
   font-family: var(--font-body);
 }
 
+/* ===== 页头 ===== */
+.pa-header {
+  margin: 2.5vh 20px 20px;
+  position: relative;
+  z-index: 5;
+}
+
+.pa-header h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--text-primary);
+  margin: 0 0 6px;
+}
+
+.pa-header .pa-sub {
+  margin: 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
 /* ===== 左侧图片面板 ===== */
 .image-panel {
   position: relative;
-  top: 1vw;
   width: 60vw;
   min-width: 320px;
   margin: 0 0 20px 20px;
-  min-height: 90vh;
   background: var(--gallery-surface);
   border: 1px solid var(--gallery-border);
   border-radius: var(--gallery-radius-lg);
@@ -114,16 +137,45 @@ body {
   max-width: 90vw;
   max-height: 65vh;
   object-fit: contain;
+  position: relative;
+  z-index: 2;
+  border-radius: var(--gallery-radius-sm);
 }
+
+/* 未选图时隐藏 img(分析器选图后写入 src,自动显示),露出空态提示 */
+#displayImage:not([src]),
+#displayImage[src=""] { display: none; }
+
+/* 空态提示:虚线框内的引导文案 */
+.image-preview-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  pointer-events: none;
+  transition: color var(--gallery-transition);
+}
+
+.image-preview-hint i {
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  opacity: 0.7;
+}
+
+.image-preview:hover .image-preview-hint { color: var(--gallery-accent); }
 
 /* ===== 右侧详细信息面板 ===== */
 .picture_details {
   position: relative;
-  top: 1vw;
   width: 35vw;
   min-width: 320px;
   margin: 0 auto;
-  min-height: 80vh;
   background: var(--gallery-surface);
   padding: 20px;
   border: 1px solid var(--gallery-border);
@@ -137,11 +189,21 @@ body {
 
 .picture_details .control-panel {
   margin-bottom: 10px;
-  min-height: 90vh;
+}
+
+/* 小节标签:给图表区命名,未分析时也说明这两块是什么 */
+.pa-section-label {
+  margin: 18px 2px 0;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  color: var(--text-muted);
 }
 
 /* ===== 图表容器 ===== */
 #chartContainer {
+  position: relative;
   width: 100% !important;
   height: 300px;
   min-height: 200px;
@@ -151,9 +213,26 @@ body {
   margin-top: 15px;
 }
 
+/* 空态提示:垫在画布下层,未分析时(画布透明)透出,出图后被盖住 */
+#chartContainer::before,
+#rgbHistogram::before {
+  content: '等待分析 — 上传图片后点击「开始分析」';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  pointer-events: none;
+  z-index: 0;
+}
+
 /* ===== RGB 直方图 Canvas ===== */
 #rgbHistogram {
-  margin-top: 20px;
+  margin-top: 6px;
   text-align: center;
 }
 
@@ -332,4 +411,10 @@ body {
 .picture_details::-webkit-scrollbar-thumb {
   background: rgba(228, 224, 216, 0.12);
   border-radius: 3px;
+}
+
+/* 夜间:空图表框边框提亮一档,不再隐入卡面 */
+[data-theme="dark"] #chartContainer,
+[data-theme="dark"] #rgbHistogram {
+  border-color: rgba(228, 224, 216, 0.22) !important;
 }

@@ -1,9 +1,17 @@
 import json
 import os
 import re
+import sys
 from datetime import datetime
 from PIL import Image
 from PIL.ExifTags import GPSTAGS, TAGS
+
+if '--force' not in sys.argv:
+    sys.exit(
+        "此脚本已废弃：它会把 picture_info.json 的经纬度清空（水印图片没有 GPS EXIF）。\n"
+        "请改用: python .claude/skills/picture-info-sorter/scripts/update_picture_info.py\n"
+        "（确实要运行旧版，请加 --force）"
+    )
 
 img_dir = r"D:\虚拟C盘\网站html练习\图库"
 json_path = r"D:\虚拟C盘\网站html练习\pictures\picture_info.json"

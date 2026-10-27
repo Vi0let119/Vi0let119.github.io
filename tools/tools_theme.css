@@ -20,7 +20,7 @@
     /* ── 文字 ── */
     --text-primary: #f0ece4;
     --text-secondary: #b0aca6;
-    --text-muted: #78746e;
+    --text-muted: #8f8a82;
 
     /* ── 铜金 ── */
     --accent: #b8924e;
@@ -44,15 +44,44 @@
     --radius-md: 6px;
     --radius-lg: 10px;
     --ease: cubic-bezier(0.25, 0.6, 0.3, 1);
+
+    /* ── 与全站 theme.css 对接的别名 ── */
+    --bg: var(--bg-primary);
+    --sidebar-bg: rgba(26, 23, 20, 0.78);
+}
+
+/* ── 日间:纸面工坊(与 index 日间统一) ── */
+[data-theme="light"] {
+    --bg-primary: #f6f3ec;
+    --bg-secondary: #efeadd;
+    --bg-card: #fdfbf6;
+    --bg-input: #f1ece1;
+
+    --text-primary: #2c2c2c;
+    --text-secondary: #6b6b6b;
+    --text-muted: #6f6a62;
+
+    --accent: #8a6b2c;
+    --accent-hover: #a8823f;
+    --accent-soft: rgba(138, 107, 44, 0.1);
+    --accent-border: rgba(138, 107, 44, 0.42);
+
+    --border: rgba(0, 0, 0, 0.1);
+    --border-strong: rgba(0, 0, 0, 0.2);
+    --hairline: rgba(0, 0, 0, 0.05);
+    --danger: #b04a3a;
+
+    --sidebar-bg: rgba(255, 255, 255, 0.85);
 }
 
 /* ── 共享微交互 ── */
 ::selection { background: rgba(184, 146, 78, 0.30); color: #f6f2e9; }
+[data-theme="light"] ::selection { background: rgba(138, 107, 44, 0.2); color: var(--text-primary); }
 
 :focus-visible { outline: 1px solid var(--accent-border); outline-offset: 2px; }
 
-/* 极淡胶片颗粒 — 盖在全页之上，呼吸感 */
-body.theme-tools-dark::after {
+/* 极淡胶片颗粒 — 只在夜间,盖在全页之上,呼吸感 */
+[data-theme="dark"] body.theme-tools-dark::after {
     content: '';
     position: fixed;
     inset: 0;
@@ -120,47 +149,46 @@ body.theme-tools-dark::after {
 .tt-toast--error { border-left-color: var(--danger); }
 .tt-toast--error .tt-toast-dot { background: var(--danger); box-shadow: 0 0 8px rgba(192, 90, 74, 0.5); }
 
-/* ── 侧边栏暗色适配（只作用于工具页，不动 siderbar.css 本体）── */
-body.theme-tools-dark .right-sidebar {
-    background: rgba(14, 14, 18, 0.55);
+/* ── 侧边栏适配(只作用于工具页,不动 siderbar.css 本体)
+      底色/边线交给 theme.css 的玻璃拟态按主题切换;这里只补夜间阴影与字号 ── */
+[data-theme="dark"] body.theme-tools-dark .right-sidebar {
     box-shadow: -24px 0 48px rgba(0, 0, 0, 0.35);
-    border-left: 1px solid var(--hairline);
 }
 
-body.theme-tools-dark .sidebar-title {
+[data-theme="dark"] body.theme-tools-dark .sidebar-title {
     color: var(--text-primary);
     font-size: 15px;
     letter-spacing: 0.08em;
 }
 
-body.theme-tools-dark .sidebar-menu > li > a,
-body.theme-tools-dark .submenu-parent > .submenu-label {
+[data-theme="dark"] body.theme-tools-dark .sidebar-menu > li > a,
+[data-theme="dark"] body.theme-tools-dark .submenu-parent > .submenu-label {
     color: var(--text-secondary);
     font-size: 14px;
 }
 
-body.theme-tools-dark .sidebar-menu > li > a:hover,
-body.theme-tools-dark .submenu-parent > .submenu-label:hover {
+[data-theme="dark"] body.theme-tools-dark .sidebar-menu > li > a:hover,
+[data-theme="dark"] body.theme-tools-dark .submenu-parent > .submenu-label:hover {
     background: rgba(228, 224, 216, 0.06);
     color: var(--text-primary);
 }
 
-body.theme-tools-dark .submenu-arrow { color: var(--text-muted); }
-body.theme-tools-dark .submenu-arrow:hover { background: rgba(228, 224, 216, 0.08); color: var(--accent); }
+[data-theme="dark"] body.theme-tools-dark .submenu-arrow { color: var(--text-muted); }
+[data-theme="dark"] body.theme-tools-dark .submenu-arrow:hover { background: rgba(228, 224, 216, 0.08); color: var(--accent); }
 
-body.theme-tools-dark .submenu li a { color: var(--text-muted); font-size: 13px; }
-body.theme-tools-dark .submenu li a:hover { background: rgba(228, 224, 216, 0.05); color: var(--text-secondary); }
+[data-theme="dark"] body.theme-tools-dark .submenu li a { color: var(--text-muted); font-size: 13px; }
+[data-theme="dark"] body.theme-tools-dark .submenu li a:hover { background: rgba(228, 224, 216, 0.05); color: var(--text-secondary); }
 
-body.theme-tools-dark .toggle-btn {
+[data-theme="dark"] body.theme-tools-dark .toggle-btn {
     background: var(--bg-secondary);
     border: 1px solid var(--border);
     color: var(--text-secondary);
 }
 
-body.theme-tools-dark ::-webkit-scrollbar { width: 6px; height: 6px; }
-body.theme-tools-dark ::-webkit-scrollbar-track { background: transparent; }
-body.theme-tools-dark ::-webkit-scrollbar-thumb { background: rgba(228, 224, 216, 0.12); border-radius: 3px; }
-body.theme-tools-dark ::-webkit-scrollbar-thumb:hover { background: rgba(228, 224, 216, 0.22); }
+[data-theme="dark"] body.theme-tools-dark ::-webkit-scrollbar { width: 6px; height: 6px; }
+[data-theme="dark"] body.theme-tools-dark ::-webkit-scrollbar-track { background: transparent; }
+[data-theme="dark"] body.theme-tools-dark ::-webkit-scrollbar-thumb { background: rgba(228, 224, 216, 0.12); border-radius: 3px; }
+[data-theme="dark"] body.theme-tools-dark ::-webkit-scrollbar-thumb:hover { background: rgba(228, 224, 216, 0.22); }
 
 /* ── 动效降级 ── */
 @media (prefers-reduced-motion: reduce) {

@@ -552,3 +552,46 @@ body {
         margin-right: 10vw;
     }
 }
+
+
+/* ============================================
+   日间 — 白昼图集(与 index 日间统一)
+   地图换纸面底色;灯箱与悬浮顶栏保持暗房银盐
+   质感(看照片暗环境更准确),不随主题反转
+   ============================================ */
+[data-theme="light"] {
+    --bg-primary: #f6f3ec;
+    --bg-secondary: #ede8dc;
+    --text-primary: #2c2c2c;
+    --text-secondary: #6b6b6b;
+    --text-muted: #b3ac9f;
+    --accent: #8a6b2c;
+    --accent-glow: rgba(138, 107, 44, 0.2);
+    --accent-dim: rgba(138, 107, 44, 0.07);
+    --border: rgba(0, 0, 0, 0.08);
+    --border-light: rgba(0, 0, 0, 0.14);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.15); }
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.25); }
+
+/* 日间:右侧抽屉换纸面 */
+[data-theme="light"] .right-sidebar {
+    background: linear-gradient(180deg, rgba(253, 251, 246, 0.97) 0%, rgba(246, 243, 236, 0.96) 100%);
+}
+
+[data-theme="light"] .toggle-btn {
+    background: rgba(253, 251, 246, 0.95);
+    border-color: rgba(138, 107, 44, 0.35);
+}
+
+[data-theme="light"] .toggle-btn:hover {
+    color: var(--accent);
+    border-color: rgba(138, 107, 44, 0.6);
+    background: #ffffff;
+}
+
+/* 左上角返回链接让出固定主题切换按钮(42px + 间距) */
+.map-header {
+    padding-left: 64px;
+}

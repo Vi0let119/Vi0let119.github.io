@@ -177,11 +177,10 @@ body {
    GALLERY 区 — 左侧缩略图列表 + 右侧主图
    ============================================ */
 
+/* 旧「左列表 + 右主图」布局已由 .scroll-track 印样长卷接管（见文末长卷层） */
 #gallery {
-    display: flex;
+    display: block;
     width: 100%;
-    height: 100vh;
-    height: 100dvh;
     background: var(--bg-primary);
     border-top: 1px solid var(--border);
 }
@@ -314,6 +313,13 @@ body {
 .thumb-item.active {
     border-color: var(--accent);
     box-shadow: inset 0 0 0 1px var(--accent-glow);
+}
+
+.thumb-item:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-color: var(--accent);
+    z-index: 3;
 }
 
 .thumb-item img {
@@ -836,3 +842,588 @@ body {
         font-size: 1rem;
     }
 }
+
+
+/* ============================================
+   日间 — 白昼画册(与 index 日间统一)
+   暗色版式为默认,:root 即夜间值;日间在此覆写
+   ============================================ */
+[data-theme="light"] {
+    --bg-primary: #f6f3ec;
+    --bg-secondary: #ede8dc;
+    --bg-sidebar: #fbf9f4;
+    --text-primary: #2c2c2c;
+    --text-secondary: #6b6b6b;
+    --text-muted: #b3ac9f;
+    --accent: #8a6b2c;
+    --accent-glow: rgba(138, 107, 44, 0.2);
+    --accent-dim: rgba(138, 107, 44, 0.07);
+    --border: rgba(0, 0, 0, 0.08);
+    --border-light: rgba(0, 0, 0, 0.14);
+}
+
+/* 日间:滚动条与筛选微光 */
+[data-theme="light"] ::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.15); }
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.25); }
+
+/* 日间:排序按钮换纸面 */
+[data-theme="light"] .sort-btn {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(138, 107, 44, 0.3);
+}
+
+/* 日间:主图区辐射光改纸面 */
+[data-theme="light"] .gallery-main {
+    background:
+        radial-gradient(ellipse at center, rgba(138, 107, 44, 0.04) 0%, transparent 70%),
+        var(--bg-primary);
+}
+
+/* 日间:缩略图 shimmer 用暖灰 */
+@keyframes shimmerLight {
+    0%   { background: var(--bg-secondary); }
+    50%  { background: #e2dccd; }
+    100% { background: var(--bg-secondary); }
+}
+[data-theme="light"] .thumb-item.loading { animation: shimmerLight 1.5s infinite; }
+
+/* 日间:右侧抽屉换纸面,金线换铜色 */
+[data-theme="light"] .right-sidebar {
+    background: linear-gradient(180deg, rgba(253, 251, 246, 0.97) 0%, rgba(246, 243, 236, 0.96) 100%);
+}
+
+[data-theme="light"] .right-sidebar::before {
+    background: linear-gradient(
+        180deg,
+        transparent 5%,
+        rgba(138, 107, 44, 0.45) 15%,
+        rgba(138, 107, 44, 0.2) 50%,
+        rgba(138, 107, 44, 0.45) 85%,
+        transparent 95%
+    );
+}
+
+[data-theme="light"] .toggle-btn {
+    background: rgba(253, 251, 246, 0.95);
+    border-color: rgba(138, 107, 44, 0.35);
+}
+
+[data-theme="light"] .toggle-btn:hover {
+    color: var(--accent);
+    border-color: rgba(138, 107, 44, 0.6);
+    background: #ffffff;
+    box-shadow: 0 0 20px rgba(138, 107, 44, 0.15);
+}
+
+/* 日间:hero 压在暗色视频上,标题/副题/滚动提示固定用暗房亮字,不随主题反转 */
+[data-theme="light"] .hero-title,
+[data-theme="light"] .hero-subtitle { color: #f2ede2; text-shadow: 0 2px 24px rgba(0, 0, 0, 0.55); }
+[data-theme="light"] .scroll-label { color: rgba(242, 237, 226, 0.72); }
+[data-theme="light"] .scroll-arrow { color: rgba(242, 237, 226, 0.6); }
+
+/* ═══════════════════════════════════════════════════════════
+   印样长卷 — 滚动驱动印样条横移
+   默认纵向（无 JS / 窄屏 / 减动效）：看片台在上，印样条原生横滚；
+   body.longform-on 时整段钉在视口，滚动只推进印样条。
+   ═══════════════════════════════════════════════════════════ */
+
+/* ---------- 看片台显隐（class 契约，替代内联 display） ---------- */
+.main-placeholder.hidden { display: none !important; }
+
+.main-image-wrap { display: none; }
+.main-image-wrap.shown { display: flex; }
+
+.image-caption { display: none; }
+.image-caption.shown { display: flex; }
+
+/* ---------- 纵向（默认） ---------- */
+.scroll-track { position: relative; }
+
+.scroll-stage {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.rail-panel {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    padding: 2.4rem 24px 1.2rem;
+}
+
+.rail-head { display: flex; align-items: baseline; gap: 1rem; }
+
+.rail-title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.7rem;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    color: var(--text-primary);
+}
+
+.rail-count { display: flex; align-items: center; gap: 10px; }
+
+.rail-note {
+    margin: 0 auto 0;
+    font-family: var(--font-ui);
+    font-size: 0.66rem;
+    letter-spacing: 0.22em;
+    color: var(--text-muted);
+}
+
+.rail-note em {
+    font-style: normal;
+    margin-left: 1.1em;
+    color: var(--accent);
+    opacity: 0.75;
+}
+
+.rail-features-link {
+    margin-left: auto;
+    font-family: var(--font-ui);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.rail-features-link:hover { color: var(--accent); }
+
+/* 看片台 */
+.viewer-stage {
+    position: relative;
+    flex: 1;
+    min-height: 62vh;
+}
+
+/* 印样条：原生横向滚动 */
+.filmstrip {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.filmstrip::-webkit-scrollbar { display: none; }
+
+.filmstrip .filmstrip-track,
+#thumbnailGrid {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    width: max-content;
+    /* 两端大留白：首尾帧也能移到看片台准线上，全程真居中 */
+    padding: 0 56vw 1.4rem;
+    box-sizing: border-box;
+}
+
+.filmstrip .thumb-item {
+    flex-shrink: 0;
+    width: 168px;
+    height: 116px;
+}
+
+.filmstrip .thumb-item img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ═══════════════════════════════════════════════════════════
+   横卷形态：body.longform-on
+   ═══════════════════════════════════════════════════════════ */
+body.longform-on .scroll-stage {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* 左侧题签：恒驻，轻纱渐隐 */
+body.longform-on .rail-panel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 6;
+    width: clamp(280px, 24vw, 400px);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2.2rem;
+    padding: 6.5rem 2rem 2.4rem 64px;
+    background: linear-gradient(90deg, var(--bg-primary) 55%, transparent 100%);
+    box-sizing: border-box;
+}
+
+body.longform-on .rail-head { flex-direction: column; gap: 0.6rem; }
+
+body.longform-on .rail-title { font-size: 2.2rem; }
+
+body.longform-on .rail-note {
+    margin: 0;
+    line-height: 2;
+}
+
+body.longform-on .rail-note em { display: block; margin: 0.4em 0 0; }
+
+body.longform-on .rail-features-link {
+    margin: auto 0 0;
+}
+
+/* 中央看片台：让出题签左位 */
+body.longform-on .viewer-stage {
+    position: absolute;
+    left: clamp(280px, 24vw, 400px);
+    right: 0;
+    top: 0;
+    bottom: 190px;
+}
+
+/* 底部接触印样条 */
+body.longform-on .filmstrip {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 190px;
+    overflow: hidden;
+    padding-left: clamp(280px, 24vw, 400px);
+    box-sizing: border-box;
+    /* 印样条两端渐隐 */
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 clamp(280px, 24vw, 400px), #000 92%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 clamp(280px, 24vw, 400px), #000 92%, transparent 100%);
+}
+
+body.longform-on .filmstrip .filmstrip-track {
+    height: 100%;
+    align-items: center;
+    padding: 0 24px;
+    will-change: transform;
+}
+
+body.longform-on .filmstrip .thumb-item {
+    width: 190px;
+    height: 128px;
+    transition: filter 0.35s ease, transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* 未选中帧微降饱和，选中帧显影 */
+body.longform-on .thumb-item img { filter: saturate(0.4) brightness(0.72); transition: filter 0.35s ease; }
+body.longform-on .thumb-item.active img { filter: none; }
+body.longform-on .thumb-item.active { transform: translateY(-6px); }
+
+/* ---------- 大图：Ken Burns 呼吸 + 交叉溶解 ---------- */
+/* Ken Burns 接管 transform;opacity 由 imageReveal 的 forwards 终态给出,
+   这里显式压到 1,避免 kenburns 覆盖 animation 后停留在 opacity:0 */
+body.longform-on .main-image-wrap.shown img {
+    opacity: 1;
+    animation: kenburns 18s ease-in-out infinite alternate;
+}
+
+@keyframes kenburns {
+    from { transform: scale(1) translate(0, 0); }
+    to   { transform: scale(1.045) translate(-0.8%, 0.6%); }
+}
+
+/* ---------- 环境级：题签铜线呼吸 ---------- */
+.rail-panel::before {
+    content: '';
+    position: absolute;
+    top: 6rem;
+    bottom: 2.4rem;
+    left: 44px;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--accent-border) 20%, var(--accent-border) 80%, transparent);
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+body.longform-on .rail-panel::before {
+    animation: railPulse 5s ease-in-out infinite;
+}
+
+@keyframes railPulse {
+    0%, 100% { opacity: 0.35; }
+    50%      { opacity: 0.8; }
+}
+
+/* ---------- 降级 ---------- */
+@media (max-width: 1023px) {
+    .rail-panel { flex-wrap: wrap; padding-top: 5rem; }
+    .viewer-stage { min-height: 52vh; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .filmstrip .filmstrip-track { transform: none !important; }
+    body.longform-on .main-image-wrap.shown img { animation: none; }
+    body.longform-on .rail-panel::before { animation: none; }
+    .thumb-item, .thumb-item img { transition: none !important; }
+}
+
+/* ── 评审修复：位置读数、caption 入题签、中性看片台 ── */
+
+/* 日间选中帧描边加强（纸底上更明确） */
+[data-theme="light"] body.longform-on .thumb-item.active {
+    box-shadow: 0 0 0 2px var(--accent), 0 6px 18px -6px rgba(0, 0, 0, 0.35);
+}
+
+/* 看片台：中性底，横竖幅统一舞台 */
+body.longform-on .main-image-wrap {
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+}
+
+body.longform-on .main-image-wrap img {
+    max-width: 100%;
+    max-height: 100%;
+    box-shadow: 0 8px 60px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="light"] body.longform-on .main-image-wrap img {
+    box-shadow: 0 10px 44px -12px rgba(58, 50, 43, 0.4);
+}
+
+/* 题签内的当前帧读数 + 进度轨 */
+.rail-progress {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-family: var(--font-ui);
+    color: var(--text-secondary);
+}
+
+.rail-progress .frame-now {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    letter-spacing: 0.04em;
+}
+
+.rail-progress .frame-total {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    color: var(--text-muted);
+}
+
+.rail-progress-track {
+    width: 100%;
+    height: 2px;
+    background: var(--border);
+    border-radius: 1px;
+    overflow: hidden;
+}
+
+.rail-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    transition: width 0.15s linear;
+}
+
+/* caption 入题签后的样式 */
+.rail-caption {
+    display: none;
+    flex-direction: column;
+    gap: 0.3rem;
+    max-width: 100%;
+}
+
+.rail-caption.shown { display: flex; }
+
+.rail-caption .caption-filename {
+    font-family: var(--font-ui);
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+    word-break: break-all;
+}
+
+.rail-caption .caption-date {
+    font-family: var(--font-ui);
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    color: var(--text-muted);
+}
+
+/* 看片台内的旧 caption 隐藏（信息移入题签） */
+body.longform-on .viewer-stage .image-caption { display: none !important; }
+
+/* ═══════════════════════════════════════════════════════════
+   总览覆盖层 — 按月分组的全部帧网格
+   ═══════════════════════════════════════════════════════════ */
+
+.rail-overview-btn {
+    align-self: stretch;
+    padding: 12px 16px;
+    border: 1px solid var(--accent-border);
+    border-radius: 3px;
+    background: transparent;
+    color: var(--accent);
+    font-family: var(--font-ui);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.rail-overview-btn:hover {
+    background: var(--accent-dim);
+    color: var(--text-primary);
+    transform: translateY(-1px);
+}
+
+.overview-overlay[hidden] { display: none; }
+
+.overview-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 5000;
+    display: flex;
+    flex-direction: column;
+    background: color-mix(in srgb, var(--bg-primary) 99%, transparent);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    opacity: 0;
+    transition: opacity 0.28s ease;
+}
+
+.overview-overlay.open { opacity: 1; }
+
+.overview-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.6rem clamp(20px, 4vw, 56px) 1.1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.overview-title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: var(--text-primary);
+}
+
+.overview-sub {
+    display: block;
+    margin-top: 2px;
+    font-family: var(--font-ui);
+    font-size: 0.64rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+}
+
+.overview-close {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--border-strong);
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+}
+
+.overview-close:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: rotate(90deg);
+}
+
+.overview-scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.4rem clamp(20px, 4vw, 56px) 3rem;
+}
+
+.ov-group { margin-bottom: 2.2rem; }
+
+.ov-month {
+    margin: 0 0 0.9rem;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    color: var(--text-primary);
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+}
+
+.ov-month span {
+    font-family: var(--font-ui);
+    font-size: 0.64rem;
+    letter-spacing: 0.16em;
+    color: var(--text-muted);
+}
+
+.ov-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.ov-cell {
+    position: relative;
+    aspect-ratio: 3 / 2;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    background: var(--bg-secondary);
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.25s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.25s ease, border-color 0.2s ease;
+}
+
+.ov-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.85);
+    transition: filter 0.25s ease, transform 0.35s ease;
+}
+
+.ov-cell:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent-border);
+    box-shadow: 0 10px 24px -12px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+.ov-cell:hover img { filter: none; transform: scale(1.04); }
+
+.ov-cell.current {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1.5px var(--accent), 0 8px 22px -10px rgba(0, 0, 0, 0.5);
+}
+
+.ov-cell.current::after {
+    content: '当前';
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    font-family: var(--font-ui);
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+    color: var(--text-primary);
+    background: color-mix(in srgb, var(--accent) 85%, transparent);
+    padding: 2px 7px;
+    border-radius: 2px;
+}
+
+.ov-cell:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* 缩略图加载淡入（破图不再裸露） */
+.ov-cell img { opacity: 0; }
+.ov-cell img.ld { opacity: 1; transition: opacity 0.3s ease; }

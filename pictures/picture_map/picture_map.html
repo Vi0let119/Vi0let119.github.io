@@ -1,16 +1,31 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        /* 尽早应用主题，避免闪白(theme.js 提供切换) */
+        (function () {
+            var t = localStorage.getItem('theme');
+            if (t === 'light' || t === 'dark') {
+                document.documentElement.setAttribute('data-theme', t);
+            }
+        })();
+    </script>
     <title>映像 · Atlas</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:ital,wght@0,300;0,400;0,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../theme-toggle.css">
     <link rel="stylesheet" href="../../siderbar/siderbar.css">
     <link rel="stylesheet" href="picture_map.css">
 </head>
 <body>
+    <button class="theme-toggle" id="themeToggle" aria-label="切换日/夜模式" title="切换日/夜模式">
+        <span class="theme-icon theme-icon--light">☀</span>
+        <span class="theme-icon theme-icon--dark">☽</span>
+    </button>
+    <div class="theme-grain" aria-hidden="true"></div>
     <div id="sidebar-container"></div>
 
     <!-- 地图容器 -->
@@ -58,6 +73,7 @@
     </div>
 
     <script src="../../echarts.min.js"></script>
+    <script src="../../theme.js" defer></script>
     <script src="../../siderbar/sidebar.js"></script>
     <script>
         initSidebar('sidebar-container');

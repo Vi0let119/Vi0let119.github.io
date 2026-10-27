@@ -1,0 +1,170 @@
+/* ============================================
+   theme.css — 全站统一日/夜双主题令牌层
+   基准:index.html 的「日间便当 / 夜间底片」体系
+   ────────────────────────────────────────────
+   日间:暖白纸面 · DM Sans + DM Serif · 灰蓝强调
+   夜间:胶片暗房 · Space Mono + Playfair · 铜金强调 · 噪点颗粒
+   ────────────────────────────────────────────
+   用法:
+     <html data-theme="light"> + <head> 里尽早内联读 localStorage 设主题(防闪白)
+     <link rel="stylesheet" href="/theme.css">(子目录 ../theme.css,须在页面样式之前)
+     页面放 <button class="theme-toggle" id="themeToggle">(含两个 .theme-icon)与 .theme-grain
+     <script src="/theme.js"> 绑定切换,并广播 themechange 事件供图表重绘
+   切换按钮与颗粒的样式在 theme-toggle.css(本文件已引入);
+   自带完整令牌体系的页面(图片区)可只链 theme-toggle.css
+   页面专属令牌请在各自 CSS 里用 [data-theme] 覆写,勿改本文件
+   ============================================ */
+
+@import url('theme-toggle.css');
+
+/* ---------- 令牌:日间(默认) ---------- */
+:root,
+[data-theme="light"] {
+  --bg: #faf7f2;
+  --surface: #ffffff;
+  --text: #2c2c2c;
+  --text-secondary: #6b6b6b;
+  --text-muted: #a0a0a0;
+  --accent: #5b7b8a;
+  --accent-strong: #42606c;
+  --accent-soft: rgba(91, 123, 138, 0.08);
+  --border: rgba(0, 0, 0, 0.06);
+  --border-strong: rgba(0, 0, 0, 0.1);
+  --font-sans: 'DM Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-serif: 'DM Serif Display', 'Noto Serif SC', 'Songti SC', Georgia, serif;
+  --font-mono: 'Space Mono', 'Courier New', monospace;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.07);
+  --sidebar-bg: rgba(255, 255, 255, 0.85);
+}
+
+/* ---------- 令牌:夜间 ---------- */
+[data-theme="dark"] {
+  --bg: #3a3530;
+  --surface: rgba(45, 40, 36, 0.85);
+  --text: #e8e0d5;
+  --text-secondary: rgba(232, 224, 213, 0.6);
+  --text-muted: rgba(232, 224, 213, 0.25);
+  --accent: #d4a853;
+  --accent-strong: #e8c47a;
+  --accent-soft: rgba(212, 168, 83, 0.08);
+  --border: rgba(232, 224, 213, 0.12);
+  --border-strong: rgba(232, 224, 213, 0.2);
+  --font-sans: 'Space Mono', 'Courier New', 'PingFang SC', 'Microsoft YaHei', monospace;
+  --font-serif: 'Playfair Display', 'Noto Serif SC', 'Songti SC', Georgia, serif;
+  --shadow: none;
+  --shadow-hover: 0 0 40px rgba(26, 23, 20, 0.4), inset 0 0 60px rgba(212, 168, 83, 0.03);
+  --sidebar-bg: rgba(26, 23, 20, 0.7);
+}
+
+/* ---------- 基础 ---------- */
+html {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* 夜间:底片暗角 */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    radial-gradient(ellipse at 50% 30%, transparent 40%, rgba(26, 23, 20, 0.55) 100%),
+    radial-gradient(ellipse at 20% 80%, transparent 50%, rgba(26, 23, 20, 0.3) 100%);
+  transition: opacity 0.4s ease;
+}
+
+[data-theme="dark"] body::after { opacity: 1; }
+
+/* ---------- 侧栏双模(玻璃拟态,随主题换底) ---------- */
+.right-sidebar {
+  background: var(--sidebar-bg) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-left: 1px solid var(--border) !important;
+  transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+.sidebar-title {
+  font-family: var(--font-sans) !important;
+  font-weight: 600 !important;
+  color: var(--text-secondary) !important;
+  border-bottom: 1px solid var(--border) !important;
+  transition: color 0.4s ease;
+}
+
+.sidebar-menu > li > a {
+  font-family: var(--font-sans) !important;
+  color: var(--text-secondary) !important;
+  border-radius: 8px !important;
+  transition: color 0.25s ease, background 0.25s ease;
+}
+
+.sidebar-menu > li > a:hover {
+  color: var(--text) !important;
+  background: var(--accent-soft) !important;
+}
+
+.submenu-parent > .submenu-label {
+  font-family: var(--font-sans) !important;
+  color: var(--text-secondary) !important;
+}
+
+.submenu li a {
+  font-family: var(--font-sans) !important;
+  color: var(--text-secondary) !important;
+}
+
+.submenu li a:hover {
+  color: var(--accent) !important;
+  background: var(--accent-soft) !important;
+}
+
+/* 当前页:用更深的 accent 保证 4.5:1 */
+.sidebar-menu a[aria-current="page"],
+.submenu li a[aria-current="page"] {
+  color: var(--accent-strong) !important;
+  background: var(--accent-soft) !important;
+  font-weight: 600 !important;
+}
+
+.toggle-btn {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text-secondary) !important;
+  border-radius: 8px !important;
+  transition: all 0.25s ease;
+}
+
+.toggle-btn:hover {
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+}
+
+/* ---------- 滚动条 & 选中 ---------- */
+body::-webkit-scrollbar { width: 4px; }
+body::-webkit-scrollbar-track { background: transparent; }
+body::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.2);
+  border-radius: 2px;
+}
+body::-webkit-scrollbar-thumb:hover {
+  background: rgba(128, 128, 128, 0.35);
+}
+
+::selection { background: rgba(91, 123, 138, 0.18); color: var(--text); }
+[data-theme="dark"] ::selection { background: rgba(212, 168, 83, 0.25); color: #fff; }
+
+/* ---------- 减少动态效果 ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html, body::after, .theme-toggle, .theme-icon { transition: none !important; }
+}

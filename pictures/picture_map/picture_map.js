@@ -28,6 +28,48 @@
   var sameLocImages  = [];    // 同一经纬度的所有图片（同一地点多张）
   var locIndex       = -1;    // 在 sameLocImages 中的索引
 
+  // ── 主题调色板:日间纸面 / 夜间墨底(与全站 theme.css 同步) ──
+  function mapPalette() {
+    var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    if (dark) {
+      return {
+        bg: '#0b0b0d',
+        area: '#15151d',
+        areaLine: 'rgba(184, 146, 78, 0.18)',
+        label: 'rgba(232, 224, 213, 0.75)',
+        labelShadow: 'rgba(11, 11, 13, 0.7)',
+        tipInk: '#e4e0d8',
+        tipSub: '#8a8780',
+        tipFaint: '#4a4742',
+        tipBg: 'rgba(24, 24, 28, 0.95)',
+        tipBorder: 'rgba(184, 146, 78, 0.3)',
+        ripple: 'rgba(184, 146, 78, 0.35)',
+        dot: '#e4e0d8',
+        dotLine: 'rgba(184, 146, 78, 0.6)',
+        dotHot: '#ffffff',
+        dotHotLine: '#b8924e'
+      };
+    }
+    return {
+      bg: '#f6f3ec',
+      area: '#eae4d6',
+      areaLine: 'rgba(138, 107, 44, 0.22)',
+      label: 'rgba(60, 54, 44, 0.55)',
+      labelShadow: 'rgba(246, 243, 236, 0.8)',
+      tipInk: '#2c2c2c',
+      tipSub: '#6b6b6b',
+      tipFaint: '#a09a90',
+      tipBg: 'rgba(253, 251, 246, 0.97)',
+      tipBorder: 'rgba(138, 107, 44, 0.35)',
+      ripple: 'rgba(138, 107, 44, 0.35)',
+      dot: '#4a4237',
+      dotLine: 'rgba(138, 107, 44, 0.7)',
+      dotHot: '#ffffff',
+      dotHotLine: '#8a6b2c'
+    };
+  }
+
+
   // ── 工具函数 ──────────────────────────────────
   function formatCoord(lat, lng) {
     var latDir = lat >= 0 ? 'N' : 'S';
@@ -38,6 +80,7 @@
 
   // ── ECharts 地图配置构建 ──────────────────────
   function buildChartOption(geoImages) {
+    var P = mapPalette();
     var scatterData = geoImages.map(function (img) {
       return {
         name: img.filename,
@@ -49,19 +92,19 @@
     var hasData = geoImages.length > 0;
 
     var option = {
-      backgroundColor: '#0b0b0d',
+      backgroundColor: P.bg,
 
       tooltip: {
         trigger: 'item',
         formatter: function (params) {
           if (params.data && params.data._img) {
             var img = params.data._img;
-            var html = '<div style="font-family:\'DM Mono\',monospace;font-size:12px;color:#e4e0d8;">';
+            var html = '<div style="font-family:\'DM Mono\',monospace;font-size:12px;color:' + P.tipInk + ';background:' + P.tipBg + ';border:1px solid ' + P.tipBorder + ';border-radius:3px;padding:8px 10px;box-shadow:0 4px 14px rgba(0,0,0,0.18);">';
             html += '<p style="margin:0 0 4px;font-weight:500;">' + img.filename + '</p>';
             if (img.shooting_date) {
-              html += '<p style="margin:0;color:#8a8780;font-size:11px;">' + img.shooting_date + '</p>';
+              html += '<p style="margin:0;color:' + P.tipSub + ';font-size:11px;">' + img.shooting_date + '</p>';
             }
-            html += '<p style="margin:4px 0 0;color:#4a4742;font-size:10px;">'
+            html += '<p style="margin:4px 0 0;color:' + P.tipFaint + ';font-size:10px;">'
                  + formatCoord(img.latitude, img.longitude) + '</p>';
             html += '</div>';
             return html;
@@ -79,19 +122,19 @@
         scaleLimit: { min: 0.8, max: 12 },
         silent: true,  // 地图本身不响应点击
         itemStyle: {
-          areaColor: '#0e0e12',
-          borderColor: 'rgba(184, 146, 78, 0.10)',
+          areaColor: P.area,
+          borderColor: P.areaLine,
           borderWidth: 0.5
         },
         emphasis: { disabled: true },
         label: {
           show: true,
-          color: 'rgba(228, 224, 216, 0.55)',
+          color: P.label,
           fontSize: 10,
           fontFamily: 'Cormorant Garamond, Georgia, "Times New Roman", serif',
           fontWeight: 400,
           letterSpacing: 1.5,
-          textShadowColor: 'rgba(11, 11, 13, 0.7)',
+          textShadowColor: P.labelShadow,
           textShadowBlur: 3
         },
         regions: []
@@ -110,9 +153,9 @@
             showEffectOn: 'render',
             rippleEffect: {
               brushType: 'stroke', scale: 7, period: 5,
-              color: 'rgba(184, 146, 78, 0.35)'
+              color: P.ripple
             },
-            itemStyle: { color: 'rgba(184, 146, 78, 0.6)' },
+            itemStyle: { color: P.dotLine },
             emphasis: { scale: 2, itemStyle: { color: 'rgba(255, 255, 255, 0.9)' } },
             zlevel: 1, z: 1
           });
@@ -125,18 +168,18 @@
           data: scatterData,
           symbolSize: 7,
           itemStyle: {
-            color: '#e4e0d8',
-            borderColor: 'rgba(184, 146, 78, 0.6)',
+            color: P.dot,
+            borderColor: P.dotLine,
             borderWidth: 1.2,
             opacity: 0.9
           },
           emphasis: {
             scale: 2.5,
             itemStyle: {
-              color: '#ffffff',
-              borderColor: '#b8924e',
+              color: P.dotHot,
+              borderColor: P.dotHotLine,
               borderWidth: 2,
-              shadowColor: 'rgba(184, 146, 78, 0.6)',
+              shadowColor: document.documentElement.getAttribute('data-theme') === 'dark' ? 'rgba(184, 146, 78, 0.6)' : 'rgba(138, 107, 44, 0.45)',
               shadowBlur: 10,
               opacity: 1
             }
@@ -182,6 +225,11 @@
 
     window.addEventListener('resize', function () {
       chart && chart.resize();
+    });
+
+    // 主题切换:按新调色板重绘地图
+    document.addEventListener('themechange', function () {
+      if (chart) chart.setOption(buildChartOption(geoImages), { notMerge: true });
     });
   }
 

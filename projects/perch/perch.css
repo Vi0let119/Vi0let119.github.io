@@ -1,35 +1,32 @@
 /* ============================================
-   perch.css — Perch 产品简介页 · 奶油粉圆角
-   设计系统:Fraunces + Manrope / 奶油白 / 樱花粉·薄荷绿点缀
-   配色取自应用自身面板(src/renderer/panel/panel.css)
-   版式按截图形态规划:hero 是通栏整屏桌面,面板截图用页签画廊切换
+   perch.css — Perch 产品简介页 · 贴纸与气泡
+   设计语言:页面是猫猫的"桌面"——所有内容都是贴上去的
+   白底黑描边贴纸/对话气泡,与 Bongo Cat 线稿和应用内
+   白色提醒气泡同一语言。Fraunces(圆润衬线) +
+   ZCOOL KuaiLe(贴纸小签) + Manrope 正文。
+   配色取自应用自身面板:奶油白 / 樱花粉·薄荷绿 / 墨线
    ============================================ */
 
 /* ---------- 设计令牌 ---------- */
 :root {
     --bg: #F6F4F0;          /* 奶油米白,与桌宠面板一致 */
-    --surface: #FFFFFF;
-    --ink: #2B2B2B;
-    --ink-2: #6F6A62;
-    --ink-3: #A09A90;
-    --pink: #E56A97;        /* 装饰填充(圆点/光斑) */
+    --paper: #FFFFFF;       /* 贴纸纸面 */
+    --ink: #2B2B2B;         /* 墨线:描边/正文 */
+    --ink-2: #5D574E;       /* 次要文字,奶油底对比 ≥5.5 */
+    --ink-3: #7A7468;       /* 注释文字,奶油底对比 ≥4.5 */
+    --pink: #E56A97;        /* 装饰填充(圆点/句点) */
     --pink-ink: #C13A74;    /* 文字与按钮用深粉,白底对比 ≥4.5 */
     --pink-soft: #FDE8F0;
     --green: #3D9C6B;       /* 辅助绿,与完成态一致 */
-    --line: rgba(43, 43, 43, 0.08);
-    --line-strong: rgba(43, 43, 43, 0.16);
-    --radius: 10px;
-    --radius-lg: 18px;
-    --radius-xl: 24px;
-    --shadow-sm: 0 1px 2px rgba(43, 43, 43, 0.05);
-    --shadow-md: 0 12px 32px -8px rgba(43, 43, 43, 0.10);
-    --shadow-hero: 0 32px 64px -16px rgba(43, 43, 43, 0.18);
-    --font-display: 'Fraunces', 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', 'SimSun', Georgia, serif;
+    --line: rgba(43, 43, 43, 0.14);
+    --sticker-border: 2px solid var(--ink);
+    --sticker-shadow: 5px 6px 0 rgba(43, 43, 43, 0.9);
+    --sticker-shadow-lg: 7px 9px 0 rgba(43, 43, 43, 0.9);
+    --font-display: 'Fraunces', 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', Georgia, serif;
     --font-body: 'Manrope', 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
+    --font-sticker: 'ZCOOL KuaiLe', var(--font-body);
     --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
     --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
-    --square-w: 380px; /* 猫猫近景展示宽度 */
-    --panel-w: 660px;  /* 面板横图展示宽度 */
 }
 
 /* ---------- Reset & 基础 ---------- */
@@ -55,7 +52,7 @@ body { min-height: 100vh; overflow-x: hidden; }
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb {
-    background: var(--line-strong);
+    background: var(--line);
     border-radius: 5px;
     border: 2px solid var(--bg);
 }
@@ -70,35 +67,177 @@ body { min-height: 100vh; overflow-x: hidden; }
     padding: 0 32px;
 }
 
+/* ---------- 贴纸:白底黑描边 + 实色偏移阴影 ---------- */
+.sticker {
+    background: var(--paper);
+    border: var(--sticker-border);
+    border-radius: 16px;
+    box-shadow: var(--sticker-shadow);
+    padding: 14px;
+    transition: transform 0.25s var(--ease-bounce), box-shadow 0.25s var(--ease-out);
+}
+
+.sticker:hover {
+    transform: translate(-2px, -2px) rotate(-0.4deg);
+    box-shadow: var(--sticker-shadow-lg);
+}
+
+.sticker img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 9px; /* 内图圆角小于贴纸外框,留出白边 */
+}
+
+/* 贴纸交替微旋:手工摆放感,避免机械对齐。
+   大幅应用截图平贴保可读,只有 hero 卡与小贴纸旋转 */
+.sticker--hero { transform: rotate(1.1deg); }
+.sticker--hero:hover { transform: rotate(0.4deg) translate(-2px, -2px); }
+.feature-grid .sticker { transform: none; }
+.feature-grid .sticker:hover { transform: translate(-2px, -2px); }
+
+.sticker-caption {
+    margin-top: 10px;
+    text-align: center;
+    font-family: var(--font-sticker);
+    font-size: 15px;
+    letter-spacing: 0.08em;
+    color: var(--ink-2);
+}
+
+/* ---------- 「到点一刻」示意场景:奶油桌面 + 重建气泡 ---------- */
+.mock-scene {
+    position: relative;
+    background: linear-gradient(180deg, #FBF9F6 0%, var(--bg) 100%);
+    border-radius: 9px;
+    padding: 34px 22px 6px;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* 线稿猫是白底 PNG,用 multiply 融进奶油桌面 */
+.mock-cat {
+    display: block;
+    width: 78%;
+    max-width: 320px;
+    height: auto;
+    margin: 0 auto;
+    mix-blend-mode: multiply;
+}
+
+.mock-bubble {
+    position: relative;
+    display: inline-block;
+    background: #fff;
+    border: 2px solid var(--ink);
+    border-radius: 14px;
+    box-shadow: 3px 4px 0 rgba(43, 43, 43, 0.85);
+    padding: 12px 16px;
+    text-align: left;
+    max-width: 100%;
+}
+
+/* 气泡尾巴:指向猫 */
+.mock-bubble::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -9px;
+    width: 14px;
+    height: 14px;
+    background: #fff;
+    border-right: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    transform: translateX(-50%) rotate(45deg);
+}
+
+.mock-bubble-head {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 6px;
+}
+
+.mock-bubble-head span {
+    font-weight: 500;
+    font-size: 11px;
+    color: var(--ink-3);
+    margin-left: 6px;
+}
+
+.mock-bubble-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+}
+
+.mock-chip {
+    flex-shrink: 0;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--pink-ink);
+    background: var(--pink-soft);
+    border-radius: 6px;
+    padding: 2px 8px;
+}
+
+.mock-check {
+    flex-shrink: 0;
+    margin-left: auto;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--ink);
+    border-radius: 6px;
+    background: #fff;
+}
+
+.mock-bubble-next {
+    font-size: 12px;
+    color: var(--ink-2);
+}
+
+.mock-bubble-next b { color: var(--pink-ink); }
+
 /* ---------- 按钮 ---------- */
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    border-radius: 999px; /* 胶囊钮,与面板一致 */
-    border: 1px solid transparent;
+    border-radius: 999px;
+    border: 2px solid var(--ink);
     font-family: var(--font-body);
-    font-weight: 600;
+    font-weight: 700;
     text-decoration: none;
     cursor: pointer;
     white-space: nowrap;
-    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease,
-                transform 0.2s var(--ease-bounce), box-shadow 0.2s ease;
+    box-shadow: 3px 4px 0 rgba(43, 43, 43, 0.9);
+    transition: background 0.2s ease, color 0.2s ease,
+                transform 0.2s var(--ease-bounce), box-shadow 0.2s var(--ease-out);
+}
+
+.btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 6px 0 rgba(43, 43, 43, 0.9);
+}
+
+.btn:active {
+    transform: translate(1px, 2px);
+    box-shadow: 1px 1px 0 rgba(43, 43, 43, 0.9);
 }
 
 .btn--primary { background: var(--pink-ink); color: #fff; }
-.btn--primary:hover {
-    background: #A93061;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 22px -8px rgba(193, 58, 116, 0.55);
-}
+.btn--primary:hover { background: #A93061; }
 
-.btn--ghost { background: transparent; border-color: var(--line-strong); color: var(--ink); }
-.btn--ghost:hover { border-color: var(--pink-ink); color: var(--pink-ink); }
+.btn--ghost { background: var(--paper); color: var(--ink); }
+.btn--ghost:hover { background: var(--pink-soft); color: var(--pink-ink); }
 
 .btn--lg { height: 52px; padding: 0 30px; font-size: 16px; }
-.btn--sm { height: 40px; padding: 0 22px; font-size: 14px; }
+.btn--sm { height: 40px; padding: 0 20px; font-size: 14px; box-shadow: 2px 3px 0 rgba(43, 43, 43, 0.9); }
 
 .btn-icon { flex-shrink: 0; }
 
@@ -110,21 +249,7 @@ body { min-height: 100vh; overflow-x: hidden; }
 }
 
 /* ============================================
-   截图
-   一律铺满所在栏,高度按图片固有比例自动(HTML 的 width/height 已按真实像素写入)
-   圆角与投影统一在这里给,替换图片文件不需要改样式
-   ============================================ */
-.feature-media img,
-.gallery-shot img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-}
-
-/* ============================================
-   A. 顶部导航
+   A. 顶部导航:奶油底贴纸条,黑描边压底
    ============================================ */
 .nav {
     position: fixed;
@@ -133,10 +258,8 @@ body { min-height: 100vh; overflow-x: hidden; }
     right: 0;
     z-index: 100;
     height: 64px;
-    background: rgba(246, 244, 240, 0.82);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--line);
+    background: rgba(246, 244, 240, 0.92);
+    border-bottom: var(--sticker-border);
     animation: perchNavIn 0.5s ease-out;
 }
 
@@ -162,25 +285,25 @@ body { min-height: 100vh; overflow-x: hidden; }
 .nav-logo-cn {
     font-family: var(--font-display);
     font-weight: 600;
-    font-size: 20px;
+    font-size: 21px;
     letter-spacing: 0.02em;
 }
 
 .nav-logo-en {
     font-size: 10px;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.3em;
     color: var(--ink-3);
 }
 
-.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links { display: flex; align-items: center; gap: 26px; }
 
 .nav-link {
     position: relative;
     text-decoration: none;
     color: var(--ink-2);
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     transition: color 0.2s ease;
 }
 
@@ -188,9 +311,9 @@ body { min-height: 100vh; overflow-x: hidden; }
     content: '';
     position: absolute;
     left: 0;
-    bottom: -4px;
+    bottom: -5px;
     width: 100%;
-    height: 2px;
+    height: 3px;
     border-radius: 2px;
     background: var(--pink);
     transform: scaleX(0);
@@ -201,32 +324,25 @@ body { min-height: 100vh; overflow-x: hidden; }
 .nav-link:hover { color: var(--ink); }
 .nav-link:hover::after { transform: scaleX(1); }
 
-.nav-dot {
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: var(--pink);
-}
-
 .nav-github {
     text-decoration: none;
     color: var(--ink-2);
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     transition: color 0.2s ease;
 }
 .nav-github:hover { color: var(--pink-ink); }
 
 /* ============================================
-   B. Hero:居中文案 + 通栏整屏桌面
-   整屏截图本身很高,hero 不做 100vh 定高
+   B. Hero:左文案 + 右「猫与气泡」贴纸
    ============================================ */
-.hero { padding: 128px 0 72px; }
+.hero { padding: 132px 0 88px; }
 
-.hero-copy {
-    max-width: 800px;
-    margin: 0 auto 56px;
-    text-align: center;
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 72px;
+    align-items: center;
 }
 
 /* 进场 stagger */
@@ -238,21 +354,28 @@ body { min-height: 100vh; overflow-x: hidden; }
 .hero-copy > *:nth-child(5) { animation-delay: 0.45s; }
 .hero-copy > *:nth-child(6) { animation-delay: 0.55s; }
 
-.eyebrow {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
+/* eyebrow 改成手写日程签:白底描边小贴纸 */
+.tag-sticker {
+    display: inline-block;
+    background: var(--paper);
+    border: var(--sticker-border);
+    border-radius: 10px;
+    box-shadow: 3px 4px 0 rgba(43, 43, 43, 0.9);
+    padding: 7px 16px;
+    transform: rotate(-1.2deg);
+    font-family: var(--font-sticker);
+    font-size: 13px;
+    letter-spacing: 0.12em;
     color: var(--pink-ink);
-    margin-bottom: 20px;
+    margin-bottom: 26px;
 }
 
 .hero-title {
     font-family: var(--font-display);
-    font-weight: 500;
-    font-size: clamp(48px, 6vw, 60px);
-    line-height: 1.1;
-    letter-spacing: 0.02em;
+    font-weight: 600;
+    font-size: clamp(52px, 6.5vw, 84px);
+    line-height: 1.02;
+    letter-spacing: 0.01em;
     color: var(--ink);
 }
 
@@ -261,102 +384,89 @@ body { min-height: 100vh; overflow-x: hidden; }
 .hero-sub {
     font-family: var(--font-display);
     font-style: italic;
-    font-weight: 400;
-    font-size: 20px;
+    font-weight: 500;
+    font-size: 21px;
     color: var(--ink-2);
-    margin-top: 12px;
+    margin-top: 14px;
 }
 
 .hero-desc {
     font-size: 16px;
-    line-height: 1.75;
+    line-height: 1.8;
     color: var(--ink-2);
-    max-width: 640px;
-    margin: 20px auto 0;
+    max-width: 560px;
+    margin-top: 22px;
 }
 
 .hero-cta {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 16px;
-    margin-top: 32px;
+    margin-top: 34px;
 }
 
 .hero-meta {
     font-size: 12px;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.05em;
     color: var(--ink-3);
-    margin-top: 20px;
+    margin-top: 22px;
 }
 
-/* 通栏整屏图 + 光斑 */
+/* hero 贴纸:自带轻微视差(JS 控制 .hero-ph) */
 .hero-media {
-    position: relative;
-    animation: perchHeroIn 0.9s var(--ease-out) 0.2s both;
+    animation: perchHeroIn 0.9s var(--ease-bounce) 0.25s both;
+    padding: 10px 18px 18px 6px;
 }
 
-.hero-glow {
+/* 首屏场景更大:单行气泡,猫占主体 */
+.mock-scene--hero { padding: 44px 26px 8px; }
+
+.mock-scene--hero .mock-cat { width: 92%; max-width: 400px; }
+
+.mock-bubble--one {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+/* 大幅应用截图保持平贴,可读性优先;小贴纸才旋转 */
+.sticker--mini {
     position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.28;
-    pointer-events: none;
-    will-change: transform;
+    left: -26px;
+    bottom: -34px;
+    width: 208px;
+    padding: 8px;
+    transform: rotate(-4deg);
+    z-index: 2;
 }
 
-.hero-glow--pink {
-    width: 170px;
-    height: 170px;
-    background: var(--pink);
-    top: -50px;
-    right: 60px;
+.sticker--mini .sticker-caption {
+    margin-top: 8px;
+    font-size: 13px;
 }
 
-.hero-glow--green {
-    width: 120px;
-    height: 120px;
-    background: var(--green);
-    bottom: -40px;
-    left: 40px;
-}
-
-/* 整屏截图实为 2560×1600(16:10),不锁比例,按图片固有尺寸铺满列宽 */
-.hero-ph {
-    display: block;
-    width: 100%;
-    height: auto;
-    position: relative;
-    z-index: 1;
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-hero);
-    will-change: transform;
-}
+.feature-media--panel { position: relative; padding-bottom: 30px; }
 
 /* ============================================
    C. 特色区
    ============================================ */
 .feature {
-    min-height: 68vh;
-    display: flex;
-    align-items: center;
-    padding: 12vh 0;
+    padding: 11vh 0;
+    border-top: 2px dashed rgba(43, 43, 43, 0.22); /* 手绘虚线分界 */
     scroll-margin-top: 64px;
 }
 
-/* 图文两栏:文案 + 方图
-   注意:order 决定网格自动放置的顺序(media 恒在 copy 之前),
-   所以列模板必须与 order 后的顺序对应——媒体左窄、文案右宽 */
+/* 图文两栏 */
 .feature-grid {
     width: 100%;
     display: grid;
-    grid-template-columns: var(--square-w) 1fr;
+    grid-template-columns: minmax(0, 480px) 1fr;
     gap: 72px;
     align-items: center;
 }
 
-/* 翻转:文案在左、面板横图在右 */
-.feature-grid--flip { grid-template-columns: 1fr var(--panel-w); }
+/* 翻转:文案在左、贴纸在右 */
+.feature-grid--flip { grid-template-columns: 1fr minmax(0, 620px); }
 
 .feature-media { order: 1; }
 .feature-copy { order: 2; }
@@ -364,30 +474,28 @@ body { min-height: 100vh; overflow-x: hidden; }
 .feature-grid--flip .feature-media { order: 2; }
 .feature-grid--flip .feature-copy { order: 1; }
 
-.feature-media--square { width: 100%; }
-.feature-media--panel { width: 100%; }
-
 .feature-num {
     font-family: var(--font-display);
     font-style: italic;
-    font-size: 16px;
+    font-weight: 500;
+    font-size: 17px;
     color: var(--pink-ink);
     margin-bottom: 12px;
 }
 
 .feature-title {
     font-family: var(--font-display);
-    font-weight: 500;
-    font-size: 36px;
+    font-weight: 600;
+    font-size: clamp(28px, 3vw, 38px);
     line-height: 1.25;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.01em;
     color: var(--ink);
     margin-bottom: 16px;
 }
 
 .feature-desc {
     font-size: 16px;
-    line-height: 1.75;
+    line-height: 1.8;
     color: var(--ink-2);
     margin-bottom: 24px;
 }
@@ -396,9 +504,9 @@ body { min-height: 100vh; overflow-x: hidden; }
 
 .feature-points li {
     position: relative;
-    padding-left: 18px;
+    padding-left: 20px;
     font-size: 14px;
-    line-height: 1.6;
+    line-height: 1.65;
     color: var(--ink-2);
 }
 
@@ -406,113 +514,128 @@ body { min-height: 100vh; overflow-x: hidden; }
     content: '';
     position: absolute;
     left: 0;
-    top: 0.55em;
-    width: 6px;
-    height: 6px;
+    top: 0.45em;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
+    border: 2px solid var(--ink);
     background: var(--pink);
 }
 
 .feature-points li:nth-child(even)::before { background: var(--green); }
 
-/* ---------- §02 页签画廊 ---------- */
-.feature--gallery { display: block; min-height: auto; }
+/* ---------- §02 页签画廊:贴纸压在桌面上 ---------- */
+.feature--gallery { padding-bottom: 6vh; }
 
-.spec-head { max-width: 660px; margin-bottom: 44px; }
+.spec-head { max-width: 660px; margin-bottom: 40px; }
 .spec-head .feature-desc { margin-bottom: 0; }
 
 .gallery-tabs {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 30px;
+    gap: 12px;
+    margin-bottom: 34px;
 }
 
 .gallery-tab {
-    padding: 11px 22px;
-    border: 1px solid var(--line-strong);
+    padding: 11px 24px;
+    border: var(--sticker-border);
     border-radius: 999px;
-    background: var(--surface);
+    background: var(--paper);
     color: var(--ink-2);
     font-family: var(--font-body);
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
-    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease,
-                transform 0.2s var(--ease-bounce);
+    box-shadow: 2px 3px 0 rgba(43, 43, 43, 0.9);
+    transition: background 0.2s ease, color 0.2s ease,
+                transform 0.2s var(--ease-bounce), box-shadow 0.2s var(--ease-out);
 }
 
 .gallery-tab:hover {
-    border-color: var(--pink-ink);
+    background: var(--pink-soft);
     color: var(--pink-ink);
-    transform: translateY(-2px);
+    transform: translate(-1px, -2px) rotate(-1deg);
 }
 
 .gallery-tab[aria-selected="true"] {
     background: var(--pink-ink);
-    border-color: var(--pink-ink);
+    border-color: var(--ink);
     color: #fff;
+    transform: translate(1px, 2px);
+    box-shadow: 1px 1px 0 rgba(43, 43, 43, 0.9);
 }
 
-.gallery-stage {
-    display: grid;
-    grid-template-columns: 1fr 330px;
-    gap: 44px;
-    align-items: center;
+.gallery-stage { max-width: 900px; margin: 0 auto; }
+
+/* 切换页签时的贴纸落桌动画 */
+.gallery-stage:not([hidden]) { animation: perchStageIn 0.45s var(--ease-bounce); }
+
+/* 截图贴纸 + 下方手写图注 */
+.sticker--panel img { max-height: 560px; object-fit: cover; object-position: top; }
+
+.gallery-copy {
+    margin-top: 16px;
+    text-align: center;
 }
-
-/* [hidden] 必须显式覆盖 display:grid,否则隐藏失效 */
-.gallery-stage[hidden] { display: none; }
-
-.gallery-stage:not([hidden]) { animation: perchStageIn 0.45s var(--ease-out); }
-
-.gallery-shot { min-width: 0; }
 
 .gallery-copy h3 {
-    font-family: var(--font-display);
-    font-weight: 500;
-    font-size: 23px;
-    line-height: 1.35;
+    font-family: var(--font-sticker);
+    font-weight: 400;
+    font-size: 21px;
+    letter-spacing: 0.04em;
     color: var(--ink);
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
 .gallery-copy p {
-    font-size: 14px;
+    font-size: 14.5px;
     line-height: 1.8;
     color: var(--ink-2);
+    max-width: 560px;
+    margin: 0 auto;
 }
 
-/* ---------- §04 无图清单 ---------- */
-.feature--specs { display: block; min-height: auto; }
+/* ---------- §04 贴纸清单 ---------- */
+.feature--specs { padding-bottom: 10vh; }
 
 .spec-grid {
     list-style: none;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 24px;
 }
 
 .spec-card {
-    padding: 26px 24px;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
-    transition: transform 0.25s var(--ease-bounce), box-shadow 0.25s var(--ease-out),
-                border-color 0.25s ease;
+    padding: 24px 22px;
+    background: var(--paper);
+    border: var(--sticker-border);
+    border-radius: 14px;
+    box-shadow: 4px 5px 0 rgba(43, 43, 43, 0.9);
+    transition: transform 0.25s var(--ease-bounce), box-shadow 0.25s var(--ease-out);
 }
 
+/* 手工摆放:每张角度、错位都不同,像随手贴的一排便签 */
+.spec-card:nth-child(1) { transform: rotate(-1.2deg); }
+.spec-card:nth-child(2) { transform: rotate(0.9deg) translateY(8px); }
+.spec-card:nth-child(3) { transform: rotate(-0.5deg) translateY(-4px); }
+.spec-card:nth-child(4) { transform: rotate(1.1deg) translateY(5px); }
+.spec-card:nth-child(5) { transform: rotate(-0.9deg) translateY(-3px); }
+.spec-card:nth-child(6) { transform: rotate(0.6deg) translateY(7px); }
+
+.spec-card:nth-child(3n) h3 { color: var(--pink-ink); }
+.spec-card:nth-child(3n+2) h3 { color: var(--green); }
+
 .spec-card:hover {
-    transform: translateY(-3px);
-    border-color: rgba(193, 58, 116, 0.28);
-    box-shadow: var(--shadow-md);
+    transform: rotate(0deg) translate(-2px, -2px);
+    box-shadow: 6px 7px 0 rgba(43, 43, 43, 0.9);
 }
 
 .spec-card h3 {
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: 0.01em;
+    font-family: var(--font-sticker);
+    font-weight: 400;
+    font-size: 18px;
+    letter-spacing: 0.05em;
     margin-bottom: 8px;
     color: var(--ink);
 }
@@ -536,16 +659,17 @@ body { min-height: 100vh; overflow-x: hidden; }
    D. 页脚
    ============================================ */
 .footer {
-    padding: 88px 0 48px;
+    padding: 80px 0 48px;
+    border-top: 2px dashed rgba(43, 43, 43, 0.22);
     text-align: center;
 }
 
 .footer-inner { display: flex; flex-direction: column; align-items: center; }
 
 .footer-cat {
-    width: 116px;
+    width: 128px;
     height: auto;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
     user-select: none;
     animation: perchPeek 3.2s var(--ease-bounce) infinite;
 }
@@ -553,7 +677,7 @@ body { min-height: 100vh; overflow-x: hidden; }
 .footer-quote {
     font-family: var(--font-display);
     font-style: italic;
-    font-size: 20px;
+    font-size: 21px;
     color: var(--ink-2);
     margin-bottom: 28px;
 }
@@ -570,7 +694,7 @@ body { min-height: 100vh; overflow-x: hidden; }
 
 .footer-bottom {
     width: 100%;
-    border-top: 1.5px dashed var(--line-strong); /* 虚线分隔,与面板一致 */
+    border-top: 2px dashed rgba(43, 43, 43, 0.22);
     padding-top: 24px;
     display: flex;
     align-items: center;
@@ -598,8 +722,9 @@ body { min-height: 100vh; overflow-x: hidden; }
     to   { opacity: 1; transform: none; }
 }
 
+/* 贴纸落桌:带一点回弹 */
 @keyframes perchHeroIn {
-    from { opacity: 0; transform: scale(0.98); }
+    from { opacity: 0; transform: scale(1.05) rotate(3deg); }
     to   { opacity: 1; transform: none; }
 }
 
@@ -623,18 +748,18 @@ body { min-height: 100vh; overflow-x: hidden; }
    响应式:768–1023px 平板
    ============================================ */
 @media (max-width: 1023px) {
-    :root { --square-w: 340px; --panel-w: 100%; }
-
     .hero { padding: 120px 0 64px; }
-    .hero-title { font-size: 52px; }
-    .feature-title { font-size: 32px; }
 
-    .feature {
-        min-height: auto;
-        padding: 8vh 0;
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
     }
 
-    /* 单列:统一媒体在上、文字在下(flip 也恢复同一顺序) */
+    .hero-copy { max-width: 620px; }
+    .hero-media { max-width: 480px; margin: 0 auto; }
+
+    .feature { padding: 8vh 0; }
+
     .feature-grid,
     .feature-grid--flip {
         grid-template-columns: 1fr;
@@ -646,13 +771,6 @@ body { min-height: 100vh; overflow-x: hidden; }
     .feature-grid--flip .feature-media { order: 1; }
     .feature-grid--flip .feature-copy { order: 2; }
 
-    .feature-media--square { max-width: var(--square-w); }
-
-    .gallery-stage {
-        grid-template-columns: 1fr;
-        gap: 28px;
-    }
-
     .spec-grid { grid-template-columns: repeat(2, 1fr); }
 
     .footer { padding: 64px 0 40px; }
@@ -662,40 +780,46 @@ body { min-height: 100vh; overflow-x: hidden; }
    响应式:≤767px 移动端
    ============================================ */
 @media (max-width: 767px) {
-    :root { --square-w: 280px; }
-
     .wrap { padding: 0 20px; }
     .nav-inner { padding: 0 20px; }
 
     /* nav 只留 LOGO + GitHub + 主按钮 */
-    .nav-link,
-    .nav-dot { display: none; }
+    .nav-link { display: none; }
     .nav-links { gap: 16px; }
     .nav-logo-en { display: none; }
 
     .hero { padding: 104px 0 48px; }
-    .hero-copy { margin-bottom: 36px; }
 
-    .hero-title { font-size: 42px; }
-    .hero-sub { font-size: 17px; }
+    .hero-title { font-size: 52px; }
+    .hero-sub { font-size: 18px; }
     .hero-desc { font-size: 15px; }
     .hero-cta { flex-direction: column; align-items: stretch; }
     .hero-cta .btn { width: 100%; }
 
-    .feature-title { font-size: 28px; }
+    .feature-title { font-size: 27px; }
     .feature-desc { font-size: 15px; }
 
     .spec-head { margin-bottom: 32px; }
     .gallery-tabs { gap: 8px; margin-bottom: 24px; }
     .gallery-tab { padding: 10px 16px; font-size: 13px; }
 
-    .gallery-copy h3 { font-size: 20px; }
+    .gallery-copy h3 { font-size: 19px; }
+
+    .sticker { padding: 10px; }
+    .sticker--panel img { max-height: 320px; }
+
+    .sticker--mini {
+        position: static;
+        width: 180px;
+        margin: 14px auto 0;
+        transform: rotate(-2deg);
+    }
 
     .spec-grid { grid-template-columns: 1fr; gap: 16px; }
-    .spec-card { padding: 22px 20px; }
+    .spec-card { padding: 20px 18px; }
 
-    .footer-cat { width: 92px; }
-    .footer-quote { font-size: 17px; }
+    .footer-cat { width: 100px; }
+    .footer-quote { font-size: 18px; }
     .footer-bottom { justify-content: center; text-align: center; }
 }
 
@@ -714,7 +838,12 @@ body { min-height: 100vh; overflow-x: hidden; }
     }
     .js-anim .reveal { opacity: 1; transform: none; }
     .gallery-stage:not([hidden]) { animation: none; }
-    .spec-card:hover,
-    .gallery-tab:hover { transform: none; }
+    .sticker,
+    .sticker--hero,
+    .feature-grid .sticker,
+    .feature-grid--flip .sticker,
+    .spec-card,
+    .gallery-tab,
+    .btn { transform: none !important; }
     .footer-cat { animation: none; }
 }
