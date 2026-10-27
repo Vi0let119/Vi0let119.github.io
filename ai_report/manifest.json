@@ -1,8 +1,24 @@
 {
   "version": 1,
-  "generated": "2026-10-27T18:50:02+08:00",
-  "count": 30,
+  "generated": "2026-10-27T18:55:32+08:00",
+  "count": 31,
   "reports": [
+    {
+      "id": "2026-W44-dispatch-8",
+      "type": "md",
+      "path": "reports/2026-W44-dispatch-8/report.md",
+      "title": "构图不是理由，是中间量",
+      "summary": "COMEX 把裁图拆成「框、构图类型、解释」三步，逼模型先说出用了哪条构图规则，再解释为什么这样裁。人类专家 76% 更认可这种解释；但 15 个通用视觉模型零样本裁图，最好的也只有 0.54 IoU。",
+      "date": "2026-10-27",
+      "week": "2026-W44",
+      "weekStart": "2026-10-26",
+      "weekEnd": "2026-11-01",
+      "model": "ecnu-max",
+      "updated": "2026-10-27T18:53:24+08:00",
+      "words": 1131,
+      "images": 0,
+      "bytes": 4582
+    },
     {
       "id": "2026-W44-dispatch-7",
       "type": "md",
