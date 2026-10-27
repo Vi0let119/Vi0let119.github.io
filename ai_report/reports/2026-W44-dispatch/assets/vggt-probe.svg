@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="420" viewBox="0 0 1120 420" role="img" aria-label="VGGT 自身输出与冻结特征的失败预测能力对比：点图置信度 79.7，全部输出训练的分类器 77.7，线性探针 93.5">
+  <rect width="1120" height="420" fill="#0d0d11"/>
+  <g font-family="'Noto Serif SC', 'Songti SC', serif" fill="#f0ece4">
+    <text x="56" y="58" font-size="24" letter-spacing="1">它说出口的，和它知道的</text>
+    <text x="56" y="86" font-size="13" fill="#78746e">HardMatch 903 对图，失败定义为中位极线误差 &gt; 50 px（占 34.9%）；指标为 ROC-AUC</text>
+  </g>
+  <g font-family="'Noto Serif SC', 'Songti SC', serif" font-size="14">
+    <text x="56" y="146" fill="#8f8a82">点图置信度</text>
+    <rect x="300" y="130" width="557" height="22" rx="3" fill="#c05a4a" fill-opacity="0.55"/>
+    <text x="870" y="147" fill="#d98a7c" font-family="'DM Mono', Consolas, monospace">79.7</text>
+
+    <text x="56" y="192" fill="#8f8a82">深度置信度</text>
+    <rect x="300" y="176" width="465" height="22" rx="3" fill="#c05a4a" fill-opacity="0.35"/>
+    <text x="778" y="193" fill="#b07a6f" font-family="'DM Mono', Consolas, monospace">66.5</text>
+
+    <text x="56" y="238" fill="#8f8a82">图像锐度</text>
+    <rect x="300" y="222" width="404" height="22" rx="3" fill="#c05a4a" fill-opacity="0.25"/>
+    <text x="717" y="239" fill="#a07a72" font-family="'DM Mono', Consolas, monospace">57.7</text>
+
+    <text x="56" y="284" fill="#8f8a82">用全部输出训练的分类器</text>
+    <rect x="300" y="268" width="544" height="22" rx="3" fill="#c05a4a" fill-opacity="0.55"/>
+    <text x="857" y="285" fill="#d98a7c" font-family="'DM Mono', Consolas, monospace">77.7</text>
+
+    <text x="56" y="330" fill="#e8e2d6">冻结特征上的线性探针</text>
+    <rect x="300" y="314" width="654" height="22" rx="3" fill="#5a9a7a"/>
+    <text x="967" y="331" fill="#9cc4ab" font-family="'DM Mono', Consolas, monospace">93.5</text>
+  </g>
+  <line x1="300" y1="118" x2="300" y2="352" stroke="#2a2a30"/>
+  <line x1="56" y1="368" x2="1064" y2="368" stroke="#2a2a30"/>
+  <text x="56" y="396" font-size="12" fill="#78746e" font-family="'DM Mono', Consolas, monospace">数据：论文 Table 2；探针为 L2 逻辑回归 + 128 维 PCA，按类别分组交叉验证。</text>
+</svg>

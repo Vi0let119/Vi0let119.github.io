@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="360" viewBox="0 0 1120 360" role="img" aria-label="九张新照片的原图共 80.99 MB，补齐缩略图与中间图后共 1.42 MB">
+  <rect width="1120" height="360" fill="#0d0d11"/>
+  <g font-family="'Noto Serif SC', 'Songti SC', serif" fill="#f0ece4">
+    <text x="56" y="58" font-size="24" letter-spacing="1">九张照片，从 81 MB 到 1.4 MB</text>
+    <text x="56" y="86" font-size="13" fill="#78746e">点开一张时的实际传输：原图直出 vs 1280 宽中间图（另有 480 宽缩略图 0.26 MB）</text>
+  </g>
+  <g font-family="'Noto Serif SC', 'Songti SC', serif">
+    <text x="56" y="156" font-size="14" fill="#8f8a82">九张原图</text>
+    <rect x="200" y="138" width="800" height="26" rx="3" fill="#c05a4a" fill-opacity="0.55"/>
+    <text x="1012" y="157" font-size="14" fill="#d98a7c" font-family="'DM Mono', Consolas, monospace">80.99 MB</text>
+    <text x="56" y="216" font-size="14" fill="#8f8a82">缩略图</text>
+    <rect x="200" y="198" width="3" height="26" rx="1" fill="#5a9a7a"/>
+    <text x="215" y="217" font-size="14" fill="#9cc4ab" font-family="'DM Mono', Consolas, monospace">0.26 MB · 480 宽</text>
+    <text x="56" y="276" font-size="14" fill="#e8e2d6">1280 宽中间图</text>
+    <rect x="200" y="258" width="12" height="26" rx="3" fill="#5a9a7a"/>
+    <text x="224" y="277" font-size="14" fill="#9cc4ab" font-family="'DM Mono', Consolas, monospace">1.16 MB · 单张 29–362 KB</text>
+  </g>
+  <line x1="56" y1="310" x2="1064" y2="310" stroke="#2a2a30"/>
+  <text x="56" y="338" font-size="12" fill="#78746e" font-family="'DM Mono', Consolas, monospace">口径：文件字节数；WebP q=90，EXIF 方向已摆正，导出不带元数据。</text>
+</svg>
