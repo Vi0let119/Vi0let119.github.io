@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="picture_analysis.css">
     <link rel="stylesheet" href="../../siderbar/siderbar.css">
     <script src="../../echarts.min.js"></script>
+    <script src="../../theme.js" defer></script>
     <script src="../../siderbar/sidebar.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -79,10 +80,10 @@
             </div>
 
             <h3 class="pa-section-label">主色图表</h3>
-            <div id="chartContainer"></div>
+            <div id="chartContainer" role="img" aria-label="主色分布图表"></div>
 
             <h3 class="pa-section-label">RGB 直方图</h3>
-            <div id="rgbHistogram"></div>
+            <div id="rgbHistogram" role="img" aria-label="RGB 三通道直方图"></div>
 
             
         </div>

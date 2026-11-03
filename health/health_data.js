@@ -383,6 +383,19 @@
   }
 
 
+  // 轴范围：数据超出既定尺度时向外扩，正常数据保持原视觉比例（否则超出的点被裁掉）
+  function axisRange(values, baseMin, baseMax) {
+    var lo = baseMin, hi = baseMax;
+    for (var i = 0; i < values.length; i++) {
+      var v = values[i];
+      if (typeof v !== 'number' || !isFinite(v)) continue;
+      if (v < lo) lo = Math.floor(v);
+      if (v > hi) hi = Math.ceil(v);
+    }
+    return [lo, hi];
+  }
+
+
   // ================================================================
   //  2D 趋势图表（ECharts 星图主题 — 星轨 + 淡银雾）
   // ================================================================
@@ -430,6 +443,7 @@
         return out;
       })();
 
+      var weightBounds = axisRange(weightData, 73, 78);
 
       option = {
         tooltip: {
@@ -448,7 +462,7 @@
           splitLine: { show: false }
         },
         yAxis: {
-          type: 'value', min: 73, max: 78, name: 'kg',
+          type: 'value', min: weightBounds[0], max: weightBounds[1], name: 'kg',
           nameTextStyle: { color: THEME.starDim, fontSize: 12, fontFamily: THEME.fontSerif },
           axisLine: { show: false }, axisTick: { show: false },
           axisLabel: { color: THEME.starDim, fontSize: 12, fontFamily: THEME.fontNum },
@@ -487,6 +501,7 @@
       var sleepData = records.map(function (item) {
         return item.sleep_last;
       });
+      var sleepBounds = axisRange(sleepData, 2, 10);
 
       option = {
         tooltip: {
@@ -505,7 +520,7 @@
           splitLine: { show: false }
         },
         yAxis: {
-          type: 'value', min: 2, max: 10, name: '小时',
+          type: 'value', min: sleepBounds[0], max: sleepBounds[1], name: '小时',
           nameTextStyle: { color: THEME.starDim, fontSize: 12, fontFamily: THEME.fontSerif },
           axisLine: { show: false }, axisTick: { show: false },
           axisLabel: { color: THEME.starDim, fontSize: 12, fontFamily: THEME.fontNum },
@@ -540,6 +555,7 @@
         var hours = time.getHours() + time.getMinutes() / 60;
         return hours >= 18 ? hours - 24 : hours;
       });
+      var timeBounds = axisRange(sleepTimeData, -1, 5);
 
       option = {
         tooltip: {
@@ -565,7 +581,7 @@
           splitLine: { show: false }
         },
         yAxis: {
-          type: 'value', min: -1, max: 5, name: '时间', inverse: true,
+          type: 'value', min: timeBounds[0], max: timeBounds[1], name: '时间', inverse: true,
           nameTextStyle: { color: THEME.starDim, fontSize: 12, fontFamily: THEME.fontSerif },
           axisLine: { show: false }, axisTick: { show: false },
           axisLabel: {
@@ -594,6 +610,8 @@
     }
 
     chart.setOption(option);
+    var _chartNames = { weight: '体重趋势', sleep: '睡眠时长', sleepTime: '入睡时间' };
+    chartDom.setAttribute('aria-label', (_chartNames[chartType] || '趋势') + '折线图，共 ' + records.length + ' 天数据');
     last2DOption = option;
     last2DDates = dates || [];
 
@@ -617,11 +635,6 @@
   function render3DChart(timeRange) {
     var records = getFilteredData(timeRange);
 
-    if (current3DChart) {
-      current3DChart.dispose();
-      current3DChart = null;
-    }
-
     // 仅保留有体重数据的记录
     var validRecords = records.filter(function (r) {
       return r.weight_kg > 0;
@@ -630,7 +643,9 @@
     if (validRecords.length < 3) {
       var container = document.getElementById('chart3dContainer');
       if (container) {
-        container.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:' + THEME.starDim + ';font-family:\'Noto Serif SC\',\'Microsoft YaHei\',serif;font-size:15px;letter-spacing:0.1em;">数据不足 — 需要至少3条有效体重记录</div>';
+        if (current3DChart) { current3DChart.dispose(); current3DChart = null; }
+        container.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:' + THEME.starDim + ';font-family:\'Noto Serif SC\',\'Microsoft YaHei\',serif;font-size:15px;letter-spacing:0.1em;text-align:center;line-height:1.9;">当前筛选下只有 ' + validRecords.length + ' 条有效体重记录，至少需要 3 条。<br/>把上方的「年份 / 月份」切到「全部」再看看。</div>';
+        container.setAttribute('aria-label', '数据不足：当前筛选下只有 ' + validRecords.length + ' 条有效体重记录');
       }
       return;
     }
@@ -643,10 +658,19 @@
       return [r.weight_kg, r.sleep_last, sleepOnset, i];
     });
 
+    var wBounds = axisRange(data3D.map(function (d) { return d[0]; }), 70, 78);
+    var sBounds = axisRange(data3D.map(function (d) { return d[1]; }), 2, 10);
+    var tBounds = axisRange(data3D.map(function (d) { return d[2]; }), -1, 5);
+
     var chartDom = document.getElementById('chart3dContainer');
     if (!chartDom) return;
 
-    var chart = echarts.init(chartDom, null, { backgroundColor: 'transparent' });
+    var chart = current3DChart;
+    var isNew3D = !chart || chart.isDisposed() || chart.getDom() !== chartDom;
+    if (isNew3D) {
+      chart = echarts.init(chartDom, null, { backgroundColor: 'transparent' });
+      current3DChart = chart;
+    }
 
     var option = {
       tooltip: {
@@ -699,21 +723,21 @@
         temporalSuperSampling: { enable: true }
       },
       xAxis3D: {
-        name: '体重 (kg)', type: 'value', min: 70, max: 78,
+        name: '体重 (kg)', type: 'value', min: wBounds[0], max: wBounds[1],
         nameTextStyle: { color: THEME.gold, fontSize: 13, fontFamily: THEME.fontSerif, letterSpacing: 1 },
         axisLabel: { color: THEME.starDim, fontSize: 11, fontFamily: THEME.fontNum, formatter: function (v) { return v.toFixed(1); } },
         axisLine: { lineStyle: { color: 'rgba(201,168,106,0.45)' } },
         splitLine: { lineStyle: { color: 'rgba(201,168,106,0.10)' } }
       },
       yAxis3D: {
-        name: '睡眠 (h)', type: 'value', min: 2, max: 10,
+        name: '睡眠 (h)', type: 'value', min: sBounds[0], max: sBounds[1],
         nameTextStyle: { color: THEME.astro, fontSize: 13, fontFamily: THEME.fontSerif, letterSpacing: 1 },
         axisLabel: { color: THEME.starDim, fontSize: 11, fontFamily: THEME.fontNum },
         axisLine: { lineStyle: { color: 'rgba(126,147,168,0.45)' } },
         splitLine: { lineStyle: { color: 'rgba(126,147,168,0.10)' } }
       },
       zAxis3D: {
-        name: '入睡 (时)', type: 'value', min: -1, max: 5,
+        name: '入睡 (时)', type: 'value', min: tBounds[0], max: tBounds[1],
         nameTextStyle: { color: THEME.rose, fontSize: 13, fontFamily: THEME.fontSerif, letterSpacing: 1 },
         axisLabel: {
           color: THEME.starDim, fontSize: 11, fontFamily: THEME.fontNum,
@@ -724,7 +748,7 @@
       },
       // 按入睡时间着色（渐变：深夜蓝 → 星光金）
       visualMap: {
-        show: true, dimension: 2, min: -1, max: 5,
+        show: true, dimension: 2, min: tBounds[0], max: tBounds[1],
         inRange: {
           color: THEME.nightToDawn
         },
@@ -767,29 +791,30 @@
     };
 
     chart.setOption(option);
+    chartDom.setAttribute('aria-label', '三维散点图：体重、睡眠时长与入睡时间，共 ' + validRecords.length + ' 个数据点');
 
-    // 用户交互时暂停自动旋转，4 秒后恢复
-    var autoRotateTimer = null;
-    chart.on('mousedown', function () {
-      if (autoRotateTimer) clearTimeout(autoRotateTimer);
-      chart.setOption({ grid3D: { viewControl: { autoRotate: false } } });
-    });
-    chart.on('mouseup', function () {
-      autoRotateTimer = setTimeout(function () {
-        chart.setOption({ grid3D: { viewControl: { autoRotate: true } } });
-      }, 4000);
-    });
-    chart.on('touchstart', function () {
-      if (autoRotateTimer) clearTimeout(autoRotateTimer);
-      chart.setOption({ grid3D: { viewControl: { autoRotate: false } } });
-    });
-    chart.on('touchend', function () {
-      autoRotateTimer = setTimeout(function () {
-        chart.setOption({ grid3D: { viewControl: { autoRotate: true } } });
-      }, 4000);
-    });
-
-    current3DChart = chart;
+    // 用户交互时暂停自动旋转，4 秒后恢复（只在新建实例时绑一次，避免叠加）
+    if (isNew3D) {
+      var autoRotateTimer = null;
+      chart.on('mousedown', function () {
+        if (autoRotateTimer) clearTimeout(autoRotateTimer);
+        chart.setOption({ grid3D: { viewControl: { autoRotate: false } } });
+      });
+      chart.on('mouseup', function () {
+        autoRotateTimer = setTimeout(function () {
+          chart.setOption({ grid3D: { viewControl: { autoRotate: true } } });
+        }, 4000);
+      });
+      chart.on('touchstart', function () {
+        if (autoRotateTimer) clearTimeout(autoRotateTimer);
+        chart.setOption({ grid3D: { viewControl: { autoRotate: false } } });
+      });
+      chart.on('touchend', function () {
+        autoRotateTimer = setTimeout(function () {
+          chart.setOption({ grid3D: { viewControl: { autoRotate: true } } });
+        }, 4000);
+      });
+    }
   }
 
 

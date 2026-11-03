@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="../tools_theme.css">
     <link rel="stylesheet" href="chart_ai.css">
     <script src="../../echarts.min.js"></script>
+    <script src="../../theme.js" defer></script>
 </head>
 <body class="theme-tools-dark">
     <button class="theme-toggle" id="themeToggle" aria-label="切换日/夜模式" title="切换日/夜模式">
@@ -135,7 +136,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="chart-container" id="chartContainer">
+                <div class="chart-container" id="chartContainer" role="img" aria-label="图表预览">
                     <div class="empty-state" id="emptyState">
                         <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="empty-icon"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
                         <p class="empty-text">AI 生成图表后将在此预览</p>

@@ -103,8 +103,14 @@
     });
     // 容器自身尺寸变化(字体加载/布局稳定)也同步,否则画布保持旧尺寸、底部被裁
     if (window.ResizeObserver) {
+      // 用 rAF 推迟 resize：在观察回调里同步改尺寸会触发
+      // "ResizeObserver loop completed with undelivered notifications"
+      let roRaf = 0;
       const ro = new ResizeObserver(() => {
-        if (chartInstance && !chartInstance.isDisposed()) chartInstance.resize();
+        cancelAnimationFrame(roRaf);
+        roRaf = requestAnimationFrame(() => {
+          if (chartInstance && !chartInstance.isDisposed()) chartInstance.resize();
+        });
       });
       ro.observe(chartContainer);
     }

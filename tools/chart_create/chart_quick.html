@@ -16,7 +16,8 @@
     <link rel="stylesheet" href="../tools_theme.css">
     <link rel="stylesheet" href="chart_quick.css">
     <script src="../../echarts.min.js"></script>
-    <script src="https://cdn.sheetjs.com/xlsx-0.20.0/package/dist/xlsx.full.min.js"></script>
+    <script src="xlsx.full.min.js"></script>
+    <script src="../../theme.js" defer></script>
 </head>
 <body class="theme-tools-dark">
     <button class="theme-toggle" id="themeToggle" aria-label="切换日/夜模式" title="切换日/夜模式">
@@ -128,7 +129,7 @@
                     <h2 class="preview-title">图表预览</h2>
                     <span class="preview-badge" id="dataStatus">等待数据</span>
                 </div>
-                <div class="chart-container" id="chartContainer">
+                <div class="chart-container" id="chartContainer" role="img" aria-label="图表预览">
                     <div class="empty-state" id="emptyState">
                         <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="empty-icon"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
                         <p class="empty-text">在左侧输入数据后<br>图表将在此处实时预览</p>

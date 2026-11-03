@@ -849,9 +849,9 @@ ${candidate}
   }
 
   // ── Start ─────────────────────────────────
-  // Load SheetJS dynamically
+  // Load SheetJS dynamically（本地 vendor，避免 CDN 失效）
   const sheetJsScript = document.createElement('script');
-  sheetJsScript.src = 'https://cdn.sheetjs.com/xlsx-0.20.0/package/dist/xlsx.full.min.js';
+  sheetJsScript.src = 'xlsx.full.min.js';
   sheetJsScript.onload = init;
   sheetJsScript.onerror = () => {
     console.warn('SheetJS 加载失败，Excel 解析将不可用');
